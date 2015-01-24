@@ -1,0 +1,19 @@
+guy_admin_list:
+    path: /
+    defaults: { _controller: GuyAdminBundle:Admin:index}
+
+guy_admin_realisation:
+    resource: "@GuyAdminBundle/Resources/config/routing_realisations.yml"
+    prefix:   /realisations
+    
+guy_admin_formation:
+    resource: "@GuyAdminBundle/Resources/config/routing_formations.yml"
+    prefix:   /formations
+    
+guy_admin_experience:
+    resource: "@GuyAdminBundle/Resources/config/routing_experiences.yml"
+    prefix:   /experiences
+    
+guy_admin_competences:
+    resource: "@GuyAdminBundle/Resources/config/routing_competences.yml"
+    prefix:   /competences

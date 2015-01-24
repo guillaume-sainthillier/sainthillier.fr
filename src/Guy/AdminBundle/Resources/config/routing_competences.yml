@@ -1,0 +1,15 @@
+guy_gestion_competence_ajouter:
+    path: /ajouter
+    defaults: { _controller: GuyAdminBundle:Competence:ajouter}
+    
+guy_gestion_competence_modifier:
+    path: /{id}
+    defaults: { _controller: GuyAdminBundle:Competence:modifier}
+    requirements:
+        id: \d+
+
+guy_gestion_competence_supprimer:
+    path: /{id}/supprimer
+    defaults: { _controller: GuyAdminBundle:Competence:supprimer}
+    requirements:
+        id: \d+

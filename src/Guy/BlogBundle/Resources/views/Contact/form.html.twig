@@ -1,0 +1,29 @@
+<form method="post" id="form_contact" action="{{ path('guy_contact') }}" {{ form_enctype(contact_form) }}>
+    <fieldset> 
+        <div class="row">
+            <div class="col-md-12">
+                {{ form_row(contact_form.nom, { 'attr': {'class': 'form-control input-lg'} }) }}                          
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-6">
+                {{ form_row(contact_form.mail, { 'attr': {'class': 'form-control input-lg'} }) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(contact_form.web, { 'attr': {'class': 'form-control input-lg'} }) }}
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-12">
+                {{ form_row(contact_form.message, { 'attr': {'class': 'form-control input-lg'} }) }}
+            </div>
+        </div>
+        <br />
+
+        {{ form_rest(contact_form) }}
+        <button type="submit" class="btn btn-lg btn-primary pull-right" >Envoyer</button>
+        <p class="help-block">Votre message sera envoyé à l'adresse <strong class="email-nospam"></strong></p>                                
+    </fieldset>
+</form>

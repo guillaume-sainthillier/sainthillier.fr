@@ -1,0 +1,64 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}
+    Développeur Web PHP Toulouse, Guillaume Sainthillier - Découvrez mon CV, mes compétences et réalisations
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="//maps.google.com/maps/api/js?sensor=true"></script>
+    {% javascripts 
+    'bower/jquery.easing/js/jquery.easing.js'
+    'bower/gmaps/gmaps.js'
+    'bower/HCaptions/jquery.hcaptions.js'
+    'bower/quicksand/jquery.quicksand.js'
+    'js/scripts.js'
+
+    filter='?yui_js'
+    output='prod/js/cv.js'
+    %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
+
+
+{% block body %}
+<div itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="telephone" content="{{ telephones|join('.') }}" >
+    <meta itemprop="email" content="{{ email }}" >    
+    {% include "GuyBlogBundle:Blocks:block_about.html.twig" %}
+</div>
+
+<div class="page">
+    <div class="container">
+        <!-- Compétences -->
+        <section class="row competences" id="competences">
+            <div itemscope itemtype="http://schema.org/ItemList">
+                {% include "GuyBlogBundle:Blocks:block_competences.html.twig" %}
+            </div>
+        </section>
+        <!-- ./Compétences -->
+
+        <!-- Expérience -->
+        <section class="row experience" id="experience">
+            {% include "GuyBlogBundle:Blocks:block_experience.html.twig" %}
+        </section>
+        <!-- ./Expérience -->
+
+        <!-- Formation -->
+        <section class="row formation" id="formation">
+            {% include "GuyBlogBundle:Blocks:block_formation.html.twig" %}
+        </section>
+        <!-- ./Formation -->
+
+        <!-- Portfolio -->
+        <section class="row formation" id="portfolio">
+            {% include "GuyBlogBundle:Blocks:block_realisations.html.twig" with({'realisations': realisations}) %}  
+        </section>            
+        <!-- ./Portfolio -->
+    </div>
+
+    <!-- Contact -->
+    {% include "GuyBlogBundle:Blocks:block_contact.html.twig" %}
+    <!-- ./Contact -->
+</div>
+{% endblock %}

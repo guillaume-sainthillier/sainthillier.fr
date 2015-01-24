@@ -1,0 +1,51 @@
+{% extends "GuyAdminBundle::layout.html.twig" %}
+
+{% form_theme form 'GuyAdminBundle:Form:fields.html.twig' %}
+{% block guy_admin_titre %}Réalisations{% endblock %}
+
+{% block guy_admin_content_title %}
+    Réalisation / {% block guy_admin_titre_realisation %}{% endblock %}
+{% endblock %}
+
+{% block guy_admin_content %}
+    <form method="post" {{ form_enctype(form) }}>
+        <div class="row">
+            <div class="col-md-6">
+                {{ form_row(form.titre) }}
+                {{ form_row(form.imagePrincipale) }}
+                {{ form_row(form.imageIcon) }}
+                {{ form_row(form.contenu) }}
+                {{ form_row(form.collaboration) }}
+                {{ form_row(form.tags) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_errors(form.lien) }}
+                {{ form_widget(form.lien) }}
+                {{ form_rest(form) }}
+            </div>
+        </div>
+
+        
+
+        <br />
+        {% block boutton %}{% endblock %}
+        <a href="{{ path('guy_admin_list') }}" >Retour</a>
+    </form>
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/summernote/0.5.2/summernote.css">
+    
+{% endblock %}
+{% block js %}
+    <script type="text/javascript">
+        
+        js_scripts.lib.push("//cdnjs.cloudflare.com/ajax/libs/summernote/0.5.2/summernote.min.js");
+        {% javascripts 'bundles/guyadmin/js/admin.js' 
+            filter='?yui_js' 
+            output='prod/js/admin.js'
+        %}        
+            js_scripts.final.push("{{ asset_url }}");        
+        {% endjavascripts %}            
+    </script>
+{% endblock %}

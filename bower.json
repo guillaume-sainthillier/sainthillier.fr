@@ -1,0 +1,29 @@
+{
+    "name": "Sainthillier",
+    "version": "1.0.0",
+    "homepage": "https://sainthillier.fr",
+    "authors": [
+        "Guillaume SAINTHILLIER <guillaume.sainthillier@gmail.com>"
+    ],
+    "license": "MIT",
+    "private": true,
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+        "jquery": "2.1.*",
+        "bootstrap": "latest",
+        "font-awesome": "latest",
+        "html5shiv": "latest",
+        "respond": "latest",
+        "jquery.easing": "latest",
+        "gmaps": "latest",
+        "HCaptions": "latest",
+        "quicksand": "git://github.com/razorjack/quicksand",
+        "summernote": "0.6.*"
+    }
+}

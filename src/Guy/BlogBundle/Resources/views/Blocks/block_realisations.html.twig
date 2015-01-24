@@ -1,0 +1,49 @@
+<aside class="col-sm-3 aside_el">
+    <h2>Portfolio</h2>
+    <h5>Mes meilleurs travaux</h5>
+</aside>
+<div class="col-sm-9 borderleft">
+    <ul class="filter nav nav-pills">
+        <li class="active"><a href="#" data-tag="all" >Tous</a></li>
+        {% for tag in full_tags %}
+            <li><a href="#" data-tag="{{ tag.nom }}">{{ tag.nom }}</a></li>
+        {% endfor %}
+    </ul>
+
+    <div class="thumbnails portfolio row">
+        {% for i, realisation in realisations %}
+            {% set tags = "" %}
+            {% for tag in realisation.tags %}
+                {% set tags = tags ~ ' ' ~ tag.nom %}
+            {% endfor %}
+        <div itemscope itemtype="http://schema.org/WebSite">
+            <meta itemprop="keywords" content="{{ tags|trim|replace({' ': ', '}) }}" >
+            <meta itemprop="license" content="http://opensource.org/licenses/MIT" >
+            <meta itemprop="description" content="{{ realisation.contenu|striptags|raw }}" >
+            {% if realisation.dateProjet %}
+            <meta itemprop="dateCreated" content="{{ realisation.dateProjet|date('Y-m-d') }}" >
+            {% endif %}
+            {% if realisation.lastModification %}
+            <meta itemprop="dateModified" content="{{ realisation.lastModification|date('Y-m-d') }}" >
+            {% endif %}
+            {% if realisation.webPathImagePrincipale %}
+                <meta itemprop="image" content="{{ realisation.webPathImagePrincipale }}" >
+            {% endif %}
+            {% if realisation.lien.urlDemo is defined %}
+                <meta itemprop="url" content="{{ realisation.lien.urlDemo }}" >
+            {% endif %}
+            <div data-tag="{{ tags|trim }}" data-id="id-{{ realisation.id }}" class="item col-xs-6 col-sm-6 col-md-4">
+                <div class="apercu">
+                    <a href="#thumb-{{ i }}" class="thumb" data-cap-effect="fade">
+                        <img class="img-responsive" itemprop="thumbnailUrl" src="{{ realisation.webPathImagePrincipale ? (realisation.webPathImagePrincipale|imagine_filter('thumb_realisation')) : '' }}" alt="" />
+                    </a>
+                    <div id="thumb-{{ i }}" class="cap-overlay">
+                        <a class="thumb_link" href="{{ path('guy_details_realisation', { 'slug': realisation.slug }) }}" ></a>
+                    </div>
+                </div>
+                <h3><span itemprop="name">{{ realisation.titre|raw }}</span></h3>
+            </div>
+        </div>
+        {% endfor %}
+    </div>       
+</div>

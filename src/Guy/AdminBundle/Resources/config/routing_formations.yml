@@ -1,0 +1,15 @@
+guy_gestion_formation_ajouter:
+    path: /ajouter
+    defaults: { _controller: GuyAdminBundle:Formation:ajouter}
+    
+guy_gestion_formation_modifier:
+    path: /{id}
+    defaults: { _controller: GuyAdminBundle:Formation:modifier}
+    requirements:
+        id: \d+
+
+guy_gestion_formation_supprimer:
+    path: /{id}/supprimer
+    defaults: { _controller: GuyAdminBundle:Formation:supprimer}
+    requirements:
+        id: \d+

@@ -1,0 +1,19 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Admin - {% block guy_admin_titre %}{% endblock %}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h2>{% block guy_admin_content_title %}Administration{% endblock %}</h2>
+        <hr />        
+        {% for key, messages in app.session.flashbag.all() %}
+            {% for message in messages %}
+                <div class="alert alert-{{ key == 'error' ? 'danger' : key }}">
+                    <i class="fa fa-{{ key == 'info' ? 'info-sign' : (key == 'error' ? 'warning' : key == 'success' ? 'check' : key) }}"></i> 
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+        {% block guy_admin_content %}{% endblock %}
+    </div>    
+{% endblock %}

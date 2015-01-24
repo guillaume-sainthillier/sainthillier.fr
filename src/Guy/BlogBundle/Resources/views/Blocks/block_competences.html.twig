@@ -1,0 +1,21 @@
+<aside class="col-sm-3 aside_el">
+    <h2><span itemprop="name">Compétences</span></h2>
+    <h5>Technologies favorites</h5>
+</aside>
+<div class="col-sm-9 borderleft">
+    <div class="row skills">
+        <div class=" col-xs-8 col-xs-offset-2 col-sm-offset-0 col-sm-6 col-md-5">
+            {% set rupture = competences|length < 2 ? 2 : ((competences|length+2) / 2) %}
+            {% for i, competence in competences %}{% spaceless %}
+                {% if (i+1) is divisibleby(rupture) %}
+                </div>
+                <div class=" col-xs-8 col-xs-offset-2 col-sm-offset-0 col-sm-6 col-md-5 col-md-offset-1">
+                {% endif %}
+                <h4><span itemprop="itemListElement">{{ competence.nom }}</span></h4>
+                <div class="progress">
+                    <div class="progress-bar {{ competence.niveau <= 50 ? "progress-bar-info " : "" }}progress-bar-striped" role="progressbar" aria-valuenow="{{ competence.niveau }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ competence.niveau }}%;">{{ competence.niveau }}%</div>
+                </div>
+            {% endspaceless %}{% endfor %}
+        </div>
+    </div>
+</div>

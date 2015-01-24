@@ -1,0 +1,7 @@
+{% extends "GuyAdminBundle:Competence:base.html.twig" %}
+
+{% block guy_admin_titre_competence %}{{ competence.nom }}{% endblock %}
+
+{% block boutton %}
+    <button type="submit" class="btn btn-danger"><i class="fa fa-times"></i> Supprimer</button>
+{% endblock %}

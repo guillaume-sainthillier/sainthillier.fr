@@ -1,0 +1,19 @@
+<a class="btn btn-primary" href="{{ path('guy_gestion_experience_ajouter') }}">Nouveau</a>
+<table class="table table-responsive table-hover table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Titre</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for experience in experiences %}
+            <tr>
+                <td>{{ experience.id }}</td>
+                <td><a href="{{ path('guy_gestion_experience_modifier', {'id': experience.id}) }}">{{ experience.nom|striptags }}</a></td>
+                <td><a class="btn btn-danger pull-right" href="{{ path('guy_gestion_experience_supprimer', {'id': experience.id}) }}">Supprimer</a></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

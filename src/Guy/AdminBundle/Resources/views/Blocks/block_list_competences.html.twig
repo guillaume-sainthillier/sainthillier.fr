@@ -1,0 +1,21 @@
+<a class="btn btn-primary" href="{{ path('guy_gestion_competence_ajouter') }}">Nouveau</a>
+<table class="table table-responsive table-hover table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Nom</th>
+            <th>Niveau</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for competence in competences %}
+            <tr>
+                <td>{{ competence.id }}</td>
+                <td><a href="{{ path('guy_gestion_competence_modifier', {'id': competence.id}) }}">{{ competence.nom }}</a></td>
+                <td>{{ competence.niveau }} %</td>
+                <td><a class="btn btn-danger pull-right" href="{{ path('guy_gestion_competence_supprimer', {'id': competence.id}) }}">Supprimer</a></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

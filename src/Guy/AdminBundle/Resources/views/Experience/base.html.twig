@@ -1,0 +1,8 @@
+{% extends "GuyAdminBundle:Formation:base.html.twig" %}
+
+{% form_theme form 'GuyAdminBundle:Form:fields.html.twig' %}
+{% block guy_admin_titre %}Expériences{% endblock %}
+
+{% block guy_admin_content_title %}
+    Expérience / {% block guy_admin_titre_experience %}{% endblock %}
+{% endblock %}

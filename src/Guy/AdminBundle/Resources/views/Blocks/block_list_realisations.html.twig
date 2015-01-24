@@ -1,0 +1,19 @@
+<a class="btn btn-primary" href="{{ path('guy_gestion_realisation_ajouter') }}">Nouveau</a>
+<table class="table table-responsive table-hover table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Titre</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for realisation in realisations %}
+            <tr>
+                <td>{{ realisation.id }}</td>
+                <td><a href="{{ path('guy_gestion_realisation_modifier', {'id': realisation.id}) }}">{{ realisation.titre|striptags }}</a></td>
+                <td><a class="btn btn-danger pull-right" href="{{ path('guy_gestion_realisation_supprimer', {'id': realisation.id}) }}">Supprimer</a></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

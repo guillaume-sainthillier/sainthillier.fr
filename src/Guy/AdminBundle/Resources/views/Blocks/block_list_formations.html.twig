@@ -1,0 +1,19 @@
+<a class="btn btn-primary" href="{{ path('guy_gestion_formation_ajouter') }}">Nouveau</a>
+<table class="table table-responsive table-hover table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Titre</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for formation in formations %}
+            <tr>
+                <td>{{ formation.id }}</td>
+                <td><a href="{{ path('guy_gestion_formation_modifier', {'id': formation.id}) }}">{{ formation.nom|striptags }}</a></td>
+                <td><a class="btn btn-danger pull-right" href="{{ path('guy_gestion_formation_supprimer', {'id': formation.id}) }}">Supprimer</a></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

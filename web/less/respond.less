@@ -1,0 +1,140 @@
+// Mobile uniquement
+@media (max-width: @screen-xs) {
+
+    .col-xs-offset-1, .col-xs-offset-2, .col-xs-offset-3, .col-xs-offset-4, 
+    .col-xs-offset-5, .col-xs-offset-6, .col-xs-offset-7, .col-xs-offset-8, 
+    .col-xs-offset-9, .col-xs-offset-10, .col-xs-offset-11, .col-xs-offset-12 {
+        margin-left: 0;
+    }
+    .col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, 
+    .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, 
+    .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12 {
+        width: 100%;
+    }
+
+    .text_footer {
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    .aside_el {
+        margin-bottom: 15px;
+    }
+
+    .borderleft {
+        padding-top: 15px;
+    }
+
+    #form_contact {
+        margin-left: 0;
+        margin-right: 0;
+        padding: 15px;
+    }
+}
+
+// < 767px
+@media (max-width: @screen-xs-max){
+
+    .aside_el {
+        text-align: left;
+        margin-bottom: 25px;
+    }
+
+    .bigspacing {
+        padding-left: 0;
+    }
+
+    .par_el {
+        padding-left: 10px;
+
+        .periode {
+            float: right;
+            margin-right: 5px;
+            position: static;
+        }
+    }
+
+    .in_spacing {
+        padding-bottom: 0; 
+        padding-right: 0;
+    }
+
+    .borderleft {
+        border-left: 0;
+        //border-top: 1px solid #D4D4D4;
+        padding-top: 25px;
+    }
+}
+
+// < 992px
+@media (max-width: @screen-sm-max){
+    .presentation {
+        border-right: 0;
+
+        padding-right: 15px;        
+        border-bottom: 1px solid #CCD0D4;
+        padding-bottom: 22px;
+    }
+}
+
+// [992; 1200]
+@media (min-width: @screen-md) and (max-width: @screen-md-max){
+    .about_link {
+        font-size: 93%;
+        i {
+            min-width: 30px;
+        }
+    }
+}
+
+// [767; 991]
+@media (min-width: @screen-sm) and (max-width: @screen-sm-max){
+    .aside_el h2 {
+        font-size: 1.9em;
+    }
+}
+
+// > 767
+@media (min-width: @screen-sm) {
+    
+    .navbar-default .navbar-nav {
+        height: 80px;
+        float: none;
+        text-align: center;
+
+        & > li {
+            float: none;
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0;
+            margin-left: -2px;
+            padding: 0 18px;
+            border-top: 10px solid transparent;
+
+            &.active{
+                border-top: 10px solid #0099E8;
+                .transition(0.5s all ease);
+
+                a:hover {
+                    background-color: transparent;
+                }
+            }
+
+            a {            
+                top: 10px;
+                position: relative;
+                line-height: 2.75em;
+                color: #0099E8;
+                margin: 0;
+                padding: 0;            
+            }
+
+            &:hover, &:active, &.active {
+                & > a {
+                    background-color: transparent;
+                    color: #747474;
+                }
+            }
+        }    
+    }
+}

@@ -1,0 +1,7 @@
+parameters:
+#    guy_realisation.example.class: Guy\AdminBundle\Example
+
+services:
+#    guy_realisation.example:
+#        class: %guy_realisation.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
