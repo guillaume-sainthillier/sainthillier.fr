@@ -21,7 +21,7 @@ class RealisationRepository extends EntityRepository {
         ->getQuery()
         ->getSingleScalarResult();
     }
-    
+
     public function findRealisationsWithTag($tag) {
         $qb = $this->_em->createQueryBuilder();
 
@@ -33,7 +33,7 @@ class RealisationRepository extends EntityRepository {
                 ->getQuery()
                 ->getResult();
 
-        $realisations = array();
+        $realisations = [];
 
         foreach ($tags as $tag) {
             $realisations[] = $tag->getRealisation();

@@ -67,7 +67,7 @@ class FormationExperience
     private $points;
 
     public function __construct() {
-	$this->points = array();
+	$this->points = [];
     }
     /**
      * Get id

@@ -9,31 +9,31 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 class ContactType extends AbstractType {
 
     public function buildForm(FormBuilderInterface $builder, array $options) {
-	$builder->add('nom', null, array(
+	$builder->add('nom', null, [
 	    "label" => false,
-	    "attr" => array(
+	    "attr" => [
 		"placeholder" => "Nom",
-	    )
-	));
-	$builder->add('mail', 'email', array(
+	    ]
+	]);
+	$builder->add('mail', 'email', [
 	    "label" => false,
 	    "required" => false,
-	    "attr" => array(
+	    "attr" => [
 		"placeholder" => "Email",
-	    )
-	));
-	$builder->add('web', null, array(
+	    ]
+	]);
+	$builder->add('web', null, [
 	    "label" => false,
-	    "attr" => array(
+	    "attr" => [
 		"placeholder" => "Web",
-	    )
-	));
-	$builder->add('message', 'textarea', array(
+	    ]
+	]);
+	$builder->add('message', 'textarea', [
 	    "label" => false,
-	    "attr" => array(
+	    "attr" => [
 		"placeholder" => "Message",
-	    )
-	));
+	    ]
+	]);
     }
 
     public function getName() {
@@ -41,9 +41,9 @@ class ContactType extends AbstractType {
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver) {
-	$resolver->setDefaults(array(
+	$resolver->setDefaults([
 	    'data_class' => 'Guy\BlogBundle\Entity\Contact',
-	));
+	]);
     }
 
 }

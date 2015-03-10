@@ -11,6 +11,6 @@ class BlogController extends Controller
 {
     public function indexAction($page, $tag = false, $nom = false)
     {
-		return $this->render('GuyBlogBundle:Pages:'.$page.'.html.twig',array("page" => $page));
+		return $this->render('GuyBlogBundle:Pages:'.$page.'.html.twig',["page" => $page]);
     }
 }

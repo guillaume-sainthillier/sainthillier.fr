@@ -9,7 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 class LienType extends AbstractType {
 
     public function buildForm(FormBuilderInterface $builder, array $options) {
-	$options = array("required" => false, "attr" => array("class" => "editor-simple"));
+	$options = ["required" => false, "attr" => ["class" => "editor-simple"]];
 	$builder
 	    ->add('url_demo', 'text', $options)
 	    ->add('description_demo', 'textarea', $options)
@@ -21,9 +21,9 @@ class LienType extends AbstractType {
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver) {
-	$resolver->setDefaults(array(
+	$resolver->setDefaults([
 	    'data_class' => 'Guy\AdminBundle\Entity\Lien'
-	));
+	]);
     }
 
     public function getName() {

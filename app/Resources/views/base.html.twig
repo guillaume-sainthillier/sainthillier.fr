@@ -76,12 +76,12 @@
         <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
         
-        <script type="text/javascript" >{% spaceless %}
+        
+        <script type="text/javascript" >
+            {% if email %}{% set infos_mails = email|split('@') %} 
             //Email SPAM protection
-            {% if email %}
-                {% set infos_mails = email|split('@') %}
-                var username = "{{ infos_mails[0] }}";
-                var host = "{{ infos_mails[1] }}";                
+            var username = "{{ infos_mails[0] }}";
+            var host = "{{ infos_mails[1] }}";                
             {% endif %}
                 
             //Téléphone SPAM protection
@@ -93,9 +93,8 @@
             jQuery.browser.webkit = /webkit/.test(navigator.userAgent.toLowerCase());
             jQuery.browser.opera = /opera/.test(navigator.userAgent.toLowerCase());
             jQuery.browser.msie = /msie/.test(navigator.userAgent.toLowerCase());
-        {% endspaceless %}</script>
-
-        {% block js %}{% endblock %}        
+        </script>       
+        {% block js %}{% endblock %} 
         <script type="text/javascript" >
             (function(i, s, o, g, r, a, m) {
                 i['GoogleAnalyticsObject'] = r;

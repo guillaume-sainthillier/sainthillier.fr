@@ -34,11 +34,11 @@ class RealisationController extends Controller
 	    $form->get("tags")->setData("");
 
 	return $this->render(
-			'GuyAdminBundle:Realisation:ajouter.html.twig', array(
+			'GuyAdminBundle:Realisation:ajouter.html.twig', [
 		    'form' => $form->createView(),
 		    "page" => "realisations",
 		    "realisation" => $realisation
-	));
+	]);
     }
 
     public function modifierAction(Realisation $realisation) {
@@ -66,11 +66,11 @@ class RealisationController extends Controller
 	}
 
 	return $this->render(
-		'GuyAdminBundle:Realisation:modifier.html.twig', array(
+		'GuyAdminBundle:Realisation:modifier.html.twig', [
 		    'form' => $form->createView(),
 		    "page" => "realisations",
 		    "realisation" => $realisation
-	));
+	]);
     }
 
     public function supprimerAction(Realisation $realisation) {
@@ -95,10 +95,10 @@ class RealisationController extends Controller
 			}, $realisation->getTags()->toArray())));
 
 	return $this->render(
-			'GuyAdminBundle:Realisation:supprimer.html.twig', array(
+			'GuyAdminBundle:Realisation:supprimer.html.twig', [
 		    'form' => $form->createView(),
 		    "page" => "realisations",
 		    "realisation" => $realisation
-	));
+	]);
     }
 }

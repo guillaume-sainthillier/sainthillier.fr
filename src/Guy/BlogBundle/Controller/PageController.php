@@ -22,23 +22,23 @@ class PageController extends Controller
 
 	    $message = \Swift_Message::newInstance()
 		->setSubject('Contact')
-		->setFrom(array($contact->getMail() => $contact->getNom()))
+		->setFrom([$contact->getMail() => $contact->getNom()])
 		->setTo(null)
-		->setBody($this->renderView('GuyBlogBundle:Contact:mail.html.twig', array("contact" => $contact)), 'text/html')
+		->setBody($this->renderView('GuyBlogBundle:Contact:mail.html.twig', ["contact" => $contact]), 'text/html')
             ;
 
 	    $this->get('mailer')->send($message);
 
 	    return $this->render(
-		'GuyBlogBundle:Contact:success.html.twig', array(
+		'GuyBlogBundle:Contact:success.html.twig', [
 		"contact" => $contact
-	    ));
+	    ]);
 	}
 
 	return $this->render(
-	    'GuyBlogBundle:Contact:form.html.twig', array(
+	    'GuyBlogBundle:Contact:form.html.twig', [
 	    "contact_form" => $contactForm->createView()
-	));
+	]);
     }
 
     public function indexAction()
@@ -47,29 +47,29 @@ class PageController extends Controller
 
 	$em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository("GuyAdminBundle:Realisation");
-        $realisations = $repo->findBy(array(), array("dateProjet" => "DESC"));
+        $realisations = $repo->findBy([], ["dateProjet" => "DESC"]);
 
         $repo = $em->getRepository("GuyAdminBundle:Tag");
         $tags = $repo->getDistinctTags();
 
         $repo = $em->getRepository("GuyBlogBundle:Formation");
-        $formations = $repo->findBy(array(), array("ordre" => "ASC"));
+        $formations = $repo->findBy([], ["ordre" => "ASC"]);
 
         $repo = $em->getRepository("GuyBlogBundle:Experience");
-        $experiences = $repo->findBy(array(), array("ordre" => "ASC"));
+        $experiences = $repo->findBy([], ["ordre" => "ASC"]);
 
         $repo = $em->getRepository("GuyBlogBundle:Competence");
-        $competences = $repo->findBy(array(), array("niveau" => "DESC", "nom" => "ASC"));
+        $competences = $repo->findBy([], ["niveau" => "DESC", "nom" => "ASC"]);
 
         return $this->render(
-            'GuyBlogBundle:Pages:cv.html.twig', array(
+            'GuyBlogBundle:Pages:cv.html.twig', [
                 "formations" => $formations,
                 "experiences" => $experiences,
                 "realisations" => $realisations,
                 "competences" => $competences,
                 "full_tags" => $tags,
 		"contact_form" => $contactForm->createView()
-	));
+	]);
     }
 
     /**
@@ -77,6 +77,6 @@ class PageController extends Controller
      */
     public function detailsRealisationAction(Realisation $realisation)
     {
-        return $this->render('GuyBlogBundle:Pages:details_realisation.html.twig',array("realisation" => $realisation));
+        return $this->render('GuyBlogBundle:Pages:details_realisation.html.twig',["realisation" => $realisation]);
     }
 }
