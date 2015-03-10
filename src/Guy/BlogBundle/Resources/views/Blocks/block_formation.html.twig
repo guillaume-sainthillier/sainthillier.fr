@@ -2,10 +2,10 @@
     <h2>Formation</h2>
     <h5>Depuis 2009</h5>
 </aside>
-<div class="col-sm-9">                
+<div class="borderleft col-sm-9">                
     {% for formation in formations %}
     <div itemscope itemtype="http://schema.org/EducationalOrganization">
-        <article class="borderleft par_el in_spacing">
+        <article class="par_el in_spacing">
             <span class="periode label label-primary">{{ formation.periode|raw }}</span>
             <div class="bigspacing">
                 <header>

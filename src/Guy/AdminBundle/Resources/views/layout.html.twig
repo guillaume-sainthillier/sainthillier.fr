@@ -15,5 +15,26 @@
             {% endfor %}
         {% endfor %}
         {% block guy_admin_content %}{% endblock %}
-    </div>    
+    </div>
+    <br />
+    <br />
+{% endblock %}
+
+{% block css %}
+    {% stylesheets 
+        'bower/summernote/dist/summernote.css'
+        filter='cssrewrite,?yui_css'
+        output='prod/css/admin.css'
+    %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="screen" >
+    {% endstylesheets %}
+{% endblock %}
+
+{% block js %} 
+    {% javascripts 'bower/summernote/dist/summernote.min.js' 'bundles/guyadmin/js/admin.js' 
+        filter='?yui_js' 
+        output='prod/js/admin.js'
+    %}        
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 {% endblock %}

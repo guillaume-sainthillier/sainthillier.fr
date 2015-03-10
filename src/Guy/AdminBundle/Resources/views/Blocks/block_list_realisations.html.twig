@@ -1,4 +1,4 @@
-<a class="btn btn-primary" href="{{ path('guy_gestion_realisation_ajouter') }}">Nouveau</a>
+<a class="btn btn-success" href="{{ path('guy_gestion_realisation_ajouter') }}"><i class="fa fa-plus"></i></a>
 <table class="table table-responsive table-hover table-striped">
     <thead>
         <tr>
@@ -12,7 +12,11 @@
             <tr>
                 <td>{{ realisation.id }}</td>
                 <td><a href="{{ path('guy_gestion_realisation_modifier', {'id': realisation.id}) }}">{{ realisation.titre|striptags }}</a></td>
-                <td><a class="btn btn-danger pull-right" href="{{ path('guy_gestion_realisation_supprimer', {'id': realisation.id}) }}">Supprimer</a></td>
+                <td><a class="btn btn-danger pull-right" 
+                       href="{{ path('guy_gestion_realisation_supprimer', {'id': realisation.id}) }}">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </td>
             </tr>
         {% endfor %}
     </tbody>

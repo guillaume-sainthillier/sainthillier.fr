@@ -32,20 +32,3 @@
         <a href="{{ path('guy_admin_list') }}" >Retour</a>
     </form>
 {% endblock %}
-
-{% block css %}
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/summernote/0.5.2/summernote.css">
-    
-{% endblock %}
-{% block js %}
-    <script type="text/javascript">
-        
-        js_scripts.lib.push("//cdnjs.cloudflare.com/ajax/libs/summernote/0.5.2/summernote.min.js");
-        {% javascripts 'bundles/guyadmin/js/admin.js' 
-            filter='?yui_js' 
-            output='prod/js/admin.js'
-        %}        
-            js_scripts.final.push("{{ asset_url }}");        
-        {% endjavascripts %}            
-    </script>
-{% endblock %}
