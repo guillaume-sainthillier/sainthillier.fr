@@ -2,42 +2,15 @@ window.lastH = 0;
 window.lastW = 0;
 
 $(document).ready(function()
-{    
-    init_resize(); //Caption update on resize
+{
     init_anti_spam(); //Anti Spam Handler
-    init_gmap(); //GMaps div
     init_navigation(); //Smooth scroll + scrollspy
     init_quicksand(); //Portfolio
     init_caption();
     init_contact(); //Contact form
-    init_modals(); //Portfolio details réalisations    
+    init_modals(); //Portfolio details réalisations
     init_back_top(); //Back To Top
 });
-
-function init_resize()
-{
-    $(window).resize(function()
-    {
-        var img = $(".thumb:first img"); //Une seule image comme référence
-        var currentH = img.height();
-        var currentW = img.width();
-        
-        if(window.lastH !== currentH || window.lastW !== currentW)
-        {
-            init_caption();
-        }
-        
-        if(window.lastW !== currentW)
-        {
-            window.lastW = currentW;
-        }
-        
-        if(window.lastH !== currentH)
-        {
-            window.lastH = currentH;
-        }        
-    });    
-}
 
 function init_anti_spam(selector)
 {
@@ -50,31 +23,8 @@ function init_anti_spam(selector)
         {
             mailto += "?Subject=" + encodeURIComponent($(this).data("subject"));
         }
-        
+
         $(this).attr("href", mailto);
-    });
-    
-    //var tels = telephone;
-    $(".tel-nospam", selector || document).html(telephone.join("."));
-}
-
-function init_gmap()
-{
-    var map = new GMaps({
-        div: '#map',
-        lat: 43.613731,
-        lng: 1.458853,
-        scrollwheel: false
-    });
-
-    map.addMarker({
-        lat: 43.613731,
-        lng: 1.458853,
-        color: 'blue',
-        title: 'Guillaume Sainthillier',
-        infoWindow: {
-            content: '<p>' + $('.about_links').text().trim().replace(/(\n|\s)+/g, '<br />') + '</p>'
-        }
     });
 }
 
@@ -89,12 +39,12 @@ function init_back_top()
             $("#elevator_item").hide(duration / 2);
         }
     });
-    
+
     $("#elevator").click(function() {
         $("html,body").stop().animate({
             scrollTop: 0
         }, duration);
-        
+
         return false;
     });
 }
@@ -180,19 +130,26 @@ function init_modals()
 
 function init_contact()
 {
+    var feedback = $("#feedback");
+    var contact_btn = $("#contact");
     $("#form_contact").submit(function()
     {
-        var oldForm = $(this);
-
-        oldForm.find("button:submit").attr("disabled", true).html($("<i>").addClass("fa fa-2x fa-spinner fa-spin"));
+        contact_btn.attr('disabled', true);
+        var self = $(this);
         $.post(
-                oldForm.attr("action"),
-                oldForm.serialize()
-                ).done(function(form)
+            self.attr("action"),
+            self.serialize()
+        ).success(function(retour)
         {
-            oldForm.replaceWith($(form));
-            init_anti_spam();
-            init_contact();            
+            if(retour.success) {
+                feedback.removeClass('alert-danger').addClass('alert-success');
+                self.hide();
+            }else {
+                feedback.removeClass('alert-success').addClass('alert-danger');
+            }
+            feedback.removeClass('hidden').html(retour.msg || '');
+        }).always(function() {
+            contact_btn.attr('disabled', false);
         });
         return false;
     });

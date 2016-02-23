@@ -1,5 +1,0 @@
-{% block form_row -%}
-    {{- form_label(form) -}}
-    {{- form_errors(form) -}}
-    {{- form_widget(form, attr|merge({ 'attr' : {'class' : (attr.class|default('') ~ ' form-control')|trim }})) -}}
-{%- endblock form_row %}

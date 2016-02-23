@@ -1,8 +1,0 @@
-parameters:
-#    guy_blog.example.class: Guy\BlogBundle\Example
-
-services:
-#    guy_blog.example:
-#        class: %guy_blog.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
-

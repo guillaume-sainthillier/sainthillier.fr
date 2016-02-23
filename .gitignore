@@ -1,6 +1,11 @@
 # Node
 /node_modules/
 
+#PHPStorm
+.idea/
+
+#Sécurité
+required/creds.php
 
 # Bower & NPM
 /web/bower/*

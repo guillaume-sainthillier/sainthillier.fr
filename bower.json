@@ -1,6 +1,6 @@
 {
     "name": "Sainthillier",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "homepage": "https://sainthillier.fr",
     "authors": [
         "Guillaume SAINTHILLIER <guillaume.sainthillier@gmail.com>"
@@ -15,15 +15,11 @@
         "tests"
     ],
     "dependencies": {
-        "jquery": "2.1.*",
+        "jquery": "latest",
         "bootstrap": "latest",
         "font-awesome": "latest",
-        "html5shiv": "latest",
-        "respond": "latest",
         "jquery.easing": "latest",
-        "gmaps": "latest",
         "HCaptions": "latest",
-        "quicksand": "git://github.com/razorjack/quicksand",
-        "summernote": "0.6.*"
+        "quicksand": "git://github.com/razorjack/quicksand"
     }
 }
