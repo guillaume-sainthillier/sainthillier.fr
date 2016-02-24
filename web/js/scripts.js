@@ -43,7 +43,9 @@ function init_back_top()
     $("#elevator").click(function() {
         $("html,body").stop().animate({
             scrollTop: 0
-        }, duration);
+        }, duration, function() {
+            window.location.hash = '';
+        });
 
         return false;
     });
@@ -51,16 +53,14 @@ function init_back_top()
 
 function init_navigation()
 {
-    $("body").scrollspy({
-        target: '#navbar',
-        offset: 80
-    });
-
-
-    var offset = $(window).width() > 940 ? 80 : 140,
+    var offset = 90,
             topMenu = $("#site_nav"),
             topMenuHeight = topMenu.outerHeight() + offset;
 
+    $("body").scrollspy({
+        target: '#navbar',
+        offset: offset
+    });
 
     $("#navbar a").click(function(e)
     {
@@ -68,8 +68,10 @@ function init_navigation()
                 offsetTop = href === "#" ? 0 : $(href).offset().top - topMenuHeight + 1;
         $('html, body').stop().animate({
             scrollTop: offsetTop
-        }, 400);
-        e.preventDefault();
+        }, 400, function () {
+            window.location.hash = href;
+        });
+        return false;
     });
 }
 
@@ -88,7 +90,7 @@ function init_quicksand()
             $filteredData = $data.find('div.item');
         }
         else {
-            $filteredData = $data.find('div.item[data-tag~=' + $filterType + ']');
+            $filteredData = $data.find('div.item[data-tag~="' + $filterType + '"]');
         }
 
         $holder.quicksand($filteredData, {
@@ -107,7 +109,6 @@ function init_quicksand()
 function init_caption()
 {
     $('.thumb').hcaptions();
-    
     $(".drop-panel .drop-panel").each(function()
     {
         $(this).replaceWith($(this).contents());
@@ -116,14 +117,8 @@ function init_caption()
 
 function init_modals()
 {
-    $("a.thumb_link").unbind("click").click(function()
-    {
-        $.get($(this).attr("href"))
-                .done(function(html)
-                {
-                    $("body").find(".modal").remove();
-                    $("body").prepend(html).find(".modal").modal("show");
-                });
+    $("a.thumb_link").unbind("click").click(function() {
+        $("#" + $(this).data('modal')).modal('show');
         return false;
     });
 }

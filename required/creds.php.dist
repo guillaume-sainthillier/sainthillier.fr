@@ -1,0 +1,8 @@
+<?php
+
+define('EMAIL_SERVER', '');
+define('EMAIL_PORT', '465');
+define('EMAIL_TRANSPORT', '');
+define('EMAIL_USER', '');
+define('EMAIL_PASSWORD', '');
+define('EMAIL_SENDER', '');

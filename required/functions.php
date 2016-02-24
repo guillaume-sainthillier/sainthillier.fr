@@ -28,7 +28,7 @@ function getLink($file = null, $absolute = true) {
 
 function getDescriptions() {
     return [
-        "Actuellement employé en tant qu'ingénieur d'études chez <a href=\"a\">Apside Toulouse</a>, je me spécialise dans le
+        "Actuellement employé en tant qu'ingénieur d'études chez <a href=\"http://apside.fr/\" target=\"_blank\">Apside Toulouse</a>, je me spécialise dans le
 domaine du développement Web et logiciel.",
         "J'aime travailler dans des entreprises résolument tournées vers les technologies innovantes, et m'intégrer au
         sein d'équipes dynamiques et passionnées."
@@ -63,9 +63,12 @@ function getExperiences()
             'periode' => 'Sept 2015',
             'entreprise' => '<a itemprop="url" href="http://www.apside.fr/" target="_blank">Apside</a>',
             'titre' => "Ingénieur d'études",
-            'description' => "Groupe Latécoère.",
+            'description' => "Développement Web PHP pour Latécoère, Toulouse",
             'points' => [
-                'Développement PHP'
+                'Travail au sein du pôle MES',
+                'Compréhension des besoins utilisateurs',
+                'Analyse, chiffrage et développement d\'applications Intranet',
+                'Utilisation du Framework JS <a href="http://angular.io">AngularJS</a>',
             ],
         ], [
             'periode' => 'Août 2013 - Août 2015',
@@ -176,7 +179,7 @@ function getRealisations()
 </ul>
 <i class='fa fa-group'></i> Sous la direction d'Antoine Coelho et Denis Coujou",
             'licence' => 'http://opensource.org/licenses/MIT',
-            'url' => 'https://www.logilibres.com/epmdemo/scr/login.php?came_from=',
+            'url' => 'https://prod.logilibres.org/epmdemo',
             'image' => 'epm.png',
             'keywords' => ['OpenMairie', 'PHP']
         ], [

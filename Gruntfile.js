@@ -51,7 +51,8 @@ module.exports = function (grunt) {
             mainJs: {
                 src: [
                     'web/bower/jquery/dist/jquery.js',
-                    'web/js/jquery.brower.js',
+                    'web/js/jquery.browser.js',
+                    'web/bower/jquery.easing/js/jquery.easing.js',
                     'web/bower/bootstrap/dist/js/bootstrap.js',
                     'web/bower/HCaptions/jquery.hcaptions.js',
                     'web/bower/quicksand/jquery.quicksand.js',

@@ -2,7 +2,15 @@
 require_once '../required/init.php';
 
 $competences = getCompetences();
-$realisations = getRealisations();
+$realisations = array_map(function($realisation) {
+    $keywords = [];
+    foreach($realisation['keywords'] as $keyword) {
+        $escaped = preg_replace('/\W/', '_', $keyword);
+        $keywords[$escaped] = $keyword;
+    }
+    $realisation['keywords'] = $keywords;
+    return $realisation;
+}, getRealisations());
 $experiences = getExperiences();
 $formations = getFormations();
 $distinctKeywords = getDistinctKeyworkds($realisations);
@@ -255,8 +263,8 @@ $descriptions = getDescriptions();
             <div class="col-sm-9 borderleft">
                 <ul class="filter nav nav-pills">
                     <li class="active"><a href="#" data-tag="all">Tous</a></li>
-                    <?php foreach($distinctKeywords as $distinctKeyword) { ?>
-                        <li><a href="#" data-tag="<?php echo $distinctKeyword; ?>"><?php echo
+                    <?php foreach($distinctKeywords as $escaped => $distinctKeyword) { ?>
+                        <li><a href="#" data-tag="<?php echo $escaped; ?>"><?php echo
                                 $distinctKeyword; ?></a></li>
                     <?php } ?>
                 </ul>
@@ -267,7 +275,7 @@ $descriptions = getDescriptions();
                             <meta itemprop="license" content="<?php echo $realisation['licence']; ?>">
                             <meta itemprop="description" content="<?php echo strip_tags($realisation['description']);
                             ?>">
-                            <div data-tag="<?php echo implode(' ', $realisation['keywords']); ?>"
+                            <div data-tag="<?php echo implode(' ', array_keys($realisation['keywords'])); ?>"
                                  data-id="id-<?php echo $i; ?>"
                                  class="item col-xs-6 col-sm-6 col-md-4">
                                 <div class="apercu">
@@ -409,11 +417,15 @@ $descriptions = getDescriptions();
     var host = "<?php echo $parts[1]; ?>";
 
     function centerMap() {
-        var point = {lat: 43.613731, lng: 1.458853};
+        var point = {lat: 43.6, lng: 1.433333};
         var map = new google.maps.Map(document.getElementById('map'), {
             center: point,
             scrollwheel: false,
-            zoom: 12
+            navigationControl: false,
+            mapTypeControl: false,
+            scaleControl: false,
+            draggable: false,
+            zoom: 11
         });
 
         var marker = new google.maps.Marker({

@@ -193,6 +193,11 @@ html body h5 {
 html body .competences {
   margin-top: 50px;
 }
+html body .navbar .navbar-nav > .active > a:focus,
+html body .navbar .navbar-nav > .active > a:visited,
+html body .navbar .navbar-nav > .active > a:active {
+  background-color: transparent;
+}
 html body .experience,
 html body .map {
   margin-top: 60px;
