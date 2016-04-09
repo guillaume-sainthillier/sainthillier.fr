@@ -1,7 +1,7 @@
 <?php
 
 define('NAME', 'Guillaume Sainthillier');
-define('APP', 'Développeur Web PHP Toulouse');
+define('APP', 'Développeur Web PHP Symfony à Toulouse');
 define('EMAIL', 'guillaume@sainthillier.fr');
 define('ROOT_PATH', __DIR__ .'/..');
 define('REQUIRED_PATH', ROOT_PATH . '/required');

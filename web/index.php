@@ -2,9 +2,9 @@
 require_once '../required/init.php';
 
 $competences = getCompetences();
-$realisations = array_map(function($realisation) {
+$realisations = array_map(function ($realisation) {
     $keywords = [];
-    foreach($realisation['keywords'] as $keyword) {
+    foreach ($realisation['keywords'] as $keyword) {
         $escaped = preg_replace('/\W/', '_', $keyword);
         $keywords[$escaped] = $keyword;
     }
@@ -22,7 +22,7 @@ $descriptions = getDescriptions();
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title><?php echo APP; ?> - <?php echo NAME; ?></title>
-    <meta name="keywords" content="developpeur, web, php, toulouse, guillaume, sainthillier, cv">
+    <meta name="keywords" content="developpeur, web, php, symfony, toulouse, guillaume, sainthillier, cv">
     <meta name="description" content="<?php echo APP; ?>. Contactez-moi et rencontrons-nous !">
     <meta name="author" content="<?php echo NAME; ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -84,7 +84,7 @@ $descriptions = getDescriptions();
                 </div>
                 <div class="col-md-6">
                     <div id="top_download" class="text-right">
-                        <a rel="me" itemprop="url" href="<?php echo getLink('pdf/CV_SAINTHILLIER_Guillaume.pdf'); ?>"
+                        <a rel="me" itemprop="url" href="<?php echo getLink('pdf/CV-SAINTHILLIER-Guillaume.pdf'); ?>"
                            target="_blank">Téléchargez mon CV</a>
                     </div>
                 </div>
@@ -100,8 +100,8 @@ $descriptions = getDescriptions();
                         <div class="col-xs-9">
                             <h3><span itemprop="jobTitle"><?php echo APP; ?></span></h3>
                             <?php
-                            foreach($descriptions as $description) {
-                                echo "<p>". $description . "</p>";
+                            foreach ($descriptions as $description) {
+                                echo "<p>" . $description . "</p>";
                             }
                             ?>
                             <p><span class="signature"><?php echo NAME; ?></span></p>
@@ -150,7 +150,7 @@ $descriptions = getDescriptions();
                                     </div>
                                 </div>
                                 <div class="col-xs-6">
-                                    <div class="about_link" >
+                                    <div class="about_link">
                                         <i class="fa fa-2x fa-users"></i>
                                         <span class="label label-primary">Développe son réseau</span>
                                     </div>
@@ -174,7 +174,7 @@ $descriptions = getDescriptions();
                 </aside>
                 <div class="col-sm-9 borderleft">
                     <div class="row skills">
-                        <?php foreach($competences as $nom => $competence) { ?>
+                        <?php foreach ($competences as $nom => $competence) { ?>
                             <div class=" col-xs-8 col-xs-offset-2 col-sm-offset-0 col-sm-6 col-md-5">
                                 <h4>
                                     <span itemprop="itemListElement"><?php echo htmlentities($nom); ?></span></h4>
@@ -201,7 +201,7 @@ $descriptions = getDescriptions();
                 <h5>Depuis 2011</h5>
             </aside>
             <div class="borderleft col-sm-9">
-                <?php foreach($experiences as $experience) { ?>
+                <?php foreach ($experiences as $experience) { ?>
                     <div itemscope itemtype="http://schema.org/Organization">
                         <article class="par_el in_spacing">
                             <span class="periode label label-primary"><?php echo $experience['periode']; ?></span>
@@ -212,7 +212,7 @@ $descriptions = getDescriptions();
                                 </header>
                                 <p itemprop="description"><?php echo $experience['description']; ?></p>
                                 <ul class="fa-ul">
-                                    <?php foreach($experience['points'] as $point) { ?>
+                                    <?php foreach ($experience['points'] as $point) { ?>
                                         <li><i class="fa fa-li fa-angle-double-right"></i> <?php echo $point; ?></li>
                                     <?php } ?>
                                 </ul>
@@ -231,7 +231,7 @@ $descriptions = getDescriptions();
                 <h5>Depuis 2009</h5>
             </aside>
             <div class="borderleft col-sm-9">
-                <?php foreach($formations as $formation) { ?>
+                <?php foreach ($formations as $formation) { ?>
                     <div itemscope itemtype="http://schema.org/EducationalOrganization">
                         <article class="par_el in_spacing">
                             <span class="periode label label-primary"><?php echo $formation['periode']; ?></span>
@@ -242,7 +242,7 @@ $descriptions = getDescriptions();
                                 </header>
                                 <p itemprop="description"><?php echo $formation['description']; ?></p>
                                 <ul class="fa-ul">
-                                    <?php foreach($formation['points'] as $point) { ?>
+                                    <?php foreach ($formation['points'] as $point) { ?>
                                         <li><i class="fa fa-li fa-angle-right"></i> <?php echo $point; ?></li>
                                     <?php } ?>
                                 </ul>
@@ -263,13 +263,13 @@ $descriptions = getDescriptions();
             <div class="col-sm-9 borderleft">
                 <ul class="filter nav nav-pills">
                     <li class="active"><a href="#" data-tag="all">Tous</a></li>
-                    <?php foreach($distinctKeywords as $escaped => $distinctKeyword) { ?>
+                    <?php foreach ($distinctKeywords as $escaped => $distinctKeyword) { ?>
                         <li><a href="#" data-tag="<?php echo $escaped; ?>"><?php echo
                                 $distinctKeyword; ?></a></li>
                     <?php } ?>
                 </ul>
                 <div class="thumbnails portfolio row">
-                    <?php foreach($realisations as $i => $realisation) { ?>
+                    <?php foreach ($realisations as $i => $realisation) { ?>
                         <div itemscope itemtype="http://schema.org/CreativeWork">
                             <meta itemprop="keywords" content="<?php echo implode(',', $realisation['keywords']); ?>">
                             <meta itemprop="license" content="<?php echo $realisation['licence']; ?>">
@@ -283,7 +283,7 @@ $descriptions = getDescriptions();
                                        data-modal="modal-<?php echo $i; ?>" data-cap-effect="fade">
                                         <img class="img-responsive"
                                              itemprop="thumbnailUrl"
-                                             src="<?php echo getLink('img/realisations/min_'.$realisation['image']); ?>"
+                                             src="<?php echo getLink('img/realisations/min_' . $realisation['image']); ?>"
                                              alt="<?php echo $realisation['nom']; ?>"/></a>
                                 </div>
                                 <h3><span itemprop="name"><?php echo $realisation['nom']; ?></span></h3>
@@ -299,9 +299,11 @@ $descriptions = getDescriptions();
                                             <h4 class="modal-title text-center"><?php echo $realisation['nom']; ?></h4>
                                         </div>
                                         <div class="modal-body">
-                                            <img class="img-responsive" src="<?php echo getLink('img/realisations/'
-                                                .$realisation['image']); ?>" />
-                                            <br />
+                                            <img class="img-responsive"
+                                                 alt="<?php echo $realisation['nom']; ?>"
+                                                 src="<?php echo getLink('img/realisations/'. $realisation['image']); ?>
+                                             "/>
+                                            <br/>
                                             <?php echo $realisation['description']; ?>
                                         </div>
                                         <div class="modal-footer">
@@ -309,7 +311,8 @@ $descriptions = getDescriptions();
                                                target="_blank" class="btn
                                             btn-primary">Démo</a>
                                             <button type="button" class="btn btn-default"
-                                                    data-dismiss="modal">Fermer</button>
+                                                    data-dismiss="modal">Fermer
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -338,7 +341,7 @@ $descriptions = getDescriptions();
                                 <div class="col-md-12">
                                     <div>
                                         <input type="text" id="contact_nom" name="contact[nom]" required="required"
-                                                pattern=".{2,}" placeholder="Nom" class="form-control input-lg"/>
+                                               pattern=".{2,}" placeholder="Nom" class="form-control input-lg"/>
                                     </div>
                                 </div>
                             </div>
@@ -363,7 +366,8 @@ $descriptions = getDescriptions();
                             </div>
                             <br/>
                             <button id="contact" type="submit" class="btn btn-lg btn-primary
-                            pull-right">Envoyer</button>
+                            pull-right">Envoyer
+                            </button>
                             <p class="help-block">Votre message sera envoyé à l'adresse <strong
                                     class="email-nospam"></strong></p>
                         </fieldset>
@@ -380,8 +384,8 @@ $descriptions = getDescriptions();
         <div class="row">
             <div class="col-xs-6 text-right text_footer">
                 <a href="<?php echo getLink('/'); ?>">
-                <?php echo NAME . ' ' .date('Y'); ?>
-            </a>
+                    <?php echo NAME . ' ' . date('Y'); ?>
+                </a>
             </div>
             <div class="col-xs-6">
                 <div class="text-center socials">
