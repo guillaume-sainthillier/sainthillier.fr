@@ -60,7 +60,7 @@ function getExperiences()
 {
     return [
         [
-            'periode' => 'Sept 2015',
+            'periode' => 'Sept 2015 - Jan 2018',
             'entreprise' => '<a itemprop="url" href="http://www.apside.fr/" target="_blank">Apside</a>',
             'titre' => "Ingénieur d'études",
             'description' => "Développement Web PHP pour Latécoère, Toulouse",

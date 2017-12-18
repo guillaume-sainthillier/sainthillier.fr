@@ -84,8 +84,7 @@ $descriptions = getDescriptions();
                 </div>
                 <div class="col-md-6">
                     <div id="top_download" class="text-right">
-                        <a rel="me" itemprop="url" href="<?php echo getLink('pdf/CV-SAINTHILLIER-Guillaume.pdf'); ?>"
-                           target="_blank">Téléchargez mon CV</a>
+                        <a rel="me" itemprop="url" href="<?php echo getLink('pdf/CV-SAINTHILLIER-Guillaume.pdf'); ?>" target="_blank">Téléchargez mon CV</a>
                     </div>
                 </div>
             </div>
