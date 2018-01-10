@@ -28,8 +28,8 @@ function getLink($file = null, $absolute = true) {
 
 function getDescriptions() {
     return [
-        "Actuellement employé en tant qu'ingénieur d'études chez <a href=\"http://apside.fr/\" target=\"_blank\">Apside Toulouse</a>, je me spécialise dans le
-domaine du développement Web et logiciel.",
+        "Actuellement travailleur indépendant au statut freelance, je me spécialise dans le domaine du développement Web
+et logiciel.",
         "J'aime travailler dans des entreprises résolument tournées vers les technologies innovantes, et m'intégrer au
         sein d'équipes dynamiques et passionnées."
     ];
@@ -42,8 +42,8 @@ function getCompetences()
         "POO & Design Patterns" => 90,
         "Javascript & jQuery" => 85,
         "HTML5 & CSS3" => 80,
-        "MySQL" => 80,
-        "Symfony2" => 75,
+        "MySQL / Oracle / SQL Server" => 80,
+        "Symfony 2/3/4" => 75,
     ];
 }
 
@@ -60,15 +60,22 @@ function getExperiences()
 {
     return [
         [
+            'periode' => 'Jan 2018 - En cours',
+            'entreprise' => 'Freelance',
+            'titre' => "Développeur Web PHP",
+            'description' => "Développement Web PHP pour Agoranet (groupe ERRA), Toulouse",
+            'points' => [
+            ],
+        ], [
             'periode' => 'Sept 2015 - Jan 2018',
             'entreprise' => '<a itemprop="url" href="http://www.apside.fr/" target="_blank">Apside</a>',
             'titre' => "Ingénieur d'études",
             'description' => "Développement Web PHP pour Latécoère, Toulouse",
             'points' => [
-                'Travail au sein du pôle MES',
+                'Travail sur les domaines MES (production), RH et Finances',
                 'Compréhension des besoins utilisateurs',
-                'Analyse, chiffrage et développement d\'applications Intranet',
-                'Utilisation du Framework JS <a href="http://angular.io">AngularJS</a>',
+                'Analyse, chiffrage, développement et maintenances d\'applications Intranet (60+)',
+                'Utilisation du Framework JS <a href="http://angular.io">AngularJS</a> et des composants Symfony 3',
             ],
         ], [
             'periode' => 'Août 2013 - Août 2015',
@@ -163,7 +170,7 @@ function getRealisations()
             'licence' => 'http://opensource.org/licenses/MIT',
             'url' => 'http://by-night.fr',
             'image' => 'by-night.png',
-            'keywords' => ['OpenData', 'PHP', 'Responsive Design', 'Symfony2']
+            'keywords' => ['OpenData', 'PHP', 'Responsive Design', 'Symfony 4', 'Docker', 'ElasticSearch']
         ], [
             'nom' => 'Open ePM',
             'description' => "<p>Open ePM est une application Web open source, à destination des Polices Municipales.</p>

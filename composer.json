@@ -1,8 +1,4 @@
 {
-    "name": "guillaume/sainthillier",
-    "license": "MIT",
-    "type": "project",
-    "description": "Guillaume Sainthillier - Développeur Web PHP Toulouse",
     "require": {
         "php": ">=5.5.9",
         "swiftmailer/swiftmailer": "^5.4"
