@@ -28,8 +28,7 @@ function getLink($file = null, $absolute = true) {
 
 function getDescriptions() {
     return [
-        "Actuellement travailleur indépendant au statut freelance, je me spécialise dans le domaine du développement Web
-et logiciel.",
+        "Actuellement travailleur indépendant, je me spécialise dans le domaine du développement Web PHP fullstack.",
         "J'aime travailler dans des entreprises résolument tournées vers les technologies innovantes, et m'intégrer au
         sein d'équipes dynamiques et passionnées."
     ];
@@ -62,7 +61,7 @@ function getExperiences()
         [
             'periode' => 'Jan 2018 - En cours',
             'entreprise' => 'Freelance',
-            'titre' => "Développeur Web PHP",
+            'titre' => "Développeur Web PHP Toulouse",
             'description' => "Développement Web PHP pour Agoranet (groupe ERRA), Toulouse",
             'points' => [
             ],
@@ -80,7 +79,7 @@ function getExperiences()
         ], [
             'periode' => 'Août 2013 - Août 2015',
             'entreprise' => '<a itemprop="url" title="Aller sur le site du Centre de Consultation Médicale Maritime" href="http://www.chu-toulouse.fr/-centre-de-consultation-medicale-maritime-ccmm-" target="_blank">CHU Purpan - CCMM/SAMU&nbsp;31</a>',
-            'titre' => "Développeur PHP",
+            'titre' => "Développeur Web PHP Toulouse",
             'description' => "Conception, développement et maintenance de modules d’une application de gestion des dossiers patients:",
             'points' => [
                 'Développement <a href="http://symfony.com/">Symfony2</a>.',
@@ -93,7 +92,7 @@ function getExperiences()
         ], [
             'periode' => 'Fév 2013 - Mai 2013',
             'entreprise' => '<a itemprop="url" title="Aller sur le site de TripAndTeuf" href="http://www.tripandteuf.com">TripAndTeuf</a>',
-            'titre' => "Développeur PHP",
+            'titre' => "Développeur Web PHP Toulouse",
             'description' => "Maintenance du site de l'association:",
             'points' => [
                 'Conception et développement d\'un mini-framework.',
@@ -103,7 +102,7 @@ function getExperiences()
         ], [
             'periode' => 'Jan 2011 - Fév 2013',
             'entreprise' => '<a itemprop="url" href="http://www.icm-services.fr/" title="Aller sur le site d\'ICM Services">ICM Services</a>',
-            'titre' => "Développeur PHP",
+            'titre' => "Développeur Web PHP Toulouse",
             'description' => "Maintenance et développement de modules sur une application à destination des Polices Municipales:",
             'points' => [
                 'Utilisation de framework PHP : <a title="Aller sur le site d\'OpenMairie" href="http://www.openmairie.org/">OpenMairie</a>.',

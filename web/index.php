@@ -1,5 +1,5 @@
 <?php
-require_once '../required/init.php';
+require_once __DIR__ .'/../required/init.php';
 
 $competences = getCompetences();
 $realisations = array_map(function ($realisation) {
@@ -22,7 +22,7 @@ $descriptions = getDescriptions();
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title><?php echo APP; ?> - <?php echo NAME; ?></title>
-    <meta name="keywords" content="developpeur, web, php, symfony, toulouse, guillaume, sainthillier, cv">
+    <meta name="keywords" content="developpeur, web, php, freelance, symfony, toulouse, guillaume, sainthillier, cv">
     <meta name="description" content="<?php echo APP; ?>. Contactez-moi et rencontrons-nous !">
     <meta name="author" content="<?php echo NAME; ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -82,20 +82,34 @@ $descriptions = getDescriptions();
                         <h1><span itemprop="name"><?php echo NAME; ?></span></h1>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div id="top_download" class="text-right">
+                <div class="col-md-6 text-right">
+                    <span id="top_download">
                         <a rel="me" itemprop="url" href="<?php echo getLink('pdf/CV-SAINTHILLIER-Guillaume.pdf'); ?>" target="_blank">Téléchargez mon CV</a>
-                    </div>
+                    </span>
+                    <span class="socials">
+                        <a rel="me" itemprop="url" href="<?php echo LINKED_IN; ?>" class="fa-stack icon_link" style="margin-right: 5px">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="icon fa fa-linkedin fa-stack-1x"></i>
+                        </a>
+                        <a rel="me" itemprop="url" href="<?php echo VIADEO; ?>" class="fa-stack icon_link" style="margin-right: 5px">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="icon fa fa-vimeo fa-stack-1x"></i>
+                        </a>
+                        <a rel="me" itemprop="url" href="<?php echo GITHUB; ?>" class="fa-stack icon_link" style="margin-right: 0">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="icon fa fa-github fa-stack-1x"></i>
+                        </a>
+                    </span>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-7 presentation">
+                <div class="col-md-8 presentation">
                     <div class="row">
                         <div class="col-xs-3">
                             <img src="<?php echo getLink('img/guillaume_sainthillier.png'); ?>" class="img-rounded img-responsive main_image" itemprop="image" alt="<?php echo NAME; ?>" data-pagespeed-no-transform>
                         </div>
                         <div class="col-xs-9">
-                            <h3><span itemprop="jobTitle"><?php echo APP; ?></span></h3>
+                            <h2><span itemprop="jobTitle"><?php echo APP; ?></span></h2>
                             <?php
                             foreach ($descriptions as $description) {
                                 echo "<p>" . $description . "</p>";
@@ -105,54 +119,24 @@ $descriptions = getDescriptions();
                         </div>
                     </div>
                 </div>
-                <div class="col-md-5 about_links">
-                    <div class="row">
-                        <div class="col-lg-11 col-lg-offset-1">
-                            <div class="text-center socials">
-                                <a rel="me" itemprop="url"
-                                   href="<?php echo LINKED_IN; ?>"
-                                   class="fa-stack icon_link">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="icon fa fa-linkedin fa-stack-1x"></i>
-                                </a>
-                                <a rel="me" itemprop="url" href="<?php echo VIADEO; ?>"
-                                   class="fa-stack icon_link">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="icon fa fa-vimeo fa-stack-1x"></i>
-                                </a>
-                                <a rel="me" itemprop="url" href="<?php echo GITHUB; ?>"
-                                   class="fa-stack icon_link">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="icon fa fa-github fa-stack-1x"></i>
-                                </a>
-                            </div>
-                            <div class="row">
-                                <div class="col-xs-6">
-                                    <div class="about_link">
-                                        <i class="fa fa-2x fa-globe"></i>
-                                        <a rel="me" itemprop="url" href="<?php echo getLink(); ?>">sainthillier.fr</a>
-                                    </div>
-                                </div>
-                                <div class="col-xs-6">
-                                    <div class="about_link" itemprop="address" itemscope
-                                         itemtype="http://schema.org/PostalAddress">
-                                        <i class="fa fa-2x fa-map-marker"></i><span
-                                            itemprop="addressLocality">Toulouse</span>, <span itemprop="addressCountry">France</span>
-                                    </div>
-                                </div>
-                                <div class="col-xs-6">
-                                    <div class="about_link">
-                                        <i class="fa fa-2x fa-envelope"></i>
-                                        <a href="#" class="email-nospam mailto" data-subject="Rencontrons-nous !"></a>
-                                    </div>
-                                </div>
-                                <div class="col-xs-6">
-                                    <div class="about_link">
-                                        <i class="fa fa-2x fa-users"></i>
-                                        <span class="label label-primary">Développe son réseau</span>
-                                    </div>
-                                </div>
-                            </div>
+                <div class="col-md-4 about_links">
+                    <div class="links">
+                        <div class="about_link">
+                            <i class="fa fa-2x fa-globe"></i>
+                            <a rel="me" itemprop="url" href="<?php echo getLink(); ?>">sainthillier.fr</a>
+                        </div>                        
+                        <div class="about_link" itemprop="address" itemscope
+                             itemtype="http://schema.org/PostalAddress">
+                            <i class="fa fa-2x fa-map-marker"></i>
+                            <span itemprop="addressLocality">Toulouse</span>, <span itemprop="addressCountry">France</span>
+                        </div>                        
+                        <div class="about_link">
+                            <i class="fa fa-2x fa-envelope"></i>
+                            <a href="#" class="email-nospam mailto" data-subject="Rencontrons-nous !"></a>
+                        </div>                        
+                        <div class="about_link">
+                            <i class="fa fa-2x fa-users"></i>
+                            <span class="label label-primary">Développe son réseau</span>
                         </div>
                     </div>
                 </div>
@@ -204,8 +188,8 @@ $descriptions = getDescriptions();
                             <span class="periode label label-primary"><?php echo $experience['periode']; ?></span>
                             <div class="bigspacing">
                                 <header>
-                                    <h2><span itemprop="name"><?php echo $experience['entreprise']; ?></span></h2>
-                                    <h3><?php echo $experience['titre']; ?></h3>
+                                    <h2><?php echo $experience['titre']; ?></h2>
+                                    <h3><span itemprop="name"><?php echo $experience['entreprise']; ?></span></h3>                                    
                                 </header>
                                 <p itemprop="description"><?php echo $experience['description']; ?></p>
                                 <ul class="fa-ul">
@@ -361,12 +345,10 @@ $descriptions = getDescriptions();
                                                    placeholder="Message" class="form-control input-lg"></textarea></div>
                                 </div>
                             </div>
-                            <br/>
-                            <button id="contact" type="submit" class="btn btn-lg btn-primary
-                            pull-right">Envoyer
-                            </button>
-                            <p class="help-block">Votre message sera envoyé à l'adresse <strong
-                                    class="email-nospam"></strong></p>
+                            <p class="help-block">Votre message sera envoyé à l'adresse <strong class="email-nospam"></strong></p>
+                            <div class="text-right">
+                                <button id="contact" type="submit" class="btn btn-lg btn-primary">Envoyer</button>
+                            </div>                            
                         </fieldset>
                     </form>
                 </div>

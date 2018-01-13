@@ -1,6 +1,19 @@
 // Mobile uniquement
 @media (max-width: @screen-xs) {
 
+    h1 {
+        font-size: 28px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    #top_download {
+        margin: 0;
+        display: block;
+    }
+
     .col-xs-offset-1, .col-xs-offset-2, .col-xs-offset-3, .col-xs-offset-4, 
     .col-xs-offset-5, .col-xs-offset-6, .col-xs-offset-7, .col-xs-offset-8, 
     .col-xs-offset-9, .col-xs-offset-10, .col-xs-offset-11, .col-xs-offset-12 {
@@ -55,7 +68,6 @@
     }
 
     .in_spacing {
-        padding-bottom: 0; 
         padding-right: 0;
     }
 
@@ -70,7 +82,6 @@
 @media (max-width: @screen-sm-max){
     .presentation {
         border-right: 0;
-
         padding-right: 15px;        
         border-bottom: 1px solid #CCD0D4;
         padding-bottom: 22px;
@@ -96,6 +107,10 @@
 
 // > 767
 @media (min-width: @screen-sm) {
+
+    .skills .progress {
+        margin-bottom: 50px;
+    }
     
     .navbar-default .navbar-nav {
         height: 80px;
