@@ -92,9 +92,7 @@ $descriptions = getDescriptions();
                 <div class="col-md-7 presentation">
                     <div class="row">
                         <div class="col-xs-3">
-                            <img src="<?php echo getLink('img/guillaume_sainthillier.png'); ?>"
-                                 class="img-rounded img-responsive main_image" height="177" width="177" itemprop="image"
-                                 alt="<?php echo NAME; ?>">
+                            <img src="<?php echo getLink('img/guillaume_sainthillier.png'); ?>" class="img-rounded img-responsive main_image" itemprop="image" alt="<?php echo NAME; ?>" data-pagespeed-no-transform>
                         </div>
                         <div class="col-xs-9">
                             <h3><span itemprop="jobTitle"><?php echo APP; ?></span></h3>
