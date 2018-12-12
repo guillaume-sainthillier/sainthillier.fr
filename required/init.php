@@ -7,7 +7,7 @@ define('ROOT_PATH', __DIR__ .'/..');
 define('REQUIRED_PATH', ROOT_PATH . '/required');
 define('VENDOR_PATH', ROOT_PATH . '/vendor');
 define('LINKED_IN', 'https://fr.linkedin.com/in/guillaumesainthillier');
-define('VIADEO', 'http://www.viadeo.com/p/0024dwstfu32pr3');
+define('VIADEO', 'https://www.viadeo.com/p/0024dwstfu32pr3');
 define('GITHUB', 'https://github.com/guillaume-sainthillier');
 
 require_once REQUIRED_PATH . '/creds.php';

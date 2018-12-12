@@ -37,13 +37,12 @@ $descriptions = getDescriptions();
     <meta name="geo.placename" content="Toulouse">
 
     <!-- CSS -->
-    <link href="//fonts.googleapis.com/css?family=Arvo:400,700|Droid+Sans:400,700|Pacifico:400,700" rel="stylesheet"
-          type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Arvo:400,700|Droid+Sans:400,700|Pacifico:400,700" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="prod/css/style.min.css" type="text/css" media="screen">
     <!-- ./CSS -->
     <!--[if lt IE 9]>
-    <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js" integrity="sha384-FFgGfda92tXC8nCNOxrCQ3R8x1TNkMFqDZVQdDaaJiiVbjkPBXIJBx0o7ETjy8Bh" crossorigin="anonymous"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js" integrity="sha384-ZoaMbDF+4LeFxg6WdScQ9nnR1QC2MIRxA1O9KWEXQwns1G8UNyIEZIQidzb0T1fo" crossorigin="anonymous"></script>
     <![endif]-->
 </head>
 <body>
@@ -71,7 +70,7 @@ $descriptions = getDescriptions();
     </div>
 </div>
 <!-- ./Menu -->
-<div itemscope itemtype="http://schema.org/Person">
+<div itemscope itemtype="https://schema.org/Person">
     <meta itemprop="url" content="<?php echo getLink('/'); ?>">
     <meta itemprop="email" content="guillaume@sainthillier.fr">
     <div id="header_wrapper">
@@ -126,7 +125,7 @@ $descriptions = getDescriptions();
                             <a rel="me" itemprop="url" href="<?php echo getLink(); ?>">sainthillier.fr</a>
                         </div>                        
                         <div class="about_link" itemprop="address" itemscope
-                             itemtype="http://schema.org/PostalAddress">
+                             itemtype="https://schema.org/PostalAddress">
                             <i class="fa fa-2x fa-map-marker"></i>
                             <span itemprop="addressLocality">Toulouse</span>, <span itemprop="addressCountry">France</span>
                         </div>                        
@@ -148,7 +147,7 @@ $descriptions = getDescriptions();
     <div class="container">
         <!-- Compétences -->
         <section class="row competences" id="competences">
-            <div itemscope itemtype="http://schema.org/ItemList">
+            <div itemscope itemtype="https://schema.org/ItemList">
                 <aside class="col-sm-3 aside_el">
                     <h2><span itemprop="name">Compétences</span></h2>
                     <h5>Technologies favorites</h5>
@@ -183,7 +182,7 @@ $descriptions = getDescriptions();
             </aside>
             <div class="borderleft col-sm-9">
                 <?php foreach ($experiences as $experience) { ?>
-                    <div itemscope itemtype="http://schema.org/Organization">
+                    <div itemscope itemtype="https://schema.org/Organization">
                         <article class="par_el in_spacing">
                             <span class="periode label label-primary"><?php echo $experience['periode']; ?></span>
                             <div class="bigspacing">
@@ -213,7 +212,7 @@ $descriptions = getDescriptions();
             </aside>
             <div class="borderleft col-sm-9">
                 <?php foreach ($formations as $formation) { ?>
-                    <div itemscope itemtype="http://schema.org/EducationalOrganization">
+                    <div itemscope itemtype="https://schema.org/EducationalOrganization">
                         <article class="par_el in_spacing">
                             <span class="periode label label-primary"><?php echo $formation['periode']; ?></span>
                             <div class="bigspacing">
@@ -251,7 +250,7 @@ $descriptions = getDescriptions();
                 </ul>
                 <div class="thumbnails portfolio row">
                     <?php foreach ($realisations as $i => $realisation) { ?>
-                        <div itemscope itemtype="http://schema.org/CreativeWork">
+                        <div itemscope itemtype="https://schema.org/CreativeWork">
                             <meta itemprop="keywords" content="<?php echo implode(',', $realisation['keywords']); ?>">
                             <meta itemprop="license" content="<?php echo $realisation['licence']; ?>">
                             <meta itemprop="description" content="<?php echo strip_tags($realisation['description']);
@@ -419,7 +418,7 @@ $descriptions = getDescriptions();
     }
 </script>
 <script type="text/javascript" src="prod/js/scripts.min.js" async defer></script>
-<script type="text/javascript" async defer src="//maps.google.com/maps/api/js?callback=centerMap"></script>
+<script type="text/javascript" async defer src="https://maps.google.com/maps/api/js?callback=centerMap&key=AIzaSyBETAmun16QLnNnOtEPL4-_n-O3ApO9BEI"></script>
 <script type="text/javascript">
     (function (i, s, o, g, r, a, m) {
         i['GoogleAnalyticsObject'] = r;
@@ -430,7 +429,7 @@ $descriptions = getDescriptions();
         a.async = 1;
         a.src = g;
         m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
     ga('create', 'UA-44318869-1', 'sainthillier.fr');
     ga('send', 'pageview');
 </script>

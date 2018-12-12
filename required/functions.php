@@ -67,22 +67,22 @@ function getExperiences()
             ],
         ], [
             'periode' => 'Sept 2015 - Jan 2018',
-            'entreprise' => '<a itemprop="url" href="http://www.apside.fr/" target="_blank">Apside</a>',
+            'entreprise' => '<a itemprop="url" href="https://www.apside.fr/" target="_blank">Apside</a>',
             'titre' => "Ingénieur d'études",
             'description' => "Développement Web PHP pour Latécoère, Toulouse",
             'points' => [
                 'Travail sur les domaines MES (production), RH et Finances',
                 'Compréhension des besoins utilisateurs',
                 'Analyse, chiffrage, développement et maintenances d\'applications Intranet (60+)',
-                'Utilisation du Framework JS <a href="http://angular.io">AngularJS</a> et des composants Symfony 3',
+                'Utilisation du Framework JS <a href="https://angular.io">AngularJS</a> et des composants Symfony 3',
             ],
         ], [
             'periode' => 'Août 2013 - Août 2015',
-            'entreprise' => '<a itemprop="url" title="Aller sur le site du Centre de Consultation Médicale Maritime" href="http://www.chu-toulouse.fr/-centre-de-consultation-medicale-maritime-ccmm-" target="_blank">CHU Purpan - CCMM/SAMU&nbsp;31</a>',
+            'entreprise' => '<a itemprop="url" title="Aller sur le site du Centre de Consultation Médicale Maritime" href=https://www.chu-toulouse.fr/-centre-de-consultation-medicale-maritime-ccmm-" target="_blank">CHU Purpan - CCMM/SAMU&nbsp;31</a>',
             'titre' => "Développeur Web PHP Toulouse",
             'description' => "Conception, développement et maintenance de modules d’une application de gestion des dossiers patients:",
             'points' => [
-                'Développement <a href="http://symfony.com/">Symfony2</a>.',
+                'Développement <a href="https://symfony.com/">Symfony2</a>.',
                 'Amélioration des interfaces homme-machine.',
                 'Amélioration du système de reporting.',
                 'Sécurisation des données médicales.',
@@ -101,7 +101,7 @@ function getExperiences()
             ],
         ], [
             'periode' => 'Jan 2011 - Fév 2013',
-            'entreprise' => '<a itemprop="url" href="http://www.icm-services.fr/" title="Aller sur le site d\'ICM Services">ICM Services</a>',
+            'entreprise' => '<a itemprop="url" href="https://www.icm-services.fr/" title="Aller sur le site d\'ICM Services">ICM Services</a>',
             'titre' => "Développeur Web PHP Toulouse",
             'description' => "Maintenance et développement de modules sur une application à destination des Polices Municipales:",
             'points' => [
@@ -166,7 +166,7 @@ function getRealisations()
     <li><i class='fa-li fa fa-angle-right'></i> Diffuser ses événements de la plateforme vers les réseaux sociaux</li>
     <li><i class='fa-li fa fa-angle-right'></i> Analyser la portée de leurs événements</li>
 </ul>",
-            'licence' => 'http://opensource.org/licenses/MIT',
+            'licence' => 'https://opensource.org/licenses/MIT',
             'url' => 'http://by-night.fr',
             'image' => 'by-night.png',
             'keywords' => ['OpenData', 'PHP', 'Responsive Design', 'Symfony 4', 'Docker', 'ElasticSearch']
@@ -184,7 +184,7 @@ function getRealisations()
     <li><i class='fa fa-li fa-angle-right'></i>La gestion des vacations funéraires</li>
 </ul>
 <i class='fa fa-group'></i> Sous la direction d'Antoine Coelho et Denis Coujou",
-            'licence' => 'http://opensource.org/licenses/MIT',
+            'licence' => 'https://opensource.org/licenses/MIT',
             'url' => 'https://prod.logilibres.org/epmdemo',
             'image' => 'epm.png',
             'keywords' => ['OpenMairie', 'PHP']
@@ -199,8 +199,8 @@ function getRealisations()
     <li><i class='icon-li icon-double-angle-right '></i>Aurélie Guilbaud</li>
 </ul>
 <i class='fa fa-group'></i> En collaboration avec Florian&nbsp;Baillagou, Romain&nbsp;Lenormand et Fabien&nbsp;Puchol",
-            'licence' => 'http://opensource.org/licenses/MIT',
-            'url' => 'http://malp.sainthillier.fr',
+            'licence' => 'https://opensource.org/licenses/MIT',
+            'url' => 'https://malp.sainthillier.fr',
             'image' => 'malp.png',
             'keywords' => ['PHP', 'WebSocket']
         ], [
@@ -208,8 +208,8 @@ function getRealisations()
             'description' => "<p>iScore est l'interface d'administration d'un projet de gestion de concerts de musique.</p>
 <p>Dans le cadre d'une collaboration avec des étudiants de 5<sup>ème</sup> année, l'application permet de gérer un parc d'instruments de musique et de musiciens, mais aussi de créer des configuration de concerts qui seront utilisés par les musiciens lors de leur répétition.</p>
 <i class='fa fa-group'></i> En collaboration avec Alexandre&nbsp;Bongard et Thomas&nbsp;Folguerald",
-            'licence' => 'http://opensource.org/licenses/MIT',
-            'url' => 'http://iscore.sainthillier.fr',
+            'licence' => 'https://opensource.org/licenses/MIT',
+            'url' => 'https://iscore.sainthillier.fr',
             'image' => 'iscore.png',
             'keywords' => ['PHP', 'SVG']
         ],
