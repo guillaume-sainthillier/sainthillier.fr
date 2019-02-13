@@ -1,6 +1,6 @@
 .idea/
 node_modules/
-vendor/
+/vendor/
 public/css
 public/img
 public/js
