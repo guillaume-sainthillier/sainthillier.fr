@@ -1,0 +1,13 @@
+// Styling for the services section
+.service-heading {
+  margin: 0.5rem 0;
+  text-transform: none;
+}
+
+.service-contact {
+  margin-top: 3rem;
+}
+
+@include media-breakpoint-up(md) {
+  margin: 1rem 0;
+}

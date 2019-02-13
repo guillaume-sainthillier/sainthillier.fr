@@ -1,0 +1,11 @@
+// Styling for the team section
+#hello {
+  @include media-breakpoint-down(sm) {
+    img {
+      width: 250px;
+      height: 250px;
+      margin-bottom: 1.5rem;
+    }
+  }
+}
+

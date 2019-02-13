@@ -1,75 +1,70 @@
 <?php
 
-function sendMail($fromName, $to, $sujet, $body) {
+function sendMail($fromName, $to, $sujet, $body)
+{
     $transport = Swift_SmtpTransport::newInstance(EMAIL_SERVER, EMAIL_PORT, EMAIL_TRANSPORT)
         ->setUsername(EMAIL_USER)
-        ->setPassword(EMAIL_PASSWORD)
-    ;
+        ->setPassword(EMAIL_PASSWORD);
 
     $mailer = Swift_Mailer::newInstance($transport);
 
     $message = Swift_Message::newInstance($sujet)
         ->setFrom([EMAIL_SENDER => $fromName])
         ->setTo(is_array($to) ? $to : [$to])
-        ->setBody($body, 'text/html')
-    ;
+        ->setBody($body, 'text/html');
 
     return $mailer->send($message) > 0;
-}
-
-function isHTTPS() {
-    return isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on';
-}
-function getLink($file = null, $absolute = true) {
-    return 'http' . (isHTTPS() ? 's' : '') . '://' . str_replace('//', '/', $_SERVER['HTTP_HOST'] .
-        $_SERVER['REQUEST_URI'] .
-        $file);
-}
-
-function getDescriptions() {
-    return [
-        "Actuellement travailleur indépendant, je me spécialise dans le domaine du développement Web PHP fullstack.",
-        "J'aime travailler dans des entreprises résolument tournées vers les technologies innovantes, et m'intégrer au
-        sein d'équipes dynamiques et passionnées."
-    ];
 }
 
 function getCompetences()
 {
     return [
-        "PHP" => 90,
-        "POO & Design Patterns" => 90,
-        "Javascript & jQuery" => 85,
-        "HTML5 & CSS3" => 80,
-        "MySQL / Oracle / SQL Server" => 80,
-        "Symfony 2/3/4" => 75,
+        "PHP" => 10,
+        "Symfony" => 10,
+        "PrestaShop" => 4,
+        "WordPress" => 3,
+        "Drupal 8" => 3,
+        "Intégration Web" => 6,
+        "Responsive Design" => 7,
+        "Sass" => 6,
+        "Gulp" => 5,
+        "MySQL" => 8,
+        "Oracle" => 5,
+        "Scrum" => 4,
+        "Git" => 6,
+        "Docker" => 9,
+        "DevOps" => 5,
+        "App hybride" => 5,
+        "ElasticSearch" => 5
     ];
 }
 
-function getDistinctKeyworkds($realisations) {
-    $distinctKeywords = [];
-    foreach($realisations as $realisation) {
-        $distinctKeywords = array_merge($distinctKeywords, $realisation['keywords']);
-    }
+function getRetina($image, $density)
+{
+    $infos = pathinfo($image);
 
-    return array_unique($distinctKeywords);
+    return sprintf('%s@%dx.%s', $infos['filename'], $density, $infos['extension']);
 }
 
 function getExperiences()
 {
     return [
         [
-            'periode' => 'Jan 2018 - En cours',
-            'entreprise' => 'Freelance',
-            'titre' => "Développeur Web PHP Toulouse",
-            'description' => "Développement Web PHP pour Agoranet (groupe ERRA), Toulouse",
+            'periode' => 'Jan 2018 - Dec 2018',
+            'logo' => 'Agoranet.jpg',
+            'entreprise' => '<a itemprop="url" href="https://www.apside.com/" target="_blank">Apside</a>',
+            'client' => 'Agoranet',
+            'titre' => "Développeur Full Stack Freelance",
+            'description' => "Réalisation de projets d'applications Web et sites vitrines, principalement pour le client Airbus.",
             'points' => [
             ],
         ], [
             'periode' => 'Sept 2015 - Jan 2018',
-            'entreprise' => '<a itemprop="url" href="https://www.apside.fr/" target="_blank">Apside</a>',
-            'titre' => "Ingénieur d'études",
-            'description' => "Développement Web PHP pour Latécoère, Toulouse",
+            'logo' => 'Latécoère.jpg',
+            'client' => 'Groupe Latécoère',
+            'entreprise' => '<a itemprop="url" href="https://www.apside.com/" target="_blank">Apside</a>',
+            'titre' => "Développeur Full Stack",
+            'description' => "Tierce Maintenance Applicative sur les applications métiers de l'entreprise (Manufacturing, RH, Finances).",
             'points' => [
                 'Travail sur les domaines MES (production), RH et Finances',
                 'Compréhension des besoins utilisateurs',
@@ -78,40 +73,19 @@ function getExperiences()
             ],
         ], [
             'periode' => 'Août 2013 - Août 2015',
-            'entreprise' => '<a itemprop="url" title="Aller sur le site du Centre de Consultation Médicale Maritime" href=https://www.chu-toulouse.fr/-centre-de-consultation-medicale-maritime-ccmm-" target="_blank">CHU Purpan - CCMM/SAMU&nbsp;31</a>',
-            'titre' => "Développeur Web PHP Toulouse",
-            'description' => "Conception, développement et maintenance de modules d’une application de gestion des dossiers patients:",
-            'points' => [
-                'Développement <a href="https://symfony.com/">Symfony2</a>.',
-                'Amélioration des interfaces homme-machine.',
-                'Amélioration du système de reporting.',
-                'Sécurisation des données médicales.',
-                'Ouverture du système aux différents partenaires de l\'assistance médicale en mer.',
-                'Utilisation de SVN et Git pour les applications de l\'entreprise.',
-            ],
+            'logo' => 'CHU_Toulouse.jpg',
+            'client' => 'CCMM - SAMU 31',
+            'entreprise' => null,
+            'via' => '<a itemprop="url" title="Aller sur le site du Centre de Consultation Médicale Maritime" href=https://www.chu-toulouse.fr/-centre-de-consultation-medicale-maritime-ccmm-" target="_blank">CHU Purpan - CCMM/SAMU&nbsp;31</a>',
+            'titre' => "Développeur Full Stack",
+            'description' => "Conception, développement et maintenance de modules d’une application de gestion des dossiers patients.",
         ], [
-            'periode' => 'Fév 2013 - Mai 2013',
-            'entreprise' => '<a itemprop="url" title="Aller sur le site de TripAndTeuf" href="http://www.tripandteuf.com">TripAndTeuf</a>',
-            'titre' => "Développeur Web PHP Toulouse",
-            'description' => "Maintenance du site de l'association:",
-            'points' => [
-                'Conception et développement d\'un mini-framework.',
-                'Migration du site de PHP 4 à PHP 5.3.',
-                'Utilisation de SVN pour le site de l\'association.'
-            ],
-        ], [
-            'periode' => 'Jan 2011 - Fév 2013',
-            'entreprise' => '<a itemprop="url" href="https://www.icm-services.fr/" title="Aller sur le site d\'ICM Services">ICM Services</a>',
-            'titre' => "Développeur Web PHP Toulouse",
-            'description' => "Maintenance et développement de modules sur une application à destination des Polices Municipales:",
-            'points' => [
-                'Utilisation de framework PHP : <a title="Aller sur le site d\'OpenMairie" href="http://www.openmairie.org/">OpenMairie</a>.',
-                'Amélioration du Framework.',
-                'Développement d\'une plateforme de statistiques.',
-                'Conception et développement d\'outils back-end.',
-                'Automatisation du déploiement des solutions.',
-                'Mise en place et utilisation de SVN pour les sites de l\'entreprise.',
-            ],
+            'periode' => 'Avr 2011 - Fév 2013',
+            'logo' => 'ICM_Services.jpg',
+            'client' => 'ICM Services',
+            'entreprise' => null,
+            'titre' => "Développeur Full Stack",
+            'description' => "Maintenance et développement de modules sur une application à destination des Polices Municipales.",
         ]
     ];
 }
@@ -158,22 +132,46 @@ function getRealisations()
     return [
         [
             'nom' => 'By Night',
-            'description' => "<p>By Night est une plateforme d'agrégation d'événements qui a pour vocation de simplifier la recherche des différents événements culturels dans les plus grandes villes de France telles que Paris et Toulouse, et bientôt Marseille, Lyon et Montpellier.</p>
-<p>Un accès libre permet également à des organisateurs d'événements de :</p>
+            'sous_titre' => 'Projet personnel',
+            'date' => 'Octobre 2013 - En Cours',
+            'description' => "<p>By Night est une plateforme d'aggrégation d'événements qui a pour vocation de simplifier la recherche des événements culturels dans les plus grandes villes de France telles que Paris, Toulouse, Lyon, Bordeaux ou Montpellier.</p>
+<p class='mb-2'>Un accès libre permet également à des organisateurs d'événements de :</p>
 <ul class='fa-ul'>
-    <li><i class='fa-li fa fa-angle-right'></i> Créer de nouveaux événements</li>
-    <li><i class='fa fa-li fa-angle-right'></i> Importer ses événements Facebook sur la plateforme</li>
-    <li><i class='fa-li fa fa-angle-right'></i> Diffuser ses événements de la plateforme vers les réseaux sociaux</li>
-    <li><i class='fa-li fa fa-angle-right'></i> Analyser la portée de leurs événements</li>
+    <li><i class='fa-li fa fa-angle-right'></i>Créer de nouveaux événements</li>
+    <li><i class='fa-li fa fa-angle-right'></i>Importer leurs événements depuis Facebook vers l'application</li>
+    <li><i class='fa-li fa fa-angle-right'></i>Exporter des événements de la plateforme vers les autres réseaux sociaux</li>
+    <li><i class='fa-li fa fa-angle-right'></i>Analyser la portée de leurs événements</li>
 </ul>",
-            'licence' => 'https://opensource.org/licenses/MIT',
             'url' => 'http://by-night.fr',
-            'image' => 'by-night.png',
-            'keywords' => ['OpenData', 'PHP', 'Responsive Design', 'Symfony 4', 'Docker', 'ElasticSearch']
+            'image' => 'by-night.jpg',
+            'keywords' => ['PHP', 'Symfony 4', 'Docker', 'MySQL', 'ElasticSearch', 'LESS', 'Responsive Design', 'OpenData']
+        ],[
+            'nom' => 'Airbus Publishing',
+            'sous_titre' => 'Développeur Full Stack Freelance',
+            'date' => 'Mars 2018 - Juin 2018',
+            'description' => "<p>Pour le service Airbus MultiMedia Support. Ce service Web permet en interne la demande de travaux graphiques au sein du Groupe Airbus.</p>",
+            'image' => 'mms.jpg',
+            'keywords' => ['PHP', 'Symfony 4', 'Docker', 'MySQL', 'SASS', 'Responsive Design', 'SSO', 'SAML']
+        ],[
+            'nom' => 'Exterior Walkaround',
+            'sous_titre' => 'Développeur Full Stack Freelance',
+            'date' => 'Juin 2018',
+            'description' => "<p>Pour le service Airbus MultiMedia Support. Cette application mobile permet aux pilotes de ligne de vérifier avant le décollage certains points de contrôle de l'extérieur de l'avion avec des exemples illustrés de problèmes déjà rencontrés à ces endroits.</p>",
+            'image' => 'exterior-walkaround.jpg',
+            'keywords' => ['PHP', 'Symfony 4', 'Docker', 'MySQL', 'SASS']
+        ],[
+            'nom' => 'Safety Index',
+            'sous_titre' => 'Développeur Full Stack Freelance',
+            'date' => 'Mai 2018',
+            'description' => "<p>Pour le service Airbus MultiMedia Support. Cette application mobile permet aux “Safety Officers“ de vérifier quelles améliorations physiques ou logicielles peuvent être effectuées sur les composants de leur flotte d'avion.</p>",
+            'image' => 'safety-index.jpg',
+            'keywords' => ['PHP', 'Symfony 4', 'Docker', 'MySQL', 'SASS', 'Responsive Design']
         ], [
             'nom' => 'Open ePM',
-            'description' => "<p>Open ePM est une application Web open source, à destination des Polices Municipales.</p>
-<p>Elle permet, en outre, de gérer:</p>
+            'sous_titre' => 'Développeur Full Stack',
+            'date' => 'Avril 2011 - Février 2013',
+            'description' => "<p>Pour la société ICM Services. Open ePM est une application Web Open Source à destination des Polices Municipales.</p>
+<p class='mb-2'>Elle permet, en outre, de gérer:</p>
 <ul class='fa-ul'>
     <li><i class='fa fa-li fa-angle-right'></i>Les main courantes et les affaires</li>
     <li><i class='fa fa-li fa-angle-right'></i>La production des rapports PV</li>
@@ -183,35 +181,10 @@ function getRealisations()
     <li><i class='fa fa-li fa-angle-right'></i>La mise en fourrière des véhicules</li>
     <li><i class='fa fa-li fa-angle-right'></i>La gestion des vacations funéraires</li>
 </ul>
-<i class='fa fa-group'></i> Sous la direction d'Antoine Coelho et Denis Coujou",
-            'licence' => 'https://opensource.org/licenses/MIT',
+<p class='mb-2'>Sous la direction d'Antoine Coelho et Denis Coujou</p>",
             'url' => 'https://prod.logilibres.org/epmdemo',
-            'image' => 'epm.png',
-            'keywords' => ['OpenMairie', 'PHP']
-        ], [
-            'nom' => 'Les Mots à la Pelle',
-            'description' => "<p><i class='icon-li icon-quote-left'></i>Les Mots à La Pelle sont nés de 4 volontés individuelles désirant œuvrer de manière collective dans le champ de la langue et de l’écriture. <i class='icon-li icon-quote-right'></i></p>
-<p>Membres fondatrices:</p>
-<ul class='icons-ul'>
-    <li><i class='icon-li icon-double-angle-right '></i>Audrey Chalumeau</li>
-    <li><i class='icon-li icon-double-angle-right '></i>Florence Hude</li>
-    <li><i class='icon-li icon-double-angle-right '></i>Sophie Negrin</li>
-    <li><i class='icon-li icon-double-angle-right '></i>Aurélie Guilbaud</li>
-</ul>
-<i class='fa fa-group'></i> En collaboration avec Florian&nbsp;Baillagou, Romain&nbsp;Lenormand et Fabien&nbsp;Puchol",
-            'licence' => 'https://opensource.org/licenses/MIT',
-            'url' => 'https://malp.sainthillier.fr',
-            'image' => 'malp.png',
-            'keywords' => ['PHP', 'WebSocket']
-        ], [
-            'nom' => 'iScore',
-            'description' => "<p>iScore est l'interface d'administration d'un projet de gestion de concerts de musique.</p>
-<p>Dans le cadre d'une collaboration avec des étudiants de 5<sup>ème</sup> année, l'application permet de gérer un parc d'instruments de musique et de musiciens, mais aussi de créer des configuration de concerts qui seront utilisés par les musiciens lors de leur répétition.</p>
-<i class='fa fa-group'></i> En collaboration avec Alexandre&nbsp;Bongard et Thomas&nbsp;Folguerald",
-            'licence' => 'https://opensource.org/licenses/MIT',
-            'url' => 'https://iscore.sainthillier.fr',
-            'image' => 'iscore.png',
-            'keywords' => ['PHP', 'SVG']
-        ],
+            'image' => 'epm.jpg',
+            'keywords' => ['PHP', 'OpenMairie', 'fPDF', 'jQuery UI']
+        ]
     ];
 }
