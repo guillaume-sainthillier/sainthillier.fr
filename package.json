@@ -2,6 +2,7 @@
     "title": "Guillaume Sainthillier",
     "name": "sainthillier",
     "version": "1.1.0",
+    "private": true,
     "description": "https://sainthillier.fr",
     "homepage": "https://sainthillier.fr",
     "license": "MIT",
