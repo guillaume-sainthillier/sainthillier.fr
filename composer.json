@@ -2,11 +2,6 @@
   "require": {
     "ext-json": "*",
     "google/recaptcha": "^1.2",
-    "swiftmailer/swiftmailer": "^5.4"
-  },
-  "config": {
-    "platform": {
-      "php": "5.6.38"
-    }
+    "swiftmailer/swiftmailer": "^6.1"
   }
 }

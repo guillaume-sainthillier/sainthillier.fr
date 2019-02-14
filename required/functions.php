@@ -2,13 +2,13 @@
 
 function sendMail($fromName, $to, $sujet, $body)
 {
-    $transport = Swift_SmtpTransport::newInstance(EMAIL_SERVER, EMAIL_PORT, EMAIL_TRANSPORT)
+    $transport = (new Swift_SmtpTransport(EMAIL_SERVER, EMAIL_PORT, EMAIL_TRANSPORT))
         ->setUsername(EMAIL_USER)
         ->setPassword(EMAIL_PASSWORD);
 
-    $mailer = Swift_Mailer::newInstance($transport);
+    $mailer = new Swift_Mailer($transport);
 
-    $message = Swift_Message::newInstance($sujet)
+    $message = (new Swift_Message($sujet))
         ->setFrom([EMAIL_SENDER => $fromName])
         ->setTo(is_array($to) ? $to : [$to])
         ->setBody($body, 'text/html');

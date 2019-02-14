@@ -5,7 +5,7 @@ require_once __DIR__ . '/../required/init.php';
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(404);
     echo "Page not Found.";
-    die;
+    die();
 }
 
 // Check for empty fields
@@ -46,6 +46,5 @@ try {
 }catch (Exception $e) {
 
 }
-
 http_response_code(500);
 echo "No mail was sent";
