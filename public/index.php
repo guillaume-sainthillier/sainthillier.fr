@@ -40,7 +40,7 @@ krsort($experiences); //Sort by year ASC
     <!-- Custom styles for this template -->
     <link href="vendor/bundle.min.css" rel="stylesheet">
     <link href="css/agency.min.css" rel="stylesheet">
-    
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-44318869-1"></script>
     <script>

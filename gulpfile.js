@@ -74,10 +74,11 @@ gulp.task('vendor:concat', function () {
 
     gulp.src([
         'public/css/bootstrap.css',
-        'public/vendor/jqcloud2/jqcloud.css',
         'public/vendor/fontawesome-free/css/all.css',
+        'public/vendor/jqcloud2/jqcloud.css',
     ])
         .pipe(concatCss("bundle.css"))
+        .pipe(gulp.dest('public/vendor'))
         .pipe(cleanCSS())
         .pipe(rename({
             suffix: '.min'
