@@ -1,12 +1,12 @@
 {
     "title": "Guillaume Sainthillier",
     "name": "sainthillier",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "private": true,
     "description": "https://sainthillier.fr",
     "homepage": "https://sainthillier.fr",
     "license": "MIT",
-    "author": "Start Bootstrap",
+    "author": "Guillaume Sainthillier",
     "contributors": [
         "David Miller (http://davidmiller.io/)"
     ],
@@ -19,15 +19,20 @@
         "popper.js": "1.14.*"
     },
     "devDependencies": {
-        "gulp": "^3.9.1",
+        "gulp": "4.0.*",
         "gulp-autoprefixer": "6.0.0",
         "gulp-clean-css": "3.10.0",
         "gulp-concat": "^2.6.1",
         "gulp-concat-css": "^3.1.0",
         "gulp-header": "2.0.5",
+        "gulp-image": "^4.4.1",
         "gulp-image-resize": "^0.13.0",
+        "gulp-newer": "^1.4.0",
+        "gulp-plumber": "^1.2.1",
+        "gulp-purgecss": "^1.1.1",
         "gulp-rename": "^1.4.0",
         "gulp-sass": "4.0.1",
-        "gulp-uglify": "3.0.1"
+        "gulp-uglify": "3.0.1",
+        "merge-stream": "^1.0.1"
     }
 }

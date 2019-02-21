@@ -6,3 +6,4 @@ public/img
 public/js
 public/vendor
 required/creds.php
+*.log
