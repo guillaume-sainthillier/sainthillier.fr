@@ -26,9 +26,11 @@ krsort($experiences); //Sort by year ASC
           content="Développeur Web PHP Freelance à Toulouse. Un freelance pour vos projets informatiques. Contactez-moi et rencontrons-nous !">
     <meta name="author" content="Guillaume Sainthillier">
     <meta property="og:title" content="Développeur Web Freelance à Toulouse - Guillaume Sainthillier">
+    <meta property="og:description" content="Développeur Web PHP Freelance à Toulouse. Un freelance pour vos projets informatiques. Contactez-moi et rencontrons-nous !">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://sainthillier.fr/">
-    <meta property="og:image" content="https://sainthillier.fr/img/guillaume_sainthillier.png">
+    <meta property="og:site_name" content="Guillaume Sainthillier">
+    <meta property="og:image" content="https://sainthillier.fr/img/about/guillaume_sainthillier.jpg">
     <link rel="author" href="https://plus.google.com/+guillaumesainthillier">
     <link rel="publisher" href="https://plus.google.com/+guillaumesainthillier">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
