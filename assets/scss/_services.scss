@@ -9,5 +9,7 @@
 }
 
 @include media-breakpoint-up(md) {
-  margin: 1rem 0;
+  .service-heading {
+    margin: 1rem 0;
+  }
 }
