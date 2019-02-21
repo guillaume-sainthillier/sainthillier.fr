@@ -114,7 +114,9 @@ krsort($experiences); //Sort by year ASC
         </div>
         <div class="row mb-5">
             <div class="col-md-4 col-lg-3">
-                <img class="img-fluid rounded-circle d-block mx-auto"
+                <img title="Guillaume Sainthillier"
+                     alt="Guillaume Sainthillier"
+                     class="img-fluid rounded-circle d-block mx-auto"
                      src="img/about/guillaume_sainthillier.jpg"
                      srcset="img/about/guillaume_sainthillier@2x.jpg 2x"
                 />
@@ -131,7 +133,9 @@ krsort($experiences); //Sort by year ASC
         </div>
         <div class="row">
             <div class="col-md-4 col-lg-3 order-md-2">
-                <img class="img-fluid rounded-circle d-block mx-auto"
+                <img title="Concrétisez vos projets Web"
+                     alt="Concrétisez vos projets Web"
+                     class="img-fluid rounded-circle d-block mx-auto"
                      src="img/about/design.jpg"
                      srcset="img/about/design@2x.jpg 2x"
                      width="300"
@@ -232,6 +236,7 @@ krsort($experiences); //Sort by year ASC
                             <img class="img-fluid" width="400" height="300"
                                  src="img/realisations/<?= $realisation['image']; ?>"
                                  srcset="img/realisations/<?= getRetina($realisation['image'], 2) ?> 2x"
+                                 title="<?= $realisation['nom']; ?> réalisé par un Freelance Web à Toulouse"
                                  alt="<?= $realisation['nom']; ?>">
                         </a>
                         <div class="portfolio-caption">
@@ -265,6 +270,7 @@ krsort($experiences); //Sort by year ASC
                                      srcset="img/logos/<?= getRetina($experience['logo'], 2); ?> 2x"
                                      width="200"
                                      height="200"
+                                     title="Logo <?= $experience['client'] ?>"
                                      alt="Logo <?= $experience['client'] ?>">
                             </div>
                             <div class="timeline-panel">
@@ -438,7 +444,7 @@ krsort($experiences); //Sort by year ASC
                                      src="img/realisations/<?= $realisation['image'] ?>"
                                      srcset="img/realisations/<?= getRetina($realisation['image'], 2) ?> 2x"
                                      alt="<?= $realisation['nom']; ?>"
-                                     title="<?= $realisation['nom']; ?> par un Freelance Web à Toulouse">
+                                     title="<?= $realisation['nom']; ?> réalisé par un Freelance Web à Toulouse">
 
                                 <div class="modal-description">
                                     <?= $realisation['description']; ?>
