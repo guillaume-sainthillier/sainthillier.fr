@@ -316,7 +316,7 @@ krsort($experiences); //Sort by year ASC
                         <span class="text-muted">
                             SILARHI
                             <br/>116 Route d'Espagne
-                            <br/>HELIOPOLIS 4, BAT 3
+                            <br/>HELIOPOLIS 4, BAT 113
                             <br />BAL 411
                             <br/>31100 Toulouse
                         </span>
