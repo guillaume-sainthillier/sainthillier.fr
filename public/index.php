@@ -11,6 +11,7 @@ krsort($experiences); //Sort by year ASC
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Développeur Web PHP Freelance à Toulouse - Guillaume Sainthillier</title>
 
     <link href="https://sainthillier.fr/" rel="canonical">
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -22,8 +23,7 @@ krsort($experiences); //Sort by year ASC
     <meta name="theme-color" content="#ffffff">
 
     <meta name="keywords" content="developpeur, web, php, freelance, symfony, toulouse, guillaume, sainthillier, cv">
-    <meta name="description"
-          content="Développeur Web PHP Freelance à Toulouse. Un freelance pour vos projets informatiques. Contactez-moi et rencontrons-nous !">
+    <meta name="description" content="Développeur Web PHP Freelance à Toulouse. Un freelance pour vos projets informatiques. Contactez-moi et rencontrons-nous !">
     <meta name="author" content="Guillaume Sainthillier">
     <meta property="og:title" content="Développeur Web Freelance à Toulouse - Guillaume Sainthillier">
     <meta property="og:description" content="Développeur Web PHP Freelance à Toulouse. Un freelance pour vos projets informatiques. Contactez-moi et rencontrons-nous !">
@@ -35,12 +35,7 @@ krsort($experiences); //Sort by year ASC
     <link rel="publisher" href="https://plus.google.com/+guillaumesainthillier">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
 
-    <title>Développeur Web PHP Freelance à Toulouse - Guillaume Sainthillier</title>
-
-    <!-- Custom fonts for this template -->
     <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700|Kaushan+Script:400|Droid+Serif:400,700,400italic,700italic|Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
-
-    <!-- Custom styles for this template -->
     <link href="vendor/bundle.min.css" rel="stylesheet">
     <link href="css/agency.min.css" rel="stylesheet">
 
@@ -64,9 +59,7 @@ krsort($experiences); //Sort by year ASC
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
     <div class="container">
         <a class="navbar-brand js-scroll-trigger" href="#page-top">Guillaume Sainthillier</a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-                data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
-                aria-label="Toggle navigation">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             Menu
             <i class="fas fa-bars"></i>
         </button>
@@ -148,8 +141,7 @@ krsort($experiences); //Sort by year ASC
             <div class="col-md-8 order-md-1">
                 <h3>Optez pour un développeur Freelance</h3>
                 <p class="text-muted">J'interviens sur toutes les phases du projet : définition du besoin, analyse, conception, réalisation, tests, déploiement et maintenance.</p>
-                <p class="text-muted">J'ai eu l'occasion de travailler sur des projets informatiques de différentes
-                    natures :
+                <p class="text-muted">J'ai eu l'occasion de travailler sur des projets informatiques de différentes natures :
                     applications métiers (desktop / tablette / mobile), extranet, intranet, site vitrine, référencement.</p>
                 <p class="text-muted">Que vous soyez une petite entreprise, une agence Web ou une entreprise côtée en bourse, contactez-moi
                     et voyons ensemble comment développer votre activité !</p>
