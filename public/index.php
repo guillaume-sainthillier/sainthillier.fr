@@ -11,7 +11,7 @@ krsort($experiences); //Sort by year ASC
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Développeur Web PHP Freelance à Toulouse - Guillaume Sainthillier</title>
+    <title>Développeur web Toulouse, Freelance web Toulouse - Guillaume Sainthillier</title>
 
     <link href="https://sainthillier.fr/" rel="canonical">
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -22,11 +22,11 @@ krsort($experiences); //Sort by year ASC
     <meta name="msapplication-TileColor" content="#2d89ef">
     <meta name="theme-color" content="#ffffff">
 
-    <meta name="keywords" content="developpeur, web, php, freelance, symfony, toulouse, guillaume, sainthillier, cv">
-    <meta name="description" content="Développeur Web PHP Freelance à Toulouse. Un freelance pour vos projets informatiques. Contactez-moi et rencontrons-nous !">
+    <meta name="keywords" content="développeur,developpeur,web,toulouse,freelance,php,symfony,guillaume,sainthillier,silarhi">
+    <meta name="description" content="Développeur web à Toulouse. Un freelance web de confiance pour votre activité. Contactez-moi et déléguez sereinement votre développement informatique !">
     <meta name="author" content="Guillaume Sainthillier">
-    <meta property="og:title" content="Développeur Web Freelance à Toulouse - Guillaume Sainthillier">
-    <meta property="og:description" content="Développeur Web PHP Freelance à Toulouse. Un freelance pour vos projets informatiques. Contactez-moi et rencontrons-nous !">
+    <meta property="og:title" content="Développeur web freelance à Toulouse - Guillaume Sainthillier">
+    <meta property="og:description" content="Développeur Web à Toulouse. Un freelance web de confiance pour votre activité. Contactez-moi et déléguez sereinement votre développement informatique !">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://sainthillier.fr/">
     <meta property="og:site_name" content="Guillaume Sainthillier">
@@ -43,7 +43,11 @@ krsort($experiences); //Sort by year ASC
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-44318869-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
         gtag('js', new Date());
 
         gtag('config', 'UA-44318869-1');
@@ -93,8 +97,8 @@ krsort($experiences); //Sort by year ASC
     <div class="masthead-content">
         <div class="container">
             <div class="intro-text">
-                <h1 class="intro-lead-in">Freelance Web à Toulouse</h1>
-                <div class="intro-heading text-uppercase">Développez votre activité</div>
+                <h1 class="intro-lead-in">Développeur Web à Toulouse</h1>
+                <div class="intro-heading text-uppercase">Faites décoller votre activité</div>
                 <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#hello">En savoir plus</a>
             </div>
         </div>
@@ -105,8 +109,9 @@ krsort($experiences); //Sort by year ASC
 <section id="hello">
     <div class="container">
         <div class="text-center">
-            <h2 class="section-heading text-uppercase">Hello</h2>
-            <h3 class="section-subheading text-muted">Je suis développeur Web Freelance basé à Toulouse.</h3>
+            <h2 class="section-heading text-uppercase">Freelance Web PHP à Toulouse</h2>
+            <h3 class="section-subheading text-muted">Je suis spécialisé dans le domaine du développement d'applications Web
+                avec le framework PHP Symfony.</h3>
         </div>
         <div class="row mb-5">
             <div class="col-md-4 col-lg-3">
@@ -118,16 +123,17 @@ krsort($experiences); //Sort by year ASC
                 />
             </div>
             <div class="col-md-8">
-                <h3>Concrétisez vos projets Web</h3>
-                <p class="text-muted">Actuellement travailleur indépendant, je suis spécialisé dans le domaine du
-                    développement d'applications Web PHP sous le framework Symfony.</p>
-                <p class="text-muted">Parce que l'informatique doit être une solution et non une contrainte, j'aime
-                    développer des outils qui se démarquent par leur valeur ajoutée pour votre activité.</p>
-                <p class="text-muted">Expérimenté depuis maintenant plus de 5 ans, j'ai travaillé pour divers secteurs
-                    d'activités : collectivités locales, santé, ressources humaines et industries aéronautiques.</p>
+                <h3>Concrétisez votre projet</h3>
+                <p class="text-muted">Focalisez votre attention sur ce qui compte réellement pour vous et déléguez vos développements informatiques
+                    à un <strong>freelance de confiance.</strong></p>
+                <p class="text-muted">Parce que l'informatique doit être une solution et non une contrainte, je tiens à
+                    développer des outils qui se démarquent par leur
+                    <strong>valeur ajoutée pour votre activité.</strong></p>
+                <p class="text-muted">Ne prenez pas de risques en travaillant avec un partenaire neutre qui garantit la
+                    <strong>confidentialité</strong> de vos activités.</p>
             </div>
         </div>
-        <div class="row">
+        <div class="row mb-5">
             <div class="col-md-4 col-lg-3 order-md-2">
                 <img title="Concrétisez vos projets Web"
                      alt="Concrétisez vos projets Web"
@@ -140,12 +146,15 @@ krsort($experiences); //Sort by year ASC
             </div>
             <div class="col-md-8 order-md-1">
                 <h3>Optez pour un développeur Freelance</h3>
-                <p class="text-muted">J'interviens sur toutes les phases du projet : définition du besoin, analyse, conception, réalisation, tests, déploiement et maintenance.</p>
-                <p class="text-muted">J'ai eu l'occasion de travailler sur des projets informatiques de différentes natures :
-                    applications métiers (desktop / tablette / mobile), extranet, intranet, site vitrine, référencement.</p>
+                <p class="text-muted">Je suis votre interlocuteur unique dans toutes les phases du projet : définition du besoin, analyse, conception, réalisation, tests, déploiement et maintenance.</p>
+                <p class="text-muted">Expérimenté depuis maintenant plus de 5 ans, j'ai travaillé pour divers secteurs
+                    d'activités : collectivités locales, santé, ressources humaines, industries aéronautiques, ...</p>
                 <p class="text-muted">Que vous soyez une petite entreprise, une agence Web ou une entreprise côtée en bourse, contactez-moi
-                    et voyons ensemble comment développer votre activité !</p>
+                    et voyons ensemble comment <strong>développer votre activité !</strong></p>
             </div>
+        </div>
+        <div class="text-center">
+            <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#contact">J'ai un projet</a>
         </div>
     </div>
 </section>
@@ -231,7 +240,7 @@ krsort($experiences); //Sort by year ASC
                             <img class="img-fluid" width="400" height="300"
                                  src="img/realisations/<?= $realisation['image']; ?>"
                                  srcset="img/realisations/<?= getRetina($realisation['image'], 2) ?> 2x"
-                                 title="<?= $realisation['nom']; ?> réalisé par un Freelance Web à Toulouse"
+                                 title="<?= $realisation['nom']; ?> réalisé par un développeur web freelance à Toulouse"
                                  alt="<?= $realisation['nom']; ?>">
                         </a>
                         <div class="portfolio-caption">
@@ -251,7 +260,7 @@ krsort($experiences); //Sort by year ASC
         <div class="row">
             <div class="col-lg-12 text-center">
                 <h2 class="section-heading text-uppercase">Expériences</h2>
-                <h3 class="section-subheading text-muted">Mes expériences en régie chez le client.</h3>
+                <h3 class="section-subheading text-muted">Mes dernières expériences en régie chez le client.</h3>
             </div>
         </div>
         <div class="row">
@@ -303,7 +312,7 @@ krsort($experiences); //Sort by year ASC
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
-                <h2 class="section-heading text-uppercase">Contact</h2>
+                <h2 class="section-heading text-uppercase">Parlez-moi de vous</h2>
                 <h3 class="section-subheading text-muted">Laissez-moi quelques mots sur votre projet et je vous
                     rappelerai.</h3>
             </div>
@@ -315,10 +324,10 @@ krsort($experiences); //Sort by year ASC
                         <i class="icon fa fa-map-marker-alt"></i>
                         <span class="text-muted">
                             SILARHI
-                            <br/>116 Route d'Espagne
-                            <br/>HELIOPOLIS 4, BAT 113
+                            <br />116 Route d'Espagne
+                            <br />HELIOPOLIS 4, BAT 113
                             <br />BAL 411
-                            <br/>31100 Toulouse
+                            <br />31100 Toulouse
                         </span>
                     </li>
                     <li class="col-lg-3 col-sm-6 col-xl-12">
@@ -441,7 +450,7 @@ krsort($experiences); //Sort by year ASC
                                      src="img/realisations/<?= $realisation['image'] ?>"
                                      srcset="img/realisations/<?= getRetina($realisation['image'], 2) ?> 2x"
                                      alt="<?= $realisation['nom']; ?>"
-                                     title="<?= $realisation['nom']; ?> réalisé par un Freelance Web à Toulouse">
+                                     title="<?= $realisation['nom']; ?> réalisé par un développeur web freelance à Toulouse">
 
                                 <div class="modal-description">
                                     <?= $realisation['description']; ?>
@@ -454,11 +463,11 @@ krsort($experiences); //Sort by year ASC
                                         </li>
                                     </ul>
                                 </div>
-                                <?php if($realisation['url']) : ?>
-                                <a href="<?= $realisation['url']; ?>" class="btn btn-secondary" target="_blank">
-                                    <i class="fas fa-globe"></i>
-                                    Visiter
-                                </a>
+                                <?php if ($realisation['url']) : ?>
+                                    <a href="<?= $realisation['url']; ?>" class="btn btn-secondary" target="_blank">
+                                        <i class="fas fa-globe"></i>
+                                        Visiter
+                                    </a>
                                 <?php endif; ?>
                                 <button class="btn btn-primary" data-dismiss="modal" type="button">
                                     <i class="fas fa-times"></i>
