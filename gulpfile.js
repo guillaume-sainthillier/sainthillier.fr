@@ -112,7 +112,7 @@ function cssCompile() {
         }))
         .pipe(
             purgecss({
-                content: ['./public/*.php', 'required/*.php', './assets/js/*.js', './node_modules/jqcloud2/dist/*.js'],
+                content: ['./templates/*.html.twig', 'required/*.php', './assets/js/*.js', './node_modules/jqcloud2/dist/*.js'],
                 whitelist: [
                     'show', 'hide', 'showing',
                     'fade', 'active', 'focus','disabled',
