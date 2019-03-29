@@ -195,7 +195,7 @@
                         <div class="timeline-body">
                             <p class="text-muted">{{ experience.description }}</p>
                             {% if experience.entreprise %}
-                            <span class="text-muted">Via {{ experience.entreprise }}</span>
+                            <span class="text-muted">Via {{ experience.entreprise|raw }}</span>
                             {% endif %}
                         </div>
                     </div>
