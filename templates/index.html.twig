@@ -1,0 +1,364 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<!-- Header -->
+<header class="masthead">
+    <div class="masthead-content">
+        <div class="container">
+            <div class="intro-text">
+                <h1 class="intro-lead-in">Développeur Web à Toulouse</h1>
+                <div class="intro-heading text-uppercase">Faites décoller votre activité</div>
+                <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#hello">En savoir plus</a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- About -->
+<section id="hello">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-heading text-uppercase">Freelance Web PHP à Toulouse</h2>
+            <h3 class="section-subheading text-muted">Je suis spécialisé dans le domaine du développement d'applications Web
+                avec le framework PHP Symfony.</h3>
+        </div>
+        <div class="row mb-5">
+            <div class="col-md-4 col-lg-3">
+                <img title="Guillaume Sainthillier"
+                     alt="Guillaume Sainthillier"
+                     class="img-fluid rounded-circle d-block mx-auto"
+                     src="img/about/guillaume_sainthillier.jpg"
+                     srcset="img/about/guillaume_sainthillier@2x.jpg 2x"
+                />
+            </div>
+            <div class="col-md-8">
+                <h3>Concrétisez votre projet</h3>
+                <p class="text-muted">Focalisez votre attention sur ce qui compte réellement pour vous et déléguez vos développements informatiques
+                    à un <strong>freelance de confiance.</strong></p>
+                <p class="text-muted">Parce que l'informatique doit être une solution et non une contrainte, je tiens à
+                    développer des outils qui se démarquent par leur
+                    <strong>valeur ajoutée pour votre activité.</strong></p>
+                <p class="text-muted">Ne prenez pas de risques en travaillant avec un partenaire neutre qui garantit la
+                    <strong>confidentialité</strong> de vos activités.</p>
+            </div>
+        </div>
+        <div class="row mb-5">
+            <div class="col-md-4 col-lg-3 order-md-2">
+                <img title="Concrétisez vos projets Web"
+                     alt="Concrétisez vos projets Web"
+                     class="img-fluid rounded-circle d-block mx-auto"
+                     src="img/about/design.jpg"
+                     srcset="img/about/design@2x.jpg 2x"
+                     width="300"
+                     height="300"
+                />
+            </div>
+            <div class="col-md-8 order-md-1">
+                <h3>Optez pour un développeur Freelance</h3>
+                <p class="text-muted">Je suis votre interlocuteur unique dans toutes les phases du projet : définition du besoin, analyse, conception, réalisation, tests, déploiement et maintenance.</p>
+                <p class="text-muted">Expérimenté depuis maintenant plus de 5 ans, j'ai travaillé pour divers secteurs
+                    d'activités : collectivités locales, santé, ressources humaines, industries aéronautiques, ...</p>
+                <p class="text-muted">Que vous soyez une petite entreprise, une agence Web ou une entreprise côtée en bourse, contactez-moi
+                    et voyons ensemble comment <strong>développer votre activité !</strong></p>
+            </div>
+        </div>
+        <div class="text-center">
+            <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#contact">J'ai un projet</a>
+        </div>
+    </div>
+</section>
+
+<!-- Services -->
+<section id="services" class="bg-light">
+    <div class="container text-center">
+        <h2 class="section-heading text-uppercase">Mes Services</h2>
+        <h3 class="section-subheading text-muted">Donnons vie <span>ensemble</span> à vos projets informatiques.</h3>
+        <div class="row">
+            <div class="col-md-4">
+                <span class="fa-stack fa-4x">
+                  <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                  <i class="fas fa-walking fa-stack-1x fa-inverse"></i>
+                </span>
+                <h4 class="service-heading">Régie</h4>
+                <p class="text-muted">Je travaille au sein de vos locaux pour une durée définie (qui peut bien sûr évoluer). Je peux intervenir seul
+                    ou renforcer votre équipe.</p>
+            </div>
+            <div class="col-md-4">
+                <span class="fa-stack fa-4x">
+                  <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                  <i class="fas fa-book fa-stack-1x fa-inverse"></i>
+                </span>
+                <h4 class="service-heading">Forfait</h4>
+                <p class="text-muted">Je réponds à votre cahier des charges et vous propose une réponse qui tente de répondre au mieux à votre besoin en termes de valeur ajoutée, de délais et de tarif.</p>
+            </div>
+            <div class="col-md-4">
+                <span class="fa-stack fa-4x">
+                  <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                  <i class="fas fa-brain fa-stack-1x fa-inverse"></i>
+                </span>
+                <h4 class="service-heading">Consulting</h4>
+                <p class="text-muted">Je peux vous guider dans vos choix techniques (analyse, conception,
+                    architecture, infrastructure, audit de sécurité ou de référencement) au cours d'une mission de courte durée.</p>
+            </div>
+        </div>
+        <div class="service-contact">
+            <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#contact">Contactez-moi</a>
+        </div>
+    </div>
+</section>
+
+
+<!-- Skills -->
+<section id="competences">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-heading text-uppercase">Mes compétences</h2>
+            <h3 class="section-subheading text-muted">Axée autour de l'univers du Web, mon
+                expertise se concentre principalement autour du language PHP et du framework Symfony.</h3>
+        </div>
+
+        <div class="skills" data-skills="{{ competences|json_encode|escape('html') }}">
+            <ul>
+                {% for value, competence in competences %}
+                <li><strong>{{ competence }} à Toulouse</strong></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- Portfolio Grid -->
+<section class="bg-light" id="portfolio">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading text-uppercase">Portfolio</h2>
+                <h3 class="section-subheading text-muted">Coup d'œil sur mes derniers travaux.</h3>
+            </div>
+        </div>
+        <div class="row">
+            {% for i, realisation in realisations %}
+            <div class="col-md-6 col-xl-4">
+                <div class="portfolio-item">
+                    <a class="portfolio-link" data-toggle="modal" href="#portfolioModal{{ i + 1 }}">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content">
+                                <i class="fas fa-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img class="img-fluid" width="400" height="300"
+                             src="img/realisations/{{ realisation.image }}"
+                             srcset="img/realisations/{{ realisation.image|retina(2) }} 2x"
+                             title="{{ realisation.nom }} réalisé par un développeur web freelance à Toulouse"
+                             alt="{{ realisation.nom }}">
+                    </a>
+                    <div class="portfolio-caption">
+                        <h4>{{ realisation.nom }}</h4>
+                        <p class="text-muted">{{ realisation.sous_titre }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- About -->
+<section id="experiences">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading text-uppercase">Expériences</h2>
+                <h3 class="section-subheading text-muted">Mes dernières expériences en régie chez le client.</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="timeline">
+                    {% for i, experience in experiences %}
+                    <li class="{{ i is odd ? "" : "timeline-inverted" }}">
+                    <div class="timeline-image">
+                        <img class="rounded-circle img-fluid"
+                             src="img/logos/{{ experience.logo }}"
+                             srcset="img/logos/{{ experience.logo|retina(2) }} 2x"
+                             width="200"
+                             height="200"
+                             title="Logo {{ experience.client }}"
+                             alt="Logo {{ experience.client }}">
+                    </div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <h4>{{ experience.periode }}</h4>
+                            <h4 class="subheading">{{ experience.client }}</h4>
+                            <h5 class="text-muted">{{ experience.titre }}</h5>
+                        </div>
+                        <div class="timeline-body">
+                            <p class="text-muted">{{ experience.description }}</p>
+                            {% if experience.entreprise %}
+                            <span class="text-muted">Via {{ experience.entreprise }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    </li>
+                    {% endfor %}
+                    <li class="timeline-inverted">
+                        <div class="timeline-image">
+                            <div class="d-table h-100">
+                                <div class="d-table-cell align-middle">
+                                    <h4>Rejoignez l'aventure !</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact -->
+<section class="bg-light" id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading text-uppercase">Parlez-moi de vous</h2>
+                <h3 class="section-subheading text-muted">Laissez-moi quelques mots sur votre projet et je vous
+                    rappelerai.</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-3">
+                <ul class="list-unstyled row">
+                    <li class="col-lg-3 col-sm-6 col-xl-12">
+                        <i class="icon fa fa-map-marker-alt"></i>
+                        <span class="text-muted">
+                            SILARHI
+                            <br />116 Route d'Espagne
+                            <br />HELIOPOLIS 4, BAT 113
+                            <br />BAL 411
+                            <br />31100 Toulouse
+                        </span>
+                    </li>
+                    <li class="col-lg-3 col-sm-6 col-xl-12">
+                        <i class="icon fa fa-clock"></i>
+                        <span class="text-muted">
+                            Du lundi au vendredi
+                            <br>De 9h à 18h
+                        </span>
+                    </li>
+                    <li class="col-lg-3 col-sm-6 col-xl-12">
+                        <i class="icon fa fa-phone"></i>
+                        <span class="text-muted">
+                            <a href="tel:+33607275826">0 607.275.826</a>
+                        </span>
+                    </li>
+                    <li class="col-lg-3 col-sm-6 col-xl-12">
+                        <i class="icon fa fa-envelope"></i>
+                        <span class="text-muted">
+                            <a href='&#109;ai&#108;to&#58;&#37;68ell&#37;6F&#64;si%&#54;Ca&#37;72hi&#46;f&#114;'>hello&#64;silar&#104;i&#46;&#102;r</a>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-xl-9">
+                <form id="contactForm" name="sentMessage" novalidate="novalidate">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input class="form-control" id="name" type="text" placeholder="Votre nom *"
+                                       required="required"
+                                       data-validation-required-message="Merci de renseigner votre nom.">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" id="email" type="email" placeholder="Votre email *"
+                                       required="required"
+                                       data-validation-required-message="Merci de renseigner votre email.">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" id="phone" type="tel" placeholder="Votre téléphone *"
+                                       required="required"
+                                       data-validation-required-message="Merci de renseigner votre numéro de téléphone.">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <textarea class="form-control" id="message" placeholder="Votre message *"
+                                          required="required"
+                                          data-validation-required-message="Merci de renseigner votre message."></textarea>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-lg-12 text-center">
+                            <div id="success"></div>
+                            <button id="sendMessageButton" class="btn btn-primary btn-xl text-uppercase" type="submit">
+                                Envoyer le message
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% for i, realisation in realisations %}
+<div class="portfolio-modal modal fade" id="portfolioModal{{ i + 1 }}" tabindex="-1" role="dialog"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl"></div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <div class="modal-body">
+                            <!-- Project Details Go Here -->
+                            <h2 class="text-uppercase">{{ realisation.nom }}</h2>
+                            <p class="item-intro text-muted">{{ realisation.sous_titre }}</p>
+                            <img class="img-fluid d-block mx-auto"
+                                 src="img/realisations/{{ realisation.image }}"
+                                 srcset="img/realisations/{{ realisation.image|retina(2) }} 2x"
+                                 alt="{{ realisation.nom }}"
+                                 title="{{ realisation.nom }} réalisé par un développeur web freelance à Toulouse">
+
+                            <div class="modal-description">
+                                {{ realisation.description|raw }}
+                                <ul class="list-inline">
+                                    <li>Date : {{ realisation.date }}</li>
+                                    <li>Technologies :
+                                        {% for keyword in realisation.keywords  %}
+                                        <span class="badge badge-secondary">{{ keyword }}</span>
+                                        {% endfor %}
+                                    </li>
+                                </ul>
+                            </div>
+                            {% if realisation.url is defined %}
+                            <a href="{{ realisation.url }}" class="btn btn-secondary" target="_blank">
+                                <i class="fas fa-globe"></i>
+                                Visiter
+                            </a>
+                            {% endif %}
+                            <button class="btn btn-primary" data-dismiss="modal" type="button">
+                                <i class="fas fa-times"></i>
+                                Fermer
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}
+
+{% block js %}
+    <script src="https://www.google.com/recaptcha/api.js?render={{ RECAPTCHA_SITE_KEY }}"></script>
+{% endblock %}

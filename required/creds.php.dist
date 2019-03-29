@@ -1,6 +1,7 @@
 <?php
 
 define('RECAPTCHA_SECRET_KEY', 's3cr3t');
+define('ENV', 'prod');
 
 define('EMAIL_SERVER', '');
 define('EMAIL_PORT', '465');

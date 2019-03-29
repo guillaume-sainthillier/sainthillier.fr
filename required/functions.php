@@ -1,5 +1,25 @@
 <?php
 
+function render($template, array $parameters = [])
+{
+    $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/../templates');
+
+    $twig = new \Twig\Environment($loader, [
+        'cache' => __DIR__ . '/../cache',
+        'debug' => ENV === 'dev',
+        'strict_variables' => ENV === 'dev'
+    ]);
+
+    $filter = new \Twig\TwigFilter('retina', 'getRetina');
+    $twig->addFilter($filter);
+
+    $twig->addGlobal('RECAPTCHA_SITE_KEY', RECAPTCHA_SITE_KEY);
+    $twig->addGlobal('LINKED_IN', LINKED_IN);
+    $twig->addGlobal('GITHUB', GITHUB);
+
+    return $twig->render($template, $parameters);
+}
+
 function sendMail($fromName, $to, $sujet, $body)
 {
     $transport = (new Swift_SmtpTransport(EMAIL_SERVER, EMAIL_PORT, EMAIL_TRANSPORT))
@@ -145,21 +165,21 @@ function getRealisations()
             'url' => 'http://by-night.fr',
             'image' => 'by-night.jpg',
             'keywords' => ['PHP', 'Symfony 4', 'Docker', 'MySQL', 'ElasticSearch', 'LESS', 'Responsive Design', 'OpenData']
-        ],[
+        ], [
             'nom' => 'Airbus Publishing',
             'sous_titre' => 'Développeur Full Stack Freelance',
             'date' => 'Mars 2018 - Juin 2018',
             'description' => "<p>Pour le service Airbus MultiMedia Support. Ce service Web permet en interne la demande de travaux graphiques au sein du Groupe Airbus.</p>",
             'image' => 'mms.jpg',
             'keywords' => ['PHP', 'Symfony 4', 'Docker', 'MySQL', 'SASS', 'Responsive Design', 'SSO', 'SAML']
-        ],[
+        ], [
             'nom' => 'Exterior Walkaround',
             'sous_titre' => 'Développeur Full Stack Freelance',
             'date' => 'Juin 2018',
             'description' => "<p>Pour le service Airbus MultiMedia Support. Cette application mobile permet aux pilotes de ligne de vérifier avant le décollage certains points de contrôle de l'extérieur de l'avion avec des exemples illustrés de problèmes déjà rencontrés à ces endroits.</p>",
             'image' => 'exterior-walkaround.jpg',
             'keywords' => ['PHP', 'Symfony 4', 'Docker', 'MySQL', 'SASS']
-        ],[
+        ], [
             'nom' => 'Safety Index',
             'sous_titre' => 'Développeur Full Stack Freelance',
             'date' => 'Mai 2018',

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title 'Développeur web Toulouse, Freelance web Toulouse' %} - Guillaume Sainthillier</title>
+
+    <link href="{% block url 'https://sainthillier.fr/' %}" rel="canonical">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#2d89ef">
+    <meta name="theme-color" content="#ffffff">
+
+    <meta name="keywords" content="développeur,developpeur,web,toulouse,freelance,php,symfony,guillaume,sainthillier,silarhi">
+    <meta name="description" content="{% block description 'Développeur web à Toulouse. Un freelance web de confiance pour votre activité. Contactez-moi et déléguez sereinement votre développement informatique !' %}">
+    <meta name="author" content="Guillaume Sainthillier">
+    <meta property="og:title" content="{{ block('title') }} - Guillaume Sainthillier">
+    <meta property="og:description" content="{{ block('description') }}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sainthillier.fr/">
+    <meta property="og:site_name" content="Guillaume Sainthillier">
+    <meta property="og:image" content="https://sainthillier.fr/img/about/guillaume_sainthillier.jpg">
+    <link rel="author" href="https://plus.google.com/+guillaumesainthillier">
+    <link rel="publisher" href="https://plus.google.com/+guillaumesainthillier">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700|Kaushan+Script:400|Droid+Serif:400,700,400italic,700italic|Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+    <link href="vendor/bundle.min.css" rel="stylesheet">
+    <link href="css/agency.min.css" rel="stylesheet">
+    {% block css %}{% endblock %}
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-44318869-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'UA-44318869-1');
+    </script>
+    <script>
+        var config = {{ {'recaptcha_site_key': RECAPTCHA_SITE_KEY}|json_encode|raw }};
+    </script>
+</head>
+
+<body id="page-top">
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+    <div class="container">
+        {% block menu %}
+            <a class="navbar-brand js-scroll-trigger" href="#page-top">Guillaume Sainthillier</a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav text-uppercase ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#hello">Hello</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#competences">Compétences</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#experiences">Expériences</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        {% endblock %}
+    </div>
+</nav>
+
+{% block body %}{% endblock %}
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <p class="text-muted">Guillaume Sainthillier - Développeur Web Freelance à Toulouse</p>
+                <p class="text-muted">SASU SILARHI - N° SIRET 84154166700017</p>
+                <p><a href="mentions-legales.php">Mentions légales</a></p>
+                <p><a href="pdf/CGV.pdf">Conditions Générales de Vente</a></p>
+            </div>
+            <div class="col-md-4">
+                <ul class="list-inline social-buttons">
+                    <li class="list-inline-item">
+                        <a href="{{ LINKED_IN }}">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="{{ GITHUB }}">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="pdf/CV-SAINTHILLIER-Guillaume.pdf">
+                            <i class="fa fa-file-alt"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="vendor/bundle.min.js"></script>
+<script src="js/agency.min.js"></script>
+{% block js %}{% endblock %}
+</body>
+</html>
