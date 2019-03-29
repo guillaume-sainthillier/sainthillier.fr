@@ -2,7 +2,6 @@
 
 define('EMAIL', 'guillaume@sainthillier.fr');
 define('LINKED_IN', 'https://fr.linkedin.com/in/guillaumesainthillier');
-define('VIADEO', 'https://www.viadeo.com/p/0024dwstfu32pr3');
 define('GITHUB', 'https://github.com/guillaume-sainthillier');
 define('RECAPTCHA_SITE_KEY', '6Leeo4cUAAAAAPFGCTvQa994tSGAQzNCmhpgMzME');
 
