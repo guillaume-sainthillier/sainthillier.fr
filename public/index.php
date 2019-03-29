@@ -402,6 +402,7 @@ krsort($experiences); //Sort by year ASC
             <div class="col-md-8">
                 <p class="text-muted">Guillaume Sainthillier - Développeur Web Freelance à Toulouse</p>
                 <p class="text-muted">SASU SILARHI - N° SIRET 84154166700017</p>
+                <p><a href="pdf/CGV.pdf">Conditions Générales de Vente</a></p>
             </div>
             <div class="col-md-4">
                 <ul class="list-inline social-buttons">
