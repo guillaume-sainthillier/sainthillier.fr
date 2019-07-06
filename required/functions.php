@@ -74,7 +74,7 @@ function getExperiences()
             'logo' => 'Agoranet.jpg',
             'entreprise' => '<a itemprop="url" href="https://www.apside.com/" target="_blank">Apside</a>',
             'client' => 'Agoranet',
-            'titre' => "Développeur Full Stack Freelance",
+            'titre' => "Développeur Full Stack freelance",
             'description' => "Réalisation de projets d'applications Web et sites vitrines, principalement pour le client Airbus.",
             'points' => [
             ],
@@ -167,28 +167,28 @@ function getRealisations()
             'keywords' => ['PHP', 'Symfony 4', 'Docker', 'MySQL', 'ElasticSearch', 'LESS', 'Responsive Design', 'OpenData']
         ], [
             'nom' => 'Airbus Publishing',
-            'sous_titre' => 'Développeur Full Stack Freelance',
+            'sous_titre' => 'Développeur Web freelance',
             'date' => 'Mars 2018 - Juin 2018',
             'description' => "<p>Pour le service Airbus MultiMedia Support. Ce service Web permet en interne la demande de travaux graphiques au sein du Groupe Airbus.</p>",
             'image' => 'mms.jpg',
             'keywords' => ['PHP', 'Symfony 4', 'Docker', 'MySQL', 'SASS', 'Responsive Design', 'SSO', 'SAML']
         ], [
             'nom' => 'Exterior Walkaround',
-            'sous_titre' => 'Développeur Full Stack Freelance',
+            'sous_titre' => 'Développeur Web freelance',
             'date' => 'Juin 2018',
             'description' => "<p>Pour le service Airbus MultiMedia Support. Cette application mobile permet aux pilotes de ligne de vérifier avant le décollage certains points de contrôle de l'extérieur de l'avion avec des exemples illustrés de problèmes déjà rencontrés à ces endroits.</p>",
             'image' => 'exterior-walkaround.jpg',
             'keywords' => ['PHP', 'Symfony 4', 'Docker', 'MySQL', 'SASS']
         ], [
             'nom' => 'Safety Index',
-            'sous_titre' => 'Développeur Full Stack Freelance',
+            'sous_titre' => 'Développeur Web freelance',
             'date' => 'Mai 2018',
             'description' => "<p>Pour le service Airbus MultiMedia Support. Cette application mobile permet aux “Safety Officers“ de vérifier quelles améliorations physiques ou logicielles peuvent être effectuées sur les composants de leur flotte d'avion.</p>",
             'image' => 'safety-index.jpg',
             'keywords' => ['PHP', 'Symfony 4', 'Docker', 'MySQL', 'SASS', 'Responsive Design']
         ], [
             'nom' => 'Open ePM',
-            'sous_titre' => 'Développeur Full Stack',
+            'sous_titre' => 'Développeur Web',
             'date' => 'Avril 2011 - Février 2013',
             'description' => "<p>Pour la société ICM Services. Open ePM est une application Web Open Source à destination des Polices Municipales.</p>
 <p class='mb-2'>Elle permet, en outre, de gérer:</p>
