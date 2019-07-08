@@ -13,7 +13,6 @@ ADD assets ./assets
 ADD required ./required
 ADD templates ./templates
 
-RUN ls -alh .
 RUN mkdir -p public && \
 	npm install -g yarn gulp && \
 	NODE_ENV=development yarn install && \
