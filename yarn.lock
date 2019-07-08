@@ -2474,6 +2474,15 @@ gulp-concat@^2.6.1:
     through2 "^2.0.0"
     vinyl "^2.0.0"
 
+gulp-copy@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/gulp-copy/-/gulp-copy-4.0.1.tgz#12a233fed26bded60cd5ec0b99f65be83f3b16b2"
+  integrity sha512-UbdAwmEiVNNv55KAiUYWOP6Za7h8JPHNNyekNx8Gyc5XRlpUzTrlEclps939nOeiDPsd6jUtT2LmfavJirbZQg==
+  dependencies:
+    gulp "^4.0.0"
+    plugin-error "^0.1.2"
+    through2 "^2.0.3"
+
 gulp-decompress@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/gulp-decompress/-/gulp-decompress-1.2.0.tgz#8eeb65a5e015f8ed8532cafe28454960626f0dc7"
@@ -2635,7 +2644,7 @@ gulp-util@^3.0.1:
     through2 "^2.0.0"
     vinyl "^0.5.0"
 
-gulp@4.0.*:
+gulp@4.0.*, gulp@^4.0.0:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/gulp/-/gulp-4.0.2.tgz#543651070fd0f6ab0a0650c6a3e6ff5a7cb09caa"
   integrity sha512-dvEs27SCZt2ibF29xYgmnwwCYZxdxhQ/+LFWlbAW8y7jt68L/65402Lz3+CKy0Ov4rOs+NERmDq7YlZaDqUIfA==

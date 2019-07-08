@@ -80,7 +80,7 @@ function getExperiences()
             ],
         ], [
             'periode' => 'Sept 2015 - Jan 2018',
-            'logo' => 'Latécoère.jpg',
+            'logo' => 'Latecoere.jpg',
             'client' => 'Groupe Latécoère',
             'entreprise' => '<a itemprop="url" href="https://www.apside.com/" target="_blank">Apside</a>',
             'titre' => "Développeur Full Stack",

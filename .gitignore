@@ -5,6 +5,7 @@ public/css
 public/img
 public/js
 public/vendor
+public/webfonts
 required/creds.php
 *.log
 cache/*

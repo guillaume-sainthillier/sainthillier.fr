@@ -35,8 +35,12 @@ function vendorGroup() {
 
     // Font Awesome
     var fa = src([
-        './node_modules/@fortawesome/**/*',
-    ]).pipe(dest('./public/vendor'));
+        './node_modules/@fortawesome/fontawesome-free/css/*',
+    ]).pipe(dest('./public/vendor/fontawesome-free/'));
+
+    var faFonts = src([
+        './node_modules/@fortawesome/fontawesome-free/webfonts/*',
+    ]).pipe(dest('./public/webfonts'));
 
     // jQuery
     var jquery = src([
@@ -59,17 +63,17 @@ function vendorGroup() {
         './assets/vendor/jqBootstrapValidation.js'
     ]).pipe(dest('./public/vendor/jqBootstrapValidation'));
 
-    return merge(bootstrap, fa, jquery, jqueryEasing, jqCloud, jqBootstrapValidation);
+    return merge(bootstrap, fa, faFonts, jquery, jqueryEasing, jqCloud, jqBootstrapValidation);
 }
 
 //Concat and minify CSS AND JS
 function vendorConcat() {
     var js = src([
-            'public/vendor/jquery/jquery.js',
-            'public/vendor/jquery-easing/jquery.easing.js',
-            'public/vendor/bootstrap/js/bootstrap.bundle.js',
-            'public/vendor/jqcloud2/jqcloud.js',
-            'public/vendor/jqBootstrapValidation/jqBootstrapValidation.js',
+            './public/vendor/jquery/jquery.js',
+            './public/vendor/jquery-easing/jquery.easing.js',
+            './public/vendor/bootstrap/js/bootstrap.bundle.js',
+            './public/vendor/jqcloud2/jqcloud.js',
+            './public/vendor/jqBootstrapValidation/jqBootstrapValidation.js',
         ])
             .pipe(concat('bundle.js'))
             .pipe(dest("public/vendor"))
@@ -78,18 +82,17 @@ function vendorConcat() {
             .pipe(dest("public/vendor"))
     ;
 
-    var css = src([
-        'public/css/bootstrap.css',
-        'public/vendor/fontawesome-free/css/all.css',
-        'public/vendor/jqcloud2/jqcloud.css',
-    ])
-        .pipe(concatCss("bundle.css"))
-        .pipe(dest('public/vendor'))
-        .pipe(cleanCSS())
-        .pipe(rename({
-            suffix: '.min'
-        }))
-        .pipe(dest('public/vendor'));
+        var css = src([
+            './public/vendor/fontawesome-free/all.css',
+            './public/vendor/jqcloud2/jqcloud.css',
+        ])
+            .pipe(concatCss("bundle.css"))
+            .pipe(dest('./public/vendor'))
+            .pipe(cleanCSS())
+            .pipe(rename({
+                suffix: '.min'
+            }))
+            .pipe(dest('./public/vendor'));
 
     return merge(css, js);
 }
@@ -129,13 +132,11 @@ function cssCompile() {
 // Minify CSS
 function cssMinify() {
     return src([
-        './public/css/*.css',
-        '!./public/css/*.min.css'
+        './public/css/bootstrap.css',
+        './public/css/agency.css',
     ])
+        .pipe(concatCss("agency.min.css"))
         .pipe(cleanCSS())
-        .pipe(rename({
-            suffix: '.min'
-        }))
         .pipe(dest('./public/css'));
 }
 
@@ -145,7 +146,7 @@ function jsConcat() {
         './assets/js/*.js',
     ])
         .pipe(concat('agency.js'))
-        .pipe(dest("public/js"));
+        .pipe(dest("./public/js"));
 }
 
 // Minify JavaScript

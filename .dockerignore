@@ -1,0 +1,10 @@
+.idea/
+node_modules/
+/vendor/
+public/css/
+public/img/
+public/js/
+public/vendor/
+public/webfonts/
+*.log
+cache/

@@ -1,6 +1,8 @@
 {
     "title": "Guillaume Sainthillier",
-    "browserslist": ["last 2 versions"],
+    "browserslist": [
+        "last 2 versions"
+    ],
     "name": "sainthillier",
     "version": "1.2.0",
     "private": true,
@@ -14,17 +16,12 @@
     "dependencies": {
         "@fortawesome/fontawesome-free": "5.7.*",
         "bootstrap": "4.3.*",
-        "jqcloud2": "2.0.*",
-        "jquery": "3.3.*",
-        "jquery.easing": "1.4.*",
-        "popper.js": "1.14.*"
-    },
-    "devDependencies": {
         "gulp": "4.0.*",
         "gulp-autoprefixer": "6.0.0",
         "gulp-clean-css": "3.10.0",
         "gulp-concat": "^2.6.1",
         "gulp-concat-css": "^3.1.0",
+        "gulp-copy": "^4.0.1",
         "gulp-header": "2.0.5",
         "gulp-image": "^4.4.1",
         "gulp-image-resize": "^0.13.0",
@@ -34,6 +31,10 @@
         "gulp-rename": "^1.4.0",
         "gulp-sass": "4.0.1",
         "gulp-uglify": "3.0.1",
-        "merge-stream": "^1.0.1"
+        "jqcloud2": "2.0.*",
+        "jquery": "3.3.*",
+        "jquery.easing": "1.4.*",
+        "merge-stream": "^1.0.1",
+        "popper.js": "1.14.*"
     }
 }
