@@ -8,8 +8,39 @@
   margin-top: 3rem;
 }
 
+#services .service {
+  margin-top: 6em;
+
+  &:first-child {
+    margin-top: 1em;
+  }
+}
+
+#services .card {
+  border: none;
+  border-radius: 0;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+#services .card .icon-overlay {
+  position: absolute;
+  top: -1em;
+  left: 50%;
+  margin-left: -1.25em;
+}
+
+#services .card-body {
+  margin-top: 3em;
+}
+
 @include media-breakpoint-up(md) {
   .service-heading {
     margin: 1rem 0;
+  }
+
+  #services .service {
+    &, &:first-child {
+      margin-top: 3em;
+    }
   }
 }
