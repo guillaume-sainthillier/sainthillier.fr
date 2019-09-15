@@ -1,6 +1,6 @@
 <?php
 
-define('EMAIL', 'guillaume@sainthillier.fr');
+define('MD5_ASSET_CACHE', md5(getenv('BUILD_DATE') ?: date('Ymdhis')));
 define('LINKED_IN', 'https://fr.linkedin.com/in/guillaumesainthillier');
 define('GITHUB', 'https://github.com/guillaume-sainthillier');
 define('RECAPTCHA_SITE_KEY', '6Leeo4cUAAAAAPFGCTvQa994tSGAQzNCmhpgMzME');

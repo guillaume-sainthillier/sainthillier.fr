@@ -18,7 +18,10 @@ RUN mkdir -p public && \
 	NODE_ENV=development yarn install && \
 	gulp build
 
-FROM guystlr/php-apache:7.2
+FROM silarhi/php-apache:7.3
+
+ARG BUILD_DATE=`date`
+ENV BUILD_DATE=${BUILD_DATE}
 
 # Apache conf
 COPY docker/app.conf /etc/apache2/sites-available/000-default.conf

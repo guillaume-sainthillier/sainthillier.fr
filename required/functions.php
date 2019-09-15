@@ -10,8 +10,11 @@ function render($template, array $parameters = [])
         'strict_variables' => ENV === 'dev'
     ]);
 
-    $filter = new \Twig\TwigFilter('retina', 'getRetina');
-    $twig->addFilter($filter);
+    $retina = new \Twig\TwigFilter('retina', 'getRetina');
+    $twig->addFilter($retina);
+
+    $asset = new \Twig\TwigFunction('asset', 'asset');
+    $twig->addFunction($asset);
 
     $twig->addGlobal('RECAPTCHA_SITE_KEY', RECAPTCHA_SITE_KEY);
     $twig->addGlobal('LINKED_IN', LINKED_IN);
@@ -57,6 +60,10 @@ function getCompetences()
         "App hybride" => 5,
         "ElasticSearch" => 5
     ];
+}
+
+function asset($path) {
+    return $path . "?v=" . MD5_ASSET_CACHE;
 }
 
 function getRetina($image, $density)
