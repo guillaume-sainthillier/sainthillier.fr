@@ -1,6 +1,6 @@
 # Allow crawling of all content
 User-agent: *
-Disallow:
+Disallow: /cdn-cgi/
 
 # Sitemap files
 Sitemap: https://sainthillier.fr/sitemap.xml
