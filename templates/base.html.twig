@@ -6,28 +6,27 @@
     <title>{% block title 'Développeur Web freelance à Toulouse' %} | Guillaume Sainthillier</title>
 
     <link href="{% block url 'https://sainthillier.fr/' %}" rel="canonical">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-16x16.png') }}">
-    <link rel="manifest" href="{{ asset('site.webmanifest') }}">
-    <link rel="mask-icon" href="{{ asset('safari-pinned-tab.svg') }}" color="#5bbad5">
-    <meta name="msapplication-TileColor" content="#2d89ef">
-    <meta name="theme-color" content="#ffffff">
-
     <meta name="keywords" content="développeur,developpeur,web,toulouse,freelance,informatique,php,symfony,guillaume,sainthillier,silarhi">
     <meta name="description" content="{% block description 'Développeur web freelance à Toulouse. Développeur freelance PHP. Contactez rapidement un développeur web à Toulouse pour donner vie à vos projets !' %}">
     <meta name="author" content="Guillaume Sainthillier">
     <meta property="og:title" content="{{ block('title') }} | Guillaume Sainthillier">
     <meta property="og:description" content="{{ block('description') }}">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://sainthillier.fr/">
+    <meta property="og:url" content="{{ block('url') }}">
     <meta property="og:site_name" content="Guillaume Sainthillier">
     <meta property="og:image" content="https://sainthillier.fr/img/about/guillaume_sainthillier.jpg">
     <link rel="author" href="https://plus.google.com/+guillaumesainthillier">
     <link rel="publisher" href="https://plus.google.com/+guillaumesainthillier">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
 
     <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700|Kaushan+Script:400|Droid+Serif:400,700,400italic,700italic|Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=LbzRA5PvLO">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=LbzRA5PvLO">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=LbzRA5PvLO">
+    <link rel="manifest" href="/site.webmanifest?v=LbzRA5PvLO">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg?v=LbzRA5PvLO" color="#5bbad5">
+    <link rel="shortcut icon" href="/favicon.ico?v=LbzRA5PvLO">
+    <meta name="msapplication-TileColor" content="#2b5797">
+    <meta name="theme-color" content="#ffffff">
     <link href="{{ asset('vendor/bundle.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/agency.min.css') }}" rel="stylesheet">
     {% block css %}{% endblock %}
