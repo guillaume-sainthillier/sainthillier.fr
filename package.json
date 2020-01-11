@@ -14,8 +14,8 @@
         "David Miller (http://davidmiller.io/)"
     ],
     "dependencies": {
-        "@fortawesome/fontawesome-free": "5.7.*",
-        "bootstrap": "4.3.*",
+        "@fortawesome/fontawesome-free": "5.*",
+        "bootstrap": "4.*",
         "gulp": "4.0.*",
         "gulp-autoprefixer": "6.0.0",
         "gulp-clean-css": "3.10.0",
@@ -31,10 +31,10 @@
         "gulp-rename": "^1.4.0",
         "gulp-sass": "4.0.1",
         "gulp-uglify": "3.0.1",
-        "jqcloud2": "2.0.*",
-        "jquery": "3.3.*",
-        "jquery.easing": "1.4.*",
+        "jqcloud2": "2.*",
+        "jquery": "3.*",
+        "jquery.easing": "1.*",
         "merge-stream": "^1.0.1",
-        "popper.js": "1.14.*"
+        "popper.js": "1.*"
     }
 }
