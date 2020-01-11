@@ -18,7 +18,7 @@ RUN mkdir -p public && \
 	NODE_ENV=development yarn install && \
 	gulp build
 
-FROM silarhi/php-apache:7.3
+FROM silarhi/php-apache:7.4
 
 ARG BUILD_DATE=`date`
 ENV BUILD_DATE=${BUILD_DATE}
