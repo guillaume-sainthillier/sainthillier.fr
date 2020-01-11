@@ -1,11 +1,8 @@
 <?php
 
-define('RECAPTCHA_SECRET_KEY', 's3cr3t');
+define('RECAPTCHA_SECRET_KEY', '');
 define('ENV', 'prod');
+define('EMAIL_TO', '');
 
-define('EMAIL_SERVER', '');
-define('EMAIL_PORT', '465');
-define('EMAIL_TRANSPORT', '');
-define('EMAIL_USER', '');
-define('EMAIL_PASSWORD', '');
+define('EMAIL_DSN', '');
 define('EMAIL_SENDER', '');

@@ -1,19 +1,24 @@
 <?php
 
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
+use Twig\TwigFilter;
+use Twig\TwigFunction;
+
 function render($template, array $parameters = [])
 {
-    $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/../templates');
+    $loader = new FilesystemLoader(__DIR__ . '/../templates');
 
-    $twig = new \Twig\Environment($loader, [
+    $twig = new Environment($loader, [
         'cache' => __DIR__ . '/../cache',
         'debug' => ENV === 'dev',
         'strict_variables' => ENV === 'dev'
     ]);
 
-    $retina = new \Twig\TwigFilter('retina', 'getRetina');
+    $retina = new TwigFilter('retina', 'getRetina');
     $twig->addFilter($retina);
 
-    $asset = new \Twig\TwigFunction('asset', 'asset');
+    $asset = new TwigFunction('asset', 'asset');
     $twig->addFunction($asset);
 
     $twig->addGlobal('RECAPTCHA_SITE_KEY', RECAPTCHA_SITE_KEY);
@@ -25,18 +30,16 @@ function render($template, array $parameters = [])
 
 function sendMail($fromName, $to, $sujet, $body)
 {
-    $transport = (new Swift_SmtpTransport(EMAIL_SERVER, EMAIL_PORT, EMAIL_TRANSPORT))
-        ->setUsername(EMAIL_USER)
-        ->setPassword(EMAIL_PASSWORD);
+    $transport = \Symfony\Component\Mailer\Transport::fromDsn(EMAIL_DSN);
+    $mailer = new \Symfony\Component\Mailer\Mailer($transport);
 
-    $mailer = new Swift_Mailer($transport);
+    $email = (new \Symfony\Component\Mime\Email())
+        ->from(EMAIL_SENDER)
+        ->to($to)
+        ->subject($sujet)
+        ->html($body);
 
-    $message = (new Swift_Message($sujet))
-        ->setFrom([EMAIL_SENDER => $fromName])
-        ->setTo(is_array($to) ? $to : [$to])
-        ->setBody($body, 'text/html');
-
-    return $mailer->send($message) > 0;
+    $mailer->send($email);
 }
 
 function getCompetences()

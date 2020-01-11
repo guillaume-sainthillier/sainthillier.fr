@@ -50,13 +50,10 @@ $body = sprintf(
 );
 
 try {
-    $success = sendMail($name, EMAIL_TO, 'Demande de contact', $body);
-    if ($success) {
-        echo "Mail was successfully sent";
-        die;
-    }
-} catch (Exception $e) {
-
+    sendMail($name, EMAIL_TO, 'Demande de contact', $body);
+    echo "Mail was successfully sent";
+    return;
+} catch (\Symfony\Component\Mailer\Exception\ExceptionInterface $e) {
 }
 http_response_code(500);
 echo "No mail was sent";
