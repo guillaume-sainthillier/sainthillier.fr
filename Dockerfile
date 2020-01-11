@@ -1,4 +1,4 @@
-FROM node:8-slim as builder
+FROM node:12-slim as builder
 
 ENV NODE_ENV=production
 WORKDIR /app
@@ -14,7 +14,7 @@ ADD required ./required
 ADD templates ./templates
 
 RUN mkdir -p public && \
-	npm install -g yarn gulp && \
+	npm install -g gulp && \
 	NODE_ENV=development yarn install && \
 	gulp build
 
