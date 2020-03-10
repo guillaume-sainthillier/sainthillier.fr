@@ -28,6 +28,6 @@ COPY docker/app.conf /etc/apache2/sites-available/000-default.conf
 
 COPY . /app
 COPY --from=builder /app/public /app/public/
-RUN composer install -o --no-dev && \
+RUN composer install --optimize-autoloader --classmap-authoritative --no-interaction --no-ansi --no-dev && \
 	mkdir cache && \
 	chown www-data:www-data cache
