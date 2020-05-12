@@ -6,8 +6,8 @@ WORKDIR /app
 RUN apt-get update -qq && \
     apt-get install -qy \
     dh-autoreconf \
-    graphicsmagick
-    imagemagick \
+    graphicsmagick \
+    imagemagick
 
 ADD package.json yarn.lock gulpfile.js ./
 ADD assets ./assets
