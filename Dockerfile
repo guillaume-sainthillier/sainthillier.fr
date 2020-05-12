@@ -3,12 +3,14 @@ FROM node:12-alpine as builder
 ENV NODE_ENV=production
 WORKDIR /app
 
-RUN apk add --no-cache \
+RUN apk update && \
+    apk add --no-cache \
     autoconf \
-    automake \
-    make \
+    cmake \
     imagemagick \
-    libtool
+    libtool \
+    make \
+    zlib-dev
 
 ADD package.json yarn.lock gulpfile.js ./
 ADD assets ./assets
