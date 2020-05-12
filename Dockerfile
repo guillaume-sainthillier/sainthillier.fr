@@ -12,7 +12,7 @@ ADD required ./required
 ADD templates ./templates
 
 RUN mkdir -p public && \
-	npm install -g gulp && \
+	npm install -g gifsicle gulp && \
 	NODE_ENV=development yarn install && \
 	gulp build
 
