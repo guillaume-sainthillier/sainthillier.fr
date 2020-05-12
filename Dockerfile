@@ -1,4 +1,4 @@
-FROM node:12-slim as builder
+FROM node:12-alpine as builder
 
 ENV NODE_ENV=production
 WORKDIR /app
