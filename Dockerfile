@@ -4,7 +4,7 @@ ENV NODE_ENV=production
 WORKDIR /app
 
 RUN apk add --no-cache \
-    imagemagick \
+    imagemagick
 
 ADD package.json yarn.lock gulpfile.js ./
 ADD assets ./assets
