@@ -1,8 +1,18 @@
 <?php
 
-define('RECAPTCHA_SECRET_KEY', '');
-define('ENV', 'prod');
-define('EMAIL_TO', '');
+/*
+ * This file is part of By Night.
+ * (c) 2015-2020 Guillaume Sainthillier <guillaume.sainthillier@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
-define('EMAIL_DSN', '');
-define('EMAIL_SENDER', '');
+\define('RECAPTCHA_SECRET_KEY', '');
+\define('ENV', 'prod');
+\define('EMAIL_TO', '');
+
+\define('EMAIL_DSN', '');
+\define('EMAIL_SENDER', '');
+
+\define('SENTRY_DSN', '');

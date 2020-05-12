@@ -1,5 +1,9 @@
 <?php
 
+use Symfony\Component\Mailer\Exception\ExceptionInterface;
+use function Sentry\captureEvent;
+use function Sentry\captureException;
+
 require_once __DIR__ . '/../required/init.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -50,10 +54,11 @@ $body = sprintf(
 );
 
 try {
-    sendMail($name, EMAIL_TO, 'Demande de contact', $body);
+    sendMail(EMAIL_TO, sprintf('Demande de contact - %s', $name), $body);
     echo "Mail was successfully sent";
     return;
-} catch (\Symfony\Component\Mailer\Exception\ExceptionInterface $e) {
+} catch (ExceptionInterface $e) {
+    captureException($e);
 }
 http_response_code(500);
 echo "No mail was sent";

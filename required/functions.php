@@ -1,5 +1,17 @@
 <?php
 
+/*
+ * This file is part of By Night.
+ * (c) 2015-2020 Guillaume Sainthillier <guillaume.sainthillier@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
+use Symfony\Component\Mailer\Mailer;
+use Symfony\Component\Mailer\Transport;
+use Symfony\Component\Mime\Email;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 use Twig\TwigFilter;
@@ -12,7 +24,7 @@ function render($template, array $parameters = [])
     $twig = new Environment($loader, [
         'cache' => __DIR__ . '/../cache',
         'debug' => ENV === 'dev',
-        'strict_variables' => ENV === 'dev'
+        'strict_variables' => ENV === 'dev',
     ]);
 
     $retina = new TwigFilter('retina', 'getRetina');
@@ -28,12 +40,15 @@ function render($template, array $parameters = [])
     return $twig->render($template, $parameters);
 }
 
-function sendMail($fromName, $to, $sujet, $body)
+/**
+ * @throws TransportExceptionInterface
+ */
+function sendMail($to, $sujet, $body)
 {
-    $transport = \Symfony\Component\Mailer\Transport::fromDsn(EMAIL_DSN);
-    $mailer = new \Symfony\Component\Mailer\Mailer($transport);
+    $transport = Transport::fromDsn(EMAIL_DSN);
+    $mailer = new Mailer($transport);
 
-    $email = (new \Symfony\Component\Mime\Email())
+    $email = (new Email())
         ->from(EMAIL_SENDER)
         ->to($to)
         ->subject($sujet)
@@ -45,28 +60,29 @@ function sendMail($fromName, $to, $sujet, $body)
 function getCompetences()
 {
     return [
-        "PHP" => 10,
-        "Symfony" => 10,
-        "PrestaShop" => 4,
-        "WordPress" => 3,
-        "Drupal 8" => 3,
-        "Intégration Web" => 6,
-        "Responsive Design" => 7,
-        "Sass" => 6,
-        "Gulp" => 5,
-        "MySQL" => 8,
-        "Oracle" => 5,
-        "Scrum" => 4,
-        "Git" => 6,
-        "Docker" => 9,
-        "DevOps" => 5,
-        "App hybride" => 5,
-        "ElasticSearch" => 5
+        'PHP' => 10,
+        'Symfony' => 10,
+        'PrestaShop' => 4,
+        'WordPress' => 3,
+        'Drupal 8' => 3,
+        'Intégration Web' => 6,
+        'Responsive Design' => 7,
+        'Sass' => 6,
+        'Gulp' => 5,
+        'MySQL' => 8,
+        'Oracle' => 5,
+        'Scrum' => 4,
+        'Git' => 6,
+        'Docker' => 9,
+        'DevOps' => 5,
+        'App hybride' => 5,
+        'ElasticSearch' => 5,
     ];
 }
 
-function asset($path) {
-    return $path . "?v=" . MD5_ASSET_CACHE;
+function asset($path)
+{
+    return $path . '?v=' . MD5_ASSET_CACHE;
 }
 
 function getRetina($image, $density)
@@ -84,7 +100,7 @@ function getExperiences()
             'logo' => 'Agoranet.jpg',
             'entreprise' => '<a itemprop="url" href="https://www.apside.com/" target="_blank">Apside</a>',
             'client' => 'Agoranet',
-            'titre' => "Développeur Full Stack freelance",
+            'titre' => 'Développeur Full Stack freelance',
             'description' => "Réalisation de projets d'applications Web et sites vitrines, principalement pour le client Airbus.",
             'points' => [
             ],
@@ -93,7 +109,7 @@ function getExperiences()
             'logo' => 'Latecoere.jpg',
             'client' => 'Groupe Latécoère',
             'entreprise' => '<a itemprop="url" href="https://www.apside.com/" target="_blank">Apside</a>',
-            'titre' => "Développeur Full Stack",
+            'titre' => 'Développeur Full Stack',
             'description' => "Tierce Maintenance Applicative sur les applications métiers de l'entreprise (Manufacturing, RH, Finances).",
             'points' => [
                 'Travail sur les domaines MES (production), RH et Finances',
@@ -107,16 +123,16 @@ function getExperiences()
             'client' => 'CCMM - SAMU 31',
             'entreprise' => null,
             'via' => '<a itemprop="url" title="Aller sur le site du Centre de Consultation Médicale Maritime" href=https://www.chu-toulouse.fr/-centre-de-consultation-medicale-maritime-ccmm-" target="_blank">CHU Purpan - CCMM/SAMU&nbsp;31</a>',
-            'titre' => "Développeur Full Stack",
-            'description' => "Conception, développement et maintenance de modules d’une application de gestion des dossiers patients.",
+            'titre' => 'Développeur Full Stack',
+            'description' => 'Conception, développement et maintenance de modules d’une application de gestion des dossiers patients.',
         ], [
             'periode' => 'Avr 2011 - Fév 2013',
             'logo' => 'ICM_Services.jpg',
             'client' => 'ICM Services',
             'entreprise' => null,
-            'titre' => "Développeur Full Stack",
-            'description' => "Maintenance et développement de modules sur une application à destination des Polices Municipales.",
-        ]
+            'titre' => 'Développeur Full Stack',
+            'description' => 'Maintenance et développement de modules sur une application à destination des Polices Municipales.',
+        ],
     ];
 }
 
@@ -172,30 +188,30 @@ function getRealisations()
     <li><i class='fa-li fa fa-angle-right'></i>Exporter des événements de la plateforme vers les autres réseaux sociaux</li>
     <li><i class='fa-li fa fa-angle-right'></i>Analyser la portée de leurs événements</li>
 </ul>",
-            'url' => 'http://by-night.fr',
+            'url' => 'https://by-night.fr',
             'image' => 'by-night.jpg',
-            'keywords' => ['PHP', 'Symfony 4', 'Docker', 'MySQL', 'ElasticSearch', 'LESS', 'Responsive Design', 'OpenData']
+            'keywords' => ['PHP', 'Symfony 5', 'Docker', 'AWS', 'MySQL', 'ElasticSearch', 'Varnish', 'RabbitMQ', 'SCSS', 'Responsive Design', 'Open Data'],
         ], [
             'nom' => 'Airbus Publishing',
             'sous_titre' => 'Développeur Web freelance',
             'date' => 'Mars 2018 - Juin 2018',
-            'description' => "<p>Pour le service Airbus MultiMedia Support. Ce service Web permet en interne la demande de travaux graphiques au sein du Groupe Airbus.</p>",
+            'description' => '<p>Pour le service Airbus MultiMedia Support. Ce service Web permet en interne la demande de travaux graphiques au sein du Groupe Airbus.</p>',
             'image' => 'mms.jpg',
-            'keywords' => ['PHP', 'Symfony 4', 'Docker', 'MySQL', 'SASS', 'Responsive Design', 'SSO', 'SAML']
+            'keywords' => ['PHP', 'Symfony 4', 'Docker', 'MySQL', 'SCSS', 'Responsive Design', 'SSO', 'SAML'],
         ], [
             'nom' => 'Exterior Walkaround',
             'sous_titre' => 'Développeur Web freelance',
             'date' => 'Juin 2018',
             'description' => "<p>Pour le service Airbus MultiMedia Support. Cette application mobile permet aux pilotes de ligne de vérifier avant le décollage certains points de contrôle de l'extérieur de l'avion avec des exemples illustrés de problèmes déjà rencontrés à ces endroits.</p>",
             'image' => 'exterior-walkaround.jpg',
-            'keywords' => ['PHP', 'Symfony 4', 'Docker', 'MySQL', 'SASS']
+            'keywords' => ['PHP', 'Symfony 4', 'Docker', 'MySQL', 'SCSS'],
         ], [
             'nom' => 'Safety Index',
             'sous_titre' => 'Développeur Web freelance',
             'date' => 'Mai 2018',
             'description' => "<p>Pour le service Airbus MultiMedia Support. Cette application mobile permet aux “Safety Officers“ de vérifier quelles améliorations physiques ou logicielles peuvent être effectuées sur les composants de leur flotte d'avion.</p>",
             'image' => 'safety-index.jpg',
-            'keywords' => ['PHP', 'Symfony 4', 'Docker', 'MySQL', 'SASS', 'Responsive Design']
+            'keywords' => ['PHP', 'Symfony 4', 'Docker', 'MySQL', 'SCSS', 'Responsive Design'],
         ], [
             'nom' => 'Open ePM',
             'sous_titre' => 'Développeur Web',
@@ -211,10 +227,10 @@ function getRealisations()
     <li><i class='fa fa-li fa-angle-right'></i>La mise en fourrière des véhicules</li>
     <li><i class='fa fa-li fa-angle-right'></i>La gestion des vacations funéraires</li>
 </ul>
-<p class='mb-2'>Sous la direction d'Antoine Coelho et Denis Coujou</p>",
+<p class='mb-2'>Sous la direction d'Antoine Coelho et Denis Coujou</p>",
             'url' => 'https://prod.logilibres.org/epmdemo',
             'image' => 'epm.jpg',
-            'keywords' => ['PHP', 'OpenMairie', 'fPDF', 'jQuery UI']
-        ]
+            'keywords' => ['PHP', 'OpenMairie', 'fPDF', 'jQuery UI'],
+        ],
     ];
 }
