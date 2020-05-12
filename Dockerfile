@@ -5,9 +5,8 @@ WORKDIR /app
 
 RUN apt-get update -qq && \
     apt-get install -qy \
+    dh-autoreconf \
     imagemagick \
-    libjpeg-dev \
-    libpng-dev
 
 ADD package.json yarn.lock gulpfile.js ./
 ADD assets ./assets
