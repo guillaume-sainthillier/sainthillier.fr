@@ -1,22 +1,21 @@
 // Core variables and mixins
-@import "variables.scss";
-@import "mixins.scss";
+@import 'variables.scss';
+@import 'mixins.scss';
 
-@import "../../node_modules/bootstrap/scss/functions";
-@import "../../node_modules/bootstrap/scss/variables";
-@import "../../node_modules/bootstrap/scss/mixins";
+@import '../../node_modules/bootstrap/scss/functions';
+@import '../../node_modules/bootstrap/scss/variables';
+@import '../../node_modules/bootstrap/scss/mixins';
 
 // Global CSS
-@import "global.scss";
+@import 'global.scss';
 
 // Components
-@import "contact.scss";
-@import "footer.scss";
-@import "hello.scss";
-@import "masthead.scss";
-@import "navbar.scss";
-@import "portfolio.scss";
-@import "services.scss";
-@import "skills.scss";
-@import "timeline.scss";
-
+@import 'contact.scss';
+@import 'footer.scss';
+@import 'hello.scss';
+@import 'masthead.scss';
+@import 'navbar.scss';
+@import 'portfolio.scss';
+@import 'services.scss';
+@import 'skills.scss';
+@import 'timeline.scss';

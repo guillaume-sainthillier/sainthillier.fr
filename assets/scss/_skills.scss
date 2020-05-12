@@ -1,14 +1,14 @@
 .skills {
-  height: 300px;
-  color: $gray-100;
+    height: 300px;
+    color: $gray-100;
 
-  @for $i from 1 through 10 {
-    .jqcloud-word.w#{11 - $i} {
-      color: desaturate($primary, ($i - 1) * 6);
+    @for $i from 1 through 10 {
+        .jqcloud-word.w#{11 - $i} {
+            color: desaturate($primary, ($i - 1) * 6);
+        }
     }
-  }
 
-  ul {
-    display: none;
-  }
+    ul {
+        display: none;
+    }
 }
