@@ -3,10 +3,8 @@ FROM node:12-alpine as builder
 ENV NODE_ENV=production
 WORKDIR /app
 
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-    graphicsmagick \
-    imagemagick
+RUN apk add --no-cache \
+    imagemagick \
 
 ADD package.json yarn.lock gulpfile.js ./
 ADD assets ./assets
