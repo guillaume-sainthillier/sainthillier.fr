@@ -6,7 +6,8 @@ WORKDIR /app
 RUN apk add --no-cache \
     autoconf \
     make \
-    imagemagick
+    imagemagick \
+    libtool
 
 ADD package.json yarn.lock gulpfile.js ./
 ADD assets ./assets
