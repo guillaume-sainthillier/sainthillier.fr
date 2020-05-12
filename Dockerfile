@@ -4,6 +4,7 @@ ENV NODE_ENV=production
 WORKDIR /app
 
 RUN apk add --no-cache \
+    autoconf \
     imagemagick
 
 ADD package.json yarn.lock gulpfile.js ./
@@ -12,7 +13,7 @@ ADD required ./required
 ADD templates ./templates
 
 RUN mkdir -p public && \
-	npm install -g gifsicle gulp && \
+	npm install -g gulp && \
 	NODE_ENV=development yarn install && \
 	gulp build
 
