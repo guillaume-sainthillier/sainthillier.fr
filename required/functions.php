@@ -67,15 +67,17 @@ function getCompetences()
         'Drupal 8' => 3,
         'Intégration Web' => 6,
         'Responsive Design' => 7,
-        'Sass' => 6,
+        'SCSS' => 6,
         'Gulp' => 5,
         'MySQL' => 8,
         'Oracle' => 5,
         'Scrum' => 4,
         'Git' => 6,
         'Docker' => 9,
+        'AWS' => 5,
         'DevOps' => 5,
         'App hybride' => 5,
+        'Varnish' => 5,
         'ElasticSearch' => 5,
     ];
 }
