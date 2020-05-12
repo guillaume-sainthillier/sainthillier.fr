@@ -179,7 +179,7 @@ function jsMinify() {
         .pipe(dest('./public/js'));
 }
 
-function img() {
+function jsImage() {
     //Portfolio resize
     var realisations = src('./assets/img/realisations/*.jpg')
         .pipe(newer('./public/img/realisations'))
@@ -307,6 +307,7 @@ function watchFiles() {
 // Define complex tasks
 const css = series(cssCompile, cssMinify);
 const js = series(jsConcat, jsMinify);
+const img = series(jsImage);
 
 const vendor = series(vendorGroup, vendorConcat);
 const build = series(vendor, parallel(css, js, img));
