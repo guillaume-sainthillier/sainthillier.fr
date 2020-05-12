@@ -3,8 +3,8 @@ FROM node:12-slim as builder
 ENV NODE_ENV=production
 WORKDIR /app
 
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
+RUN apt-get update -qq && \
+    apt-get install -qy \
     graphicsmagick \
     imagemagick
 
