@@ -3,14 +3,10 @@ FROM node:12-slim as builder
 ENV NODE_ENV=production
 WORKDIR /app
 
-RUN apk update && \
-    apk add --no-cache \
-    autoconf \
-    cmake \
-    imagemagick \
-    libtool \
-    make \
-    zlib-dev
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    graphicsmagick \
+    imagemagick
 
 ADD package.json yarn.lock gulpfile.js ./
 ADD assets ./assets
