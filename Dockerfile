@@ -5,8 +5,9 @@ WORKDIR /app
 
 RUN apt-get update -qq && \
     apt-get install -qy \
-    graphicsmagick \
-    imagemagick
+    imagemagick \
+    libjpeg \
+    libpng
 
 ADD package.json yarn.lock gulpfile.js ./
 ADD assets ./assets
