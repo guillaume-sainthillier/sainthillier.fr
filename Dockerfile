@@ -5,6 +5,7 @@ WORKDIR /app
 
 RUN apk add --no-cache \
     autoconf \
+    automake \
     make \
     imagemagick \
     libtool
