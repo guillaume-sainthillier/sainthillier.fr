@@ -3,3 +3,4 @@ docker
 public
 required
 templates
+vendor
