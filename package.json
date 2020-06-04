@@ -15,7 +15,7 @@
     ],
     "dependencies": {
         "@fortawesome/fontawesome-free": "5.*",
-        "bootstrap": "4.*",
+        "bootstrap": "4.5.0",
         "gulp": "4.0.*",
         "gulp-autoprefixer": "7.0.1",
         "gulp-clean-css": "4.3.0",
@@ -23,7 +23,7 @@
         "gulp-concat-css": "^3.1.0",
         "gulp-copy": "^4.0.1",
         "gulp-header": "2.0.9",
-        "gulp-image": "^6.1.0",
+        "gulp-image": "^6.2.0",
         "gulp-image-resize": "^0.13.0",
         "gulp-newer": "^1.4.0",
         "gulp-plumber": "^1.2.1",
@@ -39,7 +39,7 @@
     },
     "devDependencies": {
         "husky": ">=4",
-        "lint-staged": ">=10",
+        "lint-staged": ">=10.2.9",
         "prettier": "^2.0.5"
     },
     "husky": {
