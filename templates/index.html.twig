@@ -140,7 +140,7 @@
             <div class="skills" data-skills="{{ competences|json_encode|escape('html') }}">
                 <ul>
                     {% for value, competence in competences %}
-                        <li><strong>{{ competence }} à Toulouse</strong></li>
+                        <li><strong>{{ value }} à Toulouse</strong></li>
                     {% endfor %}
                 </ul>
             </div>
