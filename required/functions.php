@@ -98,6 +98,15 @@ function getExperiences()
 {
     return [
         [
+            'periode' => 'Août 2018 - Aujourd\'hui',
+            'logo' => 'Silarhi.jpg',
+            'entreprise' => null,
+            'client' => 'Silarhi',
+            'titre' => 'Gérant - Développeur Full Stack freelance',
+            'description' => "Création de l'entreprise de développement d'applications Web. Ma mission : donner vie à vos projets Web.",
+            'points' => [
+            ],
+        ], [
             'periode' => 'Jan 2018 - Dec 2018',
             'logo' => 'Agoranet.jpg',
             'entreprise' => '<a itemprop="url" href="https://www.apside.com/" target="_blank">Apside</a>',
