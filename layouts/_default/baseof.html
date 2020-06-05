@@ -7,6 +7,7 @@
     <title>{{ block "title" . }}{{ with .Params.Title }}{{ . }} | {{ end }}{{ .Site.Title }}{{ end }}</title>
     <meta name="keywords" content="développeur,developpeur,web,toulouse,freelance,informatique,php,symfony,guillaume,sainthillier,silarhi">
     <meta name="author" content="Guillaume Sainthillier">
+    <link rel="canonical" href="{{ block "url" . }}{{ "/" | absURL }}{{ end }}">
 
     {{ hugo.Generator }}
     {{- template "_internal/opengraph.html" . -}}
