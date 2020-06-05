@@ -22,7 +22,6 @@
         "hugo": "hugo --gc --minify"
     },
     "dependencies": {
-        "@fortawesome/fontawesome-free": "5.*",
         "bootstrap": "4.5.0",
         "hugo-bin": "^0.60.0",
         "imagemin-jpegtran": "^7.0.0",
