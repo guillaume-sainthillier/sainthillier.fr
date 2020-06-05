@@ -13,6 +13,11 @@
     "contributors": [
         "David Miller (http://davidmiller.io/)"
     ],
+    "scripts": {
+        "dev": "encore dev",
+        "watch": "encore dev --watch",
+        "build": "encore production --progress"
+    },
     "dependencies": {
         "@fortawesome/fontawesome-free": "5.*",
         "bootstrap": "4.5.0",
@@ -31,16 +36,25 @@
         "gulp-rename": "^2.0.0",
         "gulp-sass": "4.1.0",
         "gulp-uglify": "3.0.2",
+        "imagemin-jpegtran": "^7.0.0",
+        "imagemin-optipng": "^8.0.0",
+        "imagemin-webpack": "^5.1.1",
         "jqcloud2": "2.*",
         "jquery": "3.5.1",
         "jquery.easing": "1.*",
+        "lazysizes": "^5.2.2",
         "merge-stream": "^2.0.0",
         "popper.js": "1.*"
     },
     "devDependencies": {
+        "@symfony/webpack-encore": "^0.30.2",
+        "core-js": "^3.0.0",
         "husky": ">=4",
         "lint-staged": ">=10.2.9",
-        "prettier": "^2.0.5"
+        "prettier": "^2.0.5",
+        "regenerator-runtime": "^0.13.2",
+        "sass-loader": "^8.0.0",
+        "webpack-notifier": "^1.6.0"
     },
     "husky": {
         "hooks": {

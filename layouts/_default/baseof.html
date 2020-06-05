@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="{{ $.Site.LanguageCode | default " en" }}">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{{ block "title" . }}{{ with .Params.Title }}{{ . }} | {{ end }}{{ .Site.Title }}{{ end }}</title>
+    <meta name="keywords" content="développeur,developpeur,web,toulouse,freelance,informatique,php,symfony,guillaume,sainthillier,silarhi">
+    <meta name="author" content="Guillaume Sainthillier">
+
+    {{ hugo.Generator }}
+    {{- template "_internal/opengraph.html" . -}}
+    {{- template "_internal/schema.html" . -}}
+    {{- template "_internal/twitter_cards.html" . -}}
+    {{- template "_internal/google_analytics_async.html" . -}}
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=LbzRA5PvLO">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=LbzRA5PvLO">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=LbzRA5PvLO">
+    <link rel="manifest" href="/site.webmanifest?v=LbzRA5PvLO">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg?v=LbzRA5PvLO" color="#5bbad5">
+    <link rel="shortcut icon" href="/favicon.ico?v=LbzRA5PvLO">
+    <meta name="msapplication-TileColor" content="#2b5797">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Kaushan+Script:400|Droid+Serif:400,700,400italic,700italic|Roboto+Slab:400,100,300,700&display=swap" rel='stylesheet' type='text/css'>
+
+    {{ range .Site.Data.entrypoints.entrypoints.app.css }}
+    <link href="{{ relURL . }}" rel="stylesheet">
+    {{ end }}
+</head>
+<body id="page-top" class="{{ block "layout-class" . }}layout-default{{ end }}">
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+    <div class="container">
+        {{ block "menu" . }}
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">Guillaume Sainthillier</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            Menu
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav text-uppercase ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#hello">Hello</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#services">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#competences">Compétences</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#parcours">Parcours</a>
+                </li>
+            </ul>
+            <a class="btn btn-outline-primary js-scroll-trigger" href="#contact">Contact</a>
+        </div>
+        {{ end }}
+    </div>
+</nav>
+{{ block "main" . }}{{ end }}
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <p class="text-muted">Guillaume Sainthillier - Développeur Web freelance à Toulouse</p>
+                <p class="text-muted">SASU SILARHI - N° SIRET 84154166700017</p>
+                <p><a href="/mentions-legales">Mentions légales</a></p>
+                <p><a href="/conditions-generales-de-vente">Conditions Générales de Vente</a></p>
+                <p><a href="https://blog.silarhi.fr">Blog</a></p>
+            </div>
+            <div class="col-md-4">
+                <ul class="list-inline social-buttons">
+                    {{ with .Site.Data }}
+                    <li class="list-inline-item">
+                        <a href="{{ .linkedin }}">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="{{ .github }}">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </li>
+                    {{ end }}
+                    <li class="list-inline-item">
+                        <a href="{{ relURL "/build/pdf/CV-SAINTHILLIER-Guillaume.pdf" }}">
+                            <i class="fa fa-file-alt"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+{{ range .Site.Data.entrypoints.entrypoints.app.js }}
+<script src="{{ relURL . }}"></script>
+{{ end }}
+</body>
+</html>

@@ -1,11 +1,5 @@
-.idea/
-node_modules/
-/vendor/
-public/css
-public/img
-public/js
-public/vendor
-public/webfonts
-required/creds.php
-*.log
-cache/*
+/node_modules
+/resources/*
+/public
+/static/build
+/data/

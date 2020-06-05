@@ -1,22 +1,22 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<url>
-  <loc>https://sainthillier.fr/</loc>
-  <lastmod>2019-03-31T09:25:39+00:00</lastmod>
-  <priority>1.00</priority>
-</url>
-<url>
-  <loc>https://sainthillier.fr/mentions-legales</loc>
-  <lastmod>2019-03-31T09:25:39+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://sainthillier.fr/conditions-generales-de-vente</loc>
-  <lastmod>2019-03-31T09:25:39+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://sainthillier.fr/</loc>
+    <lastmod>2020-05-27T20:55:18+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://sainthillier.fr/categories/</loc>
+  </url>
+  
+  <url>
+    <loc>https://sainthillier.fr/</loc>
+  </url>
+  
+  <url>
+    <loc>https://sainthillier.fr/tags/</loc>
+  </url>
+  
 </urlset>

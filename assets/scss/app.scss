@@ -1,0 +1,23 @@
+// Core variables and mixins
+@import 'variables.scss';
+@import 'mixins.scss';
+
+@import '~bootstrap/scss/bootstrap';
+
+// Global CSS
+@import 'components/global';
+
+// Components
+@import 'components/contact';
+@import 'components/footer';
+@import 'components/hello';
+@import 'components/images';
+@import 'components/masthead';
+@import 'components/navbar';
+@import 'components/portfolio';
+@import 'components/services';
+@import 'components/skills';
+@import 'components/timeline';
+
+//Layouts
+@import 'layouts/layout-page';

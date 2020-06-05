@@ -1,6 +1,5 @@
-cache
-docker
+content
+data
 public
-required
-templates
-vendor
+resources
+static

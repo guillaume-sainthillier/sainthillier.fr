@@ -1,0 +1,12 @@
+baseURL = "https://sainthillier.fr/"
+languageCode = "fr-FR"
+title = "Guillaume Sainthillier"
+googleAnalytics = "UA-44318869-1"
+github = "https://github.com/guillaume-sainthillier"
+linkedin = "https://fr.linkedin.com/in/guillaumesainthillier"
+assetDir = "static"
+
+#disableKinds = ["RSS", "taxonomy", "taxonomyTerm"]
+
+[imaging]
+  resampleFilter = "Linear"
