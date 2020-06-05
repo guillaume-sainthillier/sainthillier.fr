@@ -4,7 +4,6 @@ description: "Les CGV utilisées lors de mes prestations."
 date: 2015-01-01
 draft: false
 ---
-
 # Conditions Générales de Vente
 
 _Mis à jour le 29/03/2019_
