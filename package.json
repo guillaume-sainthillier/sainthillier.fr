@@ -16,7 +16,10 @@
     "scripts": {
         "dev": "encore dev",
         "watch": "encore dev --watch",
-        "build": "encore production --progress"
+        "build": "encore production",
+        "build:hugo": "yarn run build && yarn run hugo",
+        "build:hugo:preview": "yarn run build && yarn run hugo -D -F",
+        "hugo": "hugo --gc --minify"
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "5.*",
@@ -36,6 +39,7 @@
         "gulp-rename": "^2.0.0",
         "gulp-sass": "4.1.0",
         "gulp-uglify": "3.0.2",
+        "hugo-bin": "^0.60.0",
         "imagemin-jpegtran": "^7.0.0",
         "imagemin-optipng": "^8.0.0",
         "imagemin-webpack": "^5.1.1",
