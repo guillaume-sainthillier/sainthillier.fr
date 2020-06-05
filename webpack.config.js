@@ -1,6 +1,6 @@
 const Encore = require('@symfony/webpack-encore');
-const AssetsPlugin = require('assets-webpack-plugin');
 const ImageminPlugin = require('imagemin-webpack');
+const FileManagerPlugin = require('filemanager-webpack-plugin');
 const path = require('path');
 
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
@@ -15,17 +15,16 @@ Encore
     // public path used by the web server to access the output path
     .setPublicPath('/build')
     // only needed for CDN's or sub-directory deploy
-    .setManifestKeyPrefix('dist/')
+    .setManifestKeyPrefix('build/')
 
     .copyFiles([
         {
             from: './assets/images',
-            //to: Encore.isProduction() ? 'images/[path][name].[hash:8].[ext]' : 'images/[path][name].[ext]',
-            to: 'images/[path][name].[ext]',
+            to: Encore.isProduction() ? 'images/[path][name].[hash:8].[ext]' : 'images/[path][name].[ext]',
         },
         {
             from: './assets/pdf',
-            to: Encore.isProduction() ? 'pdf/[path][name].[hash:8].[ext]' : 'pdf/[path][name].[ext]',
+            to: 'pdf/[path][name].[ext]',
         },
     ])
 
@@ -58,8 +57,8 @@ Encore
     .enableBuildNotifications()
     .enableSourceMaps(!Encore.isProduction())
     // enables hashed filenames (e.g. app.abc123.css)
-    //.enableVersioning(Encore.isProduction())
-    .enableVersioning(false)
+    .enableVersioning(Encore.isProduction())
+    //.enableVersioning(false)
 
     // enables @babel/preset-env polyfills
     .configureBabelPresetEnv((config) => {
@@ -84,6 +83,14 @@ Encore
                 ],
             },
         })
+    )
+    .addPlugin(
+        new FileManagerPlugin({
+            onEnd: {
+                copy: [{ source: './static/build/{entrypoints,manifest}.json', destination: './data' }],
+            },
+        }),
+        -11
     );
 
 // uncomment if you use TypeScript
@@ -93,11 +100,4 @@ Encore
 // requires WebpackEncoreBundle 1.4 or higher
 //.enableIntegrityHashes(Encore.isProduction())
 
-const config = Encore.getWebpackConfig();
-config.plugins.forEach(function (plugin) {
-    if (plugin instanceof AssetsPlugin) {
-        plugin.options.path = path.resolve(config.context, 'data/');
-    }
-});
-
-module.exports = config;
+module.exports = Encore.getWebpackConfig();

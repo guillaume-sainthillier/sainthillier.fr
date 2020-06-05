@@ -32,6 +32,7 @@
     "devDependencies": {
         "@symfony/webpack-encore": "^0.30.2",
         "core-js": "^3.0.0",
+        "filemanager-webpack-plugin": "^2.0.5",
         "hugo-bin": "^0.60.0",
         "husky": ">=4",
         "imagemin-jpegtran": "^7.0.0",

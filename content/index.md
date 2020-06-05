@@ -45,14 +45,14 @@ skills:
       weight: 5
 experiences:
     - periode: Avr 2011 - Fév 2013
-      logo: /build/images/logos/ICM_Services.jpg
+      logo: build/images/logos/ICM_Services.jpg
       client: ICM Services
       entreprise:
       titre: Développeur Full Stack
       description: Maintenance et développement de modules sur une application à destination
           des Polices Municipales.
     - periode: Août 2013 - Août 2015
-      logo: /build/images/logos/CHU_Toulouse.jpg
+      logo: build/images/logos/CHU_Toulouse.jpg
       client: CCMM - SAMU 31
       entreprise:
       via: <a itemprop="url" title="Aller sur le site du Centre de Consultation Médicale
@@ -62,7 +62,7 @@ experiences:
       description: Conception, développement et maintenance de modules d’une application
           de gestion des dossiers patients.
     - periode: Sept 2015 - Jan 2018
-      logo: /build/images/logos/Latecoere.jpg
+      logo: build/images/logos/Latecoere.jpg
       client: Groupe Latécoère
       entreprise: <a itemprop="url" href="https://www.apside.com/" target="_blank">Apside</a>
       titre: Développeur Full Stack
@@ -75,7 +75,7 @@ experiences:
           - Utilisation du Framework JS <a href="https://angular.io">AngularJS</a> et des
             composants Symfony 3
     - periode: Jan 2018 - Dec 2018
-      logo: /build/images/logos/Agoranet.jpg
+      logo: build/images/logos/Agoranet.jpg
       entreprise: <a itemprop="url" href="https://www.apside.com/" target="_blank">Apside</a>
       client: Agoranet
       titre: Développeur Full Stack freelance
@@ -83,7 +83,7 @@ experiences:
           pour le client Airbus.
       points: []
     - periode: Août 2018 - Aujourd'hui
-      logo: /build/images/logos/Silarhi.jpg
+      logo: build/images/logos/Silarhi.jpg
       entreprise:
       client: Silarhi
       titre: Gérant - Développeur Full Stack freelance
@@ -135,7 +135,7 @@ realisations:
               <li><i class='fa-li fa fa-angle-right'></i>Analyser la portée de leurs événements</li>
           </ul>
       url: https://by-night.fr
-      image: /build/images/realisations/by-night.jpg
+      image: build/images/realisations/by-night.jpg
       keywords:
           - PHP
           - Symfony 5
@@ -153,7 +153,7 @@ realisations:
       date: Mars 2018 - Juin 2018
       description: '<p>Pour le service Airbus MultiMedia Support. Ce service Web permet
           en interne la demande de travaux graphiques au sein du Groupe Airbus.</p>'
-      image: /build/images/realisations/mms.jpg
+      image: build/images/realisations/mms.jpg
       keywords:
           - PHP
           - Symfony 4
@@ -170,7 +170,7 @@ realisations:
           permet aux pilotes de ligne de vérifier avant le décollage certains points de
           contrôle de l'extérieur de l'avion avec des exemples illustrés de problèmes déjà
           rencontrés à ces endroits.</p>"
-      image: /build/images/realisations/exterior-walkaround.jpg
+      image: build/images/realisations/exterior-walkaround.jpg
       keywords:
           - PHP
           - Symfony 4
@@ -183,7 +183,7 @@ realisations:
       description: "<p>Pour le service Airbus MultiMedia Support. Cette application mobile
           permet aux “Safety Officers“ de vérifier quelles améliorations physiques ou logicielles
           peuvent être effectuées sur les composants de leur flotte d'avion.</p>"
-      image: /build/images/realisations/safety-index.jpg
+      image: build/images/realisations/safety-index.jpg
       keywords:
           - PHP
           - Symfony 4
@@ -208,7 +208,7 @@ realisations:
           </ul>
           <p class='mb-2'>Sous la direction d'Antoine Coelho et Denis Coujou</p>
       url: https://prod.logilibres.org/epmdemo
-      image: /build/images/realisations/epm.jpg
+      image: build/images/realisations/epm.jpg
       keywords:
           - PHP
           - OpenMairie

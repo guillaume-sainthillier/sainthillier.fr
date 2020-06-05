@@ -1,6 +1,7 @@
 {{ define "main" }}
+{{ $manifest := .Site.Data.manifest }}
 <!-- Header -->
-{{ with (resources.Get "/build/images/header-bg.jpg") -}}
+{{ with resources.Get (index $manifest "build/images/header-bg.jpg") -}}
 <header class="masthead" style="background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7)), url('{{ (.Resize "1900x1250 q50").RelPermalink }}')">
     <div class="masthead-content">
         <div class="container">
@@ -23,11 +24,11 @@
         </div>
         <div class="row mb-5">
             <div class="col-md-4 col-lg-3 d-flex align-items-center">
-                {{ with (resources.Get "/build/images/guillaume-sainthillier.jpg") -}}
+                {{ with resources.Get (index $manifest "build/images/guillaume-sainthillier.jpg") -}}
                 <img title="Concrétisez vos projets Web"
                      alt="Concrétisez vos projets Web"
                      class="img-fluid blur-up lazyload rounded-circle d-block mx-auto"
-                     src="{{ (.Resize " 300x").RelPermalink }}"
+                     src="{{ (.Resize "300x").RelPermalink }}"
                      srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
                      data-srcset="{{ (.Resize "600x").RelPermalink }} 2x"
                      width="300"
@@ -49,11 +50,11 @@
         </div>
         <div class="row mb-5">
             <div class="col-md-4 col-lg-3 order-md-2 d-flex align-items-center">
-                {{ with (resources.Get "/build/images/design.jpg") -}}
+                {{ with resources.Get (index $manifest "build/images/design.jpg") -}}
                 <img title="Concrétisez vos projets Web"
                      alt="Concrétisez vos projets Web"
                      class="img-fluid blur-up lazyload rounded-circle d-block mx-auto"
-                     src="{{ (.Resize " 300x").RelPermalink }}"
+                     src="{{ (.Resize "300x").RelPermalink }}"
                      srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
                      data-srcset="{{ (.Resize "600x").RelPermalink }} 2x"
                      width="300"
@@ -164,6 +165,7 @@
             </div>
         </div>
         <div class="row">
+
             {{ range $i, $realisation := .Params.realisations }}
             {{ with $realisation }}
             <div class="col-md-6 col-xl-4">
@@ -174,7 +176,7 @@
                                 <i class="fas fa-plus fa-3x"></i>
                             </div>
                         </div>
-                        {{ $image := resources.Get .image -}}
+                        {{ $image := resources.Get (index $manifest .image) }}
                         <img class="img-fluid blur-up lazyload"
                              width="400"
                              height="300"
@@ -214,7 +216,7 @@
                             <!-- Project Details Go Here -->
                             <h2 class="text-uppercase">{{ .nom }}</h2>
                             <p class="item-intro text-muted">{{ .sous_titre }}</p>
-                            {{ $image := resources.Get .image -}}
+                            {{ $image := resources.Get (index $manifest .image) -}}
                             <img class="img-fluid blur-up lazyload d-block mx-auto"
                                  width="700"
                                  height="525"
@@ -271,7 +273,7 @@
                     {{ with $experience }}
                     <li class="{{ cond (not (modBool $i 2)) "" "timeline-inverted" }}">
                     <div class="timeline-image">
-                        {{ $image := resources.Get .logo -}}
+                        {{ $image := resources.Get (index $manifest .logo) -}}
                         <img class="rounded-circle img-fluid blur-up lazyload"
                              width="200"
                              height="200"
