@@ -1,8 +1,6 @@
 ---
-title: Développeur Web freelance à Toulouse
-description: Développeur web freelance à Toulouse. Développeur freelance PHP. Contactez rapidement un développeur web à Toulouse pour réaliser votre projet Web.
-date: 2020-05-27T20:55:18+02:00
-draft: false
+title: "Développeur Web freelance à Toulouse"
+description: "Développeur web freelance à Toulouse. Développeur freelance PHP. Contactez rapidement un développeur web à Toulouse pour réaliser votre projet Web."
 layout: homepage
 skills:
     - name: PHP
@@ -127,12 +125,12 @@ realisations:
       date: Octobre 2013 - En Cours
       description: |-
           <p>By Night est une plateforme d'aggrégation d'événements qui a pour vocation de simplifier la recherche des événements culturels dans les plus grandes villes de France telles que Paris, Toulouse, Lyon, Bordeaux ou Montpellier.</p>
-          <p class='mb-2'>Un accès libre permet également à des organisateurs d'événements de :</p>
-          <ul class='fa-ul'>
-              <li><i class='fa-li fa fa-angle-right'></i>Créer de nouveaux événements</li>
-              <li><i class='fa-li fa fa-angle-right'></i>Importer leurs événements depuis Facebook vers l'application</li>
-              <li><i class='fa-li fa fa-angle-right'></i>Exporter des événements de la plateforme vers les autres réseaux sociaux</li>
-              <li><i class='fa-li fa fa-angle-right'></i>Analyser la portée de leurs événements</li>
+          <p class="mb-2">Un accès libre permet également à des organisateurs d'événements de :</p>
+          <ul class="fa-ul">
+              <li><i class="fa-li fa fa-angle-right"></i>Créer de nouveaux événements</li>
+              <li><i class="fa-li fa fa-angle-right"></i>Importer leurs événements depuis Facebook vers l'application</li>
+              <li><i class="fa-li fa fa-angle-right"></i>Exporter des événements de la plateforme vers les autres réseaux sociaux</li>
+              <li><i class="fa-li fa fa-angle-right"></i>Analyser la portée de leurs événements</li>
           </ul>
       url: https://by-night.fr
       image: build/images/realisations/by-night.jpg
@@ -196,17 +194,17 @@ realisations:
       date: Avril 2011 - Février 2013
       description: |-
           <p>Pour la société ICM Services. Open ePM est une application Web Open Source à destination des Polices Municipales.</p>
-          <p class='mb-2'>Elle permet, en outre, de gérer:</p>
-          <ul class='fa-ul'>
-              <li><i class='fa fa-li fa-angle-right'></i>Les main courantes et les affaires</li>
-              <li><i class='fa fa-li fa-angle-right'></i>La production des rapports PV</li>
-              <li><i class='fa fa-li fa-angle-right'></i>La déclaration et suivi des animaux dangereux</li>
-              <li><i class='fa fa-li fa-angle-right'></i>La gestion des objets perdus et trouvés</li>
-              <li><i class='fa fa-li fa-angle-right'></i>La gestion des OTV, OTS, surveillances Magasins..</li>
-              <li><i class='fa fa-li fa-angle-right'></i>La mise en fourrière des véhicules</li>
-              <li><i class='fa fa-li fa-angle-right'></i>La gestion des vacations funéraires</li>
+          <p class="mb-2">Elle permet, en outre, de gérer:</p>
+          <ul class="fa-ul">
+              <li><i class="fa fa-li fa-angle-right"></i>Les main courantes et les affaires</li>
+              <li><i class="fa fa-li fa-angle-right"></i>La production des rapports PV</li>
+              <li><i class="fa fa-li fa-angle-right"></i>La déclaration et suivi des animaux dangereux</li>
+              <li><i class="fa fa-li fa-angle-right"></i>La gestion des objets perdus et trouvés</li>
+              <li><i class="fa fa-li fa-angle-right"></i>La gestion des OTV, OTS, surveillances Magasins..</li>
+              <li><i class="fa fa-li fa-angle-right"></i>La mise en fourrière des véhicules</li>
+              <li><i class="fa fa-li fa-angle-right"></i>La gestion des vacations funéraires</li>
           </ul>
-          <p class='mb-2'>Sous la direction d'Antoine Coelho et Denis Coujou</p>
+          <p class="mb-2">Sous la direction d'Antoine Coelho et Denis Coujou</p>
       url: https://prod.logilibres.org/epmdemo
       image: build/images/realisations/epm.jpg
       keywords:

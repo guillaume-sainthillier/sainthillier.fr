@@ -1,8 +1,6 @@
 ---
 title: "Mentions légales et CGU"
 description: "Les mentions légales et CGU du site sainthillier.fr"
-date: 2018-08-03
-draft: false
 ---
 
 # Mentions Légales

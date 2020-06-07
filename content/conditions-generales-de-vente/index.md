@@ -1,8 +1,6 @@
 ---
 title: "Conditions Générales de Vente"
 description: "Les CGV utilisées lors de mes prestations."
-date: 2015-01-01
-draft: false
 ---
 # Conditions Générales de Vente
 
