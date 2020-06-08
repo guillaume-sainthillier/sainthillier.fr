@@ -1,6 +1,8 @@
 const Encore = require('@symfony/webpack-encore');
 const ImageminPlugin = require('imagemin-webpack');
 const FileManagerPlugin = require('filemanager-webpack-plugin');
+const PurgecssPlugin = require('purgecss-webpack-plugin');
+const glob = require('glob-all');
 const path = require('path');
 
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
@@ -82,6 +84,22 @@ Encore
                     ['optipng', { optimizationLevel: 5 }],
                 ],
             },
+        })
+    )
+    .addPlugin(
+        new PurgecssPlugin({
+            paths: glob.sync(
+                [
+                    path.join(__dirname, 'content/**/*.md'),
+                    path.join(__dirname, 'layouts/**/*.html'),
+                    path.join(__dirname, 'assets/js/*.js'),
+                    path.join(__dirname, 'node_modules/bootstrap/js/src/**/*.js'),
+                    path.join(__dirname, 'node_modules/lazysizes/lazysizes.js'),
+                    path.join(__dirname, 'node_modules/jqcloud2/dist/*.js'),
+                ],
+                { nodir: true }
+            ),
+            whitelistPatterns: [/^w(\d+)$/],
         })
     )
     .addPlugin(

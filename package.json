@@ -33,6 +33,7 @@
         "@symfony/webpack-encore": "^0.30.2",
         "core-js": "^3.0.0",
         "filemanager-webpack-plugin": "^2.0.5",
+        "glob-all": "^3.2.1",
         "hugo-bin": "^0.60.0",
         "husky": ">=4",
         "imagemin-jpegtran": "^7.0.0",
@@ -41,6 +42,7 @@
         "lint-staged": ">=10.2.9",
         "node-sass": "^4.14.1",
         "prettier": "^2.0.5",
+        "purgecss-webpack-plugin": "^2.2.0",
         "regenerator-runtime": "^0.13.2",
         "sass-loader": "^8.0.0",
         "webpack-notifier": "^1.6.0"
