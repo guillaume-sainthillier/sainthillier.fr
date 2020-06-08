@@ -22,6 +22,7 @@
         "hugo": "hugo --gc --minify"
     },
     "dependencies": {
+        "@fortawesome/fontawesome-free": "^5.13.0",
         "bootstrap": "4.5.0",
         "jqcloud2": "2.*",
         "jquery": "3.5.1",
