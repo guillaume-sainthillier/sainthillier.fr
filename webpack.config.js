@@ -85,8 +85,10 @@ Encore
                 ],
             },
         })
-    )
-    .addPlugin(
+    );
+
+if (Encore.isProduction()) {
+    Encore.addPlugin(
         new PurgecssPlugin({
             paths: glob.sync(
                 [
@@ -101,15 +103,17 @@ Encore
             ),
             whitelistPatterns: [/^w(\d+)$/],
         })
-    )
-    .addPlugin(
-        new FileManagerPlugin({
-            onEnd: {
-                copy: [{ source: './static/build/{entrypoints,manifest}.json', destination: './data' }],
-            },
-        }),
-        -11
     );
+}
+
+Encore.addPlugin(
+    new FileManagerPlugin({
+        onEnd: {
+            copy: [{ source: './static/build/{entrypoints,manifest}.json', destination: './data' }],
+        },
+    }),
+    -11
+);
 
 // uncomment if you use TypeScript
 //.enableTypeScriptLoader()
