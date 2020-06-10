@@ -1,3 +1,4 @@
+{{ $manifest := .Site.Data.manifest }}
 <!DOCTYPE html>
 <html lang="{{ $.Site.LanguageCode | default " en" }}">
 <head>
@@ -69,36 +70,57 @@
 <!-- Footer -->
 <footer>
     <div class="container">
-        <div class="row">
-            <div class="col-md-8">
-                <p class="text-muted">Guillaume Sainthillier - Développeur Web freelance à Toulouse</p>
-                <p class="text-muted">SASU SILARHI - N° SIRET 84154166700017</p>
-                <p><a href="/mentions-legales/">Mentions légales</a></p>
-                <p><a href="/conditions-generales-de-vente/">Conditions Générales de Vente</a></p>
-                <p><a href="https://blog.silarhi.fr">Blog</a></p>
+        <div class="d-flex align-items-center justify-content-center justify-content-sm-start flex-wrap flex-sm-nowrap">
+            {{ with resources.Get (index $manifest "build/images/logo.png") -}}
+            <img title="Concrétisez vos projets Web"
+                 alt="Concrétisez vos projets Web"
+                 class="blur-up lazyload mr-sm-4"
+                 src="{{ (.Resize "96x96").RelPermalink }}"
+                srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                data-srcset="{{ (.Resize "192x192").RelPermalink }} 2x"
+                width="96"
+                height="96"
+            />
+            {{ end }}
+            <div class="text-center text-sm-left mb-3 mb-sm-0">
+                <p>Guillaume Sainthillier - Développeur Web freelance à Toulouse</p>
+                <p>SILARHI SAS</p>
+                <p>N° SIRET 84154166700017</p>
+                <p>N° TVA FR96841541667</p>
             </div>
-            <div class="col-md-4">
-                <ul class="list-inline social-buttons">
-                    {{ with .Site.Params.Social }}
-                    <li class="list-inline-item">
-                        <a href="{{ .linkedin }}">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="{{ .github }}">
-                            <i class="fab fa-github"></i>
-                        </a>
-                    </li>
-                    {{ end }}
-                    <li class="list-inline-item">
-                        <a href="{{ relURL "/build/pdf/CV-SAINTHILLIER-Guillaume.pdf" }}">
-                            <i class="fa fa-file-alt"></i>
-                        </a>
-                    </li>
-                </ul>
-            </div>
+            <ul class="ml-sm-auto list-unstyled d-flex flex-row flex-sm-column flex-md-row social-buttons">
+                {{ with .Site.Params.Social }}
+                <li class="d-inline d-sm-block d-md-inline-block list-inline-item mb-2">
+                    <a href="{{ .linkedin }}">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </li>
+                <li class="d-inline d-sm-block d-md-inline-block list-inline-item mb-2">
+                    <a href="{{ .github }}">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+                {{ end }}
+                <li class="d-inline d-sm-block d-md-inline-block list-inline-item">
+                    <a href="{{ relURL "/build/pdf/CV-SAINTHILLIER-Guillaume.pdf" }}">
+                    <i class="fa fa-file-alt"></i>
+                    </a>
+                </li>
+            </ul>
         </div>
+        <hr />
+
+        <ul class="list-inline list-unstyled">
+            <li class="d-block d-sm-inline list-inline-item">
+                <a href="/mentions-legales/">Mentions légales</a>
+            </li>
+            <li class="d-block d-sm-inline list-inline-item">
+                <a href="/conditions-generales-de-vente/">Conditions Générales de Vente</a>
+            </li>
+            <li class="d-block d-sm-inline list-inline-item">
+                <a href="https://blog.silarhi.fr">Blog</a>
+            </li>
+        </ul>
     </div>
 </footer>
 
