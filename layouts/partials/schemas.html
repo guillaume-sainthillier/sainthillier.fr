@@ -1,0 +1,71 @@
+{{ $image := resources.Get (index .Site.Data.manifest "build/images/guillaume-sainthillier.jpg") -}}
+<script type="application/ld+json">
+    {
+        "@context": "http://www.schema.org",
+        "@type": "person",
+        "name": "Guillaume Sainthillier",
+        "jobTitle": "Développeur Web Freelance à Toulouse",
+        "gender": "male",
+        "url": {{ "" | absURL }},
+        "sameAs": [
+            "https://www.youtube.com/watch?v=JjeguKaXutw",
+            "https://silarhi.fr",
+            "https://g.page/silarhi?share",
+            {{ .Site.Params.Social.linkedin }},
+            {{ .Site.Params.Social.github }},
+            {{ "/build/pdf/CV-SAINTHILLIER-Guillaume.pdf" | absURL }}
+        ],
+        "image": {{ $image | absURL }},
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "116 Route d'Espagne",
+            "postOfficeBoxNumber": "BAL 411 - BAT 113",
+            "addressLocality": "Toulouse",
+            "addressRegion": "Occitanie",
+            "postalCode": "31100",
+            "addressCountry": "France"
+        },
+        "email": "hello@silarhi.fr"
+    }
+</script>
+{{ $image := resources.Get (index .Site.Data.manifest "build/images/logo.png") -}}
+<script type='application/ld+json'>
+    {
+        "@context": "http://www.schema.org",
+        "@type": "LocalBusiness",
+        "name": "Silarhi",
+        "description": {{ .Site.Params.description }},
+        "email": "hello@silarhi.fr",
+        "foundingDate": "2018-08-03",
+        "url": {{ "" | absURL }},
+        "sameAs": [
+            "https://silarhi.fr",
+            "https://www.youtube.com/watch?v=JjeguKaXutw",
+            "https://github.com/silarhi",
+            "https://www.linkedin.com/company/silarhi"
+        ],
+        "logo": {{ $image | absURL }},
+        "image": {{ $image | absURL }},
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "116 Route d'Espagne",
+            "postOfficeBoxNumber": "BAL 411 - BAT 113",
+            "addressLocality": "Toulouse",
+            "addressRegion": "Occitanie",
+            "postalCode": "31100",
+            "addressCountry": "France"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "43.5706004",
+            "longitude": "1.4210176"
+        },
+        "hasMap": "https://g.page/silarhi?share",
+        "openingHours": "Mo 09:00-18:00 Tu 09:00-18:00 We 09:00-18:00 Th 09:00-18:00 Fr 09:00-18:00",
+        "isAccessibleForFree": false,
+        "currenciesAccepted": "EUR",
+        "paymentAccepted":"Virement bancaire",
+        "priceRange": "$$",
+        "telephone": "+33607275826"
+    }
+</script>
