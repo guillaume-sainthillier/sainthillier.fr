@@ -4,7 +4,7 @@ description: "Les CGV utilisées lors de mes prestations."
 ---
 # Conditions Générales de Vente
 
-_Mis à jour le 29/03/2019_
+_Mis à jour le 03/06/2020_
 
 [Télécharger au format PDF](/build/pdf/CGV.pdf)
 
