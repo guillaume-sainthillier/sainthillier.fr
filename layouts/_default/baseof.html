@@ -8,7 +8,7 @@
     <title>{{ block "title" . }}{{ with .Params.Title }}{{ . }} | {{ end }}{{ .Site.Title }}{{ end }}</title>
     <meta name="keywords" content="développeur,developpeur,web,toulouse,freelance,informatique,php,symfony,guillaume,sainthillier,silarhi">
     <meta name="author" content="Guillaume Sainthillier">
-    <link rel="canonical" href="{{ block "url" . }}{{ "/" | absURL }}{{ end }}">
+    <link rel="canonical" href="{{ block "url" . }}{{ "" | absURL }}{{ end }}">
 
     {{ hugo.Generator }}
     {{- template "_internal/opengraph.html" . -}}
@@ -103,7 +103,7 @@
                 </li>
                 {{ end }}
                 <li class="d-inline d-sm-block d-md-inline-block list-inline-item">
-                    <a href="{{ relURL "/build/pdf/CV-SAINTHILLIER-Guillaume.pdf" }}">
+                    <a href="{{ "/build/pdf/CV-SAINTHILLIER-Guillaume.pdf" | relURL }}">
                     <i class="fa fa-file-alt"></i>
                     </a>
                 </li>
