@@ -294,7 +294,7 @@
                         </div>
                         <div class="timeline-body">
                             <p class="text-muted">{{ .description }}</p>
-                            {{ if isset . "entreprise" }}
+                            {{ if .entreprise }}
                             <span class="text-muted">Via {{ .entreprise | safeHTML }}</span>
                             {{ end }}
                         </div>
