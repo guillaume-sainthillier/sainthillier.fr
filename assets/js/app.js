@@ -22,7 +22,7 @@ $(document).ready(function () {
             if (target.length) {
                 $('html, body').animate(
                     {
-                        scrollTop: target.offset().top - 56,
+                        scrollTop: target.offset().top - 55,
                     },
                     1000,
                     'easeInOutExpo'
