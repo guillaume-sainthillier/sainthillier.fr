@@ -1,7 +1,15 @@
 {{ $image := false }}
 {{ if eq (getenv "HUGO_ENV") "production" }}
-    {{ $image = (printf "%s/image/fetch/c_limit,f_auto,q_auto,w_%d,h_%d/%s" .Params.cloudinary_base_url .Width .Height (.Image.RelPermalink | absURL)) }}
+    {{ if .Quality }}
+        {{ $image = (printf "%s/image/fetch/c_limit,f_auto,q_%d,w_%d,h_%d/%s" .Params.cloudinary_base_url .Width .Quality .Height (.Image.RelPermalink | absURL)) }}
+    {{ else }}
+        {{ $image = (printf "%s/image/fetch/c_limit,f_auto,q_auto,w_%d,h_%d/%s" .Params.cloudinary_base_url .Width .Height (.Image.RelPermalink | absURL)) }}
+    {{ end }}
 {{ else }}
-    {{ $image = (.Image.Resize (printf "%dx%d " .Width .Height)).RelPermalink }}
+    {{ if .Quality }}
+        {{ $image = (.Image.Resize (printf "%dx%d q%d" .Width .Height .Quality)).RelPermalink }}
+    {{ else }}
+        {{ $image = (.Image.Resize (printf "%dx%d" .Width .Height)).RelPermalink }}
+    {{ end }}
 {{ end }}
 {{ return $image }}

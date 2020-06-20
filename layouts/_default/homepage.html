@@ -2,7 +2,7 @@
 {{ $manifest := .Site.Data.manifest }}
 <!-- Header -->
 {{ with resources.Get (index $manifest "build/images/header-bg.jpg") -}}
-<header class="masthead" style="background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7)), url('{{ (.Resize "1900x1250 q50").RelPermalink }}')">
+<header class="masthead" style="background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7)), url('{{ partial "image" (dict "Image" . "Width" 1900 "Height" 1250 "Quality" 50 "Params" $.Site.Params) }}')">
     <div class="masthead-content">
         <div class="container">
             <div class="intro-text">
@@ -31,9 +31,9 @@
                 <img title="Concrétisez vos projets Web"
                      alt="Concrétisez vos projets Web"
                      class="img-fluid blur-up lazyload rounded-circle d-block mx-auto"
-                     src="{{ (.Resize "300x").RelPermalink }}"
+                     src="{{ partial "image" (dict "Image" . "Width" 300 "Height" 300 "Params" $.Site.Params) }}"
                      srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                     data-srcset="{{ (.Resize "600x").RelPermalink }} 2x"
+                     data-srcset="{{ partial "image" (dict "Image" . "Width" 600 "Height" 600 "Params" $.Site.Params) }} 2x"
                      width="300"
                      height="300"
                 />
@@ -57,9 +57,9 @@
                 <img title="Concrétisez vos projets Web"
                      alt="Concrétisez vos projets Web"
                      class="img-fluid blur-up lazyload rounded-circle d-block mx-auto"
-                     src="{{ (.Resize "300x").RelPermalink }}"
+                     src="{{ partial "image" (dict "Image" . "Width" 300 "Height" 300 "Params" $.Site.Params) }}"
                      srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                     data-srcset="{{ (.Resize "600x").RelPermalink }} 2x"
+                     data-srcset="{{ partial "image" (dict "Image" . "Width" 600 "Height" 600 "Params" $.Site.Params) }} 2x"
                      width="300"
                      height="300"
                 />
@@ -183,9 +183,9 @@
                         <img class="img-fluid blur-up lazyload"
                              width="400"
                              height="300"
-                             src="{{ ($image.Resize "400x300").RelPermalink }}"
+                             src="{{ partial "image" (dict "Image" $image "Width" 400 "Height" 300 "Params" $.Site.Params) }}"
                              srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                             data-srcset="{{ ($image.Resize "800x600").RelPermalink }}"
+                             data-srcset="{{ partial "image" (dict "Image" $image "Width" 800 "Height" 600 "Params" $.Site.Params) }}"
                              title="{{ .nom }} réalisé par un développeur web freelance à Toulouse"
                              alt="{{ .nom }}">
                     </a>
@@ -223,9 +223,9 @@
                             <img class="img-fluid blur-up lazyload d-block mx-auto"
                                  width="700"
                                  height="525"
-                                 src="{{ ($image.Resize "700x525").RelPermalink }}"
+                                 src="{{ partial "image" (dict "Image" $image "Width" 700 "Height" 525 "Params" $.Site.Params) }}"
                                  srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                                 data-srcset="{{ ($image.Resize "1400x1050").RelPermalink }}"
+                                 data-srcset="{{ partial "image" (dict "Image" $image "Width" 1400 "Height" 1050 "Params" $.Site.Params) }} 2x"
                                  alt="{{ .nom }}"
                                  title="{{ .nom }} réalisé par un développeur web freelance à Toulouse">
 
@@ -282,7 +282,7 @@
                              height="200"
                              src="{{ partial "image" (dict "Image" $image "Width" 200 "Height" 200 "Params" $.Site.Params) }}"
                              srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                             data-srcset="{{ partial "image" (dict "Image" $image "Width" 400 "Height" 400 "Params" $.Site.Params) }}"
+                             data-srcset="{{ partial "image" (dict "Image" $image "Width" 400 "Height" 400 "Params" $.Site.Params) }} 2x"
                              title="Logo {{ .client }}"
                              alt="Logo {{ .client }}">
                     </div>

@@ -76,11 +76,11 @@
             <img title="Concrétisez vos projets Web"
                  alt="Concrétisez vos projets Web"
                  class="blur-up lazyload mr-sm-4"
-                 src="{{ (.Resize "96x96").RelPermalink }}"
-                srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                data-srcset="{{ (.Resize "192x192").RelPermalink }} 2x"
-                width="96"
-                height="96"
+                 src="{{ partial "image" (dict "Image" . "Width" 96 "Height" 96 "Params" $.Site.Params) }}"
+                 srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                 data-srcset="{{ partial "image" (dict "Image" . "Width" 192 "Height" 192 "Params" $.Site.Params) }} 2x"
+                 width="96"
+                 height="96"
             />
             {{ end }}
             <div class="text-center text-sm-left mb-3 mb-sm-0">
