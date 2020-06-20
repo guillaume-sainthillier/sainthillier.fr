@@ -3,3 +3,5 @@
 /public
 /static/build
 /data/
+# Local Netlify folder
+.netlify
