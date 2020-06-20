@@ -11,6 +11,7 @@ disableKinds = ["taxonomy", "taxonomyTerm", "RSS"]
 
 [params]
   description = "Développeur web freelance à Toulouse. Développeur freelance PHP. Contactez rapidement un développeur web à Toulouse pour réaliser votre projet Web."
+  cloudinary_base_url = "https://res.cloudinary.com/silarhi"
 
 [params.social]
   github = "https://github.com/guillaume-sainthillier"

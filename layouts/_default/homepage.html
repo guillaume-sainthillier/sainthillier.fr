@@ -280,9 +280,9 @@
                         <img class="rounded-circle img-fluid blur-up lazyload"
                              width="200"
                              height="200"
-                             src="{{ ($image.Fit "200x200").RelPermalink }}"
+                             src="{{ partial "image" (dict "Image" $image "Width" 200 "Height" 200 "Params" $.Site.Params) }}"
                              srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                             data-srcset="{{ ($image.Resize "400x400").RelPermalink }}"
+                             data-srcset="{{ partial "image" (dict "Image" $image "Width" 400 "Height" 400 "Params" $.Site.Params) }}"
                              title="Logo {{ .client }}"
                              alt="Logo {{ .client }}">
                     </div>
