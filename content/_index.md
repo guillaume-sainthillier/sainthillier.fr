@@ -62,7 +62,7 @@ experiences:
     - periode: Sept 2015 - Jan 2018
       logo: build/images/logos/Latecoere.jpg
       client: Groupe Latécoère
-      entreprise: <a itemprop="url" href="https://www.apside.com/" target="_blank">Apside</a>
+      entreprise: <a itemprop="url" href="https://apside.com" target="_blank">Apside</a>
       titre: Développeur Full Stack
       description: Tierce Maintenance Applicative sur les applications métiers de l'entreprise
           (Manufacturing, RH, Finances).
@@ -74,7 +74,7 @@ experiences:
             composants Symfony 3
     - periode: Jan 2018 - Dec 2018
       logo: build/images/logos/Agoranet.jpg
-      entreprise: <a itemprop="url" href="https://www.apside.com/" target="_blank">Apside</a>
+      entreprise: <a itemprop="url" href="https://apside.com" target="_blank">Apside</a>
       client: Agoranet
       titre: Développeur Full Stack freelance
       description: Réalisation de projets d'applications Web et sites vitrines, principalement
