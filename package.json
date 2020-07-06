@@ -41,7 +41,6 @@
         "husky": ">=4",
         "imagemin-jpegtran": "^7.0.0",
         "imagemin-optipng": "^8.0.0",
-        "imagemin-webpack": "^5.1.1",
         "lint-staged": ">=10.2.11",
         "node-sass": "^4.14.1",
         "prettier": "^2.0.5",

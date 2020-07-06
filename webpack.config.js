@@ -1,5 +1,4 @@
 const Encore = require('@symfony/webpack-encore');
-const ImageminPlugin = require('imagemin-webpack');
 const FileManagerPlugin = require('filemanager-webpack-plugin');
 const PurgecssPlugin = require('purgecss-webpack-plugin');
 const glob = require('glob-all');
@@ -73,19 +72,7 @@ Encore
     .addAliases({
         jquery: path.resolve(__dirname, 'node_modules/jquery/src/jquery'),
         $: path.resolve(__dirname, 'node_modules/jquery/src/jquery'),
-    })
-    .addPlugin(
-        new ImageminPlugin({
-            bail: false, // Ignore errors on corrupted images
-            cache: true,
-            imageminOptions: {
-                plugins: [
-                    ['jpegtran', { progressive: true }],
-                    ['optipng', { optimizationLevel: 5 }],
-                ],
-            },
-        })
-    );
+    });
 
 if (Encore.isProduction()) {
     Encore.addPlugin(
