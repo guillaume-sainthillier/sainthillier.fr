@@ -190,7 +190,8 @@ realisations:
       image: build/images/realisations/mms.jpg
       keywords:
           - PHP
-          - Symfony 4
+          - Symfony 5
+          - AWS
           - Docker
           - MySQL
           - SCSS
@@ -224,7 +225,6 @@ realisations:
           - Docker
           - MySQL
           - SCSS
-          - Responsive Design
     - nom: Open ePM
       sous_titre: Développeur Web
       date: Avril 2011 - Février 2013
