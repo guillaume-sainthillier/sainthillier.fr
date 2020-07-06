@@ -53,9 +53,6 @@ experiences:
       logo: build/images/logos/CHU_Toulouse.jpg
       client: CCMM - SAMU 31
       entreprise:
-      via: <a itemprop="url" title="Aller sur le site du Centre de Consultation Médicale
-          Maritime" href=https://www.chu-toulouse.fr/-centre-de-consultation-medicale-maritime-ccmm-"
-          target="_blank">CHU Purpan - CCMM/SAMU&nbsp;31</a>
       titre: Développeur Full Stack
       description: Conception, développement et maintenance de modules d’une application
           de gestion des dossiers patients.
