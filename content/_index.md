@@ -120,6 +120,45 @@ formation:
           - Gestion de parcs informatiques
           - Stage
 realisations:
+    - nom: DosLoc
+      sous_titre: Développeur Web Freelance
+      date: Avril 2020 - En Cours
+      description: |-
+          <p>DosLoc est une application Web permettant à des locataires de gérer leur dossier de candidature.</p>
+          <p class="mb-2">Le site permet au locataire de :</p>
+          <ul class="fa-ul">
+              <li><i class="fa-li fa fa-angle-right"></i>Créer son dossier de candidature</li>
+              <li><i class="fa-li fa fa-angle-right"></i>Déposer ses pièces justificatives (Carte d'identité, justificatifs de revenus, ...)</li>
+              <li><i class="fa-li fa fa-angle-right"></i>Partager son dossier avec son bailleur</li>
+          </ul>
+      url: https://dosloc.fr
+      image: build/images/realisations/dosloc.jpg
+      keywords:
+          - PHP
+          - Symfony 5
+          - MySQL
+          - SCSS
+          - Responsive Design
+    - nom: Immobilus
+      sous_titre: Développeur Web Freelance
+      date: Mars 2019 - En Cours
+      description: |-
+          <p>Immobilus est une application Web permettant à des propriétaires de biens de digitaliser leur gestion locative.</p>
+          <p class="mb-2">Le site permet au propriétaire de :</p>
+          <ul class="fa-ul">
+              <li><i class="fa-li fa fa-angle-right"></i>Saisir les informations sur son bien</li>
+              <li><i class="fa-li fa fa-angle-right"></i>Enregistrer des locataires</li>
+              <li><i class="fa-li fa fa-angle-right"></i>Envoyer chaque mois des notifications de paiement aux locataires</li>
+          </ul>
+      url: https://immobilus.com
+      image: build/images/realisations/immobilus.jpg
+      keywords:
+          - PHP
+          - Symfony 4
+          - EBICS
+          - MySQL
+          - SCSS
+          - Responsive Design
     - nom: By Night
       sous_titre: Projet personnel
       date: Octobre 2013 - En Cours
