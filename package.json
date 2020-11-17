@@ -23,30 +23,30 @@
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.13.1",
-        "bootstrap": "4.5.0",
+        "bootstrap": "4.5.3",
         "global": "^4.4.0",
         "jqcloud2": "2.*",
         "jquery": "3.5.1",
         "jquery.easing": "1.*",
         "lazysizes": "^5.2.2",
         "netlify-cli": "^2.58.0",
+        "node-sass": "4.14.1",
         "popper.js": "1.*"
     },
     "devDependencies": {
-        "@symfony/webpack-encore": "^0.30.2",
+        "@symfony/webpack-encore": "^0.31.0",
         "core-js": "^3.0.0",
         "filemanager-webpack-plugin": "^2.0.5",
         "glob-all": "^3.2.1",
-        "hugo-bin": "^0.61.0",
+        "hugo-bin": "^0.66.2",
         "husky": ">=4",
         "imagemin-jpegtran": "^7.0.0",
         "imagemin-optipng": "^8.0.0",
         "lint-staged": ">=10.2.11",
-        "node-sass": "^4.14.1",
         "prettier": "^2.0.5",
-        "purgecss-webpack-plugin": "^2.3.0",
+        "purgecss-webpack-plugin": "^3.0.0",
         "regenerator-runtime": "^0.13.2",
-        "sass-loader": "^8.0.2",
+        "sass-loader": "^9.0.1",
         "webpack-notifier": "^1.6.0"
     },
     "husky": {
@@ -55,9 +55,6 @@
         }
     },
     "lint-staged": {
-        "*.{js,scss,md}": "prettier --write",
-        "*.php": [
-            "php-cs-fixer fix --config=.php_cs.dist"
-        ]
+        "*.{js,scss,md}": "prettier --write"
     }
 }
