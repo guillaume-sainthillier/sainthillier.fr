@@ -88,7 +88,9 @@ if (Encore.isProduction()) {
                 ],
                 { nodir: true }
             ),
-            whitelistPatterns: [/^w(\d+)$/],
+            safelist: {
+                standard: [/^w(\d+)$/],
+            },
         })
     );
 }
