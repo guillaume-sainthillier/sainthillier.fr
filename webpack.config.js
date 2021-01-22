@@ -97,8 +97,10 @@ if (Encore.isProduction()) {
 
 Encore.addPlugin(
     new FileManagerPlugin({
-        onEnd: {
-            copy: [{ source: './static/build/{entrypoints,manifest}.json', destination: './data' }],
+        events: {
+            onEnd: {
+                copy: [{ source: './static/build/{entrypoints,manifest}.json', destination: './data' }],
+            },
         },
     }),
     -11
