@@ -121,12 +121,18 @@ realisations:
       sous_titre: Développeur Web Freelance
       date: Avril 2020 - En Cours
       description: |-
-          <p>DosLoc est une application Web permettant à des locataires de gérer leur dossier de candidature.</p>
+          <p><a href="https://dosloc.fr" target="_blank" title="Logiciel de candidature locative">DosLoc</a> est une application Web permettant à des locataires de gérer leur dossier de candidature.</p>
           <p class="mb-2">Le site permet au locataire de :</p>
           <ul class="fa-ul">
               <li><i class="fa-li fa fa-angle-right"></i>Créer son dossier de candidature</li>
               <li><i class="fa-li fa fa-angle-right"></i>Déposer ses pièces justificatives (Carte d'identité, justificatifs de revenus, ...)</li>
               <li><i class="fa-li fa fa-angle-right"></i>Partager son dossier avec son bailleur</li>
+          </ul>
+          <p class="mb-2">Le site permet au bailleur de :</p>
+          <ul class="fa-ul">
+              <li><i class="fa-li fa fa-angle-right"></i>Centraliser la gestion de ses candidatures</li>
+              <li><i class="fa-li fa fa-angle-right"></i>Télécharger le dossier de candidature au format PDF</li>
+              <li><i class="fa-li fa fa-angle-right"></i>Préparer le bail une fois la candidature acceptée</li>
           </ul>
       url: https://dosloc.fr
       image: build/images/realisations/dosloc.jpg
@@ -140,18 +146,19 @@ realisations:
       sous_titre: Développeur Web Freelance
       date: Mars 2019 - En Cours
       description: |-
-          <p>Immobilus est une application Web permettant à des propriétaires de biens de digitaliser leur gestion locative.</p>
+          <p><a href="https://immobilus.com" target="_blank" title="Logiciel de gestion immobilère">Immobilus</a> est une application Web permettant à des propriétaires de biens de digitaliser leur gestion immobilière.</p>
           <p class="mb-2">Le site permet au propriétaire de :</p>
           <ul class="fa-ul">
               <li><i class="fa-li fa fa-angle-right"></i>Saisir les informations sur son bien</li>
-              <li><i class="fa-li fa fa-angle-right"></i>Enregistrer des locataires</li>
-              <li><i class="fa-li fa fa-angle-right"></i>Envoyer chaque mois des notifications de paiement aux locataires</li>
+              <li><i class="fa-li fa fa-angle-right"></i>Enregistrer des locataires et leur donner un accès nominatif</li>
+              <li><i class="fa-li fa fa-angle-right"></i>Gérer automatiquement les loyers des locataires</li>
+              <li><i class="fa-li fa fa-angle-right"></i>Utiliser le protocole EBICS pour récupérer automatiquement les données bancaires et croiser les informations avec les locataires</li>
           </ul>
       url: https://immobilus.com
       image: build/images/realisations/immobilus.jpg
       keywords:
           - PHP
-          - Symfony 4
+          - Symfony 5
           - EBICS
           - MySQL
           - SCSS
@@ -160,7 +167,7 @@ realisations:
       sous_titre: Projet personnel
       date: Octobre 2013 - En Cours
       description: |-
-          <p>By Night est une plateforme d'aggrégation d'événements qui a pour vocation de simplifier la recherche des événements culturels dans les plus grandes villes de France telles que Paris, Toulouse, Lyon, Bordeaux ou Montpellier.</p>
+          <p><a href="https://by-night.fr" target="_blank" >By Night</a> est une plateforme d'aggrégation d'événements qui a pour vocation de simplifier la recherche des événements culturels dans les plus grandes villes de France telles que Paris, Toulouse, Lyon, Bordeaux ou Montpellier.</p>
           <p class="mb-2">Un accès libre permet également à des organisateurs d'événements de :</p>
           <ul class="fa-ul">
               <li><i class="fa-li fa fa-angle-right"></i>Créer de nouveaux événements</li>
@@ -172,7 +179,7 @@ realisations:
       image: build/images/realisations/by-night.jpg
       keywords:
           - PHP
-          - Symfony 4
+          - Symfony 5
           - Docker
           - AWS
           - MySQL
