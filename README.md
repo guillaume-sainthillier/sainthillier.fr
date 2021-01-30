@@ -4,7 +4,7 @@
 
 Demo: [https://sainthillier.fr](https://sainthillier.fr)
 
-Design made by [BlackrockDigital agency template](https://github.com/BlackrockDigital/startbootstrap-agency).
+Design made by [BlackrockDigital agency template](https://github.com/StartBootstrap/startbootstrap-agency).
 
 ## Stack
 
