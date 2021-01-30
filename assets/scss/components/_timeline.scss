@@ -55,15 +55,17 @@
             color: white;
             border: 4px solid $gray-200;
             border-radius: 100%;
-            background-color: $primary;
-
-            &:hover {
-                background-color: darken($primary, 7.5%);
-            }
+            background-image: white;
 
             a {
+                border-radius: 100%;
                 color: white;
                 text-decoration: none !important;
+                background-color: $primary;
+
+                &:hover {
+                    background-color: darken($primary, 7.5%);
+                }
             }
 
             h4 {
