@@ -146,7 +146,7 @@ realisations:
       sous_titre: Développeur Web Freelance
       date: Mars 2019 - En Cours
       description: |-
-          <p><a href="https://immobilus.com" target="_blank" title="Logiciel de gestion immobilère">Immobilus</a> est une application Web permettant à des propriétaires de biens de digitaliser leur gestion immobilière.</p>
+          <p><a href="https://immobilus.fr" target="_blank" title="Logiciel de gestion immobilère">Immobilus</a> est une application Web permettant à des propriétaires de biens de digitaliser leur gestion immobilière.</p>
           <p class="mb-2">Le site permet au propriétaire de :</p>
           <ul class="fa-ul">
               <li><i class="fa-li fa fa-angle-right"></i>Saisir les informations sur son bien</li>
@@ -154,7 +154,7 @@ realisations:
               <li><i class="fa-li fa fa-angle-right"></i>Gérer automatiquement les loyers des locataires</li>
               <li><i class="fa-li fa fa-angle-right"></i>Utiliser le protocole EBICS pour récupérer automatiquement les données bancaires et croiser les informations avec les locataires</li>
           </ul>
-      url: https://immobilus.com
+      url: https://immobilus.fr
       image: build/images/realisations/immobilus.jpg
       keywords:
           - PHP
