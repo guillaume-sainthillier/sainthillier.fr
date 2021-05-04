@@ -85,6 +85,13 @@ experiences:
       description: "Création de l'entreprise de développement d'applications Web. Ma
           mission : donner vie à vos projets Web."
       points: []
+    - periode: Sept 2020 - Aujourd'hui
+      logo: build/images/logos/Webforce3.jpg
+      entreprise:
+      client: Webforce3
+      titre: Formateur freelance
+      description: "Sessions de formations sur le domaine du Développement Web Mobile."
+      points: []
 formation:
     - periode: 2013 - 2015
       nom: Master <abbr title="Informatique Collaborative en Entreprise">ICE</abbr>, Toulouse.
