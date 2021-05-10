@@ -2,8 +2,11 @@
 publish = "public"
 command = "yarn run build:hugo"
 
+[build.environment]
+NODE_VERSION = "14.16.1"
+HUGO_VERSION = "0.83.0"
+
 [context.production.environment]
-HUGO_VERSION = "0.72.0"
 HUGO_ENV = "production"
 HUGO_ENABLEGITINFO = "true"
 
