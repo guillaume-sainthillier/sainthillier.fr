@@ -40,28 +40,23 @@ $(document).ready(function () {
                 cache: false,
                 success: function () {
                     // Success message
-                    $('#success').html("<div class='alert alert-success'>");
-                    $('#success > .alert-success').html(
-                        "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>"
-                    );
-                    $('#success > .alert-success').append('<strong>Votre message a bien été envoyé.</strong>');
-                    $('#success > .alert-success').append('</div>');
+                    $('#success').html(`
+                        <div class="alert alert-success alert-dismissible fade show">
+                            <strong>Votre message a bien été envoyé.</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fermer"></button>
+                        </div>
+                    `);
+
                     //clear all fields
                     $('#contactForm').trigger('reset');
                 },
                 error: function () {
-                    $('#success').html("<div class='alert alert-danger'>");
-                    $('#success > .alert-danger').html(
-                        "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>"
-                    );
-                    $('#success > .alert-danger').append(
-                        $('<strong>').text(
-                            'Désolé ' +
-                                firstName +
-                                ", on dirait que le message n'a pas pu être envoyé. Merci d'essayer un peu plus tard !"
-                        )
-                    );
-                    $('#success > .alert-danger').append('</div>');
+                    $('#success').html(`
+                        <div class="alert alert-danger alert-dismissible fade show">
+                            <strong>Désolé ${firstName}, on dirait que le message n'a pas pu être envoyé. Merci d'essayer un peu plus tard !</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fermer"></button>
+                        </div>
+                    `);
                 },
                 complete: function () {
                     setTimeout(function () {
