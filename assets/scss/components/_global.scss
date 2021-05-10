@@ -65,7 +65,10 @@ section {
 
 .btn-primary {
     color: white;
+}
 
+.btn-primary,
+.btn-outline-primary {
     &:active,
     &:focus,
     &:hover {
