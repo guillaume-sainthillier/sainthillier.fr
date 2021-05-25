@@ -1,8 +1,7 @@
 {
     "title": "Guillaume Sainthillier",
     "browserslist": [
-        "last 2 versions",
-        "IE >= 11"
+        "last 2 versions"
     ],
     "name": "sainthillier",
     "version": "1.2.0",
