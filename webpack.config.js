@@ -59,8 +59,12 @@ Encore
     .enableSourceMaps(!Encore.isProduction())
     // enables hashed filenames (e.g. app.abc123.css)
     .enableVersioning(Encore.isProduction())
-    //.enableVersioning(false)
 
+    .configureBabel((config) => {}, {
+        // node_modules is not processed through Babel by default
+        // but you can whitelist specific modules to process
+        includeNodeModules: ['bootstrap'],
+    })
     // enables @babel/preset-env polyfills
     .configureBabelPresetEnv((config) => {
         config.useBuiltIns = 'usage';
