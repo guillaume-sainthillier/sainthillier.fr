@@ -6,6 +6,7 @@ import 'jqcloud2';
 import 'jquery.easing';
 import 'lazysizes';
 import './contact_me';
+import './_icons';
 
 import '../scss/app.scss';
 
