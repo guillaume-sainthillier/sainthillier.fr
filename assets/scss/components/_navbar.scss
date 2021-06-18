@@ -14,14 +14,8 @@
     }
 
     .navbar-brand {
-        color: $primary;
-        @include script-font;
-        &.active,
-        &:active,
-        &:focus,
-        &:hover {
-            color: darken($primary, 10%);
-        }
+        max-width: 150px;
+        transition: max-width 0.3s, padding 0.3s;
     }
     .navbar-nav {
         .nav-item {
@@ -52,8 +46,7 @@
         border: none;
         background-color: transparent;
         .navbar-brand {
-            font-size: 1.75em;
-            transition: all 0.3s;
+            max-width: 250px;
         }
         .navbar-nav {
             .nav-item {
@@ -68,7 +61,7 @@
             background-color: $gray-900;
             box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.15);
             .navbar-brand {
-                font-size: 1.25em;
+                max-width: 175px;
                 padding: 12px 0;
             }
         }

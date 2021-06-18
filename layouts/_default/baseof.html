@@ -30,10 +30,6 @@
     <link rel="preload" href="{{ relURL . }}" as="script">
     {{ end }}
 
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&text=Guillaume+Sainthillier&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Slab:wght@100;300;400;700&family=Droid+Serif:ital,wght@1,400;1,700&display=swap" rel="stylesheet">
-
     {{ range .Site.Data.entrypoints.entrypoints.app.css }}
     <link href="{{ relURL . }}" rel="stylesheet">
     {{ end }}
@@ -43,7 +39,12 @@
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
     <div class="container">
         {{ block "menu" . }}
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">Guillaume Sainthillier</a>
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">
+            {{ $manifest := .Site.Data.manifest }}
+            {{ with resources.Get (index $manifest "build/svg/logo-web.svg") -}}
+            <img alt="Guillaume Sainthillier" src="{{ . }}" class="img-fluid" width="252" height="42" />
+            {{ end }}
+        </a>
         <button class="navbar-toggler navbar-toggler-end" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             Menu
             <i class="fa fa-bars"></i>

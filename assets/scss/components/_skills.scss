@@ -1,16 +1,9 @@
-$jqcloud-link-hover-color: $primary;
-@import '~jqcloud2/src/jqcloud';
-
-.skills {
+#skills {
     height: 300px;
 
     @for $i from 1 through 10 {
-        .jqcloud-word.w#{11 - $i} {
+        .weight-#{11 - $i} {
             color: desaturate($primary, ($i - 1) * 6);
         }
-    }
-
-    ul {
-        display: none;
     }
 }

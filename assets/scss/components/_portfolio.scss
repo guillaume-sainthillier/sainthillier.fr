@@ -53,7 +53,6 @@
                 font-size: 16px;
                 font-style: italic;
                 margin: 0;
-                @include serif-font;
 
                 strong {
                     font-weight: normal;
@@ -90,7 +89,6 @@
             font-size: 16px;
             font-style: italic;
             margin: 20px 0 30px;
-            @include serif-font;
         }
         ul.list-inline {
             margin-top: 0;
