@@ -24,6 +24,10 @@ Encore
             to: Encore.isProduction() ? 'images/[path][name].[hash:8].[ext]' : 'images/[path][name].[ext]',
         },
         {
+            from: './assets/svg',
+            to: Encore.isProduction() ? 'svg/[path][name].[hash:8].[ext]' : 'svg/[path][name].[ext]',
+        },
+        {
             from: './assets/pdf',
             to: 'pdf/[path][name].[ext]',
         },
@@ -72,11 +76,7 @@ Encore
     })
 
     // enables Sass/SCSS support
-    .enableSassLoader()
-    .addAliases({
-        jquery: path.resolve(__dirname, 'node_modules/jquery/src/jquery'),
-        $: path.resolve(__dirname, 'node_modules/jquery/src/jquery'),
-    });
+    .enableSassLoader();
 
 if (Encore.isProduction()) {
     Encore.addPlugin(
@@ -88,12 +88,11 @@ if (Encore.isProduction()) {
                     path.join(__dirname, 'assets/js/*.js'),
                     path.join(__dirname, 'node_modules/bootstrap/js/src/**/*.js'),
                     path.join(__dirname, 'node_modules/lazysizes/lazysizes.js'),
-                    path.join(__dirname, 'node_modules/jqcloud2/dist/*.js'),
                 ],
                 { nodir: true }
             ),
             safelist: {
-                standard: [/^w(\d+)$/],
+                standard: [/^weight-(\d+)$/, 'lty-playbtn', 'lyt-visually-hidden'],
             },
         })
     );

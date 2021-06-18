@@ -22,8 +22,8 @@
             <h2 class="section-heading text-uppercase">Développeur Freelance à Toulouse</h2>
             <h3 class="section-subheading text-muted">Bonjour, je suis Guillaume Sainthillier, développeur Web indépendant basé à Toulouse.</h3>
         </div>
-        <div class="embed-container mb-5">
-            <iframe class="lazyload" data-src="https://www.youtube.com/embed/JjeguKaXutw" frameborder="0" allowfullscreen data-expand="250"></iframe>
+        <div class="mb-5">
+            <lite-youtube class="mx-auto" videoid="JjeguKaXutw" playlabel="Développeur Web Freelance Toulouse"></lite-youtube>
         </div>
         <div class="row mb-5">
             <div class="col-md-4 col-lg-3 d-flex align-items-center">
@@ -152,7 +152,7 @@
                 expertise se concentre principalement autour du language PHP et du framework Symfony.</h3>
         </div>
 
-        <div class="skills" data-skills="{{ .Params.skills | jsonify }}">
+        <div id="skills" data-skills="{{ .Params.skills | jsonify }}">
             <ul>
                 {{ range $skill := .Params.skills }}
                 <li><strong>{{ $skill.name }} à Toulouse</strong></li>
@@ -282,11 +282,11 @@
                     <div class="timeline-image">
                         {{ $image := resources.Get (index $manifest .logo) -}}
                         <img class="rounded-circle img-fluid blur-up lazyload"
-                             width="200"
-                             height="200"
-                             src="{{ partial "image" (dict "Image" $image "Width" 200 "Height" 200 "Params" $.Site.Params) }}"
-                             srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                             data-srcset="{{ partial "image" (dict "Image" $image "Width" 400 "Height" 400 "Params" $.Site.Params) }} 2x"
+                             width="170"
+                             height="170"
+                             data-sizes="auto"
+                             data-src="{{ partial "image" (dict "Image" $image "Width" 170 "Height" 170 "Params" $.Site.Params) }}"
+                             data-srcset="{{ partial "image" (dict "Image" $image "Width" 340 "Height" 340 "Params" $.Site.Params) }} 340w"
                              title="Logo {{ .client }}"
                              alt="Logo {{ .client }}">
                     </div>
@@ -365,34 +365,55 @@
                 </ul>
             </div>
             <div class="col-xl-9">
-                <form id="contactForm" action="https://formspree.io/xlepbonn" novalidate="novalidate">
+                <form id="contactForm" class="needs-validation" action="https://formspree.io/xlepbonn" novalidate="novalidate">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input class="form-control" id="name" autocomplete="name" type="text" placeholder="Votre nom *"
-                                       required="required"
-                                       data-validation-required-message="Merci de renseigner votre nom.">
-                                <p class="help-block text-danger"></p>
+                                <input class="form-control"
+                                       id="name"
+                                       autocomplete="name"
+                                       type="text"
+                                       placeholder="Votre nom *"
+                                       required>
+                                <div class="invalid-feedback">
+                                    Merci de renseigner votre nom.
+                                </div>
                             </div>
                             <div class="form-group">
-                                <input class="form-control" id="email" autocomplete="email" type="email" placeholder="Votre email *"
-                                       required="required"
-                                       data-validation-required-message="Merci de renseigner votre email.">
+                                <input class="form-control"
+                                       id="email"
+                                       autocomplete="email"
+                                       type="email"
+                                       placeholder="Votre email *"
+                                       required>
                                 <p class="help-block text-danger"></p>
+                                <div class="invalid-feedback">
+                                    Merci de renseigner votre email.
+                                </div>
                             </div>
                             <div class="form-group">
-                                <input class="form-control" id="phone" autocomplete="tel" type="tel" placeholder="Votre téléphone *"
-                                       required="required"
-                                       data-validation-required-message="Merci de renseigner votre numéro de téléphone.">
-                                <p class="help-block text-danger"></p>
+                                <input class="form-control"
+                                       id="phone"
+                                       autocomplete="tel"
+                                       type="tel"
+                                       placeholder="Votre téléphone *"
+                                       required>
+                                <div class="invalid-feedback">
+                                    Merci de renseigner votre numéro de téléphone.
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <textarea class="form-control" id="message" placeholder="Votre message *"
-                                          required="required"
+                                <textarea class="form-control"
+                                          id="message"
+                                          placeholder="Votre message *"
+                                          required
                                           data-validation-required-message="Merci de renseigner votre message."></textarea>
-                                <p class="help-block text-danger"></p>
+
+                                <div class="invalid-feedback">
+                                    Merci de renseigner votre message.
+                                </div>
                             </div>
                         </div>
                         <div class="clearfix"></div>
