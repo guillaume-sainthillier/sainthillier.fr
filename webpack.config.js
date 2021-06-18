@@ -76,11 +76,7 @@ Encore
     })
 
     // enables Sass/SCSS support
-    .enableSassLoader()
-    .addAliases({
-        jquery: path.resolve(__dirname, 'node_modules/jquery/src/jquery'),
-        $: path.resolve(__dirname, 'node_modules/jquery/src/jquery'),
-    });
+    .enableSassLoader();
 
 if (Encore.isProduction()) {
     Encore.addPlugin(
