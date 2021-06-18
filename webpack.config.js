@@ -92,7 +92,7 @@ if (Encore.isProduction()) {
                 { nodir: true }
             ),
             safelist: {
-                standard: [/^weight-(\d+)$/, /^lty-playbtn$/],
+                standard: [/^weight-(\d+)$/, 'lty-playbtn', 'lyt-visually-hidden'],
             },
         })
     );
