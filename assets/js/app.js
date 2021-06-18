@@ -106,26 +106,33 @@ window.addEventListener('DOMContentLoaded', () => {
             fetch(contactForm.getAttribute('action'), {
                 method: 'POST',
                 body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                },
             }).then(
                 () => {
-                    sendMessageButton.removeAttribute('disabled');
                     success.innerHTML = `
-                <div class="alert alert-success alert-dismissible fade show">
-                    <strong>Votre message a bien été envoyé.</strong>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fermer"></button>
-                </div>
-            `;
+                        <div class="alert alert-success alert-dismissible fade show">
+                            <strong>Votre message a bien été envoyé.</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fermer"></button>
+                        </div>
+                    `;
 
+                    sendMessageButton.removeAttribute('disabled');
+                    contactForm.classList.remove('was-validated');
                     contactForm.reset();
                 },
                 () => {
-                    sendMessageButton.removeAttribute('disabled');
                     success.innerHTML = `
                         <div class="alert alert-danger alert-dismissible fade show">
                             <strong>Désolé ${firstName}, on dirait que le message n'a pas pu être envoyé. Merci d'essayer un peu plus tard ou de me contacter directement par téléphone !</strong>
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fermer"></button>
                         </div>
                     `;
+
+                    sendMessageButton.removeAttribute('disabled');
+                    contactForm.classList.remove('was-validated');
                 }
             );
         },
