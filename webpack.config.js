@@ -64,7 +64,7 @@ Encore
     // enables hashed filenames (e.g. app.abc123.css)
     .enableVersioning(Encore.isProduction())
 
-    .configureBabel((config) => {}, {
+    .configureBabel(() => {}, {
         // node_modules is not processed through Babel by default
         // but you can whitelist specific modules to process
         includeNodeModules: ['bootstrap'],
@@ -88,11 +88,12 @@ if (Encore.isProduction()) {
                     path.join(__dirname, 'assets/js/*.js'),
                     path.join(__dirname, 'node_modules/bootstrap/js/src/**/*.js'),
                     path.join(__dirname, 'node_modules/lazysizes/lazysizes.js'),
+                    path.join(__dirname, 'node_modules/lite-youtube-embed/src/lite-yt-embed.js'),
                 ],
                 { nodir: true }
             ),
             safelist: {
-                standard: [/^weight-(\d+)$/, 'lty-playbtn', 'lyt-visually-hidden'],
+                standard: [/^weight-(\d+)$/],
             },
         })
     );
