@@ -59,7 +59,7 @@ experiences:
     - periode: Sept 2015 - Jan 2018
       logo: build/images/logos/Latecoere.jpg
       client: Groupe Latécoère
-      entreprise: <a itemprop="url" href="https://apside.com" target="_blank">Apside</a>
+      entreprise: <a itemprop="url" rel="noopener" href="https://apside.com" target="_blank">Apside</a>
       titre: Développeur Full Stack
       description: Tierce Maintenance Applicative sur les applications métiers de l'entreprise
           (Manufacturing, RH, Finances).
@@ -67,11 +67,11 @@ experiences:
           - Travail sur les domaines MES (production), RH et Finances
           - Compréhension des besoins utilisateurs
           - Analyse, chiffrage, développement et maintenances d'applications Intranet (60+)
-          - Utilisation du Framework JS <a href="https://angular.io">AngularJS</a> et des
+          - Utilisation du Framework JS <a rel="noopener" href="https://angular.io">AngularJS</a> et des
             composants Symfony 3
     - periode: Jan 2018 - Dec 2018
       logo: build/images/logos/Agoranet.jpg
-      entreprise: <a itemprop="url" href="https://apside.com" target="_blank">Apside</a>
+      entreprise: <a itemprop="url" rel="noopener" href="https://apside.com" target="_blank">Apside</a>
       client: Agoranet
       titre: Développeur Full Stack freelance
       description: Réalisation de projets d'applications Web et sites vitrines, principalement
@@ -128,7 +128,7 @@ realisations:
       sous_titre: Développeur Web Freelance
       date: Avril 2020 - En Cours
       description: |-
-          <p><a href="https://dosloc.fr" target="_blank" title="Logiciel de candidature locative">DosLoc</a> est une application Web permettant à des locataires de gérer leur dossier de candidature.</p>
+          <p><a rel="noopener" href="https://dosloc.fr" target="_blank" title="Logiciel de candidature locative">DosLoc</a> est une application Web permettant à des locataires de gérer leur dossier de candidature.</p>
           <p class="mb-2">Le site permet au locataire de :</p>
           <ul class="fa-ul">
               <li><i class="fa-li fa fa-angle-right"></i>Créer son dossier de candidature</li>
@@ -153,7 +153,7 @@ realisations:
       sous_titre: Développeur Web Freelance
       date: Mars 2019 - En Cours
       description: |-
-          <p><a href="https://immobilus.fr" target="_blank" title="Logiciel de gestion immobilère">Immobilus</a> est une application Web permettant à des propriétaires de biens de digitaliser leur gestion immobilière.</p>
+          <p><a rel="noopener" href="https://immobilus.fr" target="_blank" title="Logiciel de gestion immobilère">Immobilus</a> est une application Web permettant à des propriétaires de biens de digitaliser leur gestion immobilière.</p>
           <p class="mb-2">Le site permet au propriétaire de :</p>
           <ul class="fa-ul">
               <li><i class="fa-li fa fa-angle-right"></i>Saisir les informations sur son bien</li>
@@ -174,7 +174,7 @@ realisations:
       sous_titre: Projet personnel
       date: Octobre 2013 - En Cours
       description: |-
-          <p><a href="https://by-night.fr" target="_blank" >By Night</a> est une plateforme d'aggrégation d'événements qui a pour vocation de simplifier la recherche des événements culturels dans les plus grandes villes de France telles que Paris, Toulouse, Lyon, Bordeaux ou Montpellier.</p>
+          <p><a rel="noopener" href="https://by-night.fr" target="_blank" >By Night</a> est une plateforme d'aggrégation d'événements qui a pour vocation de simplifier la recherche des événements culturels dans les plus grandes villes de France telles que Paris, Toulouse, Lyon, Bordeaux ou Montpellier.</p>
           <p class="mb-2">Un accès libre permet également à des organisateurs d'événements de :</p>
           <ul class="fa-ul">
               <li><i class="fa-li fa fa-angle-right"></i>Créer de nouveaux événements</li>
