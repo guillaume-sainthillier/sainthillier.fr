@@ -1,6 +1,7 @@
 // Global styling for this template
 body {
     overflow-x: hidden;
+    position: relative;
     @include body-font;
 }
 
