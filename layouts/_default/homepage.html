@@ -2,7 +2,7 @@
 {{ $manifest := .Site.Data.manifest }}
 <!-- Header -->
 {{ with resources.Get (index $manifest "build/images/header-bg.jpg") -}}
-<header class="masthead" style="background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7)), url('{{ partial "image" (dict "Image" . "Width" 1900 "Height" 1250 "Quality" 50 "Params" $.Site.Params) }}')">
+<header class="masthead" style="background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7)), url('{{ partial "image" (dict "Image" . "Width" 1900 "Height" 1250 "Quality" 10 "Params" $.Site.Params) }}')">
     <div class="masthead-content">
         <div class="container">
             <div class="intro-text">
