@@ -85,15 +85,13 @@ const makeConfig = (BROWSERSLIST_ENV) => {
         .configureBabelPresetEnv((config) => {
             if (BROWSER_TARGET === 'modern') {
                 config.targets = { esmodules: true };
+            } else {
+                config.targets = ['>= 0.5%', 'IE 11'];
             }
 
             config.browserslistEnv = BROWSER_TARGET;
             config.useBuiltIns = 'usage';
             config.corejs = 3;
-        })
-        .configureBabel((babelConfig) => {
-            // add additional presets
-            babelConfig.plugins.push('transform-custom-element-classes');
         })
 
         // enables Sass/SCSS support
