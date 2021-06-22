@@ -55,10 +55,6 @@
     {{ end }}
     {{- end -}}
 
-    {{ range .Site.Data.entrypoints.entrypoints.modern.js }}
-    <link rel="modulepreload" href="{{ relURL . }}">
-    {{ end }}
-
     {{ range .Site.Data.entrypoints.entrypoints.modern.css }}
     <link href="{{ relURL . }}" rel="stylesheet">
     {{ end }}
