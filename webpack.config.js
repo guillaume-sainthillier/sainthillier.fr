@@ -4,16 +4,16 @@ const PurgecssPlugin = require('purgecss-webpack-plugin');
 const glob = require('glob-all');
 const path = require('path');
 
+// Manually configure the runtime environment if not already configured yet by the "encore" command.
+// It's useful when you use tools that rely on webpack.config.js file.
+if (!Encore.isRuntimeEnvironmentConfigured()) {
+    Encore.configureRuntimeEnvironment(process.env.NODE_ENV || 'dev');
+}
+
 const makeConfig = (BROWSERSLIST_ENV) => {
     const DEFAULT_BROWSER_TARGET = 'modern';
     const BROWSER_TARGET = BROWSERSLIST_ENV || DEFAULT_BROWSER_TARGET;
     const COPY_SUFFIX = BROWSER_TARGET === DEFAULT_BROWSER_TARGET ? '' : `_${BROWSER_TARGET}`;
-
-    // Manually configure the runtime environment if not already configured yet by the "encore" command.
-    // It's useful when you use tools that rely on webpack.config.js file.
-    if (!Encore.isRuntimeEnvironmentConfigured()) {
-        Encore.configureRuntimeEnvironment(process.env.NODE_ENV || 'dev');
-    }
 
     Encore.reset();
     Encore
@@ -91,6 +91,10 @@ const makeConfig = (BROWSERSLIST_ENV) => {
             config.useBuiltIns = 'usage';
             config.corejs = 3;
         })
+        .configureBabel((babelConfig) => {
+            // add additional presets
+            babelConfig.plugins.push('transform-custom-element-classes');
+        })
 
         // enables Sass/SCSS support
         .enableSassLoader();
@@ -141,10 +145,10 @@ const makeConfig = (BROWSERSLIST_ENV) => {
 
     if (BROWSER_TARGET === 'modern') {
         config.output.module = true;
-        config.output.libraryTarget = 'module';
         config.experiments = config.experiments || {};
         config.experiments.outputModule = true;
     }
+
     return config;
 };
 
@@ -155,5 +159,4 @@ const makeConfig = (BROWSERSLIST_ENV) => {
 // requires WebpackEncoreBundle 1.4 or higher
 //.enableIntegrityHashes(Encore.isProduction())
 
-module.exports =
-    process.env.NODE_ENV === 'production' ? [makeConfig('modern'), makeConfig('legacy')] : [makeConfig('modern')];
+module.exports = Encore.isProduction() ? [makeConfig('modern'), makeConfig('legacy')] : [makeConfig('modern')];
