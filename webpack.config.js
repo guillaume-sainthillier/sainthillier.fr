@@ -79,14 +79,13 @@ const makeConfig = (BROWSERSLIST_ENV) => {
         .configureBabel(() => {}, {
             // node_modules is not processed through Babel by default
             // but you can whitelist specific modules to process
-            includeNodeModules: ['bootstrap', 'lazysizes', 'lite-youtube-embed'],
+            includeNodeModules: ['bootstrap', 'lazysizes', 'lite-youtube-embed', '@fortawesome'],
         })
         // enables @babel/preset-env polyfills
         .configureBabelPresetEnv((config) => {
             if (BROWSER_TARGET === 'modern') {
+                config.modules = 'auto';
                 config.targets = { esmodules: true };
-            } else {
-                config.targets = ['>= 0.5%', 'IE 11'];
             }
 
             config.browserslistEnv = BROWSER_TARGET;
@@ -145,6 +144,12 @@ const makeConfig = (BROWSERSLIST_ENV) => {
         config.output.module = true;
         config.experiments = config.experiments || {};
         config.experiments.outputModule = true;
+    } else {
+        config.output.environment = config.output.environment || {};
+        config.output.environment.arrowFunction = false;
+        config.output.environment.const = false;
+        config.output.environment.destructuring = false;
+        config.output.environment.forOf = false;
     }
 
     return config;
