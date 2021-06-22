@@ -2,6 +2,7 @@
 /resources/*
 /public
 /static/build
+/static/build_legacy
 /data/
 # Local Netlify folder
 .netlify

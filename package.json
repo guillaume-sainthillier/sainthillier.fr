@@ -1,10 +1,17 @@
 {
     "title": "Guillaume Sainthillier",
-    "browserslist": [
-        "last 2 versions",
-        "edge >= 17",
-        "IE >= 11"
-    ],
+    "browserslist": {
+        "modern": [
+            "Firefox >= 53",
+            "Edge >= 15",
+            "Chrome >= 58",
+            "iOS >= 10.1"
+        ],
+        "legacy": [
+            ">= 0.5%",
+            "IE >= 11"
+        ]
+    },
     "name": "sainthillier",
     "version": "1.2.0",
     "private": true,
@@ -18,8 +25,10 @@
     "scripts": {
         "dev": "encore dev",
         "watch": "encore dev --watch",
-        "build": "encore production",
-        "build:hugo": "yarn run build && yarn run hugo",
+        "build": "npm-run-all --parallel build:legacy build:modern",
+        "build:modern": "BROWSERSLIST_ENV=modern encore production",
+        "build:legacy": "BROWSERSLIST_ENV=legacy encore production",
+        "build:hugo": "npm-run-all build hugo",
         "build:hugo:preview": "yarn run build && yarn run hugo -D -F",
         "hugo": "hugo --gc --minify",
         "prepare": "husky install"
@@ -47,6 +56,7 @@
         "imagemin-jpegtran": "^7.0.0",
         "imagemin-optipng": "^8.0.0",
         "lint-staged": ">=11.0.0",
+        "npm-run-all": "^4.1.5",
         "prettier": "^2.3.1",
         "purgecss-webpack-plugin": "^4.0.3",
         "regenerator-runtime": "^0.13.2",

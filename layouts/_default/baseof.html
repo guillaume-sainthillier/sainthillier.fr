@@ -55,16 +55,20 @@
     {{ end }}
     {{- end -}}
 
-    {{ range .Site.Data.entrypoints.entrypoints.app.js }}
-    <link rel="preload" href="{{ relURL . }}" as="script">
+    {{ range .Site.Data.entrypoints.entrypoints.modern.js }}
+    <link rel="modulepreload" href="{{ relURL . }}">
     {{ end }}
 
-    {{ range .Site.Data.entrypoints.entrypoints.app.css }}
+    {{ range .Site.Data.entrypoints.entrypoints.modern.css }}
     <link href="{{ relURL . }}" rel="stylesheet">
     {{ end }}
     
-    {{ range .Site.Data.entrypoints.entrypoints.app.js }}
-    <script defer src="{{ relURL . }}"></script>
+    {{ range .Site.Data.entrypoints.entrypoints.modern.js }}
+    <script type="module" src="{{ relURL . }}"></script>
+    {{ end }}
+
+    {{ range .Site.Data.entrypoints_legacy.entrypoints.legacy.js }}
+    <script nomodule defer src="{{ relURL . }}"></script>
     {{ end }}
 </head>
 <body id="page-top" class="{{ block "layout-class" . }}layout-default{{ end }}">

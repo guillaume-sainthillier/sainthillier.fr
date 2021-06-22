@@ -4,6 +4,10 @@ const PurgecssPlugin = require('purgecss-webpack-plugin');
 const glob = require('glob-all');
 const path = require('path');
 
+const DEFAULT_BROWSER_TARGET = 'modern';
+const BROWSER_TARGET = process.env.BROWSERSLIST_ENV || DEFAULT_BROWSER_TARGET;
+const COPY_SUFFIX = BROWSER_TARGET === DEFAULT_BROWSER_TARGET ? '' : `_${BROWSER_TARGET}`;
+
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 // It's useful when you use tools that rely on webpack.config.js file.
 if (!Encore.isRuntimeEnvironmentConfigured()) {
@@ -12,26 +16,30 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
 
 Encore
     // directory where compiled assets will be stored
-    .setOutputPath('static/build')
+    .setOutputPath(`static/build${COPY_SUFFIX}/`)
     // public path used by the web server to access the output path
-    .setPublicPath('/build')
+    .setPublicPath(`/build${COPY_SUFFIX}/`)
     // only needed for CDN's or sub-directory deploy
-    .setManifestKeyPrefix('build/')
+    .setManifestKeyPrefix(`build${COPY_SUFFIX}/`)
 
-    .copyFiles([
-        {
-            from: './assets/images',
-            to: Encore.isProduction() ? 'images/[path][name].[hash:8].[ext]' : 'images/[path][name].[ext]',
-        },
-        {
-            from: './assets/svg',
-            to: Encore.isProduction() ? 'svg/[path][name].[hash:8].[ext]' : 'svg/[path][name].[ext]',
-        },
-        {
-            from: './assets/pdf',
-            to: 'pdf/[path][name].[ext]',
-        },
-    ])
+    .copyFiles(
+        BROWSER_TARGET === DEFAULT_BROWSER_TARGET
+            ? [
+                  {
+                      from: './assets/images',
+                      to: Encore.isProduction() ? 'images/[path][name].[hash:8].[ext]' : 'images/[path][name].[ext]',
+                  },
+                  {
+                      from: './assets/svg',
+                      to: Encore.isProduction() ? 'svg/[path][name].[hash:8].[ext]' : 'svg/[path][name].[ext]',
+                  },
+                  {
+                      from: './assets/pdf',
+                      to: 'pdf/[path][name].[ext]',
+                  },
+              ]
+            : []
+    )
 
     /*
      * ENTRY CONFIG
@@ -42,7 +50,7 @@ Encore
      * Each entry will result in one JavaScript file (e.g. app.js)
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
-    .addEntry('app', './assets/js/app.js')
+    .addEntry(BROWSER_TARGET, './assets/js/app.js')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
@@ -67,7 +75,7 @@ Encore
     .configureBabel(() => {}, {
         // node_modules is not processed through Babel by default
         // but you can whitelist specific modules to process
-        includeNodeModules: ['bootstrap'],
+        includeNodeModules: ['bootstrap', 'lazysizes', 'lite-youtube-embed'],
     })
     // enables @babel/preset-env polyfills
     .configureBabelPresetEnv((config) => {
@@ -103,7 +111,16 @@ Encore.addPlugin(
     new FileManagerPlugin({
         events: {
             onEnd: {
-                copy: [{ source: './static/build/{entrypoints,manifest}.json', destination: './data' }],
+                copy: [
+                    {
+                        source: `./static/build${COPY_SUFFIX}/entrypoints.json`,
+                        destination: `./data/entrypoints${COPY_SUFFIX}.json`,
+                    },
+                    {
+                        source: `./static/build${COPY_SUFFIX}/manifest.json`,
+                        destination: `./data/manifest${COPY_SUFFIX}.json`,
+                    },
+                ],
             },
         },
     }),
