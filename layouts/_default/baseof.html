@@ -55,15 +55,15 @@
     {{ end }}
     {{- end -}}
 
-    {{ range .Site.Data.entrypoints.entrypoints.modern.css }}
+    {{ range .Site.Data.entrypoints.entrypoints.app.css }}
     <link href="{{ relURL . }}" rel="stylesheet">
     {{ end }}
     
-    {{ range .Site.Data.entrypoints.entrypoints.modern.js }}
+    {{ range .Site.Data.entrypoints.entrypoints.app.js }}
     <script type="module" src="{{ relURL . }}"></script>
     {{ end }}
 
-    {{ range .Site.Data.entrypoints_legacy.entrypoints.legacy.js }}
+    {{ range .Site.Data.entrypoints_legacy.entrypoints.app.js }}
     <script nomodule defer src="{{ relURL . }}"></script>
     {{ end }}
 </head>
