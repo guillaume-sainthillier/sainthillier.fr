@@ -25,9 +25,7 @@
     "scripts": {
         "dev": "encore dev",
         "watch": "encore dev --watch",
-        "build": "npm-run-all --parallel build:legacy build:modern",
-        "build:modern": "BROWSERSLIST_ENV=modern encore production",
-        "build:legacy": "BROWSERSLIST_ENV=legacy encore production",
+        "build": "encore production",
         "build:hugo": "npm-run-all build hugo",
         "build:hugo:preview": "yarn run build && yarn run hugo -D -F",
         "hugo": "hugo --gc --minify",
