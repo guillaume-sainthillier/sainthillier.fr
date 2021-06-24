@@ -88,6 +88,7 @@ const makeConfig = (BROWSERSLIST_ENV) => {
         .configureBabelPresetEnv((config) => {
             if (BROWSER_TARGET === 'modern') {
                 config.modules = 'auto';
+                config.bugfixes = true;
                 config.targets = { esmodules: true };
             }
 
