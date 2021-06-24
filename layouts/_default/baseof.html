@@ -135,19 +135,19 @@
             <ul class="ms-sm-auto list-unstyled d-flex flex-row flex-sm-column flex-md-row social-buttons">
                 {{ with .Site.Params.Social }}
                 <li class="d-inline d-sm-block d-md-inline-block list-inline-item mb-2">
-                    <a rel="noopener" href="{{ .linkedin }}">
+                    <a rel="noopener" href="{{ .linkedin }}" title="Profil Linkedin">
                         <i class="fa fab fa-linkedin-in"></i>
                     </a>
                 </li>
                 <li class="d-inline d-sm-block d-md-inline-block list-inline-item mb-2">
-                    <a rel="noopener" href="{{ .github }}">
+                    <a rel="noopener" href="{{ .github }}" title="Profil Github">
                         <i class="fa fab fa-github"></i>
                     </a>
                 </li>
                 {{ end }}
                 <li class="d-inline d-sm-block d-md-inline-block list-inline-item">
-                    <a href="{{ "/build/pdf/CV-SAINTHILLIER-Guillaume.pdf" | relURL }}">
-                    <i class="fa fa-file-pdf"></i>
+                    <a href="{{ "/build/pdf/CV-SAINTHILLIER-Guillaume.pdf" | relURL }}" title="CV au format PDF">
+                        <i class="fa fa-file-pdf"></i>
                     </a>
                 </li>
             </ul>
