@@ -55,6 +55,10 @@
     {{ end }}
     {{- end -}}
 
+    {{ range .Site.Data.entrypoints.entrypoints.app.js }}
+    <link rel="modulepreload" href="{{ relURL . }}">
+    {{ end }}
+
     {{ range .Site.Data.entrypoints.entrypoints.app.css }}
     <link href="{{ relURL . }}" rel="stylesheet">
     {{ end }}
