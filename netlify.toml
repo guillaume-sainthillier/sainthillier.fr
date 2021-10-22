@@ -3,8 +3,8 @@ publish = "public"
 command = "yarn run build:hugo"
 
 [build.environment]
-NODE_VERSION = "14.16.1"
-HUGO_VERSION = "0.83.0"
+NODE_VERSION = "16.12.0"
+HUGO_VERSION = "0.87.0"
 
 [context.production.environment]
 HUGO_ENV = "production"
