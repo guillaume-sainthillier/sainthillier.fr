@@ -3,15 +3,15 @@
 <!-- Header -->
 {{ with resources.Get (index $manifest "build/images/header-bg.jpg") -}}
 <header class="masthead" style="background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7)), url('{{ partial "image" (dict "Image" . "Width" 1900 "Height" 1250 "Quality" 10 "Params" $.Site.Params) }}')">
-    <div class="masthead-content">
-        <div class="container">
-            <div class="intro-text">
-                <h1 class="intro-lead-in">Développeur Web Freelance à Toulouse</h1>
-                <div class="intro-heading text-uppercase">Donnez vie à vos projets Web</div>
-                <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#hello">En savoir plus</a>
-            </div>
+<div class="masthead-content">
+    <div class="container">
+        <div class="intro-text">
+            <h1 class="intro-lead-in">Développeur Web Freelance à Toulouse</h1>
+            <div class="intro-heading text-uppercase">Donnez vie à vos projets Web</div>
+            <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#hello">En savoir plus</a>
         </div>
     </div>
+</div>
 </header>
 {{ end }}
 
@@ -33,9 +33,9 @@
                      class="img-fluid blur-up lazyload rounded-circle d-block mx-auto"
                      data-sizes="auto"
                      data-src="{{ partial "image" (dict "Image" . "Width" 300 "Height" 300 "Params" $.Site.Params) }}"
-                     data-srcset="{{ partial "image" (dict "Image" . "Width" 600 "Height" 600 "Params" $.Site.Params) }} 2x"
-                     width="300"
-                     height="300"
+                    data-srcset="{{ partial "image" (dict "Image" . "Width" 600 "Height" 600 "Params" $.Site.Params) }} 2x"
+                    width="300"
+                    height="300"
                 />
                 {{ end }}
             </div>
@@ -59,9 +59,9 @@
                      class="img-fluid blur-up lazyload rounded-circle d-block mx-auto"
                      data-sizes="auto"
                      data-src="{{ partial "image" (dict "Image" . "Width" 300 "Height" 300 "Params" $.Site.Params) }}"
-                     data-srcset="{{ partial "image" (dict "Image" . "Width" 600 "Height" 600 "Params" $.Site.Params) }} 2x"
-                     width="300"
-                     height="300"
+                    data-srcset="{{ partial "image" (dict "Image" . "Width" 600 "Height" 600 "Params" $.Site.Params) }} 2x"
+                    width="300"
+                    height="300"
                 />
                 {{ end }}
             </div>
@@ -243,9 +243,9 @@
                              height="300"
                              data-sizes="auto"
                              data-src="{{ partial "image" (dict "Image" $image "Width" 400 "Height" 300 "Params" $.Site.Params) }}"
-                             data-srcset="{{ partial "image" (dict "Image" $image "Width" 800 "Height" 600 "Params" $.Site.Params) }}"
-                             title="{{ .nom }} réalisé par un développeur web freelance à Toulouse"
-                             alt="{{ .nom }}">
+                            data-srcset="{{ partial "image" (dict "Image" $image "Width" 800 "Height" 600 "Params" $.Site.Params) }}"
+                            title="{{ .nom }} réalisé par un développeur web freelance à Toulouse"
+                            alt="{{ .nom }}">
                     </a>
                     <div class="portfolio-caption">
                         <h4>{{ .nom }}</h4>
@@ -283,9 +283,9 @@
                                  height="525"
                                  data-sizes="auto"
                                  data-src="{{ partial "image" (dict "Image" $image "Width" 700 "Height" 525 "Params" $.Site.Params) }}"
-                                 data-srcset="{{ partial "image" (dict "Image" $image "Width" 1400 "Height" 1050 "Params" $.Site.Params) }} 2x"
-                                 alt="{{ .nom }}"
-                                 title="{{ .nom }} réalisé par un développeur web freelance à Toulouse">
+                                data-srcset="{{ partial "image" (dict "Image" $image "Width" 1400 "Height" 1050 "Params" $.Site.Params) }} 2x"
+                                alt="{{ .nom }}"
+                                title="{{ .nom }} réalisé par un développeur web freelance à Toulouse">
 
                             <div class="modal-description">
                                 {{ .description | safeHTML }}
@@ -379,7 +379,8 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <h2 class="section-heading text-uppercase">Parlez-moi de vous</h2>
-                <h3 class="section-subheading text-muted">Votre projet est trop complexe à décrire ? <a href="tel:+33607275826">appelez-moi directement.</a></h3>
+                <h3 class="section-subheading text-muted">Votre projet est trop complexe à décrire ?
+                    <a href="tel:+33607275826">appelez-moi directement.</a></h3>
             </div>
         </div>
         <div class="row">
