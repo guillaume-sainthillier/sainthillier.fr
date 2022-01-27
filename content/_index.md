@@ -80,7 +80,7 @@ experiences:
     - periode: Août 2018 - Aujourd'hui
       logo: build/images/logos/Silarhi.jpg
       entreprise:
-      client: Silarhi
+      client: SILARHI
       titre: Gérant - Développeur Full Stack freelance
       description: "Création de l'entreprise de développement d'applications Web. Ma
           mission : donner vie à vos projets Web."
