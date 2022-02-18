@@ -4,4 +4,5 @@ import 'events-polyfill';
 import 'custom-event-polyfill';
 import 'element-matches-polyfill';
 import 'dom-node-polyfills';
+
 require('classlist-polyfill');
