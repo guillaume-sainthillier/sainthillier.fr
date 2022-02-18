@@ -73,9 +73,10 @@
         "webpack-notifier": "^1.14.1"
     },
     "lint-staged": {
-        "*.{js,scss,md}": "prettier --write",
-        "*.{js}": [
-            "eslint --ignore-path .gitignore --fix"
+        "*.{scss,md}": "prettier --write",
+        "*.js": [
+            "eslint --ignore-path .gitignore --fix",
+            "prettier --write"
         ]
     }
 }
