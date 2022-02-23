@@ -14,6 +14,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { faLinkedinIn, faGithub } from '@fortawesome/free-brands-svg-icons';
 
+// Solid icons
 library.add(
     faFilePdf,
     faBars,
@@ -27,6 +28,8 @@ library.add(
     faPhone,
     faEnvelope
 );
+
+// Brand icons
 library.add(faLinkedinIn, faGithub);
 
 // Replace any existing <i> tags with <svg> and set up a MutationObserver to

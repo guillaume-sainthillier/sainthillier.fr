@@ -7,7 +7,6 @@ import 'lazysizes';
 import '@webcomponents/custom-elements';
 import 'lite-youtube-embed';
 import 'lite-youtube-embed/src/lite-yt-embed.css';
-import './_icons';
 
 import '../scss/app.scss';
 

@@ -10,7 +10,7 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
     Encore.configureRuntimeEnvironment(process.env.NODE_ENV || 'dev');
 }
 
-const makeConfig = (BROWSERSLIST_ENV) => {
+const makeConfig = async (BROWSERSLIST_ENV) => {
     const DEFAULT_BROWSER_TARGET = 'modern';
     const BROWSER_TARGET = BROWSERSLIST_ENV || DEFAULT_BROWSER_TARGET;
     const COPY_SUFFIX = BROWSER_TARGET === DEFAULT_BROWSER_TARGET ? '' : `_${BROWSER_TARGET}`;
@@ -44,45 +44,15 @@ const makeConfig = (BROWSERSLIST_ENV) => {
                   ]
                 : []
         )
-
-        /*
-         * ENTRY CONFIG
-         *
-         * Add 1 entry for each "page" of your app
-         * (including one that's included on every page - e.g. "app")
-         *
-         * Each entry will result in one JavaScript file (e.g. app.js)
-         * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
-         */
-        .addEntry(
-            'app',
-            BROWSER_TARGET === 'modern' ? './assets/js/app.js' : ['./assets/js/polyfills.js', './assets/js/app.js']
-        )
-
-        // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
-        .splitEntryChunks()
-
-        // will require an extra script tag for runtime.js
-        // but, you probably want this, unless you're building a single-page app
+        .addEntry('app', BROWSER_TARGET === 'modern' ? './assets/js/app.modern.js' : './assets/js/app.legacy.js')
+        // .splitEntryChunks()
         .disableSingleRuntimeChunk()
-
-        /*
-         * FEATURE CONFIG
-         *
-         * Enable & configure other features below. For a full
-         * list of features, see:
-         * https://symfony.com/doc/current/frontend.html#adding-more-features
-         */
         .cleanupOutputBeforeBuild()
         .enableBuildNotifications()
         .enableSourceMaps(!Encore.isProduction())
-        // enables hashed filenames (e.g. app.abc123.css)
         .enableVersioning(Encore.isProduction())
-
         .configureBabel(() => {}, {
-            // node_modules is not processed through Babel by default
-            // but you can whitelist specific modules to process
-            includeNodeModules: ['bootstrap', 'lazysizes', 'lite-youtube-embed', '@fortawesome'],
+            includeNodeModules: ['bootstrap', 'lazysizes'],
         })
         // enables @babel/preset-env polyfills
         .configureBabelPresetEnv((config) => {
@@ -141,7 +111,7 @@ const makeConfig = (BROWSERSLIST_ENV) => {
         -11
     );
 
-    let config = Encore.getWebpackConfig();
+    const config = Encore.getWebpackConfig();
     config.name = BROWSERSLIST_ENV;
 
     if (BROWSER_TARGET === 'modern') {
@@ -159,11 +129,4 @@ const makeConfig = (BROWSERSLIST_ENV) => {
     return config;
 };
 
-// uncomment if you use TypeScript
-//.enableTypeScriptLoader()
-
-// uncomment to get integrity="..." attributes on your script & link tags
-// requires WebpackEncoreBundle 1.4 or higher
-//.enableIntegrityHashes(Encore.isProduction())
-
-module.exports = Encore.isProduction() ? [makeConfig('modern'), makeConfig('legacy')] : [makeConfig('modern')];
+module.exports = Encore.isProduction() ? [makeConfig('modern'), makeConfig('legacy')] : makeConfig('modern');
