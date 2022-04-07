@@ -3,150 +3,18 @@
  *
  * Features requested: Element.prototype.append,Element.prototype.matches,CustomEvent,fetch,defaults,es5,es6,es7
  *
- * - document, License: CC0 (required by "CustomEvent", "Event")
- * - Element, License: CC0 (required by "CustomEvent", "Event")
  * - _mutation, License: CC0 (required by "Element.prototype.append")
- * - document.querySelector, License: CC0 (required by "Element.prototype.matches")
  * - Element.prototype.append, License: CC0
  * - Element.prototype.matches, License: CC0
- * - Event, License: CC0 (required by "fetch", "XMLHttpRequest")
+ * - Event, License: CC0 (required by "CustomEvent")
  * - CustomEvent, License: CC0
  * - URL, License: CC0-1.0 (required by "fetch")
- * - XMLHttpRequest, License: CC0 (required by "fetch")
  * - fetch, License: MIT
  *
  * These features were not recognised:
  * - defaults */
 
 (function (self, undefined) {
-    if (!('document' in self && 'Document' in self)) {
-        // document
-        if (typeof WorkerGlobalScope === 'undefined' && typeof importScripts !== 'function') {
-            if (self.HTMLDocument) {
-                // IE8
-
-                // HTMLDocument is an extension of Document.  If the browser has HTMLDocument but not Document, the former will suffice as an alias for the latter.
-                self.Document = self.HTMLDocument;
-            } else {
-                // Create an empty function to act as the missing constructor for the document object, attach the document object as its prototype.  The function needs to be anonymous else it is hoisted and causes the feature detect to prematurely pass, preventing the assignments below being made.
-                self.Document =
-                    self.HTMLDocument =
-                    document.constructor =
-                        new Function('return function Document() {}')();
-                self.Document.prototype = document;
-            }
-        }
-    }
-
-    if (!('Element' in self && 'HTMLElement' in self)) {
-        // Element
-        (function () {
-            if ('Element' in self && 'HTMLElement' in self) {
-                return;
-            }
-            // IE8
-            if (window.Element && !window.HTMLElement) {
-                window.HTMLElement = window.Element;
-                return;
-            }
-
-            // create Element constructor
-            window.Element = window.HTMLElement = new Function('return function Element() {}')();
-
-            // generate sandboxed iframe
-            var vbody = document.appendChild(document.createElement('body'));
-            var frame = vbody.appendChild(document.createElement('iframe'));
-
-            // use sandboxed iframe to replicate Element functionality
-            var frameDocument = frame.contentWindow.document;
-            var prototype = (Element.prototype = frameDocument.appendChild(frameDocument.createElement('*')));
-            var cache = {};
-
-            // polyfill Element.prototype on an element
-            var shiv = function (element, deep) {
-                var childNodes = element.childNodes || [],
-                    index = -1,
-                    key,
-                    value,
-                    childNode;
-
-                if (element.nodeType === 1 && element.constructor !== Element) {
-                    element.constructor = Element;
-
-                    for (key in cache) {
-                        value = cache[key];
-                        element[key] = value;
-                    }
-                }
-
-                // eslint-disable-next-line no-cond-assign
-                while ((childNode = deep && childNodes[++index])) {
-                    shiv(childNode, deep);
-                }
-
-                return element;
-            };
-
-            var elements = document.getElementsByTagName('*');
-            var nativeCreateElement = document.createElement;
-            var interval;
-            var loopLimit = 100;
-
-            prototype.attachEvent('onpropertychange', function (event) {
-                var propertyName = event.propertyName,
-                    nonValue = !Object.prototype.hasOwnProperty.call(cache, propertyName),
-                    newValue = prototype[propertyName],
-                    oldValue = cache[propertyName],
-                    index = -1,
-                    element;
-
-                // eslint-disable-next-line no-cond-assign
-                while ((element = elements[++index])) {
-                    if (element.nodeType === 1) {
-                        if (nonValue || element[propertyName] === oldValue) {
-                            element[propertyName] = newValue;
-                        }
-                    }
-                }
-
-                cache[propertyName] = newValue;
-            });
-
-            prototype.constructor = Element;
-
-            if (!prototype.hasAttribute) {
-                // <Element>.hasAttribute
-                prototype.hasAttribute = function hasAttribute(name) {
-                    return this.getAttribute(name) !== null;
-                };
-            }
-
-            // Apply Element prototype to the pre-existing DOM as soon as the body element appears.
-            function bodyCheck() {
-                if (!loopLimit--) clearTimeout(interval);
-                if (document.body && !document.body.prototype && /(complete|interactive)/.test(document.readyState)) {
-                    shiv(document, true);
-                    if (interval && document.body.prototype) clearTimeout(interval);
-                    return !!document.body.prototype;
-                }
-                return false;
-            }
-            if (!bodyCheck()) {
-                document.onreadystatechange = bodyCheck;
-                interval = setInterval(bodyCheck, 25);
-            }
-
-            // Apply to any new elements created after load
-            document.createElement = function createElement(nodeName) {
-                var element = nativeCreateElement(String(nodeName).toLowerCase());
-                return shiv(element);
-            };
-
-            // remove sandboxed iframe
-            document.removeChild(vbody);
-        })();
-    }
-
     // _mutation
     var _mutation = (function () {
         // eslint-disable-line no-unused-vars
@@ -175,65 +43,6 @@
             return fragment;
         };
     })();
-    if (!('document' in self && 'querySelector' in self.document)) {
-        // document.querySelector
-        (function () {
-            var head = document.getElementsByTagName('head')[0];
-
-            function getElementsByQuery(node, selector, one) {
-                var generator = document.createElement('div'),
-                    id = 'qsa' + String(Math.random()).slice(3),
-                    style,
-                    elements;
-
-                generator.innerHTML = 'x<style>' + selector + '{qsa:' + id + ';}';
-
-                style = head.appendChild(generator.lastChild);
-
-                elements = getElements(node, selector, one, id);
-
-                head.removeChild(style);
-
-                return one ? elements[0] : elements;
-            }
-
-            function getElements(node, selector, one, id) {
-                var validNode = /1|9/.test(node.nodeType),
-                    childNodes = node.childNodes,
-                    elements = [],
-                    index = -1,
-                    childNode;
-
-                if (validNode && node.currentStyle && node.currentStyle.qsa === id) {
-                    if (elements.push(node) && one) {
-                        return elements;
-                    }
-                }
-
-                // eslint-disable-next-line no-cond-assign
-                while ((childNode = childNodes[++index])) {
-                    elements = elements.concat(getElements(childNode, selector, one, id));
-
-                    if (one && elements.length) {
-                        return elements;
-                    }
-                }
-
-                return elements;
-            }
-
-            Document.prototype.querySelector = Element.prototype.querySelector = function querySelectorAll(selector) {
-                return getElementsByQuery(this, selector, true);
-            };
-
-            Document.prototype.querySelectorAll = Element.prototype.querySelectorAll = function querySelectorAll(
-                selector
-            ) {
-                return getElementsByQuery(this, selector, false);
-            };
-        })();
-    }
-
     if (!('Element' in self && 'append' in Element.prototype)) {
         // Element.prototype.append
         /* global _mutation */
@@ -267,31 +76,13 @@
             if (!('Event' in n)) return !1;
             try {
                 return new Event('click'), !0;
-            } catch (t) {
+            } catch (n) {
                 return !1;
             }
         })(self)
     ) {
         // Event
         (function () {
-            var unlistenableWindowEvents = {
-                click: 1,
-                dblclick: 1,
-                keyup: 1,
-                keypress: 1,
-                keydown: 1,
-                mousedown: 1,
-                mouseup: 1,
-                mousemove: 1,
-                mouseover: 1,
-                mouseenter: 1,
-                mouseleave: 1,
-                mouseout: 1,
-                storage: 1,
-                storagecommit: 1,
-                textinput: 1,
-            };
-
             // This polyfill depends on availability of `document` so will not run in a worker
             // However, we asssume there are no browsers with worker support that lack proper
             // support for `Event` within the worker
@@ -348,14 +139,6 @@
                             var element = this,
                                 type = arguments[0],
                                 listener = arguments[1];
-
-                            if (element === window && type in unlistenableWindowEvents) {
-                                throw new Error(
-                                    'In IE8 the event: ' +
-                                        type +
-                                        ' is not available on the window object. Please see https://github.com/Financial-Times/polyfill-service/issues/317 for more information.'
-                                );
-                            }
 
                             if (!element._events) {
                                 element._events = {};
@@ -522,20 +305,14 @@
             var event;
             eventInitDict = eventInitDict || { bubbles: false, cancelable: false, detail: null };
 
-            if ('createEvent' in document) {
-                try {
-                    event = document.createEvent('CustomEvent');
-                    event.initCustomEvent(type, eventInitDict.bubbles, eventInitDict.cancelable, eventInitDict.detail);
-                } catch (error) {
-                    // for browsers which don't support CustomEvent at all, we use a regular event instead
-                    event = document.createEvent('Event');
-                    event.initEvent(type, eventInitDict.bubbles, eventInitDict.cancelable);
-                    event.detail = eventInitDict.detail;
-                }
-            } else {
-                // IE8
-                event = new Event(type, eventInitDict);
-                event.detail = (eventInitDict && eventInitDict.detail) || null;
+            try {
+                event = document.createEvent('CustomEvent');
+                event.initCustomEvent(type, eventInitDict.bubbles, eventInitDict.cancelable, eventInitDict.detail);
+            } catch (error) {
+                // for browsers which don't support CustomEvent at all, we use a regular event instead
+                event = document.createEvent('Event');
+                event.initEvent(type, eventInitDict.bubbles, eventInitDict.cancelable);
+                event.detail = eventInitDict.detail;
             }
             return event;
         };
@@ -565,7 +342,7 @@
                     }
                 }
                 return !1;
-            } catch (m) {
+            } catch (r) {
                 return !1;
             }
         })(self)
@@ -577,7 +354,7 @@
 
         // Notes:
         // - Primarily useful for parsing URLs and modifying query parameters
-        // - Should work in IE8+ and everything more modern, with es5.js polyfills
+        // - Should work in IE9+ and everything more modern, with es5.js polyfills
 
         (function (global) {
             'use strict';
@@ -635,7 +412,68 @@
                     return output.replace(/%20/g, '+');
                 }
 
+                // https://url.spec.whatwg.org/#percent-decode
+                var cachedDecodePattern;
+                function percent_decode(bytes) {
+                    // This can't simply use decodeURIComponent (part of ECMAScript) as that's limited to
+                    // decoding to valid UTF-8 only. It throws URIError for literals that look like percent
+                    // encoding (e.g. `x=%`, `x=%a`, and `x=a%2sf`) and for non-UTF8 binary data that was
+                    // percent encoded and cannot be turned back into binary within a JavaScript string.
+                    //
+                    // The spec deals with this as follows:
+                    // * Read input as UTF-8 encoded bytes. This needs low-level access or a modern
+                    //   Web API, like TextDecoder. Old browsers don't have that, and it'd a large
+                    //   dependency to add to this polyfill.
+                    // * For each percentage sign followed by two hex, blindly decode the byte in binary
+                    //   form. This would require TextEncoder to not corrupt multi-byte chars.
+                    // * Replace any bytes that would be invalid under UTF-8 with U+FFFD.
+                    //
+                    // Instead we:
+                    // * Use the fact that UTF-8 is designed to make validation easy in binary.
+                    //   You don't have to decode first. There are only a handful of valid prefixes and
+                    //   ranges, per RFC 3629. <https://datatracker.ietf.org/doc/html/rfc3629#section-3>
+                    // * Safely create multi-byte chars with decodeURIComponent, by only passing it
+                    //   valid and full characters (e.g. "%F0" separately from "%F0%9F%92%A9" throws).
+                    //   Anything else is kept as literal or replaced with U+FFFD, as per the URL spec.
+
+                    if (!cachedDecodePattern) {
+                        // In a UTF-8 multibyte sequence, non-initial bytes are always between %80 and %BF
+                        var uContinuation = '%[89AB][0-9A-F]';
+
+                        // The length of a UTF-8 sequence is specified by the first byte
+                        //
+                        // One-byte sequences: 0xxxxxxx
+                        // So the byte is between %00 and %7F
+                        var u1Bytes = '%[0-7][0-9A-F]';
+                        // Two-byte sequences: 110xxxxx 10xxxxxx
+                        // So the first byte is between %C0 and %DF
+                        var u2Bytes = '%[CD][0-9A-F]' + uContinuation;
+                        // Three-byte sequences: 1110xxxx 10xxxxxx 10xxxxxx
+                        // So the first byte is between %E0 and %EF
+                        var u3Bytes = '%E[0-9A-F]' + uContinuation + uContinuation;
+                        // Four-byte sequences: 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
+                        // So the first byte is between %F0 and %F7
+                        var u4Bytes = '%F[0-7]' + uContinuation + uContinuation + uContinuation;
+
+                        var anyByte = '%[0-9A-F][0-9A-F]';
+
+                        // Match some consecutive percent-escaped bytes. More precisely, match
+                        // 1-4 bytes that validly encode one character in UTF-8, or 1 byte that
+                        // would be invalid in UTF-8 in this location.
+                        cachedDecodePattern = new RegExp(
+                            '(' + u4Bytes + ')|(' + u3Bytes + ')|(' + u2Bytes + ')|(' + u1Bytes + ')|(' + anyByte + ')',
+                            'gi'
+                        );
+                    }
+
+                    return bytes.replace(cachedDecodePattern, function (match, u4, u3, u2, u1, uBad) {
+                        return uBad !== undefined ? '\uFFFD' : decodeURIComponent(match);
+                    });
+                }
+
                 // NOTE: Doesn't do the encoding/decoding dance
+                //
+                // https://url.spec.whatwg.org/#concept-urlencoded-parser
                 function urlencoded_parse(input, isindex) {
                     var sequences = input.split('&');
                     if (isindex && sequences[0].indexOf('=') === -1) sequences[0] = '=' + sequences[0];
@@ -657,8 +495,8 @@
                     var output = [];
                     pairs.forEach(function (pair) {
                         output.push({
-                            name: decodeURIComponent(pair.name),
-                            value: decodeURIComponent(pair.value),
+                            name: percent_decode(pair.name),
+                            value: percent_decode(pair.value),
                         });
                     });
                     return output;
@@ -875,7 +713,7 @@
 
                             keys.sort();
                             for (var i = 0; i < keys.length; i++) {
-                                this['delete'](keys[i]);
+                                this.delete(keys[i]);
                             }
                             for (var j = 0; j < keys.length; j++) {
                                 key = keys[j];
@@ -962,33 +800,11 @@
 
                     // An inner object implementing URLUtils (either a native URL
                     // object or an HTMLAnchorElement instance) is used to perform the
-                    // URL algorithms. With full ES5 getter/setter support, return a
-                    // regular object For IE8's limited getter/setter support, a
-                    // different HTMLAnchorElement is returned with properties
-                    // overridden
+                    // URL algorithms.
 
                     var instance = URLUtils(url || '');
 
-                    // Detect for ES5 getter/setter support
-                    // (an Object.defineProperties polyfill that doesn't support getters/setters may throw)
-                    var ES5_GET_SET = (function () {
-                        if (!('defineProperties' in Object)) return false;
-                        try {
-                            var obj = {};
-                            Object.defineProperties(obj, {
-                                prop: {
-                                    get: function () {
-                                        return true;
-                                    },
-                                },
-                            });
-                            return obj.prop;
-                        } catch (_) {
-                            return false;
-                        }
-                    })();
-
-                    var self = ES5_GET_SET ? this : document.createElement('a');
+                    var self = this;
 
                     var query_object = new URLSearchParams(instance.search ? instance.search.substring(1) : null);
                     query_object._url_object = self;
@@ -1194,89 +1010,6 @@
                 };
             })();
         })(self);
-    }
-
-    if (
-        !(
-            'XMLHttpRequest' in self &&
-            'prototype' in self.XMLHttpRequest &&
-            'addEventListener' in self.XMLHttpRequest.prototype
-        )
-    ) {
-        // XMLHttpRequest
-        /* global ActiveXObject */
-        (function (global, NativeXMLHttpRequest) {
-            // <Global>.XMLHttpRequest
-            global.XMLHttpRequest = function XMLHttpRequest() {
-                var request = this,
-                    nativeRequest = (request._request = NativeXMLHttpRequest
-                        ? new NativeXMLHttpRequest()
-                        : new ActiveXObject('MSXML2.XMLHTTP.3.0'));
-
-                nativeRequest.onreadystatechange = function () {
-                    request.readyState = nativeRequest.readyState;
-
-                    var readyState = request.readyState === 4;
-
-                    request.response = request.responseText = readyState ? nativeRequest.responseText : null;
-                    request.status = readyState ? nativeRequest.status : null;
-                    request.statusText = readyState ? nativeRequest.statusText : null;
-
-                    request.dispatchEvent(new Event('readystatechange'));
-
-                    if (readyState) {
-                        request.dispatchEvent(new Event('load'));
-                    }
-                };
-
-                if ('onerror' in nativeRequest) {
-                    nativeRequest.onerror = function () {
-                        request.dispatchEvent(new Event('error'));
-                    };
-                }
-            };
-
-            global.XMLHttpRequest.UNSENT = 0;
-            global.XMLHttpRequest.OPENED = 1;
-            global.XMLHttpRequest.HEADERS_RECEIVED = 2;
-            global.XMLHttpRequest.LOADING = 3;
-            global.XMLHttpRequest.DONE = 4;
-
-            var XMLHttpRequestPrototype = global.XMLHttpRequest.prototype;
-
-            XMLHttpRequestPrototype.addEventListener = global.addEventListener;
-            XMLHttpRequestPrototype.removeEventListener = global.removeEventListener;
-            XMLHttpRequestPrototype.dispatchEvent = global.dispatchEvent;
-
-            XMLHttpRequestPrototype.abort = function abort() {
-                return this._request();
-            };
-
-            XMLHttpRequestPrototype.getAllResponseHeaders = function getAllResponseHeaders() {
-                return this._request.getAllResponseHeaders();
-            };
-
-            XMLHttpRequestPrototype.getResponseHeader = function getResponseHeader(header) {
-                return this._request.getResponseHeader(header);
-            };
-
-            XMLHttpRequestPrototype.open = function open(method, url) {
-                // method, url, async, username, password
-                this._request.open(method, url, arguments[2], arguments[3], arguments[4]);
-            };
-
-            XMLHttpRequestPrototype.overrideMimeType = function overrideMimeType(mimetype) {
-                this._request.overrideMimeType(mimetype);
-            };
-
-            XMLHttpRequestPrototype.send = function send() {
-                this._request.send(0 in arguments ? arguments[0] : null);
-            };
-
-            XMLHttpRequestPrototype.setRequestHeader = function setRequestHeader(header, value) {
-                this._request.setRequestHeader(header, value);
-            };
-        })(self, self.XMLHttpRequest);
     }
 
     if (
