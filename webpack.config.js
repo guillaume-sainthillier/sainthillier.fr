@@ -52,7 +52,7 @@ const makeConfig = async (BROWSERSLIST_ENV) => {
         .enableSourceMaps(!Encore.isProduction())
         .enableVersioning(Encore.isProduction())
         .configureBabel(() => {}, {
-            includeNodeModules: ['bootstrap', 'lazysizes'],
+            includeNodeModules: ['bootstrap', 'lazysizes', '@webcomponents/custom-elements', 'lite-youtube-embed'],
         })
         // enables @babel/preset-env polyfills
         .configureBabelPresetEnv((config) => {
