@@ -27,9 +27,10 @@ window.addEventListener('DOMContentLoaded', () => {
     const navbar = document.body.querySelector('#mainNav');
     if (navbar) {
         (() =>
-            new ScrollSpy(document.body, {
+            new ScrollSpy(document.body.querySelector('main'), {
                 target: `#${navbar.id}`,
-                offset: 56,
+                smoothScroll: true,
+                rootMargin: '56px 0px -30%'
             }))();
 
         // Navbar shrink function

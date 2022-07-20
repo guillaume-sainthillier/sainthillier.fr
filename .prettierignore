@@ -3,3 +3,4 @@ data
 public
 resources
 static
+assets/js/polyfills.js
