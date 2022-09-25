@@ -1,6 +1,6 @@
 const Encore = require('@symfony/webpack-encore');
 const FileManagerPlugin = require('filemanager-webpack-plugin');
-const PurgecssPlugin = require('purgecss-webpack-plugin');
+const { PurgeCSSPlugin } = require('purgecss-webpack-plugin');
 const glob = require('glob-all');
 const path = require('path');
 
@@ -72,7 +72,7 @@ const makeConfig = async (BROWSERSLIST_ENV) => {
 
     if (Encore.isProduction()) {
         Encore.addPlugin(
-            new PurgecssPlugin({
+            new PurgeCSSPlugin({
                 paths: glob.sync(
                     [
                         path.join(__dirname, 'content/**/*.md'),
