@@ -1,7 +1,7 @@
 baseURL = "https://sainthillier.fr"
 languageCode = "fr-FR"
 title = "Guillaume Sainthillier"
-googleAnalytics = "UA-44318869-1"
+googleAnalytics = "G-DBS1G509Q7"
 assetDir = "static"
 
 disableKinds = ["taxonomy", "taxonomyTerm", "RSS"]
