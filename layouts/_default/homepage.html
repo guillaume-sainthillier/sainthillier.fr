@@ -227,11 +227,11 @@
         </div>
         <div class="row">
 
-            {{ range $i, $realisation := .Params.realisations }}
+            {{ range $id, $realisation := .Params.realisations }}
             {{ with $realisation }}
             <div class="col-md-6 col-xl-4">
                 <div class="portfolio-item">
-                    <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal{{ $i }}">
+                    <a class="portfolio-link" data-bs-toggle="modal" href="#portfolio-modal-{{ $id }}">
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content">
                                 <i class="fa fa-plus fa-3x"></i>
@@ -259,9 +259,9 @@
     </div>
 </section>
 
-{{ range $i, $realisation := .Params.realisations }}
+{{ range $id, $realisation := .Params.realisations }}
 {{ with $realisation }}
-<div class="portfolio-modal modal fade" id="portfolioModal{{ $i }}" tabindex="-1" role="dialog"
+<div class="portfolio-modal modal fade" id="portfolio-modal-{{ $id }}" tabindex="-1" role="dialog"
      aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">

@@ -21,6 +21,12 @@ HUGO_ENABLEGITINFO = "true"
   to = "/404.html"
   status = 404
 
+[[redirects]]
+  from = "/realisations/*"
+  to = "/#portfolio/:splat"
+  status = 301
+  force = true
+
 [[headers]]
   for = "/build/*"
   [headers.values]
