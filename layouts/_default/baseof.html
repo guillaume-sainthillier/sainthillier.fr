@@ -63,7 +63,7 @@
     {{ range .Site.Data.entrypoints.entrypoints.app.css }}
     <link href="{{ relURL . }}" rel="stylesheet">
     {{ end }}
-    
+
     {{ range .Site.Data.entrypoints.entrypoints.app.js }}
     <script type="module" src="{{ relURL . }}"></script>
     {{ end }}
@@ -75,12 +75,12 @@
 <body id="{{ block "page-id" . }}page{{ end }}" class="{{ block "layout-class" . }}layout-default{{ end }}">
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-    <div class="container">
+    <div class="container"> 
         {{ block "menu" . }}
         <a class="navbar-brand js-scroll-trigger" href="/#mainNav">
             {{ $manifest := .Site.Data.manifest }}
             {{ with resources.Get (index $manifest "build/svg/logo-web.svg") -}}
-            <img alt="Guillaume Sainthillier" src="{{ . }}" class="img-fluid" width="252" height="42" />
+            <img alt="Guillaume Sainthillier" src="/{{ . }}" class="img-fluid" width="252" height="42" />
             {{ end }}
         </a>
         <button class="navbar-toggler navbar-toggler-end" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -90,22 +90,22 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav text-uppercase ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#hello">Hello</a>
+                    <a class="nav-link js-scroll-trigger" href="/#hello">Hello</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#services">Services</a>
+                    <a class="nav-link js-scroll-trigger" href="/#services">Services</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#competences">Compétences</a>
+                    <a class="nav-link js-scroll-trigger" href="/#competences">Compétences</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a>
+                    <a class="nav-link js-scroll-trigger" href="/#portfolio">Portfolio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#parcours">Parcours</a>
+                    <a class="nav-link js-scroll-trigger" href="/#parcours">Parcours</a>
                 </li>
             </ul>
-            <a class="btn btn-outline-primary js-scroll-trigger" href="#contact">Contact</a>
+            <a class="btn btn-outline-primary js-scroll-trigger" href="/#contact">Contact</a>
         </div>
         {{ end }}
     </div>
