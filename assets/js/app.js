@@ -49,113 +49,116 @@ window.addEventListener("DOMContentLoaded", () => {
     document.addEventListener("scroll", navbarShrink);
   }
 
-  // Word Cloud
-  const skills = document.body.querySelector("#skills");
-  const skillsData = JSON.parse(skills.dataset.skills);
-  const list = [];
-  Object.values(skillsData).forEach((item) => {
-    list.push([item.name, item.weight]);
-  });
+  if (document.body.id === "page-home") {
 
-  const { width } = skills.getBoundingClientRect();
-  WordCloud(skills, {
-    list,
-    weightFactor(size) {
-      return (size ** 2 * width) / 1024;
-    },
-    gridSize: 16,
-    drawOutOfBound: false,
-    shrinkToFit: true,
-    fontFamily: "\"Google Sans\", sans-serif",
-    fontWeight: 700,
-    color: null,
-    classes(word, weight) {
-      return `weight-${parseInt(weight, 10)}`;
-    }
-  });
+    // Word Cloud
+    const skills = document.body.querySelector("#skills");
+    const skillsData = JSON.parse(skills.dataset.skills);
+    const list = [];
+    Object.values(skillsData).forEach((item) => {
+      list.push([item.name, item.weight]);
+    });
 
-  // Contact form
-  // Fetch all the forms we want to apply custom Bootstrap validation styles to
-  const contactForm = document.body.querySelector("#contactForm");
-  contactForm.addEventListener(
-    "submit",
-    (event) => {
-      event.preventDefault();
-      event.stopPropagation();
-      contactForm.classList.add("was-validated");
-      if (!contactForm.checkValidity()) {
-        return;
+    const { width } = skills.getBoundingClientRect();
+    WordCloud(skills, {
+      list,
+      weightFactor(size) {
+        return (size ** 2 * width) / 1024;
+      },
+      gridSize: 16,
+      drawOutOfBound: false,
+      shrinkToFit: true,
+      fontFamily: "\"Google Sans\", sans-serif",
+      fontWeight: 700,
+      color: null,
+      classes(word, weight) {
+        return `weight-${parseInt(weight, 10)}`;
       }
+    });
 
-      const name = contactForm.querySelector("#name", contactForm).value;
-      const email = contactForm.querySelector("#email", contactForm).value;
-      const phone = contactForm.querySelector("#phone", contactForm).value;
-      const message = contactForm.querySelector("#message", contactForm).value;
-      const firstName = name; // For Success/Failure Message
+    // Contact form
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    const contactForm = document.body.querySelector("#contactForm");
+    contactForm.addEventListener(
+      "submit",
+      (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        contactForm.classList.add("was-validated");
+        if (!contactForm.checkValidity()) {
+          return;
+        }
 
-      const data = {
-        _replyto: email,
-        message: `${name} a fait une demande de contact :
+        const name = contactForm.querySelector("#name", contactForm).value;
+        const email = contactForm.querySelector("#email", contactForm).value;
+        const phone = contactForm.querySelector("#phone", contactForm).value;
+        const message = contactForm.querySelector("#message", contactForm).value;
+        const firstName = name; // For Success/Failure Message
+
+        const data = {
+          _replyto: email,
+          message: `${name} a fait une demande de contact :
                         ${message}
                         Téléphone : ${phone}
                         Email : ${email}
                     `
-      };
+        };
 
-      const success = document.body.querySelector("#success");
-      const sendMessageButton = document.body.querySelector("#sendMessageButton");
-      sendMessageButton.setAttribute("disabled", "disabled");
-      fetch(contactForm.getAttribute("action"), {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json"
-        }
-      }).then(
-        () => {
-          success.innerHTML = `
+        const success = document.body.querySelector("#success");
+        const sendMessageButton = document.body.querySelector("#sendMessageButton");
+        sendMessageButton.setAttribute("disabled", "disabled");
+        fetch(contactForm.getAttribute("action"), {
+          method: "POST",
+          body: JSON.stringify(data),
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+          }
+        }).then(
+          () => {
+            success.innerHTML = `
                         <div class="alert alert-success alert-dismissible fade show">
                             <strong>Votre message a bien été envoyé.</strong>
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fermer"></button>
                         </div>
                     `;
 
-          sendMessageButton.removeAttribute("disabled");
-          contactForm.classList.remove("was-validated");
-          contactForm.reset();
-        },
-        () => {
-          success.innerHTML = `
+            sendMessageButton.removeAttribute("disabled");
+            contactForm.classList.remove("was-validated");
+            contactForm.reset();
+          },
+          () => {
+            success.innerHTML = `
                         <div class="alert alert-danger alert-dismissible fade show">
                             <strong>Désolé ${firstName}, on dirait que le message n'a pas pu être envoyé. Merci d'essayer un peu plus tard ou de me contacter directement par téléphone !</strong>
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fermer"></button>
                         </div>
                     `;
 
-          sendMessageButton.removeAttribute("disabled");
-          contactForm.classList.remove("was-validated");
+            sendMessageButton.removeAttribute("disabled");
+            contactForm.classList.remove("was-validated");
+          }
+        );
+      },
+      false
+    );
+
+    const hash = window.location.hash;
+    if (hash) {
+      const matches = hash.match("portfolio\/(.+)");
+      if (matches && matches.length > 1) {
+        const portfolioId = matches[1];
+        const element = document.body.querySelector(`#portfolio-modal-${portfolioId}`);
+        const elementSelector = document.body.querySelector(`.portfolio-link[href="#portfolio-modal-${portfolioId}"]`);
+        if (element) {
+          Modal.getOrCreateInstance(element).show();
         }
-      );
-    },
-    false
-  );
 
-  const hash = window.location.hash;
-  if (hash) {
-    const matches = hash.match("portfolio\/(.+)");
-    if (matches && matches.length > 1) {
-      const portfolioId = matches[1];
-      const element = document.body.querySelector(`#portfolio-modal-${portfolioId}`);
-      const elementSelector = document.body.querySelector(`.portfolio-link[href="#portfolio-modal-${portfolioId}"]`);
-      if (element) {
-        Modal.getOrCreateInstance(element).show();
-      }
-
-      if (elementSelector) {
-        elementSelector.scrollIntoView({
-          behavior: "smooth"
-        });
+        if (elementSelector) {
+          elementSelector.scrollIntoView({
+            behavior: "smooth"
+          });
+        }
       }
     }
   }
