@@ -144,7 +144,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const hash = window.location.hash;
   if (hash) {
     const matches = hash.match("portfolio\/(.+)");
-    if (matches.length > 1) {
+    if (matches && matches.length > 1) {
       const portfolioId = matches[1];
       const element = document.body.querySelector(`#portfolio-modal-${portfolioId}`);
       const elementSelector = document.body.querySelector(`.portfolio-link[href="#portfolio-modal-${portfolioId}"]`);
