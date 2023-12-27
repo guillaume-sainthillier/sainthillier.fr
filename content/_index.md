@@ -146,7 +146,7 @@ realisations:
       image: build/images/realisations/dosloc.jpg
       keywords:
           - PHP
-          - Symfony 5
+          - Symfony 6
           - MySQL
           - SCSS
           - Responsive Design
@@ -167,7 +167,7 @@ realisations:
       image: build/images/realisations/immobilus.jpg
       keywords:
           - PHP
-          - Symfony 5
+          - Symfony 6
           - EBICS
           - MySQL
           - SCSS
@@ -189,7 +189,7 @@ realisations:
       image: build/images/realisations/by-night.jpg
       keywords:
           - PHP
-          - Symfony 5
+          - Symfony 6
           - Docker
           - AWS
           - MySQL
@@ -208,7 +208,7 @@ realisations:
       image: build/images/realisations/mms.jpg
       keywords:
           - PHP
-          - Symfony 5
+          - Symfony 6
           - AWS
           - Docker
           - MySQL

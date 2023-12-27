@@ -1,3 +1,4 @@
+{{- define "page-id" -}}page-home{{- end -}}
 {{ define "main" }}
 {{ $manifest := .Site.Data.manifest }}
 <!-- Header -->
@@ -16,15 +17,17 @@
 {{ end }}
 
 <!-- About -->
-<section id="hello">
+<section id="hello" class="bg-light">
     <div class="container">
         <div class="text-center">
             <h2 class="section-heading text-uppercase">Développeur Freelance à Toulouse</h2>
             <h3 class="section-subheading text-muted">Bonjour, je suis Guillaume Sainthillier, développeur Web indépendant basé à Toulouse.</h3>
         </div>
-        <div class="mb-5">
-            <lite-youtube class="mx-auto" videoid="JjeguKaXutw" playlabel="Développeur Web Freelance Toulouse"></lite-youtube>
-        </div>
+        <lite-youtube class="mx-auto" videoid="JjeguKaXutw" playlabel="Développeur Web Freelance Toulouse"></lite-youtube>
+    </div>
+</section>
+<section>
+    <div class="container">
         <div class="row mb-5">
             <div class="col-md-4 col-lg-3 d-flex align-items-center">
                 {{ with resources.Get (index $manifest "build/images/guillaume-sainthillier.jpg") -}}
@@ -51,7 +54,7 @@
                     et voyons ensemble comment <strong>développer votre activité !</strong></p>
             </div>
         </div>
-        <div class="row mb-5">
+        <div class="row">
             <div class="col-md-4 col-lg-3 order-md-2 d-flex align-items-center">
                 {{ with resources.Get (index $manifest "build/images/design.jpg") -}}
                 <img title="Concrétisez vos projets Web"
@@ -80,7 +83,7 @@
                     <strong>confidentialité</strong> de vos activités.</p>
             </div>
         </div>
-        <div class="text-center">
+        <div class="text-center mt-5">
             <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#contact">J'ai un projet</a>
         </div>
     </div>
