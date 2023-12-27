@@ -124,7 +124,8 @@ formation:
           - Gestion de parcs informatiques
           - Stage
 realisations:
-    - nom: DosLoc
+    dosloc:
+      nom: DosLoc
       sous_titre: Développeur Web Freelance
       date: Avril 2020 - En Cours
       description: |-
@@ -149,7 +150,8 @@ realisations:
           - MySQL
           - SCSS
           - Responsive Design
-    - nom: Immobilus
+    immobilus:
+      nom: Immobilus
       sous_titre: Développeur Web Freelance
       date: Mars 2019 - En Cours
       description: |-
@@ -170,7 +172,8 @@ realisations:
           - MySQL
           - SCSS
           - Responsive Design
-    - nom: By Night
+    by-night:
+      nom: By Night
       sous_titre: Projet personnel
       date: Octobre 2013 - En Cours
       description: |-
@@ -196,7 +199,8 @@ realisations:
           - SCSS
           - Responsive Design
           - Open Data
-    - nom: Airbus Publishing
+    airbus-publishing:
+      nom: Airbus Publishing
       sous_titre: Développeur Web freelance
       date: Mars 2018 - Juin 2018
       description: '<p>Pour le service Airbus MultiMedia Support. Ce service Web permet
@@ -212,7 +216,8 @@ realisations:
           - Responsive Design
           - SSO
           - SAML
-    - nom: Exterior Walkaround
+    exterior-walkaround:
+      nom: Exterior Walkaround
       sous_titre: Développeur Web freelance
       date: Juin 2018
       description: "<p>Pour le service Airbus MultiMedia Support. Cette application mobile
@@ -226,7 +231,8 @@ realisations:
           - Docker
           - MySQL
           - SCSS
-    - nom: Safety Index
+    safety-index:
+      nom: Safety Index
       sous_titre: Développeur Web freelance
       date: Mai 2018
       description: "<p>Pour le service Airbus MultiMedia Support. Cette application mobile
@@ -239,7 +245,8 @@ realisations:
           - Docker
           - MySQL
           - SCSS
-    - nom: Open ePM
+    open-epm:
+      nom: Open ePM
       sous_titre: Développeur Web
       date: Avril 2011 - Février 2013
       description: |-
