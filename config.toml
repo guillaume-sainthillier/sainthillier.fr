@@ -4,7 +4,8 @@ title = "Guillaume Sainthillier"
 googleAnalytics = "G-DBS1G509Q7"
 assetDir = "static"
 
-disableKinds = ["taxonomy", "taxonomyTerm", "RSS"]
+
+disableKinds = ["taxonomy", "RSS"]
 
 [imaging]
   resampleFilter = "Linear"
