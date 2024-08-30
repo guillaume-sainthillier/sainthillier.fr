@@ -53,7 +53,7 @@
         <a class="navbar-brand js-scroll-trigger" href="/#mainNav">
             {{ $manifest := .Site.Data.manifest }}
             {{ with resources.Get (index $manifest "build/svg/logo-web.svg") -}}
-            <img alt="Guillaume Sainthillier" src="/{{ . }}" class="img-fluid" width="252" height="42" />
+            <img alt="Guillaume Sainthillier" src="{{ . }}" class="img-fluid" width="252" height="42" />
             {{ end }}
         </a>
         <button class="navbar-toggler navbar-toggler-end" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
