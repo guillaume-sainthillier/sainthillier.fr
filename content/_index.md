@@ -7,26 +7,18 @@ skills:
       weight: 10
     - name: Symfony
       weight: 10
-    - name: PrestaShop
-      weight: 4
-    - name: WordPress
-      weight: 3
-    - name: Drupal 8
-      weight: 3
     - name: Intégration Web
       weight: 6
     - name: Responsive Design
       weight: 7
     - name: SCSS
       weight: 6
-    - name: Gulp
-      weight: 5
     - name: MySQL
       weight: 8
     - name: Oracle
-      weight: 5
-    - name: Scrum
-      weight: 4
+      weight: 6
+    - name: Postgres
+      weight: 6
     - name: Git
       weight: 6
     - name: Docker
@@ -35,11 +27,17 @@ skills:
       weight: 5
     - name: DevOps
       weight: 5
-    - name: App hybride
-      weight: 5
     - name: Varnish
       weight: 5
     - name: ElasticSearch
+      weight: 5
+    - name: React
+      weight: 5
+    - name: EBICS
+      weight: 5
+    - name: K8S
+      weight: 5
+    - name: Redis
       weight: 5
 experiences:
     - periode: Avr 2011 - Fév 2013
@@ -85,7 +83,7 @@ experiences:
       description: "Création de l'entreprise de développement d'applications Web. Ma
           mission : donner vie à vos projets Web."
       points: []
-    - periode: Sept 2020 - Aujourd'hui
+    - periode: Sept 2020 - Sept 2021
       logo: build/images/logos/Webforce3.jpg
       entreprise:
       client: Webforce3
@@ -172,6 +170,7 @@ realisations:
           - MySQL
           - SCSS
           - Responsive Design
+          - EBICS
     by-night:
       nom: By Night
       sous_titre: Projet personnel
@@ -189,7 +188,7 @@ realisations:
       image: build/images/realisations/by-night.jpg
       keywords:
           - PHP
-          - Symfony 6
+          - Symfony 7
           - Docker
           - AWS
           - MySQL
@@ -208,7 +207,7 @@ realisations:
       image: build/images/realisations/mms.jpg
       keywords:
           - PHP
-          - Symfony 6
+          - Symfony 7
           - AWS
           - Docker
           - MySQL
