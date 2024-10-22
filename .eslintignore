@@ -1,5 +1,0 @@
-*
-!webpack.config.js
-!generate-polyfills.js
-!assets
-assets/js/polyfills.js
