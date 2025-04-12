@@ -329,7 +329,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <ul class="timeline">
-                    {{ range $i, $experience := .Params.experiences }}
+                    {{ range $i, $experience := .Params.experiences | collections.Reverse }}
                     {{ with $experience }}
                     <li class="{{ cond (not (modBool $i 2)) "" "timeline-inverted" }}">
                     <div class="timeline-image">
