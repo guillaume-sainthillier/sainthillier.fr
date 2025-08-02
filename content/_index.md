@@ -122,7 +122,72 @@ formation:
           - Gestion de parcs informatiques
           - Stage
 realisations:
-    dosloc:
+    - id: cibaru
+      nom: CIBARU
+      sous_titre: Développeur Web Freelance
+      date: Juillet 2025 - En cours
+      description: |-
+          <p><a rel="noopener" href="https://cibaru.fr" target="_blank" title="Logiciel de gestion de mandats de travaux">CIBARU</a> est une application Web permettant la gestion de mandats de travaux.</p>
+          <p class="mb-2">Le site permet aux mandataires de :</p>
+          <ul class="fa-ul">
+              <li><i class="fa-li fa fa-angle-right"></i>Gérer leur demande de travaux/li>
+              <li><i class="fa-li fa fa-angle-right"></i>Gérer la sous-traitance à des collaborateurs</li>
+              <li><i class="fa-li fa fa-angle-right"></i>Assurer le suivi de leur facturation</li>
+          </ul>
+      url: https://cibaru.fr
+      image: build/images/realisations/cibaru.jpg
+      keywords:
+          - PHP
+          - Symfony 7
+          - MySQL
+          - SCSS
+          - S3
+          - Responsive Design
+    - id: netisio
+      nom: Netisio
+      sous_titre: Développeur Web Freelance
+      date: Avril 2024 - En cours
+      description: |-
+          <p><a rel="noopener" href="https://netisio.fr" target="_blank" title="Logiciel de suivi de consommation d'équipements d'eau et d'éléctricité">Netisio</a> est une application Web permettant le suivi de consommation de vos équipements d'eau et d'éléctricité.</p>
+          <p class="mb-2">Le site permet aux copropriétés de :</p>
+          <ul class="fa-ul">
+              <li><i class="fa-li fa fa-angle-right"></i>Suivre la consommation d'eau et d'électricité dans les parties communes</li>
+              <li><i class="fa-li fa fa-angle-right"></i>Détecter les potentielles fuites</li>
+              <li><i class="fa-li fa fa-angle-right"></i>Se mettre en conformité avec la nouvelle tarification de l'eau en 2025</li>
+          </ul>
+      url: https://netisio.fr
+      image: build/images/realisations/netisio.jpg
+      keywords:
+          - PHP
+          - Symfony 7
+          - ApiPlatform 4
+          - MySQL
+          - SCSS
+          - Responsive Design
+    - id: solution-sepa
+      nom: Solution SEPA
+      sous_titre: Développeur Web Freelance
+      date: Avril 2022 - En cours
+      description: |-
+          <p><a rel="noopener" href="https://solution-sepa.fr" target="_blank" title="Logiciel de gestion de prélèvement">Solution SEPA</a> est une application Web permettant la saisie de prélèvement et virement bancaire via le protocole EBICS.</p>
+          <p class="mb-2">Le site permet de :</p>
+          <ul class="fa-ul">
+              <li><i class="fa-li fa fa-angle-right"></i>Gérer ses accès EBICS</li>
+              <li><i class="fa-li fa fa-angle-right"></i>Créer des prélèvements (uniques, récurrents)</li>
+              <li><i class="fa-li fa fa-angle-right"></i>Créer des virements (uniques, récurrents)</li>
+              <li><i class="fa-li fa fa-angle-right"></i>Suivre la bonne réalisation de ses opérations bancaires</li>
+          </ul>
+      url: https://solution-sepa.fr
+      image: build/images/realisations/solution-sepa.jpg
+      keywords:
+          - Reprise de projet
+          - PHP
+          - Symfony 6
+          - MySQL
+          - SCSS
+          - S3
+          - Responsive Design
+    - id: dosloc
       nom: DosLoc
       sous_titre: Développeur Web Freelance
       date: Avril 2020 - En Cours
@@ -148,7 +213,7 @@ realisations:
           - MySQL
           - SCSS
           - Responsive Design
-    immobilus:
+    - id: immobilus
       nom: Immobilus
       sous_titre: Développeur Web Freelance
       date: Mars 2019 - En Cours
@@ -171,7 +236,7 @@ realisations:
           - SCSS
           - Responsive Design
           - EBICS
-    by-night:
+    - id: by-night
       nom: By Night
       sous_titre: Projet personnel
       date: Octobre 2013 - En Cours
@@ -198,7 +263,7 @@ realisations:
           - SCSS
           - Responsive Design
           - Open Data
-    airbus-publishing:
+    - id: airbus-publishing
       nom: Airbus Publishing
       sous_titre: Développeur Web freelance
       date: Mars 2018 - Juin 2018
@@ -215,7 +280,7 @@ realisations:
           - Responsive Design
           - SSO
           - SAML
-    exterior-walkaround:
+    - id: exterior-walkaround
       nom: Exterior Walkaround
       sous_titre: Développeur Web freelance
       date: Juin 2018
@@ -230,7 +295,7 @@ realisations:
           - Docker
           - MySQL
           - SCSS
-    safety-index:
+    - id: safety-index
       nom: Safety Index
       sous_titre: Développeur Web freelance
       date: Mai 2018
@@ -244,7 +309,7 @@ realisations:
           - Docker
           - MySQL
           - SCSS
-    open-epm:
+    - id: open-epm
       nom: Open ePM
       sous_titre: Développeur Web
       date: Avril 2011 - Février 2013
