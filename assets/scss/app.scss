@@ -1,8 +1,11 @@
+// Tailwind CSS
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 // Core variables and mixins
 @import 'variables.scss';
 @import 'mixins.scss';
-
-@import '~bootstrap/scss/bootstrap';
 
 // Global CSS
 @import 'components/global';

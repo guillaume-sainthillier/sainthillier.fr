@@ -1,68 +1,67 @@
 // Styling for the navbar
 #mainNav {
-    background-color: $gray-900;
+    @apply bg-gray-900 py-4;
 
     .navbar-toggler {
-        font-size: 12px;
-        right: 0;
-        padding: 13px;
-        text-transform: uppercase;
-        color: white;
-        border: 0;
-        background-color: $primary;
+        @apply text-xs py-3 px-4 uppercase text-white border-0 bg-primary rounded;
         @include heading-font;
     }
 
     .navbar-brand {
+        @apply transition-all duration-300;
         max-width: 150px;
-        transition: max-width 0.3s, padding 0.3s;
     }
-    .navbar-nav {
-        .nav-item {
-            .nav-link {
-                font-size: 90%;
-                font-weight: 400;
-                padding: 0.75em 0;
-                letter-spacing: 1px;
-                color: white;
-                @include heading-font;
-                &.active,
-                &:hover {
-                    color: $primary;
-                }
+
+    .navbar-collapse {
+        @apply gap-4;
+
+        &.active {
+            @apply flex;
+        }
+    }
+
+    .nav-item {
+        @apply my-2 lg:my-0;
+
+        .nav-link {
+            @apply text-sm font-normal py-3 lg:px-4 text-white transition-colors;
+            letter-spacing: 1px;
+            @include heading-font;
+
+            &.active,
+            &:hover {
+                @apply text-primary;
             }
         }
     }
 
-    .btn {
-        text-transform: uppercase;
+    .btn-outline-primary {
+        @apply uppercase ml-0 lg:ml-4;
     }
 }
-@media (min-width: 992px) {
+
+@media (min-width: 1024px) {
     #mainNav {
-        padding-top: 25px;
-        padding-bottom: 25px;
-        transition: padding-top 0.3s, padding-bottom 0.3s;
-        border: none;
-        background-color: transparent;
+        @apply py-6 bg-transparent border-0;
+        transition: padding 0.3s, background-color 0.3s;
+
         .navbar-brand {
             max-width: 250px;
         }
-        .navbar-nav {
-            .nav-item {
-                .nav-link {
-                    padding: 1.1em 1em !important;
-                }
+
+        .nav-item {
+            .nav-link {
+                @apply py-4 px-4;
             }
         }
+
         &.navbar-shrink {
-            padding-top: 0;
-            padding-bottom: 0;
-            background-color: $gray-900;
+            @apply py-0 bg-gray-900;
             box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.15);
+
             .navbar-brand {
+                @apply py-3;
                 max-width: 175px;
-                padding: 12px 0;
             }
         }
     }

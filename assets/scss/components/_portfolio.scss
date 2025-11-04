@@ -145,12 +145,12 @@
     }
 }
 
-@include media-breakpoint-down(sm) {
+@media (max-width: 640px) {
     .portfolio-modal .modal-body {
         padding: 0;
 
         .fa-ul {
-            margin-left: 1.5em;
+            margin-left: 1.5rem;
         }
     }
 }

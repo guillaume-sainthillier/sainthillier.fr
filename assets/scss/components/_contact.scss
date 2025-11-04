@@ -1,65 +1,64 @@
 // Styling for the contact section
 section#contact {
-    /*
-  background-color: $gray-900;
-  background-image: url('../img/map-image.png');
-  background-repeat: no-repeat;
-  background-position: center;
-
-  .section-heading {
-    color: $white;
-  }
-  */
-
     ul li {
-        margin-bottom: 1rem;
+        @apply mb-4;
+
         .icon {
-            float: left;
-            color: $primary;
-            line-height: $line-height-base;
+            @apply float-left text-primary;
+            line-height: 1.5;
         }
 
         span {
-            display: block;
-            padding-left: 1.5rem;
+            @apply block pl-6;
         }
     }
 
     .form-group {
-        margin-bottom: 25px;
+        @apply mb-6;
+
         input,
         textarea {
-            padding: 20px;
+            @apply p-5;
         }
+
         input.form-control {
-            height: auto;
+            @apply h-auto;
         }
+
         textarea.form-control {
             height: 248px;
         }
     }
-    .form-control:focus {
-        border-color: $primary;
-        box-shadow: none;
+
+    .form-control {
+        @apply w-full border border-gray-300 rounded px-3 py-2 focus:outline-none transition-colors;
+
+        &:focus {
+            @apply border-primary shadow-none;
+        }
     }
+
+    .invalid-feedback {
+        @apply text-red-600 text-sm mt-1;
+    }
+
     ::-webkit-input-placeholder {
-        font-weight: 700;
-        color: $gray-400;
+        @apply font-bold text-gray-400;
         @include heading-font;
     }
+
     :-moz-placeholder {
-        font-weight: 700;
-        color: $gray-400;
+        @apply font-bold text-gray-400;
         @include heading-font;
     }
+
     ::-moz-placeholder {
-        font-weight: 700;
-        color: $gray-400;
+        @apply font-bold text-gray-400;
         @include heading-font;
     }
+
     :-ms-input-placeholder {
-        font-weight: 700;
-        color: $gray-400;
+        @apply font-bold text-gray-400;
         @include heading-font;
     }
 }
