@@ -132,8 +132,8 @@ function manifestPlugin() {
                     if (value.file) {
                         // For assets imported in JS/CSS
                         const originalPath = key.replace(/^assets\/js\//, '').replace(/^assets\/scss\//, '').replace(/^assets\//, '');
-                        // Hugo's resources.Get expects paths relative to project root (static/...)
-                        webpackManifest[`build/${originalPath}`] = `static/build${outputSuffix}/${value.file}`;
+                        // Hugo's resources.Get works with paths in static/ directory WITHOUT the static/ prefix
+                        webpackManifest[`build/${originalPath}`] = `build${outputSuffix}/${value.file}`;
                     }
                 }
 
@@ -190,8 +190,8 @@ async function addDirToManifest(dirPath, baseDir, manifest, suffix) {
             pathParts[pathParts.length - 1] = originalName;
             const originalFullPath = pathParts.join('/');
 
-            // Hugo's resources.Get expects paths relative to project root (static/...)
-            manifest[`build/${originalFullPath}`] = `static/build${suffix}/${relativePath}`;
+            // Hugo's resources.Get works with paths in static/ directory WITHOUT the static/ prefix
+            manifest[`build/${originalFullPath}`] = `build${suffix}/${relativePath}`;
         }
     }
 }
