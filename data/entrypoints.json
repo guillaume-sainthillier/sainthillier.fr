@@ -1,0 +1,12 @@
+{
+  "entrypoints": {
+    "app": {
+      "js": [
+        "/build/js/app.D_Y-nnr3.js"
+      ],
+      "css": [
+        "/build/css/app.X65lV_st.css"
+      ]
+    }
+  }
+}

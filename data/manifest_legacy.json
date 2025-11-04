@@ -1,0 +1,13 @@
+{
+  "build/app.legacy-legacy.js": "static/build_legacy/js/app-legacy.BXaTOaS0.js",
+  "build/app.legacy.js": "static/build_legacy/js/app.DtsnDbGd.js",
+  "build/node_modules/@fortawesome/fontawesome-free/css/brands-legacy.css": "static/build_legacy/js/brands-legacy.U-hiK-2y.js",
+  "build/node_modules/@fortawesome/fontawesome-free/css/brands.css": "static/build_legacy/css/brands.BZa9AwY_.css",
+  "build/node_modules/@fortawesome/fontawesome-free/css/fontawesome-legacy.css": "static/build_legacy/js/fontawesome-legacy.BHnp_EA3.js",
+  "build/node_modules/@fortawesome/fontawesome-free/css/fontawesome.css": "static/build_legacy/css/fontawesome.BxcK3J4g.css",
+  "build/node_modules/@fortawesome/fontawesome-free/css/solid-legacy.css": "static/build_legacy/js/solid-legacy.B2bW4RCg.js",
+  "build/node_modules/@fortawesome/fontawesome-free/css/solid.css": "static/build_legacy/css/solid.Dp4aRM3X.css",
+  "build/node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2": "static/build_legacy/assets/fa-brands-400.DFY6gyJh.woff2",
+  "build/node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2": "static/build_legacy/assets/fa-solid-900.BQpGBb1f.woff2",
+  "build/vite/legacy-polyfills-legacy": "static/build_legacy/js/polyfills-legacy.uJS6uDTe.js"
+}
