@@ -1,0 +1,6 @@
+{
+    "$schema": "https://unpkg.com/knip@5/schema.json",
+    "entry": ["generate-polyfills.js", "assets/js/**/*.js"],
+    "project": ["**/*.js"],
+    "ignore": ["public/**", "resources/**", "static/**", "content/**", "layouts/**", ".husky/**"]
+}

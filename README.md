@@ -8,6 +8,6 @@ Design made by [BlackrockDigital agency template](https://github.com/StartBootst
 
 ## Stack
 
--   Hugo
--   SCSS
--   Webpack
+- Hugo
+- SCSS
+- Webpack
