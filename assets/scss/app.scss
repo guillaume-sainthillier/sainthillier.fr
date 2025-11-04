@@ -1,7 +1,22 @@
-// Tailwind CSS
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+// Tailwind CSS v4 with custom theme
+@import "tailwindcss";
+
+@theme {
+  /* Custom Colors */
+  --color-primary: #fed136;
+  --color-gray-100: #f8f9fa;
+  --color-gray-200: #e9ecef;
+  --color-gray-300: #dee2e6;
+  --color-gray-400: #ced4da;
+  --color-gray-500: #adb5bd;
+  --color-gray-600: #6c757d;
+  --color-gray-700: #495057;
+  --color-gray-800: #343a40;
+  --color-gray-900: #212529;
+
+  /* Custom Font Family */
+  --font-family-sans: 'Google Sans', sans-serif;
+}
 
 // Core variables and mixins
 @import 'variables.scss';
@@ -10,17 +25,32 @@
 // Global CSS
 @import 'components/global';
 
-// Components
+// Contact Section
 @import 'components/contact';
+
+// Footer
 @import 'components/footer';
+
+// Hello section
 @import 'components/hello';
-@import 'components/images';
+
+// Intro section
 @import 'components/masthead';
+
+// Nav
 @import 'components/navbar';
+
+// Portfolio
 @import 'components/portfolio';
+
+// Services
 @import 'components/services';
+
+// Skills
 @import 'components/skills';
+
+// Timeline
 @import 'components/timeline';
 
-//Layouts
+// Layout Page
 @import 'layouts/layout-page';
