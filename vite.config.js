@@ -82,7 +82,8 @@ async function processStaticDir(dirPath, originalBase, destBase, shouldHash, fil
             }
 
             const outputDir = path.dirname(relativePath);
-            const outputPath = outputDir ? `${destBase}/${outputDir}/${outputName}` : `${destBase}/${outputName}`;
+            const outputPath =
+                outputDir && outputDir !== '.' ? `${destBase}/${outputDir}/${outputName}` : `${destBase}/${outputName}`;
             const originalKey = `${originalBase}/${relativePath}`;
 
             filesMap.set(originalKey, {
