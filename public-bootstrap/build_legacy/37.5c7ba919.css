@@ -1,0 +1,5 @@
+/*!
+ * Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com
+ * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
+ * Copyright 2025 Fonticons, Inc.
+ */:root{--fa-family-brands:"Font Awesome 7 Brands";--fa-font-brands:normal 400 1em/1 var(--fa-family-brands)}@font-face{font-display:block;font-family:Font Awesome\ 7 Brands;font-style:normal;font-weight:400;src:url(/build_legacy/fonts/fa-brands-400.1c5c7716.woff2)}.fab{--fa-family:var(--fa-family-brands);--fa-style:400}.fa-github{--fa:"\f09b"}.fa-linkedin-in{--fa:"\f0e1"}

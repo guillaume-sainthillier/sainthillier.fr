@@ -1,0 +1,25 @@
+{
+    "name": "Freelance Toulouse",
+    "short_name": "Freelance Toulouse",
+    "icons": [
+        {
+            "src": "/android-chrome-192x192.png?v=LbzRA5PvLG",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/android-chrome-512x512.png?v=LbzRA5PvLG",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+          "src": "/maskable_icon_x192.png?v=LbzRA5PvLG",
+          "sizes": "192x192",
+          "type": "image/png",
+          "purpose": "any maskable"
+        }
+    ],
+    "theme_color": "#2b5797",
+    "background_color": "#2b5797",
+    "display": "standalone"
+}
