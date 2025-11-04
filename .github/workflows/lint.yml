@@ -32,4 +32,3 @@ jobs:
 
             - name: Run Knip
               run: yarn knip
-              continue-on-error: true
