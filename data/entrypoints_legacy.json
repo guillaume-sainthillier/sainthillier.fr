@@ -2,12 +2,12 @@
   "entrypoints": {
     "app": {
       "js": [
-        "/build_legacy/js/app-legacy.BXaTOaS0.js",
-        "/build_legacy/js/app.DtsnDbGd.js",
+        "/build_legacy/js/app-legacy.BKCh3_Dn.js",
+        "/build_legacy/js/app.B8ipDYOR.js",
         "/build_legacy/js/polyfills-legacy.uJS6uDTe.js"
       ],
       "css": [
-        "/build_legacy/css/app.ZarGGdJ8.css"
+        "/build_legacy/css/app.SOzc7KyQ.css"
       ]
     }
   }
