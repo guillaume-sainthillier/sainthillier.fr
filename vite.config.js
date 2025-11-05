@@ -5,59 +5,51 @@ import path from 'path';
 import { promises as fs } from 'fs';
 import { createHash } from 'crypto';
 
+// Build configuration
 const isProduction = process.env.NODE_ENV === 'production';
 const buildMode = process.env.BUILD_MODE || 'modern';
 const isLegacy = buildMode === 'legacy';
 const outputSuffix = isLegacy ? '_legacy' : '';
 
-// Helper function to generate hash for file
-function generateFileHash(content) {
-    return createHash('md5').update(content).digest('hex').substring(0, 8);
-}
+// Asset configuration
+const STATIC_ASSETS = [
+    { src: 'assets/images', dest: 'images', hash: true },
+    { src: 'assets/svg', dest: 'svg', hash: true },
+    { src: 'assets/pdf', dest: 'pdf', hash: false },
+];
 
-// Plugin to handle static file copying with hash
-function staticFilesPlugin() {
-    const staticFiles = new Map();
+const HASH_PATTERN = /\.[a-f0-9]{8}(\.[^.]+)$/;
+const HASH_LENGTH = 8;
 
-    return {
-        name: 'vite-static-files-plugin',
-        async buildStart() {
-            if (isLegacy) return; // Only process in modern build
+// Utility functions
+const generateFileHash = (content) => createHash('md5').update(content).digest('hex').substring(0, HASH_LENGTH);
 
-            const assetsToProcess = [
-                { src: 'assets/images', dest: 'images', hash: true },
-                { src: 'assets/svg', dest: 'svg', hash: true },
-                { src: 'assets/pdf', dest: 'pdf', hash: false },
-            ];
+const normalizePathForManifest = (pathStr) => pathStr.replace(/\\/g, '/');
 
-            // eslint-disable-next-line no-restricted-syntax
-            for (const { src, dest, hash: shouldHash } of assetsToProcess) {
-                const srcPath = path.resolve(__dirname, src);
-                try {
-                    // eslint-disable-next-line no-await-in-loop
-                    await processStaticDir(srcPath, src, dest, shouldHash, staticFiles);
-                } catch (err) {
-                    console.warn(`Warning: Could not process ${src}:`, err.message);
-                }
-            }
-        },
-        async generateBundle() {
-            if (isLegacy) return;
+const getHashedFilename = (filename, content) => {
+    const hash = generateFileHash(content);
+    const ext = path.extname(filename);
+    const basename = path.basename(filename, ext);
+    return `${basename}.${hash}${ext}`;
+};
 
-            // Copy static files with hash
-            // eslint-disable-next-line no-restricted-syntax
-            for (const [, { content, outputPath }] of staticFiles.entries()) {
-                const fileName = outputPath.replace(/^\//, '');
-                this.emitFile({
-                    type: 'asset',
-                    fileName,
-                    source: content,
-                });
-            }
-        },
-    };
-}
+const writeManifestFiles = async (manifest, entrypoints, suffix) => {
+    const files = [
+        { path: path.resolve(__dirname, `static/build${suffix}/manifest.json`), content: manifest },
+        { path: path.resolve(__dirname, `static/build${suffix}/entrypoints.json`), content: entrypoints },
+        { path: path.resolve(__dirname, `data/manifest${suffix}.json`), content: manifest },
+        { path: path.resolve(__dirname, `data/entrypoints${suffix}.json`), content: entrypoints },
+    ];
 
+    await Promise.all(
+        files.map(async ({ path: filePath, content }) => {
+            await fs.mkdir(path.dirname(filePath), { recursive: true });
+            await fs.writeFile(filePath, JSON.stringify(content, null, 2));
+        })
+    );
+};
+
+// Static file processing
 async function processStaticDir(dirPath, originalBase, destBase, shouldHash, filesMap) {
     const entries = await fs.readdir(dirPath, { withFileTypes: true });
 
@@ -72,102 +64,72 @@ async function processStaticDir(dirPath, originalBase, destBase, shouldHash, fil
         } else {
             // eslint-disable-next-line no-await-in-loop
             const content = await fs.readFile(fullPath);
-            let outputName = entry.name;
-
-            if (shouldHash && isProduction) {
-                const hash = generateFileHash(content);
-                const ext = path.extname(entry.name);
-                const basename = path.basename(entry.name, ext);
-                outputName = `${basename}.${hash}${ext}`;
-            }
-
+            const outputName = shouldHash && isProduction ? getHashedFilename(entry.name, content) : entry.name;
             const outputDir = path.dirname(relativePath);
             const outputPath =
                 outputDir && outputDir !== '.' ? `${destBase}/${outputDir}/${outputName}` : `${destBase}/${outputName}`;
-            const originalKey = `${originalBase}/${relativePath}`;
 
-            filesMap.set(originalKey, {
-                content,
-                outputPath,
-            });
+            filesMap.set(`${originalBase}/${relativePath}`, { content, outputPath });
         }
     }
 }
 
-// Plugin to generate custom manifest files and copy them to data directory
-function manifestPlugin() {
+// Static files plugin
+function staticFilesPlugin() {
+    const staticFiles = new Map();
+
     return {
-        name: 'vite-manifest-plugin',
-        async closeBundle() {
-            const manifestPath = path.resolve(__dirname, `static/build${outputSuffix}/.vite/manifest.json`);
-            const outputManifestPath = path.resolve(__dirname, `static/build${outputSuffix}/manifest.json`);
-            const dataManifestPath = path.resolve(__dirname, `data/manifest${outputSuffix}.json`);
-            const entrypointsPath = path.resolve(__dirname, `static/build${outputSuffix}/entrypoints.json`);
-            const dataEntrypointsPath = path.resolve(__dirname, `data/entrypoints${outputSuffix}.json`);
+        name: 'vite-static-files-plugin',
+        async buildStart() {
+            if (isLegacy) return;
 
-            try {
-                // Read Vite's manifest
-                const viteManifest = JSON.parse(await fs.readFile(manifestPath, 'utf-8'));
-
-                // Convert Vite manifest to Webpack-style manifest
-                const webpackManifest = {};
-                const entrypoints = {
-                    entrypoints: {
-                        app: {
-                            js: [],
-                            css: [],
-                        },
-                    },
-                };
-
-                // Process each entry in the Vite manifest
-                // eslint-disable-next-line no-restricted-syntax
-                for (const [key, value] of Object.entries(viteManifest)) {
-                    // Handle entry files
-                    if (value.isEntry) {
-                        const outputPath = `/build${outputSuffix}/${value.file}`;
-                        entrypoints.entrypoints.app.js.push(outputPath);
-
-                        // Add CSS files
-                        if (value.css && value.css.length > 0) {
-                            value.css.forEach((cssFile) => {
-                                entrypoints.entrypoints.app.css.push(`/build${outputSuffix}/${cssFile}`);
-                            });
-                        }
-                    }
-
-                    // Map all files for lookup by original path
-                    if (value.file) {
-                        // For assets imported in JS/CSS
-                        const originalPath = key
-                            .replace(/^assets\/js\//, '')
-                            .replace(/^assets\/scss\//, '')
-                            .replace(/^assets\//, '');
-                        // Hugo's resources.Get works with paths in static/ directory WITHOUT the static/ prefix
-                        webpackManifest[`build/${originalPath}`] = `build${outputSuffix}/${value.file}`;
-                    }
+            // eslint-disable-next-line no-restricted-syntax
+            for (const { src, dest, hash } of STATIC_ASSETS) {
+                const srcPath = path.resolve(__dirname, src);
+                try {
+                    // eslint-disable-next-line no-await-in-loop
+                    await processStaticDir(srcPath, src, dest, hash, staticFiles);
+                } catch (err) {
+                    console.warn(`Warning: Could not process ${src}:`, err.message);
                 }
+            }
+        },
+        async generateBundle() {
+            if (isLegacy) return;
 
-                // Add static files to manifest from the output directory
-                const buildDir = path.resolve(__dirname, `static/build${outputSuffix}`);
-                await addStaticFilesToManifest(buildDir, webpackManifest, outputSuffix);
-
-                // Write manifests
-                await fs.mkdir(path.dirname(outputManifestPath), { recursive: true });
-                await fs.writeFile(outputManifestPath, JSON.stringify(webpackManifest, null, 2));
-                await fs.writeFile(entrypointsPath, JSON.stringify(entrypoints, null, 2));
-
-                // Copy to data directory
-                await fs.mkdir(path.dirname(dataManifestPath), { recursive: true });
-                await fs.writeFile(dataManifestPath, JSON.stringify(webpackManifest, null, 2));
-                await fs.writeFile(dataEntrypointsPath, JSON.stringify(entrypoints, null, 2));
-
-                console.log(`✓ Generated manifest${outputSuffix}.json and entrypoints${outputSuffix}.json`);
-            } catch (err) {
-                console.error('Error generating manifest:', err);
+            // eslint-disable-next-line no-restricted-syntax
+            for (const [, { content, outputPath }] of staticFiles.entries()) {
+                this.emitFile({
+                    type: 'asset',
+                    fileName: outputPath.replace(/^\//, ''),
+                    source: content,
+                });
             }
         },
     };
+}
+
+// Manifest generation
+async function addDirToManifest(dirPath, baseDir, manifest, suffix, buildDir) {
+    const entries = await fs.readdir(dirPath, { withFileTypes: true });
+
+    // eslint-disable-next-line no-restricted-syntax
+    for (const entry of entries) {
+        const fullPath = path.join(dirPath, entry.name);
+
+        if (entry.isDirectory()) {
+            // eslint-disable-next-line no-await-in-loop
+            await addDirToManifest(fullPath, `${baseDir}/${entry.name}`, manifest, suffix, buildDir);
+        } else {
+            const relativePath = path.relative(buildDir, fullPath);
+            const originalName = entry.name.replace(HASH_PATTERN, '$1');
+            const pathParts = relativePath.split(path.sep);
+            pathParts[pathParts.length - 1] = originalName;
+            const originalFullPath = pathParts.join('/');
+
+            manifest[`build/${originalFullPath}`] = `build${suffix}/${normalizePathForManifest(relativePath)}`;
+        }
+    }
 }
 
 async function addStaticFilesToManifest(buildDir, manifest, suffix) {
@@ -185,32 +147,55 @@ async function addStaticFilesToManifest(buildDir, manifest, suffix) {
     }
 }
 
-async function addDirToManifest(dirPath, baseDir, manifest, suffix, buildDir) {
-    const entries = await fs.readdir(dirPath, { withFileTypes: true });
+function manifestPlugin() {
+    return {
+        name: 'vite-manifest-plugin',
+        async closeBundle() {
+            const manifestPath = path.resolve(__dirname, `static/build${outputSuffix}/.vite/manifest.json`);
 
-    // eslint-disable-next-line no-restricted-syntax
-    for (const entry of entries) {
-        const fullPath = path.join(dirPath, entry.name);
+            try {
+                const viteManifest = JSON.parse(await fs.readFile(manifestPath, 'utf-8'));
+                const webpackManifest = {};
+                const entrypoints = { entrypoints: { app: { js: [], css: [] } } };
 
-        if (entry.isDirectory()) {
-            // eslint-disable-next-line no-await-in-loop
-            await addDirToManifest(fullPath, `${baseDir}/${entry.name}`, manifest, suffix, buildDir);
-        } else {
-            // Get relative path from buildDir (e.g., "images/design.d1122ffc.jpg")
-            const relativePath = path.relative(buildDir, fullPath);
-            const originalName = entry.name.replace(/\.[a-f0-9]{8}(\.[^.]+)$/, '$1');
+                // Process Vite manifest entries
+                // eslint-disable-next-line no-restricted-syntax
+                for (const [key, value] of Object.entries(viteManifest)) {
+                    if (value.isEntry) {
+                        entrypoints.entrypoints.app.js.push(`/build${outputSuffix}/${value.file}`);
 
-            // Reconstruct the original path
-            const pathParts = relativePath.split(path.sep);
-            pathParts[pathParts.length - 1] = originalName;
-            const originalFullPath = pathParts.join('/');
+                        if (value.css?.length > 0) {
+                            value.css.forEach((cssFile) => {
+                                entrypoints.entrypoints.app.css.push(`/build${outputSuffix}/${cssFile}`);
+                            });
+                        }
+                    }
 
-            // Hugo's resources.Get works with paths in static/ directory WITHOUT the static/ prefix
-            manifest[`build/${originalFullPath}`] = `build${suffix}/${relativePath.replace(/\\/g, '/')}`;
-        }
-    }
+                    if (value.file) {
+                        const originalPath = key
+                            .replace(/^assets\/js\//, '')
+                            .replace(/^assets\/scss\//, '')
+                            .replace(/^assets\//, '');
+                        webpackManifest[`build/${originalPath}`] = `build${outputSuffix}/${value.file}`;
+                    }
+                }
+
+                // Add static files to manifest
+                const buildDir = path.resolve(__dirname, `static/build${outputSuffix}`);
+                await addStaticFilesToManifest(buildDir, webpackManifest, outputSuffix);
+
+                // Write all manifest files
+                await writeManifestFiles(webpackManifest, entrypoints, outputSuffix);
+
+                console.log(`✓ Generated manifest${outputSuffix}.json and entrypoints${outputSuffix}.json`);
+            } catch (err) {
+                console.error('Error generating manifest:', err);
+            }
+        },
+    };
 }
 
+// Vite configuration
 export default defineConfig({
     build: {
         outDir: `static/build${outputSuffix}`,
@@ -225,11 +210,8 @@ export default defineConfig({
                 chunkFileNames: isProduction ? 'js/[name].[hash].js' : 'js/[name].js',
                 assetFileNames: (assetInfo) => {
                     const ext = path.extname(assetInfo.name);
-                    if (ext === '.css') {
-                        return isProduction ? `css/[name].[hash][extname]` : `css/[name][extname]`;
-                    }
-                    // Images and other assets
-                    return isProduction ? `assets/[name].[hash][extname]` : `assets/[name][extname]`;
+                    const pattern = isProduction ? '[name].[hash][extname]' : '[name][extname]';
+                    return ext === '.css' ? `css/${pattern}` : `assets/${pattern}`;
                 },
             },
             plugins: isProduction
@@ -243,22 +225,14 @@ export default defineConfig({
                               path.join(__dirname, 'node_modules/lazysizes/lazysizes.js'),
                               path.join(__dirname, 'node_modules/lite-youtube-embed/src/lite-yt-embed.js'),
                           ],
-                          safelist: {
-                              standard: [/^weight-(\d+)$/],
-                          },
+                          safelist: { standard: [/^weight-(\d+)$/] },
                       }),
                   ]
                 : [],
         },
         sourcemap: !isProduction,
         minify: isProduction ? 'terser' : false,
-        terserOptions: isProduction
-            ? {
-                  compress: {
-                      drop_console: false,
-                  },
-              }
-            : undefined,
+        terserOptions: isProduction ? { compress: { drop_console: false } } : undefined,
     },
     resolve: {
         alias: {
@@ -267,9 +241,7 @@ export default defineConfig({
     },
     css: {
         preprocessorOptions: {
-            scss: {
-                api: 'modern',
-            },
+            scss: { api: 'modern' },
         },
     },
     plugins: [
@@ -286,8 +258,4 @@ export default defineConfig({
             : []),
         manifestPlugin(),
     ],
-    server: {
-        port: 3000,
-        strictPort: false,
-    },
 });
