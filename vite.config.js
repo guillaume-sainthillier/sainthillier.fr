@@ -178,14 +178,14 @@ async function addStaticFilesToManifest(buildDir, manifest, suffix) {
         const dirPath = path.join(buildDir, dir);
         try {
             // eslint-disable-next-line no-await-in-loop
-            await addDirToManifest(dirPath, dir, manifest, suffix);
+            await addDirToManifest(dirPath, dir, manifest, suffix, buildDir);
         } catch {
             // Directory might not exist
         }
     }
 }
 
-async function addDirToManifest(dirPath, baseDir, manifest, suffix) {
+async function addDirToManifest(dirPath, baseDir, manifest, suffix, buildDir) {
     const entries = await fs.readdir(dirPath, { withFileTypes: true });
 
     // eslint-disable-next-line no-restricted-syntax
@@ -194,18 +194,19 @@ async function addDirToManifest(dirPath, baseDir, manifest, suffix) {
 
         if (entry.isDirectory()) {
             // eslint-disable-next-line no-await-in-loop
-            await addDirToManifest(fullPath, `${baseDir}/${entry.name}`, manifest, suffix);
+            await addDirToManifest(fullPath, `${baseDir}/${entry.name}`, manifest, suffix, buildDir);
         } else {
-            const relativePath = fullPath.split(`/build${suffix}/`)[1];
+            // Get relative path from buildDir (e.g., "images/design.d1122ffc.jpg")
+            const relativePath = path.relative(buildDir, fullPath);
             const originalName = entry.name.replace(/\.[a-f0-9]{8}(\.[^.]+)$/, '$1');
 
             // Reconstruct the original path
-            const pathParts = relativePath.split('/');
+            const pathParts = relativePath.split(path.sep);
             pathParts[pathParts.length - 1] = originalName;
             const originalFullPath = pathParts.join('/');
 
             // Hugo's resources.Get works with paths in static/ directory WITHOUT the static/ prefix
-            manifest[`build/${originalFullPath}`] = `build${suffix}/${relativePath}`;
+            manifest[`build/${originalFullPath}`] = `build${suffix}/${relativePath.replace(/\\/g, '/')}`;
         }
     }
 }
