@@ -13,8 +13,9 @@
     "scripts": {
         "dev": "vite",
         "watch": "vite build --watch",
+        "prebuild": "mkdir -p data",
         "build": "NODE_ENV=production BUILD_MODE=modern vite build && NODE_ENV=production BUILD_MODE=legacy vite build",
-        "build:hugo": "yarn build && hugo --gc --minify",
+        "build:hugo": "yarn build && ls -la data/ && cat data/manifest.json && hugo --gc --minify",
         "build:hugo:preview": "yarn build && hugo -D -F",
         "hugo": "hugo --gc --minify",
         "hugo:dev": "hugo server -D",
