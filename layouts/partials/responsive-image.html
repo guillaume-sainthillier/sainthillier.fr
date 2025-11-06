@@ -2,10 +2,10 @@
   Partial for responsive image generation
 
   Usage:
-  {{ partial "responsive-image" (dict "src" "header-bg.jpg" "alt" "Hero Image" "class" "my-class" "priority" true "width" 1900 "height" 1250) }}
+  {{ partial "responsive-image" (dict "src" "images/header-bg.jpg" "alt" "Hero Image" "class" "my-class" "priority" true "width" 1900 "height" 1250) }}
 
   Parameters:
-  - src: image path relative to assets/images/ (required)
+  - src: full image path from assets directory (e.g., "images/header-bg.jpg") (required)
   - alt: alt text (optional)
   - class: CSS class (optional)
   - priority: true for eager loading, false for lazy (default: false)
@@ -20,7 +20,7 @@
 {{ $targetWidth := .width | default 0 }}
 {{ $targetHeight := .height | default 0 }}
 
-{{ $img := resources.Get (printf "images/%s" $src) }}
+{{ $img := resources.Get $src }}
 
 {{ if $img }}
   {{ $width := $img.Width }}

@@ -1,5 +1,5 @@
-{{ $image := resources.Get "images/guillaume-sainthillier.jpg" }}
-{{ $imageProcessed := $image | resources.Fingerprint "sha256" }}
+{{ with resources.Get "images/guillaume-sainthillier.jpg" }}
+{{ $imageProcessed := . | resources.Fingerprint "sha256" }}
 <script type="application/ld+json">
     {
         "@context": "http://www.schema.org",
@@ -12,8 +12,8 @@
             "https://www.youtube.com/watch?v=JjeguKaXutw",
             "https://silarhi.fr",
             "https://g.page/silarhi?share",
-            {{ .Site.Params.Social.linkedin }},
-            {{ .Site.Params.Social.github }},
+            {{ $.Site.Params.Social.linkedin }},
+            {{ $.Site.Params.Social.github }},
             {{ "/build/pdf/CV-SAINTHILLIER-Guillaume.pdf" | absURL }},
             "https://stackoverflow.com/users/7652866/guillaume-sainthillier"
         ],
@@ -30,14 +30,15 @@
         "email": "hello@silarhi.fr"
     }
 </script>
-{{ $logo := resources.Get "images/logo.png" }}
-{{ $logoProcessed := $logo | resources.Fingerprint "sha256" }}
+{{ end }}
+{{ with resources.Get "images/logo.png" }}
+{{ $logoProcessed := . | resources.Fingerprint "sha256" }}
 <script type='application/ld+json'>
     {
         "@context": "http://www.schema.org",
         "@type": "LocalBusiness",
         "name": "Silarhi",
-        "description": {{ .Site.Params.description }},
+        "description": {{ $.Site.Params.description }},
         "email": "hello@silarhi.fr",
         "foundingDate": "2018-08-03",
         "url": {{ "" | absURL }},
@@ -72,3 +73,4 @@
         "telephone": "+33607275826"
     }
 </script>
+{{ end }}

@@ -1,11 +1,13 @@
 {{/*
   Usage:
   {{< responsive-image
-        src="hero.jpg"
+        src="images/hero.jpg"
         alt="Hero Image"
         class="my-class"
         priority="true|false"
   >}}
+
+  Note: src should be the full path from the assets directory (e.g., "images/hero.jpg")
 */}}
 
 {{ $src := .Get "src" }}
@@ -13,7 +15,7 @@
 {{ $class := .Get "class" | default "" }}
 {{ $priority := .Get "priority" | default "false" | lower }}
 
-{{ $img := resources.Get (printf "images/%s" $src) }}
+{{ $img := resources.Get $src }}
 {{ $width := $img.Width }}
 {{ $height := $img.Height }}
 
