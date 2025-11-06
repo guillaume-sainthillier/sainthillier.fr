@@ -1,4 +1,5 @@
-{{ $image := resources.Get (index .Site.Data.manifest "build/images/guillaume-sainthillier.jpg") -}}
+{{ $image := resources.Get "images/guillaume-sainthillier.jpg" }}
+{{ $imageProcessed := $image | resources.Fingerprint "sha256" }}
 <script type="application/ld+json">
     {
         "@context": "http://www.schema.org",
@@ -16,7 +17,7 @@
             {{ "/build/pdf/CV-SAINTHILLIER-Guillaume.pdf" | absURL }},
             "https://stackoverflow.com/users/7652866/guillaume-sainthillier"
         ],
-        "image": {{ $image | absURL }},
+        "image": {{ $imageProcessed.Permalink | absURL }},
         "address": {
             "@type": "PostalAddress",
             "streetAddress": "116 Route d'Espagne",
@@ -29,7 +30,8 @@
         "email": "hello@silarhi.fr"
     }
 </script>
-{{ $image := resources.Get (index .Site.Data.manifest "build/images/logo.png") -}}
+{{ $logo := resources.Get "images/logo.png" }}
+{{ $logoProcessed := $logo | resources.Fingerprint "sha256" }}
 <script type='application/ld+json'>
     {
         "@context": "http://www.schema.org",
@@ -45,8 +47,8 @@
             "https://github.com/silarhi",
             "https://www.linkedin.com/company/silarhi"
         ],
-        "logo": {{ $image | absURL }},
-        "image": {{ $image | absURL }},
+        "logo": {{ $logoProcessed.Permalink | absURL }},
+        "image": {{ $logoProcessed.Permalink | absURL }},
         "address": {
             "@type": "PostalAddress",
             "streetAddress": "116 Route d'Espagne",

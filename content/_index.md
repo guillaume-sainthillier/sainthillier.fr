@@ -41,21 +41,21 @@ skills:
       weight: 5
 experiences:
     - periode: Avr 2011 - Fév 2013
-      logo: build/images/logos/ICM_Services.jpg
+      logo: images/logos/ICM_Services.jpg
       client: ICM Services
       entreprise:
       titre: Développeur Full Stack
       description: Maintenance et développement de modules sur une application à destination
           des Polices Municipales.
     - periode: Août 2013 - Août 2015
-      logo: build/images/logos/CHU_Toulouse.jpg
+      logo: images/logos/CHU_Toulouse.jpg
       client: CCMM - SAMU 31
       entreprise:
       titre: Développeur Full Stack
-      description: Conception, développement et maintenance de modules d’une application
+      description: Conception, développement et maintenance de modules d'une application
           de gestion des dossiers patients.
     - periode: Sept 2015 - Jan 2018
-      logo: build/images/logos/Latecoere.jpg
+      logo: images/logos/Latecoere.jpg
       client: Groupe Latécoère
       entreprise: <a itemprop="url" rel="noopener" href="https://apside.com" target="_blank">Apside</a>
       titre: Développeur Full Stack
@@ -68,7 +68,7 @@ experiences:
           - Utilisation du Framework JS <a rel="noopener" href="https://angular.io">AngularJS</a> et des
             composants Symfony 3
     - periode: Jan 2018 - Dec 2018
-      logo: build/images/logos/Agoranet.jpg
+      logo: images/logos/Agoranet.jpg
       entreprise: <a itemprop="url" rel="noopener" href="https://apside.com" target="_blank">Apside</a>
       client: Agoranet
       titre: Développeur Full Stack freelance
@@ -76,7 +76,7 @@ experiences:
           pour le client Airbus.
       points: []
     - periode: Août 2018 - Aujourd'hui
-      logo: build/images/logos/Silarhi.jpg
+      logo: images/logos/Silarhi.jpg
       entreprise:
       client: SILARHI
       titre: Gérant - Développeur Full Stack freelance
@@ -84,7 +84,7 @@ experiences:
           mission : donner vie à vos projets Web."
       points: []
     - periode: Sept 2020 - Sept 2021
-      logo: build/images/logos/Webforce3.jpg
+      logo: images/logos/Webforce3.jpg
       entreprise:
       client: Webforce3
       titre: Formateur freelance
@@ -135,7 +135,7 @@ realisations:
               <li><i class="fa-li fa fa-angle-right"></i>Assurer le suivi de leur facturation</li>
           </ul>
       url: https://cibaru.fr
-      image: build/images/realisations/cibaru.jpg
+      image: images/realisations/cibaru.jpg
       keywords:
           - PHP
           - Symfony 7
@@ -156,7 +156,7 @@ realisations:
               <li><i class="fa-li fa fa-angle-right"></i>Se mettre en conformité avec la nouvelle tarification de l'eau en 2025</li>
           </ul>
       url: https://netisio.fr
-      image: build/images/realisations/netisio.jpg
+      image: images/realisations/netisio.jpg
       keywords:
           - PHP
           - Symfony 7
@@ -178,7 +178,7 @@ realisations:
               <li><i class="fa-li fa fa-angle-right"></i>Suivre la bonne réalisation de ses opérations bancaires</li>
           </ul>
       url: https://solution-sepa.fr
-      image: build/images/realisations/solution-sepa.jpg
+      image: images/realisations/solution-sepa.jpg
       keywords:
           - Reprise de projet
           - PHP
@@ -206,7 +206,7 @@ realisations:
               <li><i class="fa-li fa fa-angle-right"></i>Préparer le bail une fois la candidature acceptée</li>
           </ul>
       url: https://dosloc.fr
-      image: build/images/realisations/dosloc.jpg
+      image: images/realisations/dosloc.jpg
       keywords:
           - PHP
           - Symfony 6
@@ -227,7 +227,7 @@ realisations:
               <li><i class="fa-li fa fa-angle-right"></i>Utiliser le protocole EBICS pour récupérer automatiquement les données bancaires et croiser les informations avec les locataires</li>
           </ul>
       url: https://immobilus.fr
-      image: build/images/realisations/immobilus.jpg
+      image: images/realisations/immobilus.jpg
       keywords:
           - PHP
           - Symfony 6
@@ -250,7 +250,7 @@ realisations:
               <li><i class="fa-li fa fa-angle-right"></i>Analyser la portée de leurs événements</li>
           </ul>
       url: https://by-night.fr
-      image: build/images/realisations/by-night.jpg
+      image: images/realisations/by-night.jpg
       keywords:
           - PHP
           - Symfony 7
@@ -269,7 +269,7 @@ realisations:
       date: Mars 2018 - Juin 2018
       description: '<p>Pour le service Airbus MultiMedia Support. Ce service Web permet
           en interne la demande de travaux graphiques au sein du Groupe Airbus.</p>'
-      image: build/images/realisations/mms.jpg
+      image: images/realisations/mms.jpg
       keywords:
           - PHP
           - Symfony 7
@@ -288,7 +288,7 @@ realisations:
           permet aux pilotes de ligne de vérifier avant le décollage certains points de
           contrôle de l'extérieur de l'avion avec des exemples illustrés de problèmes déjà
           rencontrés à ces endroits.</p>"
-      image: build/images/realisations/exterior-walkaround.jpg
+      image: images/realisations/exterior-walkaround.jpg
       keywords:
           - PHP
           - Symfony 4
@@ -300,9 +300,9 @@ realisations:
       sous_titre: Développeur Web freelance
       date: Mai 2018
       description: "<p>Pour le service Airbus MultiMedia Support. Cette application mobile
-          permet aux “Safety Officers“ de vérifier quelles améliorations physiques ou logicielles
+          permet aux "Safety Officers" de vérifier quelles améliorations physiques ou logicielles
           peuvent être effectuées sur les composants de leur flotte d'avion.</p>"
-      image: build/images/realisations/safety-index.jpg
+      image: images/realisations/safety-index.jpg
       keywords:
           - PHP
           - Symfony 4
@@ -327,7 +327,7 @@ realisations:
           </ul>
           <p class="mb-2">Sous la direction d'Antoine Coelho et Denis Coujou</p>
       url: https://prod.logilibres.org/epmdemo
-      image: build/images/realisations/epm.jpg
+      image: images/realisations/epm.jpg
       keywords:
           - PHP
           - OpenMairie

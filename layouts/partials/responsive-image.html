@@ -1,0 +1,82 @@
+{{/*
+  Partial for responsive image generation
+
+  Usage:
+  {{ partial "responsive-image" (dict "src" "header-bg.jpg" "alt" "Hero Image" "class" "my-class" "priority" true "width" 1900 "height" 1250) }}
+
+  Parameters:
+  - src: image path relative to assets/images/ (required)
+  - alt: alt text (optional)
+  - class: CSS class (optional)
+  - priority: true for eager loading, false for lazy (default: false)
+  - width: target width (optional, uses original if not set)
+  - height: target height (optional, uses original if not set)
+*/}}
+
+{{ $src := .src }}
+{{ $alt := .alt | default "" }}
+{{ $class := .class | default "" }}
+{{ $priority := .priority | default false }}
+{{ $targetWidth := .width | default 0 }}
+{{ $targetHeight := .height | default 0 }}
+
+{{ $img := resources.Get (printf "images/%s" $src) }}
+
+{{ if $img }}
+  {{ $width := $img.Width }}
+  {{ $height := $img.Height }}
+
+  {{/* Use target dimensions if provided, otherwise use original */}}
+  {{ if and (gt $targetWidth 0) (gt $targetHeight 0) }}
+    {{ $img = $img.Fill (printf "%dx%d" $targetWidth $targetHeight) }}
+    {{ $width = $targetWidth }}
+    {{ $height = $targetHeight }}
+  {{ else if gt $targetWidth 0 }}
+    {{ $img = $img.Resize (printf "%dx" $targetWidth) }}
+    {{ $width = $targetWidth }}
+    {{ $height = $img.Height }}
+  {{ end }}
+
+  {{/* Breakpoints for responsive srcset */}}
+  {{ $breakpoints := slice 320 480 640 768 1024 1280 1536 1920 }}
+  {{ $sizes := slice }}
+
+  {{/* Only include breakpoints smaller than target image */}}
+  {{ range $breakpoints }}
+    {{ if le . $width }}
+      {{ $sizes = $sizes | append . }}
+    {{ end }}
+  {{ end }}
+
+  {{/* Generate blur placeholder only if not priority */}}
+  {{ $placeholder := "" }}
+  {{ if not $priority }}
+    {{ $placeholderImg := $img.Fit "20x20" }}
+    {{ $placeholderImg = $placeholderImg.Process "webp q10" }}
+    {{ $placeholder = $placeholderImg | resources.Base64 }}
+  {{ end }}
+
+  <picture class="{{ $class }}">
+    {{/* Generate WebP sources for responsive sizes */}}
+    {{ range $sizes }}
+      {{ $resizedWebP := $img.Resize (printf "%dx" .) }}
+      {{ $resizedWebP = $resizedWebP.Process "webp" }}
+      {{ $resizedWebP = $resizedWebP | resources.Fingerprint "sha256" }}
+      <source srcset="{{ $resizedWebP.RelPermalink }}" type="image/webp" media="(max-width: {{ . }}px)">
+    {{ end }}
+
+    {{/* Fallback original format image */}}
+    {{ $resizedFallback := $img | resources.Fingerprint "sha256" }}
+    <img
+      src="{{ $resizedFallback.RelPermalink }}"
+      alt="{{ $alt }}"
+      loading="{{ if $priority }}eager{{ else }}lazy{{ end }}"
+      {{ if not $priority }}style="background: url('{{ $placeholder }}') center center / cover no-repeat;"{{ end }}
+      width="{{ $width }}"
+      height="{{ $height }}"
+    >
+  </picture>
+{{ else }}
+  {{/* Fallback if image not found */}}
+  <p>Image not found: {{ $src }}</p>
+{{ end }}

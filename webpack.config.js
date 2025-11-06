@@ -28,12 +28,6 @@ const makeConfig = async (BROWSERSLIST_ENV) => {
             BROWSER_TARGET === DEFAULT_BROWSER_TARGET
                 ? [
                       {
-                          from: './assets/images',
-                          to: Encore.isProduction()
-                              ? 'images/[path][name].[hash:8].[ext]'
-                              : 'images/[path][name].[ext]',
-                      },
-                      {
                           from: './assets/svg',
                           to: Encore.isProduction() ? 'svg/[path][name].[hash:8].[ext]' : 'svg/[path][name].[ext]',
                       },
