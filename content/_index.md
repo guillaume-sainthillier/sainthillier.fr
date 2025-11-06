@@ -300,7 +300,7 @@ realisations:
       sous_titre: Développeur Web freelance
       date: Mai 2018
       description: "<p>Pour le service Airbus MultiMedia Support. Cette application mobile
-          permet aux "Safety Officers" de vérifier quelles améliorations physiques ou logicielles
+          permet aux \"Safety Officers\" de vérifier quelles améliorations physiques ou logicielles
           peuvent être effectuées sur les composants de leur flotte d'avion.</p>"
       image: images/realisations/safety-index.jpg
       keywords:
