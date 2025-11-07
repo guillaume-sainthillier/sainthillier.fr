@@ -89,8 +89,9 @@
 <footer>
     <div class="container">
         <div class="d-flex align-items-center justify-content-center justify-content-sm-start flex-wrap flex-sm-nowrap">
-            <div class="me-sm-4">
-                {{ partial "responsive-image" (dict "src" "images/logo.png" "alt" "Concrétisez vos projets Web" "width" 96 "height" 96 "priority" false) }}
+            <div class="me-sm-4" style="width: 96px; height: 96px;">
+                {{ $logo := resources.Get "svg/logo-web.svg" }}
+                {{ $logo.Content | safeHTML }}
             </div>
             <div class="text-center text-sm-start mb-3 mb-sm-0">
                 <p>Guillaume Sainthillier - Développeur Web freelance à Toulouse</p>
