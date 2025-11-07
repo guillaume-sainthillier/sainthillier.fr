@@ -1,17 +1,1 @@
-{{- /*
-  Shortcode to generate a fingerprinted permalink for a PDF for use in markdown content.
-
-  Usage in markdown:
-    [Download PDF]({{< pdf "pdf/CGV.pdf" >}})
-
-  Parameters:
-    .Get 0: Path to PDF file relative to assets/ directory
-*/ -}}
-{{- $path := .Get 0 -}}
-{{- $pdf := resources.Get $path -}}
-{{- if $pdf -}}
-  {{- $pdfProcessed := $pdf | resources.Fingerprint "sha256" -}}
-  {{- $pdfProcessed.Permalink -}}
-{{- else -}}
-  {{- errorf "PDF file not found: %s" $path -}}
-{{- end -}}
+{{- partial "pdf-url.html" (dict "path" (.Get 0)) -}}

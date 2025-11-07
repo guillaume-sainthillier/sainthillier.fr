@@ -1,5 +1,5 @@
 {{- /*
-  Returns a fingerprinted permalink for a PDF file from the assets directory.
+  Returns a fingerprinted relative permalink for a PDF file from the assets directory.
 
   Usage:
     {{ partial "pdf-url.html" (dict "path" "pdf/CV-SAINTHILLIER-Guillaume.pdf") }}
@@ -11,7 +11,7 @@
 {{- $pdf := resources.Get $path -}}
 {{- if $pdf -}}
   {{- $pdfProcessed := $pdf | resources.Fingerprint "sha256" -}}
-  {{- $pdfProcessed.Permalink -}}
+  {{- $pdfProcessed.RelPermalink -}}
 {{- else -}}
   {{- errorf "PDF file not found: %s" $path -}}
 {{- end -}}
