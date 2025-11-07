@@ -80,17 +80,11 @@
 {{ $placeholderImg := $originalImg.Resize "20x webp q10" }}
 {{ $placeholderImg = $placeholderImg | resources.Fingerprint "sha256" }}
 
-{{/* Build srcset strings for AVIF, WebP, and fallback - ALL from original image */}}
-{{ $avifSrcset := slice }}
+{{/* Build srcset strings for WebP and fallback - ALL from original image */}}
 {{ $webpSrcset := slice }}
 {{ $fallbackSrcset := slice }}
 
 {{ range $validSizes }}
-  {{/* Generate AVIF version from ORIGINAL image (best compression) */}}
-  {{ $resizedAVIF := $originalImg.Resize (printf "%dx avif" .) }}
-  {{ $resizedAVIF = $resizedAVIF | resources.Fingerprint "sha256" }}
-  {{ $avifSrcset = $avifSrcset | append (printf "%s %dw" $resizedAVIF.RelPermalink .) }}
-
   {{/* Generate WebP version from ORIGINAL image (good compression, wide support) */}}
   {{ $resizedWebP := $originalImg.Resize (printf "%dx webp" .) }}
   {{ $resizedWebP = $resizedWebP | resources.Fingerprint "sha256" }}
@@ -109,11 +103,6 @@
   {{/* Priority images load immediately without lazysizes */}}
   <picture>
     <source
-      srcset="{{ delimit $avifSrcset ", " }}"
-      sizes="{{ $sizesAttr }}"
-      type="image/avif"
-    >
-    <source
       srcset="{{ delimit $webpSrcset ", " }}"
       sizes="{{ $sizesAttr }}"
       type="image/webp"
@@ -131,11 +120,6 @@
 {{ else }}
   {{/* Lazy images use lazysizes with blur-up effect */}}
   <picture>
-    <source
-      data-srcset="{{ delimit $avifSrcset ", " }}"
-      data-sizes="{{ $sizesAttr }}"
-      type="image/avif"
-    >
     <source
       data-srcset="{{ delimit $webpSrcset ", " }}"
       data-sizes="{{ $sizesAttr }}"
