@@ -1,5 +1,7 @@
 {{ $image := resources.Get "images/guillaume-sainthillier.jpg" }}
 {{ $imageProcessed := $image | resources.Fingerprint "sha256" }}
+{{ $cv := resources.Get "pdf/CV-SAINTHILLIER-Guillaume.pdf" }}
+{{ $cvProcessed := $cv | resources.Fingerprint "sha256" }}
 <script type="application/ld+json">
     {
         "@context": "http://www.schema.org",
@@ -14,7 +16,7 @@
             "https://g.page/silarhi?share",
             {{ .Site.Params.Social.linkedin }},
             {{ .Site.Params.Social.github }},
-            {{ "/build/pdf/CV-SAINTHILLIER-Guillaume.pdf" | absURL }},
+            {{ $cvProcessed.RelPermalink | absURL }},
             "https://stackoverflow.com/users/7652866/guillaume-sainthillier"
         ],
         "image": {{ $imageProcessed.Permalink | absURL }},
