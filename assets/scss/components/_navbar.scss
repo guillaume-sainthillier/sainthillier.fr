@@ -18,6 +18,11 @@
         transition:
             max-width 0.3s,
             padding 0.3s;
+
+        svg {
+            max-width: 100%;
+            height: auto;
+        }
     }
     .navbar-nav {
         .nav-item {

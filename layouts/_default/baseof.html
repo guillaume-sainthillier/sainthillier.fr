@@ -51,10 +51,8 @@
     <div class="container"> 
         {{ block "menu" . }}
         <a class="navbar-brand js-scroll-trigger" href="/#mainNav">
-            {{ $manifest := .Site.Data.manifest }}
-            {{ with resources.Get (index $manifest "build/svg/logo-web.svg") -}}
-            <img alt="Guillaume Sainthillier" src="{{ . }}" class="img-fluid" width="252" height="42" />
-            {{ end }}
+          {{ $logo := resources.Get "svg/logo-web.svg" }}
+          {{ $logo.Content | safeHTML }}
         </a>
         <button class="navbar-toggler navbar-toggler-end" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             Menu
@@ -89,17 +87,9 @@
 <footer>
     <div class="container">
         <div class="d-flex align-items-center justify-content-center justify-content-sm-start flex-wrap flex-sm-nowrap">
-            {{ with resources.Get (index $manifest "build/images/logo.png") -}}
-            <img title="Concrétisez vos projets Web"
-                 alt="Concrétisez vos projets Web"
-                 class="blur-up lazyload me-sm-4"
-                 src="{{ partial "image" (dict "Image" . "Width" 96 "Height" 96 "Params" $.Site.Params) }}"
-                 srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                 data-srcset="{{ partial "image" (dict "Image" . "Width" 192 "Height" 192 "Params" $.Site.Params) }} 2x"
-                 width="96"
-                 height="96"
-            />
-            {{ end }}
+            <div class="me-sm-4">
+                {{ partial "responsive-image" (dict "src" "images/logo.png" "alt" "Concrétisez vos projets Web" "width" 96 "height" 96 "priority" false) }}
+            </div>
             <div class="text-center text-sm-start mb-3 mb-sm-0">
                 <p>Guillaume Sainthillier - Développeur Web freelance à Toulouse</p>
                 <p>SASU SILARHI</p>

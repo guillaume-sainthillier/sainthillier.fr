@@ -2,8 +2,11 @@
 {{ define "main" }}
 {{ $manifest := .Site.Data.manifest }}
 <!-- Header -->
-{{ with resources.Get (index $manifest "build/images/header-bg.jpg") -}}
-<header class="masthead" style="background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7)), url('{{ partial "image" (dict "Image" . "Width" 1900 "Height" 1250 "Quality" 10 "Params" $.Site.Params) }}')">
+{{ $headerImg := resources.Get "images/header-bg.jpg" }}
+{{ if $headerImg }}
+{{ $headerImgResized := $headerImg.Fill "1900x1250" }}
+{{ $headerImgWebP := $headerImgResized.Resize "1900x webp q10" | resources.Fingerprint "sha256" }}
+<header class="masthead" style="background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7)), url('{{ $headerImgWebP.RelPermalink }}')">
 <div class="masthead-content">
     <div class="container">
         <div class="intro-text">
@@ -30,17 +33,7 @@
     <div class="container">
         <div class="row mb-5">
             <div class="col-md-4 col-lg-3 d-flex align-items-center">
-                {{ with resources.Get (index $manifest "build/images/guillaume-sainthillier.jpg") -}}
-                <img title="Concrétisez vos projets Web"
-                     alt="Concrétisez vos projets Web"
-                     class="img-fluid blur-up lazyload rounded-circle d-block mx-auto"
-                     data-sizes="auto"
-                     data-src="{{ partial "image" (dict "Image" . "Width" 300 "Height" 300 "Params" $.Site.Params) }}"
-                    data-srcset="{{ partial "image" (dict "Image" . "Width" 600 "Height" 600 "Params" $.Site.Params) }} 2x"
-                    width="300"
-                    height="300"
-                />
-                {{ end }}
+                {{ partial "responsive-image" (dict "src" "images/guillaume-sainthillier.jpg" "alt" "Concrétisez vos projets Web" "class" "img-fluid rounded-circle d-block mx-auto" "width" 300 "height" 300 "priority" false) }}
             </div>
             <div class="col-md-8">
                 <h3>Besoin des services d'un développeur Web ?</h3>
@@ -56,17 +49,7 @@
         </div>
         <div class="row">
             <div class="col-md-4 col-lg-3 order-md-2 d-flex align-items-center">
-                {{ with resources.Get (index $manifest "build/images/design.jpg") -}}
-                <img title="Concrétisez vos projets Web"
-                     alt="Concrétisez vos projets Web"
-                     class="img-fluid blur-up lazyload rounded-circle d-block mx-auto"
-                     data-sizes="auto"
-                     data-src="{{ partial "image" (dict "Image" . "Width" 300 "Height" 300 "Params" $.Site.Params) }}"
-                    data-srcset="{{ partial "image" (dict "Image" . "Width" 600 "Height" 600 "Params" $.Site.Params) }} 2x"
-                    width="300"
-                    height="300"
-                />
-                {{ end }}
+                {{ partial "responsive-image" (dict "src" "images/design.jpg" "alt" "Concrétisez vos projets Web" "class" "img-fluid rounded-circle d-block mx-auto" "width" 300 "height" 300 "priority" false) }}
             </div>
             <div class="col-md-8 order-md-1">
                 <h3>Pourquoi opter pour un développeur Freelance ?</h3>
@@ -236,15 +219,7 @@
                                 <i class="fa fa-plus fa-3x"></i>
                             </div>
                         </div>
-                        {{ $image := resources.Get (index $manifest .image) }}
-                        <img class="img-fluid blur-up lazyload"
-                             width="400"
-                             height="300"
-                             data-sizes="auto"
-                             data-src="{{ partial "image" (dict "Image" $image "Width" 400 "Height" 300 "Params" $.Site.Params) }}"
-                            data-srcset="{{ partial "image" (dict "Image" $image "Width" 800 "Height" 600 "Params" $.Site.Params) }}"
-                            title="{{ .nom }} réalisé par un développeur web freelance à Toulouse"
-                            alt="{{ .nom }}">
+                        {{ partial "responsive-image" (dict "src" .image "alt" .nom "class" "img-fluid" "width" 400 "height" 300 "priority" false) }}
                     </a>
                     <div class="portfolio-caption">
                         <h4>{{ .nom }}</h4>
@@ -276,15 +251,7 @@
                             <!-- Project Details Go Here -->
                             <h2 class="text-uppercase">{{ .nom }}</h2>
                             <p class="item-intro text-muted">{{ .sous_titre }}</p>
-                            {{ $image := resources.Get (index $manifest .image) -}}
-                            <img class="img-fluid blur-up lazyload d-block mx-auto"
-                                 width="700"
-                                 height="525"
-                                 data-sizes="auto"
-                                 data-src="{{ partial "image" (dict "Image" $image "Width" 700 "Height" 525 "Params" $.Site.Params) }}"
-                                data-srcset="{{ partial "image" (dict "Image" $image "Width" 1400 "Height" 1050 "Params" $.Site.Params) }} 2x"
-                                alt="{{ .nom }}"
-                                title="{{ .nom }} réalisé par un développeur web freelance à Toulouse">
+                            {{ partial "responsive-image" (dict "src" .image "alt" .nom "class" "img-fluid d-block mx-auto" "width" 700 "height" 525 "priority" false) }}
 
                             <div class="modal-description">
                                 {{ .description | safeHTML }}
@@ -333,15 +300,7 @@
                     {{ with $experience }}
                     <li class="{{ cond (not (modBool $i 2)) "" "timeline-inverted" }}">
                     <div class="timeline-image">
-                        {{ $image := resources.Get (index $manifest .logo) -}}
-                        <img class="rounded-circle img-fluid blur-up lazyload"
-                             width="170"
-                             height="170"
-                             data-sizes="auto"
-                             data-src="{{ partial "image" (dict "Image" $image "Width" 170 "Height" 170 "Params" $.Site.Params) }}"
-                             data-srcset="{{ partial "image" (dict "Image" $image "Width" 340 "Height" 340 "Params" $.Site.Params) }} 2x"
-                             title="Logo {{ .client }}"
-                             alt="Logo {{ .client }}">
+                        {{ partial "responsive-image" (dict "src" .logo "alt" (printf "Logo %s" .client) "class" "rounded-circle img-fluid" "width" 170 "height" 170 "priority" false) }}
                     </div>
                     <div class="timeline-panel">
                         <div class="timeline-heading">

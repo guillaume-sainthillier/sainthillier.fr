@@ -1,0 +1,165 @@
+{{/*
+  Partial for responsive image generation (inspired by Next.js Image component)
+
+  Usage:
+  {{ partial "responsive-image" (dict "src" "images/header-bg.jpg" "alt" "Hero Image" "class" "my-class" "priority" true "width" 1900 "height" 1250 "sizes" "(max-width: 768px) 100vw, 50vw") }}
+
+  Parameters:
+  - src: full image path from assets directory (e.g., "images/header-bg.jpg") (required)
+  - alt: alt text (optional)
+  - class: CSS class (optional)
+  - priority: true for eager loading, false for lazy (default: false)
+  - width: target width (optional, uses original if not set)
+  - height: target height (optional, uses original if not set)
+  - sizes: sizes attribute for responsive images (default: "100vw")
+*/}}
+
+{{ $src := .src }}
+{{ $alt := .alt | default "" }}
+{{ $class := .class | default "" }}
+{{ $priority := .priority | default false }}
+{{ $targetWidth := .width | default 0 }}
+{{ $targetHeight := .height | default 0 }}
+{{ $sizesAttr := .sizes | default "100vw" }}
+
+{{ $originalImg := resources.Get $src }}
+
+{{/* Calculate display dimensions - use target if provided, otherwise use original */}}
+{{ $displayWidth := $targetWidth }}
+{{ $displayHeight := $targetHeight }}
+
+{{ if eq $displayWidth 0 }}
+  {{ $displayWidth = $originalImg.Width }}
+{{ end }}
+{{ if eq $displayHeight 0 }}
+  {{ $displayHeight = $originalImg.Height }}
+{{ end }}
+
+{{/* If only width is specified, calculate proportional height */}}
+{{ if and (gt $targetWidth 0) (eq $targetHeight 0) }}
+  {{ $ratio := div (float $originalImg.Height) (float $originalImg.Width) }}
+  {{ $displayHeight = int (mul $ratio (float $targetWidth)) }}
+{{ end }}
+
+{{/* If only height is specified, calculate proportional width */}}
+{{ if and (eq $targetWidth 0) (gt $targetHeight 0) }}
+  {{ $ratio := div (float $originalImg.Width) (float $originalImg.Height) }}
+  {{ $displayWidth = int (mul $ratio (float $targetHeight)) }}
+{{ end }}
+
+{{/* Never upscale - cap dimensions to original image size */}}
+{{ if gt $displayWidth $originalImg.Width }}
+  {{ $displayWidth = $originalImg.Width }}
+  {{/* Recalculate height to maintain aspect ratio */}}
+  {{ $ratio := div (float $originalImg.Height) (float $originalImg.Width) }}
+  {{ $displayHeight = int (mul $ratio (float $displayWidth)) }}
+{{ end }}
+{{ if gt $displayHeight $originalImg.Height }}
+  {{ $displayHeight = $originalImg.Height }}
+  {{/* Recalculate width to maintain aspect ratio */}}
+  {{ $ratio := div (float $originalImg.Width) (float $originalImg.Height) }}
+  {{ $displayWidth = int (mul $ratio (float $displayHeight)) }}
+{{ end }}
+
+{{/* Breakpoints for responsive srcset (including small sizes for logos/avatars) */}}
+{{ $breakpoints := slice 32 48 64 96 128 256 384 640 750 828 1080 1200 1920 2048 3840 }}
+{{ $validSizes := slice }}
+
+{{/* Calculate max width for high DPI displays (2x for Retina) */}}
+{{ $maxDPIWidth := mul $displayWidth 2 }}
+{{/* But don't exceed the original image dimensions */}}
+{{ if gt $maxDPIWidth $originalImg.Width }}
+  {{ $maxDPIWidth = $originalImg.Width }}
+{{ end }}
+
+{{/* Include breakpoints up to 2x the display width (for high DPI) */}}
+{{ range $breakpoints }}
+  {{ if le . $maxDPIWidth }}
+    {{ $validSizes = $validSizes | append . }}
+  {{ end }}
+{{ end }}
+
+{{/* Always include the full display width if not already in the list (and not exceeding original) */}}
+{{ if and (not (in $validSizes $displayWidth)) (le $displayWidth $originalImg.Width) }}
+  {{ $validSizes = $validSizes | append $displayWidth }}
+{{ end }}
+
+{{/* Include 2x version for Retina displays (capped at original size) */}}
+{{ $width2x := mul $displayWidth 2 }}
+{{ if and (le $width2x $originalImg.Width) (not (in $validSizes $width2x)) }}
+  {{ $validSizes = $validSizes | append $width2x }}
+{{ end }}
+
+{{/* Sort and deduplicate validSizes to avoid generating duplicate images */}}
+{{ $validSizes = sort $validSizes }}
+{{ $uniqueSizes := slice }}
+{{ $lastSize := 0 }}
+{{ range $validSizes }}
+  {{ if ne . $lastSize }}
+    {{ $uniqueSizes = $uniqueSizes | append . }}
+    {{ $lastSize = . }}
+  {{ end }}
+{{ end }}
+{{ $validSizes = $uniqueSizes }}
+
+{{/* Generate blur placeholder for lazysizes */}}
+{{ $placeholderImg := $originalImg.Resize "20x webp q10" }}
+{{ $placeholderImg = $placeholderImg | resources.Fingerprint "sha256" }}
+
+{{/* Build srcset strings for WebP and fallback - ALL from original image */}}
+{{ $webpSrcset := slice }}
+{{ $fallbackSrcset := slice }}
+
+{{ range $validSizes }}
+  {{/* Generate WebP version from ORIGINAL image (good compression, wide support) */}}
+  {{ $resizedWebP := $originalImg.Resize (printf "%dx webp" .) }}
+  {{ $resizedWebP = $resizedWebP | resources.Fingerprint "sha256" }}
+  {{ $webpSrcset = $webpSrcset | append (printf "%s %dw" $resizedWebP.RelPermalink .) }}
+
+  {{/* Generate fallback version from ORIGINAL image (original format) */}}
+  {{ $resizedFallback := $originalImg.Resize (printf "%dx" .) }}
+  {{ $resizedFallback = $resizedFallback | resources.Fingerprint "sha256" }}
+  {{ $fallbackSrcset = $fallbackSrcset | append (printf "%s %dw" $resizedFallback.RelPermalink .) }}
+{{ end }}
+
+{{/* Default src using the display width from original image */}}
+{{ $defaultImg := $originalImg.Resize (printf "%dx" $displayWidth) | resources.Fingerprint "sha256" }}
+
+{{ if $priority }}
+  {{/* Priority images load immediately without lazysizes */}}
+  <picture>
+    <source
+      srcset="{{ delimit $webpSrcset ", " }}"
+      sizes="{{ $sizesAttr }}"
+      type="image/webp"
+    >
+    <img
+      srcset="{{ delimit $fallbackSrcset ", " }}"
+      sizes="{{ $sizesAttr }}"
+      src="{{ $defaultImg.RelPermalink }}"
+      alt="{{ $alt }}"
+      {{ if $class }}class="{{ $class }}"{{ end }}
+      width="{{ $displayWidth }}"
+      height="{{ $displayHeight }}"
+    >
+  </picture>
+{{ else }}
+  {{/* Lazy images use lazysizes with blur-up effect */}}
+  <picture>
+    <source
+      data-srcset="{{ delimit $webpSrcset ", " }}"
+      data-sizes="{{ $sizesAttr }}"
+      type="image/webp"
+    >
+    <img
+      data-srcset="{{ delimit $fallbackSrcset ", " }}"
+      data-sizes="{{ $sizesAttr }}"
+      data-src="{{ $defaultImg.RelPermalink }}"
+      src="{{ $placeholderImg.RelPermalink }}"
+      alt="{{ $alt }}"
+      class="lazyload{{ if $class }} {{ $class }}{{ end }}"
+      width="{{ $displayWidth }}"
+      height="{{ $displayHeight }}"
+    >
+  </picture>
+{{ end }}

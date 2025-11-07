@@ -1,0 +1,34 @@
+{{/*
+  Usage:
+  {{< responsive-image
+        src="images/hero.jpg"
+        alt="Hero Image"
+        class="my-class"
+        priority="true|false"
+        width="1900"
+        height="1250"
+        sizes="(max-width: 768px) 100vw, 50vw"
+  >}}
+
+  Note: src should be the full path from the assets directory (e.g., "images/hero.jpg")
+  Note: sizes defaults to "100vw" if not specified
+*/}}
+
+{{ $src := .Get "src" }}
+{{ $alt := .Get "alt" | default "" }}
+{{ $class := .Get "class" | default "" }}
+{{ $priorityStr := .Get "priority" | default "false" | lower }}
+{{ $priority := eq $priorityStr "true" }}
+{{ $width := .Get "width" | default 0 | int }}
+{{ $height := .Get "height" | default 0 | int }}
+{{ $sizes := .Get "sizes" | default "100vw" }}
+
+{{ partial "responsive-image" (dict
+  "src" $src
+  "alt" $alt
+  "class" $class
+  "priority" $priority
+  "width" $width
+  "height" $height
+  "sizes" $sizes
+) }}
