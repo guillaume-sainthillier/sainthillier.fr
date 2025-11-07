@@ -15,7 +15,6 @@ const outputSuffix = isLegacy ? '_legacy' : '';
 const STATIC_ASSETS = [
     { src: 'assets/images', dest: 'images', hash: true },
     { src: 'assets/svg', dest: 'svg', hash: true },
-    { src: 'assets/pdf', dest: 'pdf', hash: false },
 ];
 
 const HASH_PATTERN = /\.[a-f0-9]{8}(\.[^.]+)$/;
