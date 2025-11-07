@@ -76,12 +76,9 @@
   {{ $validSizes = $validSizes | append $width2x }}
 {{ end }}
 
-{{/* Generate blur placeholder only if not priority */}}
-{{ $placeholder := "" }}
-{{ if not $priority }}
-  {{ $placeholderImg := $originalImg.Resize "20x20 q10 webp" }}
-  {{ $placeholder = $placeholderImg.Content | base64Encode }}
-{{ end }}
+{{/* Generate blur placeholder for lazysizes */}}
+{{ $placeholderImg := $originalImg.Resize "20x webp q10" }}
+{{ $placeholderImg = $placeholderImg | resources.Fingerprint "sha256" }}
 
 {{/* Build srcset strings for AVIF, WebP, and fallback - ALL from original image */}}
 {{ $avifSrcset := slice }}
@@ -108,31 +105,51 @@
 {{/* Default src using the display width from original image */}}
 {{ $defaultImg := $originalImg.Resize (printf "%dx" $displayWidth) | resources.Fingerprint "sha256" }}
 
-<picture>
-  {{/* AVIF source with full srcset (best compression, modern browsers) */}}
-  <source
-    srcset="{{ delimit $avifSrcset ", " }}"
-    sizes="{{ $sizesAttr }}"
-    type="image/avif"
-  >
-
-  {{/* WebP source with full srcset (good compression, wide support) */}}
-  <source
-    srcset="{{ delimit $webpSrcset ", " }}"
-    sizes="{{ $sizesAttr }}"
-    type="image/webp"
-  >
-
-  {{/* Fallback img with srcset (original format, universal support) */}}
-  <img
-    srcset="{{ delimit $fallbackSrcset ", " }}"
-    sizes="{{ $sizesAttr }}"
-    src="{{ $defaultImg.RelPermalink }}"
-    alt="{{ $alt }}"
-    {{ if $class }}class="{{ $class }}"{{ end }}
-    loading="{{ if $priority }}eager{{ else }}lazy{{ end }}"
-    {{ if not $priority }}style="background: url('data:image/webp;base64,{{ $placeholder }}') center center / cover no-repeat;"{{ end }}
-    width="{{ $displayWidth }}"
-    height="{{ $displayHeight }}"
-  >
-</picture>
+{{ if $priority }}
+  {{/* Priority images load immediately without lazysizes */}}
+  <picture>
+    <source
+      srcset="{{ delimit $avifSrcset ", " }}"
+      sizes="{{ $sizesAttr }}"
+      type="image/avif"
+    >
+    <source
+      srcset="{{ delimit $webpSrcset ", " }}"
+      sizes="{{ $sizesAttr }}"
+      type="image/webp"
+    >
+    <img
+      srcset="{{ delimit $fallbackSrcset ", " }}"
+      sizes="{{ $sizesAttr }}"
+      src="{{ $defaultImg.RelPermalink }}"
+      alt="{{ $alt }}"
+      {{ if $class }}class="{{ $class }}"{{ end }}
+      width="{{ $displayWidth }}"
+      height="{{ $displayHeight }}"
+    >
+  </picture>
+{{ else }}
+  {{/* Lazy images use lazysizes with blur-up effect */}}
+  <picture>
+    <source
+      data-srcset="{{ delimit $avifSrcset ", " }}"
+      data-sizes="{{ $sizesAttr }}"
+      type="image/avif"
+    >
+    <source
+      data-srcset="{{ delimit $webpSrcset ", " }}"
+      data-sizes="{{ $sizesAttr }}"
+      type="image/webp"
+    >
+    <img
+      data-srcset="{{ delimit $fallbackSrcset ", " }}"
+      data-sizes="{{ $sizesAttr }}"
+      data-src="{{ $defaultImg.RelPermalink }}"
+      src="{{ $placeholderImg.RelPermalink }}"
+      alt="{{ $alt }}"
+      class="lazyload{{ if $class }} {{ $class }}{{ end }}"
+      width="{{ $displayWidth }}"
+      height="{{ $displayHeight }}"
+    >
+  </picture>
+{{ end }}
