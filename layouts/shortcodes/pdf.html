@@ -1,3 +1,0 @@
-{{- $pdf := resources.Get (.Get 0) -}}
-{{- $pdfProcessed := $pdf | resources.Fingerprint "sha256" -}}
-{{- $pdfProcessed.RelPermalink -}}
