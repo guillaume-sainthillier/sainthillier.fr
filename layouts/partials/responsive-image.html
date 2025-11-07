@@ -50,7 +50,7 @@
 {{ $placeholder := "" }}
 {{ if not $priority }}
   {{ $placeholderImg := $img.Resize "20x20 q10 webp" }}
-  {{ $placeholder = $placeholderImg | resources.Base64 }}
+  {{ $placeholder = $placeholderImg.Content | base64Encode }}
 {{ end }}
 
 <picture class="{{ $class }}">
