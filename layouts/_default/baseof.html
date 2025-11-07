@@ -110,7 +110,9 @@
                 </li>
                 {{ end }}
                 <li class="d-inline d-sm-block d-md-inline-block list-inline-item">
-                    <a href="{{ partial "pdf-url.html" (dict "path" "pdf/CV-SAINTHILLIER-Guillaume.pdf") }}" title="CV au format PDF">
+                    {{ $cv := resources.Get "pdf/CV-SAINTHILLIER-Guillaume.pdf" }}
+                    {{ $cvProcessed := $cv | resources.Fingerprint "sha256" }}
+                    <a href="{{ $cvProcessed.RelPermalink }}" title="CV au format PDF">
                         <i class="fa fa-file-pdf"></i>
                     </a>
                 </li>
