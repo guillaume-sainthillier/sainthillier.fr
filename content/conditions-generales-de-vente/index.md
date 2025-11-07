@@ -6,6 +6,8 @@ description: "Les CGV utilisées lors de mes prestations."
 
 _Mis à jour le 03/06/2020_
 
+[Télécharger au format PDF]({{< pdf "pdf/CGV.pdf" >}})
+
 ## Article 1 : Les parties
 
 Le terme « Client » désigne toute personne morale ou physique, ayant requis les compétences du Prestataire pour toute prestation de services ou produit proposé audit Client.
