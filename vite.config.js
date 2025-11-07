@@ -133,7 +133,8 @@ async function addDirToManifest(dirPath, baseDir, manifest, suffix, buildDir) {
 }
 
 async function addStaticFilesToManifest(buildDir, manifest, suffix) {
-    const staticDirs = ['images', 'svg', 'pdf'];
+    // Derive directories from STATIC_ASSETS configuration
+    const staticDirs = STATIC_ASSETS.map((asset) => asset.dest);
 
     // eslint-disable-next-line no-restricted-syntax
     for (const dir of staticDirs) {
@@ -172,10 +173,8 @@ function manifestPlugin() {
                     }
 
                     if (value.file) {
-                        const originalPath = key
-                            .replace(/^assets\/js\//, '')
-                            .replace(/^assets\/scss\//, '')
-                            .replace(/^assets\//, '');
+                        // Remove 'assets/' prefix from key
+                        const originalPath = key.replace(/^assets\/(js|scss)\//, '').replace(/^assets\//, '');
                         webpackManifest[`build/${originalPath}`] = `build${outputSuffix}/${value.file}`;
                     }
                 }
