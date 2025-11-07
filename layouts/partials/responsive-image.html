@@ -47,8 +47,22 @@
   {{ $displayWidth = int (mul $ratio (float $targetHeight)) }}
 {{ end }}
 
+{{/* Never upscale - cap dimensions to original image size */}}
+{{ if gt $displayWidth $originalImg.Width }}
+  {{ $displayWidth = $originalImg.Width }}
+  {{/* Recalculate height to maintain aspect ratio */}}
+  {{ $ratio := div (float $originalImg.Height) (float $originalImg.Width) }}
+  {{ $displayHeight = int (mul $ratio (float $displayWidth)) }}
+{{ end }}
+{{ if gt $displayHeight $originalImg.Height }}
+  {{ $displayHeight = $originalImg.Height }}
+  {{/* Recalculate width to maintain aspect ratio */}}
+  {{ $ratio := div (float $originalImg.Width) (float $originalImg.Height) }}
+  {{ $displayWidth = int (mul $ratio (float $displayHeight)) }}
+{{ end }}
+
 {{/* Breakpoints for responsive srcset (including small sizes for logos/avatars) */}}
-{{ $breakpoints := slice 96 128 160 200 256 320 480 640 768 1024 1280 1536 1920 2560 3840 }}
+{{ $breakpoints := slice 32 48 64 96 128 256 384 640 750 828 1080 1200 1920 2048 3840 }}
 {{ $validSizes := slice }}
 
 {{/* Calculate max width for high DPI displays (2x for Retina) */}}
@@ -65,16 +79,28 @@
   {{ end }}
 {{ end }}
 
-{{/* Always include the full display width if not already in the list */}}
-{{ if not (in $validSizes $displayWidth) }}
+{{/* Always include the full display width if not already in the list (and not exceeding original) */}}
+{{ if and (not (in $validSizes $displayWidth)) (le $displayWidth $originalImg.Width) }}
   {{ $validSizes = $validSizes | append $displayWidth }}
 {{ end }}
 
-{{/* Include 2x version for Retina displays */}}
+{{/* Include 2x version for Retina displays (capped at original size) */}}
 {{ $width2x := mul $displayWidth 2 }}
-{{ if and (le $width2x $maxDPIWidth) (not (in $validSizes $width2x)) }}
+{{ if and (le $width2x $originalImg.Width) (not (in $validSizes $width2x)) }}
   {{ $validSizes = $validSizes | append $width2x }}
 {{ end }}
+
+{{/* Sort and deduplicate validSizes to avoid generating duplicate images */}}
+{{ $validSizes = sort $validSizes }}
+{{ $uniqueSizes := slice }}
+{{ $lastSize := 0 }}
+{{ range $validSizes }}
+  {{ if ne . $lastSize }}
+    {{ $uniqueSizes = $uniqueSizes | append . }}
+    {{ $lastSize = . }}
+  {{ end }}
+{{ end }}
+{{ $validSizes = $uniqueSizes }}
 
 {{/* Generate blur placeholder for lazysizes */}}
 {{ $placeholderImg := $originalImg.Resize "20x webp q10" }}
