@@ -33,13 +33,13 @@
 {{/* Generate blur placeholder only if not priority */}}
 {{ $placeholder := "" }}
 {{ if eq $priority "false" }}
-  {{ $placeholder = $img.Fit "20x20" | images.Quality 10 | resources.Base64 }}
+  {{ $placeholder = $img.Resize "20x20 q10 webp" | resources.Base64 }}
 {{ end }}
 
 <picture class="{{ $class }}">
   {{/* Generate WebP sources for responsive sizes */}}
   {{ range $sizes }}
-    {{ $resizedWebP := $img.Fit (printf "%dx" .) | images.Convert "webp" | resources.Fingerprint "sha256" }}
+    {{ $resizedWebP := $img.Resize (printf "%dx webp" .) | resources.Fingerprint "sha256" }}
     <source srcset="{{ $resizedWebP.RelPermalink }}" type="image/webp" media="(max-width: {{ . }}px)">
   {{ end }}
 
