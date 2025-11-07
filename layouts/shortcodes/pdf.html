@@ -1,5 +1,6 @@
 {{- /*
-  Shortcode to generate a fingerprinted PDF URL for use in markdown content.
+  Shortcode to generate a base64-encoded data URI for a PDF for use in markdown content.
+  This embeds the PDF directly in the HTML, avoiding caching.
 
   Usage in markdown:
     [Download PDF]({{< pdf "pdf/CGV.pdf" >}})
@@ -10,8 +11,7 @@
 {{- $path := .Get 0 -}}
 {{- $pdf := resources.Get $path -}}
 {{- if $pdf -}}
-  {{- $pdfProcessed := $pdf | resources.Fingerprint "sha256" -}}
-  {{- $pdfProcessed.RelPermalink -}}
+  {{- printf "data:application/pdf;base64,%s" ($pdf.Content | base64Encode) -}}
 {{- else -}}
   {{- errorf "PDF file not found: %s" $path -}}
 {{- end -}}

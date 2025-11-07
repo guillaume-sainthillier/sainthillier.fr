@@ -1,23 +1,17 @@
 {{- /*
-  Returns a fingerprinted URL for a PDF file from the assets directory.
+  Returns a base64-encoded data URI for a PDF file from the assets directory.
+  This embeds the PDF directly in the HTML, avoiding caching.
 
   Usage:
-    {{ partial "pdf-url.html" (dict "path" "pdf/CV-SAINTHILLIER-Guillaume.pdf" "abs" false) }}
+    {{ partial "pdf-url.html" (dict "path" "pdf/CV-SAINTHILLIER-Guillaume.pdf") }}
 
   Parameters:
     - path: Path to PDF file relative to assets/ directory (required)
-    - abs: Return absolute URL if true, relative URL if false (optional, default: false)
 */ -}}
 {{- $path := .path -}}
-{{- $abs := .abs | default false -}}
 {{- $pdf := resources.Get $path -}}
 {{- if $pdf -}}
-  {{- $pdfProcessed := $pdf | resources.Fingerprint "sha256" -}}
-  {{- if $abs -}}
-    {{- $pdfProcessed.Permalink -}}
-  {{- else -}}
-    {{- $pdfProcessed.RelPermalink -}}
-  {{- end -}}
+  {{- printf "data:application/pdf;base64,%s" ($pdf.Content | base64Encode) -}}
 {{- else -}}
   {{- errorf "PDF file not found: %s" $path -}}
 {{- end -}}
