@@ -6,7 +6,7 @@ description: "Les CGV utilisées lors de mes prestations."
 
 _Mis à jour le 03/06/2020_
 
-[Télécharger au format PDF](/build/pdf/CGV.pdf)
+[Télécharger au format PDF]({{< pdf "pdf/CGV.pdf" >}})
 
 ## Article 1 : Les parties
 

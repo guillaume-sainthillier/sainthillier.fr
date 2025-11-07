@@ -110,7 +110,7 @@
                 </li>
                 {{ end }}
                 <li class="d-inline d-sm-block d-md-inline-block list-inline-item">
-                    <a href="{{ "/build/pdf/CV-SAINTHILLIER-Guillaume.pdf" | relURL }}" title="CV au format PDF">
+                    <a href="{{ partial "pdf-url.html" (dict "path" "pdf/CV-SAINTHILLIER-Guillaume.pdf" "abs" false) }}" title="CV au format PDF">
                         <i class="fa fa-file-pdf"></i>
                     </a>
                 </li>

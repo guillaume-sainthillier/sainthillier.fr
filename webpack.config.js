@@ -24,16 +24,6 @@ const makeConfig = async (BROWSERSLIST_ENV) => {
         // only needed for CDN's or sub-directory deploy
         .setManifestKeyPrefix(`build${COPY_SUFFIX}/`)
 
-        .copyFiles(
-            BROWSER_TARGET === DEFAULT_BROWSER_TARGET
-                ? [
-                      {
-                          from: './assets/pdf',
-                          to: 'pdf/[path][name].[ext]',
-                      },
-                  ]
-                : []
-        )
         .addEntry('app', BROWSER_TARGET === 'modern' ? './assets/js/app.modern.js' : './assets/js/app.legacy.js')
         // .splitEntryChunks()
         .disableSingleRuntimeChunk()

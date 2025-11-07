@@ -1,0 +1,23 @@
+{{- /*
+  Returns a fingerprinted URL for a PDF file from the assets directory.
+
+  Usage:
+    {{ partial "pdf-url.html" (dict "path" "pdf/CV-SAINTHILLIER-Guillaume.pdf" "abs" false) }}
+
+  Parameters:
+    - path: Path to PDF file relative to assets/ directory (required)
+    - abs: Return absolute URL if true, relative URL if false (optional, default: false)
+*/ -}}
+{{- $path := .path -}}
+{{- $abs := .abs | default false -}}
+{{- $pdf := resources.Get $path -}}
+{{- if $pdf -}}
+  {{- $pdfProcessed := $pdf | resources.Fingerprint "sha256" -}}
+  {{- if $abs -}}
+    {{- $pdfProcessed.Permalink -}}
+  {{- else -}}
+    {{- $pdfProcessed.RelPermalink -}}
+  {{- end -}}
+{{- else -}}
+  {{- errorf "PDF file not found: %s" $path -}}
+{{- end -}}
