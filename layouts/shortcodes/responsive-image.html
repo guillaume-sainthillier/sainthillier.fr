@@ -5,52 +5,30 @@
         alt="Hero Image"
         class="my-class"
         priority="true|false"
+        width="1900"
+        height="1250"
+        sizes="(max-width: 768px) 100vw, 50vw"
   >}}
 
   Note: src should be the full path from the assets directory (e.g., "images/hero.jpg")
+  Note: sizes defaults to "100vw" if not specified
 */}}
 
 {{ $src := .Get "src" }}
 {{ $alt := .Get "alt" | default "" }}
 {{ $class := .Get "class" | default "" }}
-{{ $priority := .Get "priority" | default "false" | lower }}
+{{ $priorityStr := .Get "priority" | default "false" | lower }}
+{{ $priority := eq $priorityStr "true" }}
+{{ $width := .Get "width" | default 0 | int }}
+{{ $height := .Get "height" | default 0 | int }}
+{{ $sizes := .Get "sizes" | default "100vw" }}
 
-{{ $img := resources.Get $src }}
-{{ $width := $img.Width }}
-{{ $height := $img.Height }}
-
-{{/* Breakpoints for responsive srcset */}}
-{{ $breakpoints := slice 320 480 640 768 1024 1280 1536 1920 }}
-{{ $sizes := slice }}
-
-{{/* Only include breakpoints smaller than original image */}}
-{{ range $breakpoints }}
-  {{ if le . $width }}
-    {{ $sizes = $sizes | append . }}
-  {{ end }}
-{{ end }}
-
-{{/* Generate blur placeholder only if not priority */}}
-{{ $placeholder := "" }}
-{{ if eq $priority "false" }}
-  {{ $placeholder = $img.Resize "20x20 q10 webp" | resources.Base64 }}
-{{ end }}
-
-<picture class="{{ $class }}">
-  {{/* Generate WebP sources for responsive sizes */}}
-  {{ range $sizes }}
-    {{ $resizedWebP := $img.Resize (printf "%dx webp" .) | resources.Fingerprint "sha256" }}
-    <source srcset="{{ $resizedWebP.RelPermalink }}" type="image/webp" media="(max-width: {{ . }}px)">
-  {{ end }}
-
-  {{/* Fallback original image */}}
-  {{ $resizedFallback := $img | resources.Fingerprint "sha256" }}
-  <img
-    src="{{ $resizedFallback.RelPermalink }}"
-    alt="{{ $alt }}"
-    loading="{{ if eq $priority "true" }}eager{{ else }}lazy{{ end }}"
-    {{ if eq $priority "false" }}style="background: url('{{ $placeholder }}') center center / cover no-repeat;"{{ end }}
-    width="{{ $width }}"
-    height="{{ $height }}"
-  >
-</picture>
+{{ partial "responsive-image" (dict
+  "src" $src
+  "alt" $alt
+  "class" $class
+  "priority" $priority
+  "width" $width
+  "height" $height
+  "sizes" $sizes
+) }}

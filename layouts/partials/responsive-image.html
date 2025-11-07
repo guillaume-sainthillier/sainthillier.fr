@@ -1,8 +1,8 @@
 {{/*
-  Partial for responsive image generation
+  Partial for responsive image generation (inspired by Next.js Image component)
 
   Usage:
-  {{ partial "responsive-image" (dict "src" "images/header-bg.jpg" "alt" "Hero Image" "class" "my-class" "priority" true "width" 1900 "height" 1250) }}
+  {{ partial "responsive-image" (dict "src" "images/header-bg.jpg" "alt" "Hero Image" "class" "my-class" "priority" true "width" 1900 "height" 1250 "sizes" "(max-width: 768px) 100vw, 50vw") }}
 
   Parameters:
   - src: full image path from assets directory (e.g., "images/header-bg.jpg") (required)
@@ -11,6 +11,7 @@
   - priority: true for eager loading, false for lazy (default: false)
   - width: target width (optional, uses original if not set)
   - height: target height (optional, uses original if not set)
+  - sizes: sizes attribute for responsive images (default: "100vw")
 */}}
 
 {{ $src := .src }}
@@ -19,56 +20,119 @@
 {{ $priority := .priority | default false }}
 {{ $targetWidth := .width | default 0 }}
 {{ $targetHeight := .height | default 0 }}
+{{ $sizesAttr := .sizes | default "100vw" }}
 
-{{ $img := resources.Get $src }}
-{{ $width := $img.Width }}
-{{ $height := $img.Height }}
+{{ $originalImg := resources.Get $src }}
 
-{{/* Use target dimensions if provided, otherwise use original */}}
-{{ if and (gt $targetWidth 0) (gt $targetHeight 0) }}
-  {{ $img = $img.Fill (printf "%dx%d" $targetWidth $targetHeight) }}
-  {{ $width = $targetWidth }}
-  {{ $height = $targetHeight }}
-{{ else if gt $targetWidth 0 }}
-  {{ $img = $img.Resize (printf "%dx" $targetWidth) }}
-  {{ $width = $targetWidth }}
-  {{ $height = $img.Height }}
+{{/* Calculate display dimensions - use target if provided, otherwise use original */}}
+{{ $displayWidth := $targetWidth }}
+{{ $displayHeight := $targetHeight }}
+
+{{ if eq $displayWidth 0 }}
+  {{ $displayWidth = $originalImg.Width }}
+{{ end }}
+{{ if eq $displayHeight 0 }}
+  {{ $displayHeight = $originalImg.Height }}
 {{ end }}
 
-{{/* Breakpoints for responsive srcset */}}
-{{ $breakpoints := slice 320 480 640 768 1024 1280 1536 1920 }}
-{{ $sizes := slice }}
+{{/* If only width is specified, calculate proportional height */}}
+{{ if and (gt $targetWidth 0) (eq $targetHeight 0) }}
+  {{ $ratio := div (float $originalImg.Height) (float $originalImg.Width) }}
+  {{ $displayHeight = int (mul $ratio (float $targetWidth)) }}
+{{ end }}
 
-{{/* Only include breakpoints smaller than target image */}}
+{{/* If only height is specified, calculate proportional width */}}
+{{ if and (eq $targetWidth 0) (gt $targetHeight 0) }}
+  {{ $ratio := div (float $originalImg.Width) (float $originalImg.Height) }}
+  {{ $displayWidth = int (mul $ratio (float $targetHeight)) }}
+{{ end }}
+
+{{/* Breakpoints for responsive srcset (including small sizes for logos/avatars) */}}
+{{ $breakpoints := slice 96 128 160 200 256 320 480 640 768 1024 1280 1536 1920 2560 3840 }}
+{{ $validSizes := slice }}
+
+{{/* Calculate max width for high DPI displays (2x for Retina) */}}
+{{ $maxDPIWidth := mul $displayWidth 2 }}
+{{/* But don't exceed the original image dimensions */}}
+{{ if gt $maxDPIWidth $originalImg.Width }}
+  {{ $maxDPIWidth = $originalImg.Width }}
+{{ end }}
+
+{{/* Include breakpoints up to 2x the display width (for high DPI) */}}
 {{ range $breakpoints }}
-  {{ if le . $width }}
-    {{ $sizes = $sizes | append . }}
+  {{ if le . $maxDPIWidth }}
+    {{ $validSizes = $validSizes | append . }}
   {{ end }}
+{{ end }}
+
+{{/* Always include the full display width if not already in the list */}}
+{{ if not (in $validSizes $displayWidth) }}
+  {{ $validSizes = $validSizes | append $displayWidth }}
+{{ end }}
+
+{{/* Include 2x version for Retina displays */}}
+{{ $width2x := mul $displayWidth 2 }}
+{{ if and (le $width2x $maxDPIWidth) (not (in $validSizes $width2x)) }}
+  {{ $validSizes = $validSizes | append $width2x }}
 {{ end }}
 
 {{/* Generate blur placeholder only if not priority */}}
 {{ $placeholder := "" }}
 {{ if not $priority }}
-  {{ $placeholderImg := $img.Resize "20x20 q10 webp" }}
+  {{ $placeholderImg := $originalImg.Resize "20x20 q10 webp" }}
   {{ $placeholder = $placeholderImg.Content | base64Encode }}
 {{ end }}
 
-<picture class="{{ $class }}">
-  {{/* Generate WebP sources for responsive sizes */}}
-  {{ range $sizes }}
-    {{ $resizedWebP := $img.Resize (printf "%dx webp" .) }}
-    {{ $resizedWebP = $resizedWebP | resources.Fingerprint "sha256" }}
-    <source srcset="{{ $resizedWebP.RelPermalink }}" type="image/webp" media="(max-width: {{ . }}px)">
-  {{ end }}
+{{/* Build srcset strings for AVIF, WebP, and fallback - ALL from original image */}}
+{{ $avifSrcset := slice }}
+{{ $webpSrcset := slice }}
+{{ $fallbackSrcset := slice }}
 
-  {{/* Fallback original format image */}}
-  {{ $resizedFallback := $img | resources.Fingerprint "sha256" }}
+{{ range $validSizes }}
+  {{/* Generate AVIF version from ORIGINAL image (best compression) */}}
+  {{ $resizedAVIF := $originalImg.Resize (printf "%dx avif" .) }}
+  {{ $resizedAVIF = $resizedAVIF | resources.Fingerprint "sha256" }}
+  {{ $avifSrcset = $avifSrcset | append (printf "%s %dw" $resizedAVIF.RelPermalink .) }}
+
+  {{/* Generate WebP version from ORIGINAL image (good compression, wide support) */}}
+  {{ $resizedWebP := $originalImg.Resize (printf "%dx webp" .) }}
+  {{ $resizedWebP = $resizedWebP | resources.Fingerprint "sha256" }}
+  {{ $webpSrcset = $webpSrcset | append (printf "%s %dw" $resizedWebP.RelPermalink .) }}
+
+  {{/* Generate fallback version from ORIGINAL image (original format) */}}
+  {{ $resizedFallback := $originalImg.Resize (printf "%dx" .) }}
+  {{ $resizedFallback = $resizedFallback | resources.Fingerprint "sha256" }}
+  {{ $fallbackSrcset = $fallbackSrcset | append (printf "%s %dw" $resizedFallback.RelPermalink .) }}
+{{ end }}
+
+{{/* Default src using the display width from original image */}}
+{{ $defaultImg := $originalImg.Resize (printf "%dx" $displayWidth) | resources.Fingerprint "sha256" }}
+
+<picture>
+  {{/* AVIF source with full srcset (best compression, modern browsers) */}}
+  <source
+    srcset="{{ delimit $avifSrcset ", " }}"
+    sizes="{{ $sizesAttr }}"
+    type="image/avif"
+  >
+
+  {{/* WebP source with full srcset (good compression, wide support) */}}
+  <source
+    srcset="{{ delimit $webpSrcset ", " }}"
+    sizes="{{ $sizesAttr }}"
+    type="image/webp"
+  >
+
+  {{/* Fallback img with srcset (original format, universal support) */}}
   <img
-    src="{{ $resizedFallback.RelPermalink }}"
+    srcset="{{ delimit $fallbackSrcset ", " }}"
+    sizes="{{ $sizesAttr }}"
+    src="{{ $defaultImg.RelPermalink }}"
     alt="{{ $alt }}"
+    {{ if $class }}class="{{ $class }}"{{ end }}
     loading="{{ if $priority }}eager{{ else }}lazy{{ end }}"
-    {{ if not $priority }}style="background: url('{{ $placeholder }}') center center / cover no-repeat;"{{ end }}
-    width="{{ $width }}"
-    height="{{ $height }}"
+    {{ if not $priority }}style="background: url('data:image/webp;base64,{{ $placeholder }}') center center / cover no-repeat;"{{ end }}
+    width="{{ $displayWidth }}"
+    height="{{ $displayHeight }}"
   >
 </picture>
