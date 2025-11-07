@@ -1,6 +1,5 @@
 {{- /*
-  Returns a base64-encoded data URI for a PDF file from the assets directory.
-  This embeds the PDF directly in the HTML, avoiding caching.
+  Returns a fingerprinted permalink for a PDF file from the assets directory.
 
   Usage:
     {{ partial "pdf-url.html" (dict "path" "pdf/CV-SAINTHILLIER-Guillaume.pdf") }}
@@ -11,7 +10,8 @@
 {{- $path := .path -}}
 {{- $pdf := resources.Get $path -}}
 {{- if $pdf -}}
-  {{- printf "data:application/pdf;base64,%s" ($pdf.Content | base64Encode) -}}
+  {{- $pdfProcessed := $pdf | resources.Fingerprint "sha256" -}}
+  {{- $pdfProcessed.Permalink -}}
 {{- else -}}
   {{- errorf "PDF file not found: %s" $path -}}
 {{- end -}}
