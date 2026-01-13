@@ -1,20 +1,13 @@
 {
     "$schema": "https://unpkg.com/knip@5/schema.json",
-    "entry": ["generate-polyfills.js", "assets/js/**/*.js"],
+    "entry": ["assets/js/**/*.js", "scripts/**/*.js"],
     "project": ["**/*.js"],
     "ignore": ["public/**", "resources/**", "static/**", "content/**", "layouts/**", ".husky/**"],
     "ignoreDependencies": [
-        "babel-loader",
-        "css-loader",
-        "mini-css-extract-plugin",
-        "resolve-url-loader",
-        "core-js",
         "regenerator-runtime",
         "eslint-config-airbnb-base",
         "eslint-config-prettier",
         "eslint-plugin-import",
-        "eslint-plugin-prettier",
-        "imagemin-jpegtran",
-        "imagemin-optipng"
+        "eslint-plugin-prettier"
     ]
 }
