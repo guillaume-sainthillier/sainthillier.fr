@@ -1,7 +1,7 @@
 {{ $image := resources.Get "images/guillaume-sainthillier.jpg" }}
-{{ $imageProcessed := $image | resources.Fingerprint "md5" }}
+{{ $imageHash := substr (($image | resources.Fingerprint "md5").Data.Integrity) 4 8 }}
 {{ $cv := resources.Get "pdf/CV-SAINTHILLIER-Guillaume.pdf" }}
-{{ $cvProcessed := $cv | resources.Fingerprint "md5" }}
+{{ $cvHash := substr (($cv | resources.Fingerprint "md5").Data.Integrity) 4 8 }}
 <script type="application/ld+json">
     {
         "@context": "http://www.schema.org",
@@ -16,10 +16,10 @@
             "https://g.page/silarhi?share",
             {{ .Site.Params.Social.linkedin }},
             {{ .Site.Params.Social.github }},
-            {{ $cvProcessed.RelPermalink | absURL }},
+            {{ printf "%s?v=%s" $cv.RelPermalink $cvHash | absURL }},
             "https://stackoverflow.com/users/7652866/guillaume-sainthillier"
         ],
-        "image": {{ $imageProcessed.Permalink | absURL }},
+        "image": {{ printf "%s?v=%s" $image.Permalink $imageHash | absURL }},
         "address": {
             "@type": "PostalAddress",
             "streetAddress": "116 Route d'Espagne",
@@ -33,7 +33,7 @@
     }
 </script>
 {{ $logo := resources.Get "images/logo.png" }}
-{{ $logoProcessed := $logo | resources.Fingerprint "md5" }}
+{{ $logoHash := substr (($logo | resources.Fingerprint "md5").Data.Integrity) 4 8 }}
 <script type='application/ld+json'>
     {
         "@context": "http://www.schema.org",
@@ -49,8 +49,8 @@
             "https://github.com/silarhi",
             "https://www.linkedin.com/company/silarhi"
         ],
-        "logo": {{ $logoProcessed.Permalink | absURL }},
-        "image": {{ $logoProcessed.Permalink | absURL }},
+        "logo": {{ printf "%s?v=%s" $logo.Permalink $logoHash | absURL }},
+        "image": {{ printf "%s?v=%s" $logo.Permalink $logoHash | absURL }},
         "address": {
             "@type": "PostalAddress",
             "streetAddress": "116 Route d'Espagne",

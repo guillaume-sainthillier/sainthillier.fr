@@ -5,8 +5,9 @@
 {{ $headerImg := resources.Get "images/header-bg.jpg" }}
 {{ if $headerImg }}
 {{ $headerImgResized := $headerImg.Fill "1900x1250" }}
-{{ $headerImgWebP := $headerImgResized.Resize "1900x webp q10" | resources.Fingerprint "md5" }}
-<header class="masthead" style="background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7)), url('{{ $headerImgWebP.RelPermalink }}')">
+{{ $headerImgWebP := $headerImgResized.Resize "1900x webp q10" }}
+{{ $headerHash := substr (($headerImgWebP | resources.Fingerprint "md5").Data.Integrity) 4 8 }}
+<header class="masthead" style="background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7)), url('{{ $headerImgWebP.RelPermalink }}?v={{ $headerHash }}')">
 <div class="masthead-content">
     <div class="container">
         <div class="intro-text">

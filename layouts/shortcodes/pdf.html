@@ -1,3 +1,3 @@
 {{- $pdf := resources.Get (.Get 0) -}}
-{{- $pdfProcessed := $pdf | resources.Fingerprint "md5" -}}
-{{- $pdfProcessed.RelPermalink -}}
+{{- $hash := substr (($pdf | resources.Fingerprint "md5").Data.Integrity) 4 8 -}}
+{{- $pdf.RelPermalink -}}?v={{- $hash -}}
