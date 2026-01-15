@@ -1,7 +1,7 @@
 {{ $image := resources.Get "images/guillaume-sainthillier.jpg" }}
-{{ $imageProcessed := $image | resources.Fingerprint "sha256" }}
+{{ $imageProcessed := $image | resources.Fingerprint "md5" }}
 {{ $cv := resources.Get "pdf/CV-SAINTHILLIER-Guillaume.pdf" }}
-{{ $cvProcessed := $cv | resources.Fingerprint "sha256" }}
+{{ $cvProcessed := $cv | resources.Fingerprint "md5" }}
 <script type="application/ld+json">
     {
         "@context": "http://www.schema.org",
@@ -33,7 +33,7 @@
     }
 </script>
 {{ $logo := resources.Get "images/logo.png" }}
-{{ $logoProcessed := $logo | resources.Fingerprint "sha256" }}
+{{ $logoProcessed := $logo | resources.Fingerprint "md5" }}
 <script type='application/ld+json'>
     {
         "@context": "http://www.schema.org",
