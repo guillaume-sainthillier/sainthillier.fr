@@ -1,5 +1,4 @@
 {{ $image := resources.Get "images/guillaume-sainthillier.jpg" }}
-{{ $imageProcessed := $image | resources.Fingerprint "md5" }}
 {{ $cv := resources.Get "pdf/CV-SAINTHILLIER-Guillaume.pdf" }}
 {{ $cvProcessed := $cv | resources.Fingerprint "md5" }}
 <script type="application/ld+json">
@@ -19,7 +18,7 @@
             {{ $cvProcessed.RelPermalink | absURL }},
             "https://stackoverflow.com/users/7652866/guillaume-sainthillier"
         ],
-        "image": {{ $imageProcessed.Permalink | absURL }},
+        "image": {{ $image.Permalink | absURL }},
         "address": {
             "@type": "PostalAddress",
             "streetAddress": "116 Route d'Espagne",
@@ -33,7 +32,6 @@
     }
 </script>
 {{ $logo := resources.Get "images/logo.png" }}
-{{ $logoProcessed := $logo | resources.Fingerprint "md5" }}
 <script type='application/ld+json'>
     {
         "@context": "http://www.schema.org",
@@ -49,8 +47,8 @@
             "https://github.com/silarhi",
             "https://www.linkedin.com/company/silarhi"
         ],
-        "logo": {{ $logoProcessed.Permalink | absURL }},
-        "image": {{ $logoProcessed.Permalink | absURL }},
+        "logo": {{ $logo.Permalink | absURL }},
+        "image": {{ $logo.Permalink | absURL }},
         "address": {
             "@type": "PostalAddress",
             "streetAddress": "116 Route d'Espagne",

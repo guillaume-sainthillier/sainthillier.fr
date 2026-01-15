@@ -5,7 +5,7 @@
 {{ $headerImg := resources.Get "images/header-bg.jpg" }}
 {{ if $headerImg }}
 {{ $headerImgResized := $headerImg.Fill "1900x1250" }}
-{{ $headerImgWebP := $headerImgResized.Resize "1900x webp q10" | resources.Fingerprint "md5" }}
+{{ $headerImgWebP := $headerImgResized.Resize "1900x webp q10" }}
 <header class="masthead" style="background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7)), url('{{ $headerImgWebP.RelPermalink }}')">
 <div class="masthead-content">
     <div class="container">

@@ -102,9 +102,8 @@
 {{ end }}
 {{ $validSizes = $uniqueSizes }}
 
-{{/* Generate blur placeholder for lazysizes */}}
+{{/* Generate blur placeholder for lazysizes - Hugo's Resize already adds content hash */}}
 {{ $placeholderImg := $originalImg.Resize "20x webp q10" }}
-{{ $placeholderImg = $placeholderImg | resources.Fingerprint "md5" }}
 
 {{/* Build srcset strings for WebP and fallback - ALL from original image */}}
 {{ $webpSrcset := slice }}
@@ -113,17 +112,15 @@
 {{ range $validSizes }}
   {{/* Generate WebP version from ORIGINAL image (good compression, wide support) */}}
   {{ $resizedWebP := $originalImg.Resize (printf "%dx webp" .) }}
-  {{ $resizedWebP = $resizedWebP | resources.Fingerprint "md5" }}
   {{ $webpSrcset = $webpSrcset | append (printf "%s %dw" $resizedWebP.RelPermalink .) }}
 
   {{/* Generate fallback version from ORIGINAL image (original format) */}}
   {{ $resizedFallback := $originalImg.Resize (printf "%dx" .) }}
-  {{ $resizedFallback = $resizedFallback | resources.Fingerprint "md5" }}
   {{ $fallbackSrcset = $fallbackSrcset | append (printf "%s %dw" $resizedFallback.RelPermalink .) }}
 {{ end }}
 
 {{/* Default src using the display width from original image */}}
-{{ $defaultImg := $originalImg.Resize (printf "%dx" $displayWidth) | resources.Fingerprint "md5" }}
+{{ $defaultImg := $originalImg.Resize (printf "%dx" $displayWidth) }}
 
 {{ if $priority }}
   {{/* Priority images load immediately without lazysizes */}}
