@@ -130,7 +130,7 @@ realisations:
           <p><a rel="noopener" href="https://cibaru.fr" target="_blank" title="Logiciel de gestion de mandats de travaux">CIBARU</a> est une application Web permettant la gestion de mandats de travaux.</p>
           <p class="mb-2">Le site permet aux mandataires de :</p>
           <ul class="fa-ul">
-              <li><i class="fa-li fa fa-angle-right"></i>Gérer leur demande de travaux/li>
+              <li><i class="fa-li fa fa-angle-right"></i>Gérer leur demande de travaux</li>
               <li><i class="fa-li fa fa-angle-right"></i>Gérer la sous-traitance à des collaborateurs</li>
               <li><i class="fa-li fa fa-angle-right"></i>Assurer le suivi de leur facturation</li>
           </ul>
