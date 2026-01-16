@@ -263,16 +263,18 @@
                                     </li>
                                 </ul>
                             </div>
-                            {{ if isset . "url" }}
-                            <a rel="noopener" href="{{ .url }}" class="btn btn-primary" target="_blank">
-                                <i class="fa fa-globe"></i>
-                                &nbsp;Visiter
-                            </a>
-                            {{ end }}
-                            <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">
-                                <i class="fa fa-times"></i>
-                                &nbsp;Fermer
-                            </button>
+                            <div class="d-flex flex-row align-items-center justify-content-center gap-2">
+                                {{ if isset . "url" }}
+                                <a rel="noopener" href="{{ .url }}" class="btn btn-primary" target="_blank">
+                                    <i class="fa fa-globe"></i>
+                                    &nbsp;Visiter
+                                </a>
+                                {{ end }}
+                                <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">
+                                    <i class="fa fa-times"></i>
+                                    &nbsp;Fermer
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
