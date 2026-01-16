@@ -1,0 +1,5 @@
+{
+    "permissions": {
+        "allow": ["mcp__repomix__pack_codebase", "mcp__repomix__read_repomix_output", "Bash(yarn dev)"]
+    }
+}
