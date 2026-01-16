@@ -110,9 +110,8 @@
                 </li>
                 {{ end }}
                 <li class="d-inline d-sm-block d-md-inline-block list-inline-item">
-                    {{ $cv := resources.Get "pdf/CV-SAINTHILLIER-Guillaume.pdf" }}
-                    {{ $cvProcessed := $cv | resources.Fingerprint "md5" }}
-                    <a href="{{ $cvProcessed.RelPermalink }}" title="CV au format PDF">
+                    {{ $cv := resources.Get "pdf/CV-SAINTHILLIER-Guillaume.pdf" | resources.Fingerprint "md5" }}
+                    <a href="{{ $cv.RelPermalink }}" title="CV au format PDF">
                         <i class="fa fa-file-pdf"></i>
                     </a>
                 </li>
