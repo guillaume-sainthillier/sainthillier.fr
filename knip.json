@@ -1,6 +1,6 @@
 {
     "$schema": "https://unpkg.com/knip@5/schema.json",
-    "entry": ["assets/js/**/*.js", "scripts/**/*.js"],
+    "entry": ["assets/js/**/*.js"],
     "project": ["**/*.js"],
     "ignore": ["public/**", "resources/**", "static/**", "content/**", "layouts/**", ".husky/**"],
     "ignoreDependencies": [
@@ -8,6 +8,7 @@
         "eslint-config-airbnb-base",
         "eslint-config-prettier",
         "eslint-plugin-import",
-        "eslint-plugin-prettier"
+        "eslint-plugin-prettier",
+        "tailwindcss"
     ]
 }

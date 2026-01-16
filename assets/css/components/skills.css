@@ -1,0 +1,38 @@
+/* Skills styles */
+@layer components {
+    #skills {
+        height: 300px;
+    }
+
+    /* Word cloud weight classes */
+    .weight-1 {
+        color: color-mix(in srgb, var(--color-primary), gray 54%);
+    }
+    .weight-2 {
+        color: color-mix(in srgb, var(--color-primary), gray 48%);
+    }
+    .weight-3 {
+        color: color-mix(in srgb, var(--color-primary), gray 42%);
+    }
+    .weight-4 {
+        color: color-mix(in srgb, var(--color-primary), gray 36%);
+    }
+    .weight-5 {
+        color: color-mix(in srgb, var(--color-primary), gray 30%);
+    }
+    .weight-6 {
+        color: color-mix(in srgb, var(--color-primary), gray 24%);
+    }
+    .weight-7 {
+        color: color-mix(in srgb, var(--color-primary), gray 18%);
+    }
+    .weight-8 {
+        color: color-mix(in srgb, var(--color-primary), gray 12%);
+    }
+    .weight-9 {
+        color: color-mix(in srgb, var(--color-primary), gray 6%);
+    }
+    .weight-10 {
+        color: var(--color-primary);
+    }
+}

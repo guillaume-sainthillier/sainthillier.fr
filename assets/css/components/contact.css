@@ -1,0 +1,47 @@
+/* Contact styles */
+@layer components {
+    section#contact {
+        ul li {
+            margin-bottom: 1rem;
+
+            .icon {
+                float: left;
+                color: var(--color-primary);
+                line-height: 1.5;
+            }
+
+            span {
+                display: block;
+                padding-left: 1.5rem;
+            }
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+
+            input,
+            textarea {
+                padding: 20px;
+            }
+
+            input.form-control {
+                height: auto;
+            }
+
+            textarea.form-control {
+                height: 248px;
+            }
+        }
+
+        .form-control:focus {
+            border-color: var(--color-primary);
+            box-shadow: none;
+        }
+
+        ::placeholder {
+            font-weight: 700;
+            color: var(--color-gray-400);
+            font-family: var(--font-sans);
+        }
+    }
+}
