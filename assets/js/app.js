@@ -105,7 +105,23 @@ window.addEventListener('DOMContentLoaded', () => {
 
                 const success = document.body.querySelector('#success');
                 const sendMessageButton = document.body.querySelector('#sendMessageButton');
+                const originalButtonText = sendMessageButton.innerHTML;
+
+                // Show loading state
                 sendMessageButton.setAttribute('disabled', 'disabled');
+                sendMessageButton.innerHTML = `
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Envoi en cours...
+                `;
+
+                // Clear any previous server validation errors
+                contactForm.querySelectorAll('.server-invalid').forEach((el) => {
+                    el.classList.remove('server-invalid', 'is-invalid');
+                });
+                contactForm.querySelectorAll('.server-feedback').forEach((el) => {
+                    el.remove();
+                });
+
                 fetch(contactForm.getAttribute('action'), {
                     method: 'POST',
                     body: JSON.stringify(data),
@@ -113,31 +129,65 @@ window.addEventListener('DOMContentLoaded', () => {
                         'Content-Type': 'application/json',
                         Accept: 'application/json',
                     },
-                }).then(
-                    () => {
-                        success.innerHTML = `
-                        <div class="alert alert-success alert-dismissible fade show">
-                            <strong>Votre message a bien été envoyé.</strong>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fermer"></button>
-                        </div>
-                    `;
+                })
+                    .then(async (response) => {
+                        if (response.ok) {
+                            success.innerHTML = `
+                                <div class="alert alert-success alert-dismissible fade show">
+                                    <strong>Votre message a bien été envoyé.</strong>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fermer"></button>
+                                </div>
+                            `;
+                            contactForm.classList.remove('was-validated');
+                            contactForm.reset();
+                        } else if (response.status === 422) {
+                            // Handle Formspree validation errors
+                            const errorData = await response.json();
+                            if (errorData.errors && Array.isArray(errorData.errors)) {
+                                const fieldMessages = {
+                                    email: "L'adresse email n'est pas valide.",
+                                    phone: 'Le numéro de téléphone est invalide.',
+                                    name: 'Le nom est invalide.',
+                                    message: 'Le message est invalide.',
+                                };
 
-                        sendMessageButton.removeAttribute('disabled');
-                        contactForm.classList.remove('was-validated');
-                        contactForm.reset();
-                    },
-                    () => {
-                        success.innerHTML = `
-                        <div class="alert alert-danger alert-dismissible fade show">
-                            <strong>Désolé ${firstName}, on dirait que le message n'a pas pu être envoyé. Merci d'essayer un peu plus tard ou de me contacter directement par téléphone !</strong>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fermer"></button>
-                        </div>
-                    `;
+                                errorData.errors.forEach((err) => {
+                                    const fieldName = err.field === '_replyto' ? 'email' : err.field;
+                                    const field = contactForm.querySelector(`#${fieldName}`);
+                                    if (field) {
+                                        field.classList.add('is-invalid', 'server-invalid');
+                                        const feedback = document.createElement('div');
+                                        feedback.className = 'invalid-feedback server-feedback';
+                                        feedback.style.display = 'block';
+                                        feedback.textContent = fieldMessages[fieldName] || err.message;
+                                        field.parentNode.appendChild(feedback);
+                                    }
+                                });
 
-                        sendMessageButton.removeAttribute('disabled');
+                                success.innerHTML = `
+                                    <div class="alert alert-warning alert-dismissible fade show">
+                                        <strong>Merci de corriger les erreurs dans le formulaire.</strong>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fermer"></button>
+                                    </div>
+                                `;
+                            }
+                        } else {
+                            throw new Error('Server error');
+                        }
+                    })
+                    .catch(() => {
+                        success.innerHTML = `
+                            <div class="alert alert-danger alert-dismissible fade show">
+                                <strong>Désolé ${firstName}, on dirait que le message n'a pas pu être envoyé. Merci d'essayer un peu plus tard ou de me contacter directement par téléphone !</strong>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fermer"></button>
+                            </div>
+                        `;
                         contactForm.classList.remove('was-validated');
-                    }
-                );
+                    })
+                    .finally(() => {
+                        sendMessageButton.removeAttribute('disabled');
+                        sendMessageButton.innerHTML = originalButtonText;
+                    });
             },
             false
         );
