@@ -100,7 +100,7 @@ formation:
       points:
           - Outils collaboratifs
           - Gestion de projet
-          - Alernance
+          - Alternance
     - periode: 2012 - 2013
       nom: Licence L3 <abbr title="Mathématiques et Informatique Appliqués aux Sciences
           Humaines et Sociales">MIASHS</abbr>, Toulouse. France
@@ -148,7 +148,7 @@ realisations:
       sous_titre: Développeur Web Freelance
       date: Avril 2024 - En cours
       description: |-
-          <p><a rel="noopener" href="https://netisio.fr" target="_blank" title="Logiciel de suivi de consommation d'équipements d'eau et d'éléctricité">Netisio</a> est une application Web permettant le suivi de consommation de vos équipements d'eau et d'éléctricité.</p>
+          <p><a rel="noopener" href="https://netisio.fr" target="_blank" title="Logiciel de suivi de consommation d'équipements d'eau et d'électricité">Netisio</a> est une application Web permettant le suivi de consommation de vos équipements d'eau et d'électricité.</p>
           <p class="mb-2">Le site permet aux copropriétés de :</p>
           <ul class="fa-ul">
               <li><i class="fa-li fa fa-angle-right"></i>Suivre la consommation d'eau et d'électricité dans les parties communes</li>
@@ -218,7 +218,7 @@ realisations:
       sous_titre: Développeur Web Freelance
       date: Mars 2019 - En Cours
       description: |-
-          <p><a rel="noopener" href="https://immobilus.fr" target="_blank" title="Logiciel de gestion immobilère">Immobilus</a> est une application Web permettant à des propriétaires de biens de digitaliser leur gestion immobilière.</p>
+          <p><a rel="noopener" href="https://immobilus.fr" target="_blank" title="Logiciel de gestion immobilière">Immobilus</a> est une application Web permettant à des propriétaires de biens de digitaliser leur gestion immobilière.</p>
           <p class="mb-2">Le site permet au propriétaire de :</p>
           <ul class="fa-ul">
               <li><i class="fa-li fa fa-angle-right"></i>Saisir les informations sur son bien</li>
@@ -241,7 +241,7 @@ realisations:
       sous_titre: Projet personnel
       date: Octobre 2013 - En Cours
       description: |-
-          <p><a rel="noopener" href="https://by-night.fr" target="_blank" >By Night</a> est une plateforme d'aggrégation d'événements qui a pour vocation de simplifier la recherche des événements culturels dans les plus grandes villes de France telles que Paris, Toulouse, Lyon, Bordeaux ou Montpellier.</p>
+          <p><a rel="noopener" href="https://by-night.fr" target="_blank" >By Night</a> est une plateforme d'agrégation d'événements qui a pour vocation de simplifier la recherche des événements culturels dans les plus grandes villes de France telles que Paris, Toulouse, Lyon, Bordeaux ou Montpellier.</p>
           <p class="mb-2">Un accès libre permet également à des organisateurs d'événements de :</p>
           <ul class="fa-ul">
               <li><i class="fa-li fa fa-angle-right"></i>Créer de nouveaux événements</li>
