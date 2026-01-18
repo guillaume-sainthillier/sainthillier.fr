@@ -14,7 +14,7 @@
     "scripts": {
         "dev": "vite build --mode development",
         "watch": "vite build --watch --mode development",
-        "build": "vite build && node scripts/purgecss.js",
+        "build": "vite build",
         "build:hugo": "yarn build && yarn hugo",
         "build:hugo:preview": "yarn build && yarn hugo -D -F",
         "hugo": "hugo --gc --minify",
@@ -22,8 +22,8 @@
         "prepare": "husky install",
         "lint": "eslint .",
         "lint:fix": "eslint . --fix",
-        "format": "prettier --check \"**/*.{js,scss,md,json,yml,yaml}\"",
-        "format:fix": "prettier --write \"**/*.{js,scss,md,json,yml,yaml}\"",
+        "format": "prettier --check \"**/*.{js,css,md,json,yml,yaml}\"",
+        "format:fix": "prettier --write \"**/*.{js,css,md,json,yml,yaml}\"",
         "knip": "knip",
         "knip:fix": "knip --fix"
     },
@@ -32,7 +32,6 @@
         "@fortawesome/free-brands-svg-icons": "^7.1.0",
         "@fortawesome/free-solid-svg-icons": "^7.1.0",
         "@webcomponents/custom-elements": "^1.6.0",
-        "bootstrap": "^5.3.8",
         "lazysizes": "^5.3.2",
         "lite-youtube-embed": "^0.3.3",
         "wordcloud": "^1.2.3"
@@ -40,7 +39,7 @@
     "devDependencies": {
         "@eslint/eslintrc": "^3.3.1",
         "@eslint/js": "^9.39.1",
-        "purgecss": "^6.0.0",
+        "@tailwindcss/vite": "^4.1.18",
         "@types/node": "^22.10.5",
         "@vitejs/plugin-legacy": "^6.0.2",
         "eslint": "^9.39.1",
@@ -55,13 +54,13 @@
         "lint-staged": ">=16.2.6",
         "prettier": "^3.6.2",
         "regenerator-runtime": "^0.14.1",
-        "sass": "^1.93.3",
+        "tailwindcss": "^4.1.18",
         "terser": "^5.37.0",
         "typescript": "^5.7.3",
         "vite": "^6.0.7"
     },
     "lint-staged": {
-        "*.{scss,md}": "prettier --write",
+        "*.{css,md}": "prettier --write",
         "*.js": "eslint --fix"
     }
 }

@@ -1,0 +1,56 @@
+/* Layout styles */
+@layer components {
+    /* Section styles */
+    .section {
+        padding: 100px 0;
+    }
+
+    @media (min-width: 768px) {
+        .section {
+            padding: 150px 0;
+        }
+    }
+
+    .section-heading {
+        font-size: 40px;
+        margin-top: 0;
+        margin-bottom: 15px;
+        line-height: 1.2;
+    }
+
+    .section-subheading {
+        font-size: 16px;
+        font-weight: 400;
+        font-style: italic;
+        margin-bottom: 75px;
+        text-transform: none;
+    }
+
+    /* Container */
+    .container {
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    /* Layout page */
+    .layout-page {
+        em {
+            color: var(--color-gray-600);
+        }
+
+        #mainNav {
+            background-color: var(--color-gray-900);
+        }
+
+        h2 {
+            margin-top: 2.5rem;
+        }
+
+        section p {
+            text-align: justify;
+        }
+    }
+}

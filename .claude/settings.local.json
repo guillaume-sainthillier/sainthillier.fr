@@ -1,5 +1,12 @@
 {
-    "permissions": {
-        "allow": ["mcp__repomix__pack_codebase", "mcp__repomix__read_repomix_output", "Bash(yarn dev)"]
-    }
+  "permissions": {
+    "allow": [
+      "mcp__repomix__pack_codebase",
+      "mcp__repomix__read_repomix_output",
+      "Bash(yarn dev)",
+      "Bash(python3:*)",
+      "mcp__jetbrains__list_directory_tree",
+      "mcp__filesystem__list_directory"
+    ]
+  }
 }

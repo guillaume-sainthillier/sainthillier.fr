@@ -1,0 +1,68 @@
+/* Base styles */
+@layer base {
+    body {
+        font-family: var(--font-body);
+        overflow-x: hidden;
+        position: relative;
+    }
+
+    p {
+        line-height: 1.75;
+    }
+
+    a {
+        color: var(--color-primary);
+        text-decoration: none;
+        &:hover,
+        &:active {
+            color: var(--color-primary-hover);
+            text-decoration: underline;
+        }
+        &:focus {
+            outline-color: var(--color-primary-hover);
+        }
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: var(--font-sans);
+        font-weight: var(--font-weight-bold);
+        line-height: 1.2;
+    }
+
+    hr {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    @media (min-width: 992px) {
+        h4 {
+            font-size: 1.5rem;
+        }
+    }
+
+    /* Selection styles */
+    ::selection {
+        background: var(--color-primary);
+        color: white;
+        text-shadow: none;
+    }
+
+    ::-moz-selection {
+        background: var(--color-primary);
+        color: white;
+        text-shadow: none;
+    }
+
+    img::selection {
+        background: transparent;
+    }
+
+    img::-moz-selection {
+        background: transparent;
+    }
+}

@@ -1,0 +1,38 @@
+/* Services styles */
+@layer components {
+    .service-heading {
+        margin-bottom: 1rem;
+        text-transform: none;
+    }
+
+    .service-contact {
+        margin-top: 3rem;
+    }
+
+    #services .service {
+        max-width: 1140px;
+        margin: 2em auto 0 auto;
+
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+
+    #services ul li {
+        .icon {
+            float: left;
+            color: var(--color-primary);
+            line-height: 1.75;
+        }
+
+        p {
+            display: block;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        &:last-child p {
+            margin-bottom: 0;
+        }
+    }
+}

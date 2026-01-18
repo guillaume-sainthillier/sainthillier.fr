@@ -3,6 +3,8 @@ import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { readFileSync, writeFileSync, mkdirSync } from 'fs';
 import legacy from '@vitejs/plugin-legacy';
+// eslint-disable-next-line import/no-unresolved
+import tailwindcss from '@tailwindcss/vite';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -85,14 +87,9 @@ export default defineConfig(({ mode }) => {
         },
         css: {
             devSourcemap: !isProduction,
-            preprocessorOptions: {
-                scss: {
-                    quietDeps: true,
-                    loadPaths: ['node_modules'],
-                },
-            },
         },
         plugins: [
+            tailwindcss(),
             legacy({
                 targets: ['ie >= 11', 'chrome >= 45', 'firefox >= 38', 'android >= 4.4'],
                 additionalLegacyPolyfills: ['regenerator-runtime/runtime'],

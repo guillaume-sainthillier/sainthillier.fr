@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ $.Site.LanguageCode | default "en" }}">
+<html lang="{{ $.Site.LanguageCode | default "en" }}" class="scroll-smooth">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -46,36 +46,36 @@
 </head>
 <body id="{{ block "page-id" . }}page{{ end }}" class="{{ block "layout-class" . }}layout-default{{ end }}">
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-    <div class="container"> 
+<nav class="fixed top-0 left-0 right-0 z-50 flex flex-wrap items-center px-4 py-2 lg:py-6 transition-all duration-300" id="mainNav">
+    <div class="container flex flex-wrap items-center justify-between">
         {{ block "menu" . }}
         <a class="navbar-brand js-scroll-trigger text-primary" href="/#mainNav">
           {{ $logo := resources.Get "svg/logo-web.svg" }}
           {{ $logo.Content | safeHTML }}
         </a>
-        <button class="navbar-toggler navbar-toggler-end" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler lg:hidden" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             Menu
-            <i class="fa fa-bars"></i>
+            <i class="fa fa-bars ml-1"></i>
         </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav text-uppercase ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="/#hello">Hello</a>
+        <div class="navbar-collapse hidden w-full lg:flex lg:w-auto lg:items-center" id="navbarResponsive">
+            <ul class="flex flex-col lg:flex-row lg:ml-auto uppercase list-none">
+                <li>
+                    <a class="nav-link js-scroll-trigger block" href="/#hello">Hello</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="/#services">Services</a>
+                <li>
+                    <a class="nav-link js-scroll-trigger block" href="/#services">Services</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="/#competences">Compétences</a>
+                <li>
+                    <a class="nav-link js-scroll-trigger block" href="/#competences">Compétences</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="/#portfolio">Portfolio</a>
+                <li>
+                    <a class="nav-link js-scroll-trigger block" href="/#portfolio">Portfolio</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="/#parcours">Parcours</a>
+                <li>
+                    <a class="nav-link js-scroll-trigger block" href="/#parcours">Parcours</a>
                 </li>
             </ul>
-            <a class="btn btn-outline-primary js-scroll-trigger" href="/#contact">Contact</a>
+            <a class="btn btn-outline-primary js-scroll-trigger mt-4 lg:mt-0 lg:ml-4 uppercase" href="/#contact">Contact</a>
         </div>
         {{ end }}
     </div>
@@ -85,30 +85,30 @@
 <!-- Footer -->
 <footer>
     <div class="container">
-        <div class="d-flex align-items-center justify-content-center justify-content-sm-start flex-wrap flex-sm-nowrap">
-            <div class="me-sm-4">
+        <div class="flex items-center justify-center sm:justify-start flex-wrap sm:flex-nowrap">
+            <div class="sm:mr-4">
                 {{ partial "responsive-image" (dict "src" "images/logo.png" "alt" "Concrétisez vos projets Web" "width" 96 "height" 96 "priority" false) }}
             </div>
-            <div class="text-center text-sm-start mb-3 mb-sm-0">
+            <div class="text-center sm:text-left mb-3 sm:mb-0">
                 <p>Guillaume Sainthillier - Développeur Web freelance à Toulouse</p>
                 <p>SASU SILARHI</p>
                 <p>N° SIRET 84154166700017</p>
                 <p>N° TVA FR96841541667</p>
             </div>
-            <ul class="ms-sm-auto list-unstyled d-flex flex-row flex-sm-column flex-md-row social-buttons">
+            <ul class="sm:ml-auto list-unstyled flex flex-row sm:flex-col md:flex-row social-buttons">
                 {{ with .Site.Params.Social }}
-                <li class="d-inline d-sm-block d-md-inline-block list-inline-item mb-2">
+                <li class="inline sm:block md:inline-block mb-2 mr-2 sm:mr-0 md:mr-2">
                     <a rel="noopener" href="{{ .linkedin }}" title="Profil Linkedin">
                         <i class="fa fab fa-linkedin-in"></i>
                     </a>
                 </li>
-                <li class="d-inline d-sm-block d-md-inline-block list-inline-item mb-2">
+                <li class="inline sm:block md:inline-block mb-2 mr-2 sm:mr-0 md:mr-2">
                     <a rel="noopener" href="{{ .github }}" title="Profil Github">
                         <i class="fa fab fa-github"></i>
                     </a>
                 </li>
                 {{ end }}
-                <li class="d-inline d-sm-block d-md-inline-block list-inline-item">
+                <li class="inline sm:block md:inline-block">
                     {{ $cv := resources.Get "pdf/CV-SAINTHILLIER-Guillaume.pdf" | resources.Fingerprint "md5" }}
                     <a href="{{ $cv.RelPermalink }}" title="CV au format PDF">
                         <i class="fa fa-file-pdf"></i>
@@ -119,14 +119,14 @@
     </div>
     <hr />
     <div class="container">
-        <ul class="mb-0 list-inline list-unstyled">
-            <li class="d-block d-sm-inline list-inline-item">
+        <ul class="mb-0 list-none">
+            <li class="block sm:inline mr-0 sm:mr-2">
                 <a href="/mentions-legales/">Mentions légales</a>
             </li>
-            <li class="d-block d-sm-inline list-inline-item">
+            <li class="block sm:inline mr-0 sm:mr-2">
                 <a href="/conditions-generales-de-vente/">Conditions Générales de Vente</a>
             </li>
-            <li class="d-block d-sm-inline list-inline-item">
+            <li class="block sm:inline">
                 <a rel="noopener" href="https://blog.silarhi.fr">Blog</a>
             </li>
         </ul>

@@ -10,8 +10,8 @@
     <div class="container">
         <div class="intro-text">
             <h1 class="intro-lead-in">Développeur Web Freelance à Toulouse</h1>
-            <div class="intro-heading text-uppercase">Donnez vie à vos projets Web</div>
-            <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#hello">En savoir plus</a>
+            <div class="intro-heading uppercase">Donnez vie à vos projets Web</div>
+            <a class="btn btn-primary btn-xl uppercase js-scroll-trigger" href="#hello">En savoir plus</a>
         </div>
     </div>
 </div>
@@ -19,152 +19,152 @@
 {{ end }}
 
 <!-- About -->
-<section id="hello" class="bg-light">
+<section id="hello" class="section bg-gray-100">
     <div class="container">
         <div class="text-center">
-            <h2 class="section-heading text-uppercase">Développeur Freelance à Toulouse</h2>
+            <h2 class="section-heading uppercase">Développeur Freelance à Toulouse</h2>
             <h3 class="section-subheading text-muted">Bonjour, je suis Guillaume Sainthillier, développeur Web indépendant basé à Toulouse.</h3>
         </div>
         <lite-youtube class="mx-auto" videoid="JjeguKaXutw" playlabel="Développeur Web Freelance Toulouse"></lite-youtube>
     </div>
 </section>
-<section>
+<section class="section">
     <div class="container">
-        <div class="row mb-5">
-            <div class="col-md-4 col-lg-3 d-flex align-items-center">
-                {{ partial "responsive-image" (dict "src" "images/guillaume-sainthillier.jpg" "alt" "Concrétisez vos projets Web" "class" "img-fluid rounded-circle d-block mx-auto" "width" 300 "height" 300 "priority" false) }}
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 mb-12">
+            <div class="md:col-span-4 lg:col-span-3 flex items-center">
+                {{ partial "responsive-image" (dict "src" "images/guillaume-sainthillier.jpg" "alt" "Concrétisez vos projets Web" "class" "max-w-full h-auto rounded-full block mx-auto" "width" 300 "height" 300 "priority" false) }}
             </div>
-            <div class="col-md-8">
-                <h3>Besoin des services d'un développeur Web ?</h3>
-                <p class="text-muted">Je suis spécialisé dans le domaine du développement d'<strong>applications Web
+            <div class="md:col-span-8 lg:col-span-9">
+                <h3 class="text-3xl mb-2">Besoin des services d'un développeur Web ?</h3>
+                <p class="text-muted mb-4">Je suis spécialisé dans le domaine du développement d'<strong>applications Web
                     sur mesure</strong> pour votre activité, principalement avec le framework PHP Symfony.</p>
-                <p class="text-muted">Expérimenté depuis 2013 et freelance depuis 2018, j'ai travaillé pour divers secteurs
+                <p class="text-muted mb-4">Expérimenté depuis 2013 et freelance depuis 2018, j'ai travaillé pour divers secteurs
                     d'activités : collectivités locales, santé, secteur public, ressources humaines, industrie, aéronautique, communication, immobilier, assurances, ...</p>
-                <p class="text-muted">Parce que l'informatique doit avant tout être une solution et non une contrainte, je développe des outils qui se démarquent par leur
+                <p class="text-muted mb-4">Parce que l'informatique doit avant tout être une solution et non une contrainte, je développe des outils qui se démarquent par leur
                     <strong>valeur ajoutée pour votre activité.</strong></p>
                 <p class="text-muted">Que vous soyez une petite entreprise, une start-up, un freelance, une association, une agence Web ou une entreprise côtée en bourse, contactez-moi
                     et voyons ensemble comment <strong>développer votre activité !</strong></p>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-4 col-lg-3 order-md-2 d-flex align-items-center">
-                {{ partial "responsive-image" (dict "src" "images/design.jpg" "alt" "Concrétisez vos projets Web" "class" "img-fluid rounded-circle d-block mx-auto" "width" 300 "height" 300 "priority" false) }}
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+            <div class="md:col-span-4 lg:col-span-3 md:order-2 flex items-center">
+                {{ partial "responsive-image" (dict "src" "images/design.jpg" "alt" "Concrétisez vos projets Web" "class" "max-w-full h-auto rounded-full block mx-auto" "width" 300 "height" 300 "priority" false) }}
             </div>
-            <div class="col-md-8 order-md-1">
-                <h3>Pourquoi opter pour un développeur Freelance ?</h3>
-                <p class="text-muted">Vous avez un
+            <div class="md:col-span-8 lg:col-span-9 md:order-1">
+                <h3 class="text-3xl mb-2">Pourquoi opter pour un développeur Freelance ?</h3>
+                <p class="text-muted mb-4">Vous avez un
                     <strong>interlocuteur unique</strong> dans toutes les phases de votre projet : définition du besoin, analyse, conception, réalisation, tests, déploiement et maintenance.
                 </p>
-                <p class="text-muted">Vous gagnez en
+                <p class="text-muted mb-4">Vous gagnez en
                     <strong>flexibilité</strong> par rapport à une société de service traditionnelle qui a souvent une inertie plus importante.
                 </p>
-                <p class="text-muted">En déléguant vos développements informatiques à un
+                <p class="text-muted mb-4">En déléguant vos développements informatiques à un
                     <strong>freelance de confiance</strong>, vous pouvez focaliser vos efforts sur ce qui compte réellement pour votre business.
                 </p>
                 <p class="text-muted">Vous ne prenez pas de risques en travaillant avec un partenaire neutre qui garantit la
                     <strong>confidentialité</strong> de vos activités.</p>
             </div>
         </div>
-        <div class="text-center mt-5">
-            <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#contact">J'ai un projet</a>
+        <div class="text-center mt-12">
+            <a class="btn btn-primary btn-xl uppercase js-scroll-trigger" href="#contact">J'ai un projet</a>
         </div>
     </div>
 </section>
 <!-- Services -->
-<section id="services" class="bg-light">
+<section id="services" class="section bg-gray-100">
     <div class="container text-center">
-        <h2 class="section-heading text-uppercase">Services</h2>
+        <h2 class="section-heading uppercase">Services</h2>
         <h3 class="section-subheading text-muted">Votre besoin coche l'une de ces cases ? Contactez-moi !</h3>
 
-        <div class="service text-start">
+        <div class="service text-left">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="service-heading">Développement d'applications Web</h4>
-                    <ul class="list-unstyled text-muted">
+                    <h4 class="service-heading text-2xl">Développement d'applications Web</h4>
+                    <ul class="list-none text-muted">
                         <li>
-                            <span class="icon"><i class="fa fa-check text-success"></i></span>
+                            <span class="icon"><i class="fa fa-check text-green-600"></i></span>
                             <p>Vous avez une idée de nouveau projet pour moderniser la gestion de votre métier.</p>
                         </li>
                         <li>
-                            <span class="icon"><i class="fa fa-check text-success"></i></span>
+                            <span class="icon"><i class="fa fa-check text-green-600"></i></span>
                             <p>Vous avez une idée de projet de site e-commerce nécessitant des fonctionnalités sur mesure.</p>
                         </li>
                         <li>
-                            <span class="icon"><i class="fa fa-check text-success"></i></span>
+                            <span class="icon"><i class="fa fa-check text-green-600"></i></span>
                             <p>Vous avez besoin de mettre à jour un projet existant mais votre partenaire actuel est parti ou ne vous donne plus entière satisfaction.</p>
                         </li>
                         <li>
-                            <span class="icon"><i class="fa fa-check text-success"></i></span>
+                            <span class="icon"><i class="fa fa-check text-green-600"></i></span>
                             <p>Votre Système d'Information a besoin d'applications métiers complexes et évoluées.</p>
                         </li>
                         <li>
-                            <span class="icon"><i class="fa fa-check text-success"></i></span>
+                            <span class="icon"><i class="fa fa-check text-green-600"></i></span>
                             <p>Vous avez vous-même développé votre projet et vous avez besoin d'aide sur les parties complexes.</p>
                         </li>
                         <li>
-                            <span class="icon"><i class="fa fa-times text-danger"></i></span>
+                            <span class="icon"><i class="fa fa-times text-red-600"></i></span>
                             <p>Vous avez besoin d'un partenaire pour réaliser un site vitrine.</p>
                         </li>
                         <li>
-                            <span class="icon"><i class="fa fa-times text-danger"></i></span>
+                            <span class="icon"><i class="fa fa-times text-red-600"></i></span>
                             <p>Vous cherchez un logo ou une identité visuelle.</p>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
-        <div class="service text-start">
+        <div class="service text-left">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="service-heading">Expertise technique pour besoins avancés</h4>
-                    <ul class="list-unstyled text-muted">
+                    <h4 class="service-heading text-2xl">Expertise technique pour besoins avancés</h4>
+                    <ul class="list-none text-muted">
                         <li>
-                            <span class="icon"><i class="fa fa-check text-success"></i></span>
+                            <span class="icon"><i class="fa fa-check text-green-600"></i></span>
                             <p>Mise à jour de version Symfony.</p>
                         </li>
                         <li>
-                            <span class="icon"><i class="fa fa-check text-success"></i></span>
+                            <span class="icon"><i class="fa fa-check text-green-600"></i></span>
                             <p>Intégration du protocole bancaire EBICS dans votre application.</p>
                         </li>
                         <li>
-                            <span class="icon"><i class="fa fa-check text-success"></i></span>
+                            <span class="icon"><i class="fa fa-check text-green-600"></i></span>
                             <p>Gestion de l'infrastructure serveur / cloud.</p>
                         </li>
                         <li>
-                            <span class="icon"><i class="fa fa-check text-success"></i></span>
+                            <span class="icon"><i class="fa fa-check text-green-600"></i></span>
                             <p>Mise en place d'intégration continue / déploiement continu.</p>
                         </li>
                         <li>
-                            <span class="icon"><i class="fa fa-check text-success"></i></span>
+                            <span class="icon"><i class="fa fa-check text-green-600"></i></span>
                             <p>Audit de sécurité / performances.</p>
                         </li>
                         <li>
-                            <span class="icon"><i class="fa fa-times text-danger"></i></span>
+                            <span class="icon"><i class="fa fa-times text-red-600"></i></span>
                             <p>Développement de plugin Wordpress / Prestashop.</p>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
-        <div class="service text-start">
+        <div class="service text-left">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="service-heading">Formation pour partager connaissance et passion</h4>
-                    <ul class="list-unstyled text-muted">
+                    <h4 class="service-heading text-2xl">Formation pour partager connaissance et passion</h4>
+                    <ul class="list-none text-muted">
                         <li>
-                            <span class="icon"><i class="fa fa-check text-success"></i></span>
+                            <span class="icon"><i class="fa fa-check text-green-600"></i></span>
                             <p>En entreprise, pour vos salariés.</p>
                         </li>
                         <li>
-                            <span class="icon"><i class="fa fa-check text-success"></i></span>
+                            <span class="icon"><i class="fa fa-check text-green-600"></i></span>
                             <p>École de formation, pour vos apprenants.</p>
                         </li>
                         <li>
-                            <span class="icon"><i class="fa fa-check text-success"></i></span>
+                            <span class="icon"><i class="fa fa-check text-green-600"></i></span>
                             <p>Université, pour vos étudiants.</p>
                         </li>
                         <li>
-                            <span class="icon"><i class="fa fa-check text-success"></i></span>
+                            <span class="icon"><i class="fa fa-check text-green-600"></i></span>
                             <p>Exemple de thèmes : PHP, Programmation Orientée Objet, Symfony, Doctrine, Docker, Base de données, HTML, CSS, Javascript, ...</p>
                         </li>
                     </ul>
@@ -172,19 +172,19 @@
             </div>
         </div>
         <div class="service-contact">
-            <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#contact">Contactez-moi</a>
+            <a class="btn btn-primary btn-xl uppercase js-scroll-trigger" href="#contact">Contactez-moi</a>
         </div>
     </div>
 </section>
 
 
 <!-- Skills -->
-<section id="competences">
+<section id="competences" class="section">
     <div class="container">
         <div class="text-center">
-            <h2 class="section-heading text-uppercase">Compétences</h2>
+            <h2 class="section-heading uppercase">Compétences</h2>
             <h3 class="section-subheading text-muted">Axée autour de l'univers du Web, mon
-                expertise se concentre principalement autour du language PHP et du framework Symfony.</h3>
+                expertise se concentre principalement autour du langage PHP et du framework Symfony.</h3>
         </div>
 
         <div id="skills" data-skills="{{ .Params.skills | jsonify }}">
@@ -198,19 +198,16 @@
 </section>
 
 <!-- Portfolio Grid -->
-<section class="bg-light" id="portfolio">
+<section class="section bg-gray-100" id="portfolio">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h2 class="section-heading text-uppercase">Portfolio</h2>
-                <h3 class="section-subheading text-muted">Un coup d'œil non exhaustif sur mes derniers travaux.</h3>
-            </div>
+        <div class="text-center">
+            <h2 class="section-heading uppercase">Portfolio</h2>
+            <h3 class="section-subheading text-muted">Un coup d'œil non exhaustif sur mes derniers travaux.</h3>
         </div>
-        <div class="row">
-
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
             {{ range $realisation := .Params.realisations }}
             {{ with $realisation }}
-            <div class="col-md-6 col-xl-4">
+            <div>
                 <div class="portfolio-item">
                     <a class="portfolio-link" data-bs-toggle="modal" href="#portfolio-modal-{{ .id }}">
                         <div class="portfolio-hover">
@@ -218,10 +215,10 @@
                                 <i class="fa fa-plus fa-3x"></i>
                             </div>
                         </div>
-                        {{ partial "responsive-image" (dict "src" .image "alt" .nom "class" "img-fluid" "width" 400 "height" 300 "priority" false) }}
+                        {{ partial "responsive-image" (dict "src" .image "alt" .nom "class" "max-w-full h-auto" "width" 400 "height" 300 "priority" false) }}
                     </a>
                     <div class="portfolio-caption">
-                        <h4>{{ .nom }}</h4>
+                        <h4 class="text-2xl">{{ .nom }}</h4>
                         <p class="text-muted"><strong>{{ .sous_titre }}</strong></p>
                     </div>
                 </div>
@@ -244,37 +241,35 @@
                 </div>
             </div>
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 mx-auto">
-                        <div class="modal-body">
-                            <!-- Project Details Go Here -->
-                            <h2 class="text-uppercase">{{ .nom }}</h2>
-                            <p class="item-intro text-muted">{{ .sous_titre }}</p>
-                            {{ partial "responsive-image" (dict "src" .image "alt" .nom "class" "img-fluid d-block mx-auto" "width" 700 "height" 525 "priority" false) }}
+                <div class="max-w-2xl mx-auto">
+                    <div class="modal-body">
+                        <!-- Project Details Go Here -->
+                        <h2 class="uppercase">{{ .nom }}</h2>
+                        <p class="item-intro text-muted">{{ .sous_titre }}</p>
+                        {{ partial "responsive-image" (dict "src" .image "alt" .nom "class" "max-w-full h-auto block mx-auto" "width" 700 "height" 525 "priority" false) }}
 
-                            <div class="modal-description">
-                                {{ .description | safeHTML }}
-                                <ul class="list-inline">
-                                    <li>Date : {{ .date }}</li>
-                                    <li>Technologies :
-                                        {{ range $keyword := .keywords }}
-                                        <span class="badge bg-secondary" title="Développeur {{ $keyword }} à Toulouse"><strong>{{ $keyword }}</strong></span>
-                                        {{ end }}
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="d-flex flex-row align-items-center justify-content-center gap-2">
-                                {{ if isset . "url" }}
-                                <a rel="noopener" href="{{ .url }}" class="btn btn-primary" target="_blank">
-                                    <i class="fa fa-globe"></i>
-                                    &nbsp;Visiter
-                                </a>
-                                {{ end }}
-                                <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">
-                                    <i class="fa fa-times"></i>
-                                    &nbsp;Fermer
-                                </button>
-                            </div>
+                        <div class="modal-description">
+                            {{ .description | safeHTML }}
+                            <ul class="list-inline">
+                                <li>Date : {{ .date }}</li>
+                                <li>Technologies :
+                                    {{ range $keyword := .keywords }}
+                                    <span class="badge badge-secondary" title="Développeur {{ $keyword }} à Toulouse"><strong>{{ $keyword }}</strong></span>
+                                    {{ end }}
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="flex flex-row items-center justify-center gap-2">
+                            {{ if isset . "url" }}
+                            <a rel="noopener" href="{{ .url }}" class="btn btn-primary" target="_blank">
+                                <i class="fa fa-globe"></i>
+                                &nbsp;Visiter
+                            </a>
+                            {{ end }}
+                            <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">
+                                <i class="fa fa-times"></i>
+                                &nbsp;Fermer
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -286,66 +281,60 @@
 {{ end }}
 
 <!-- About -->
-<section id="parcours">
+<section id="parcours" class="section">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h2 class="section-heading text-uppercase">Parcours</h2>
-                <h3 class="section-subheading text-muted">Mes expériences avant de devenir Freelance Web à Toulouse.</h3>
-            </div>
+        <div class="text-center">
+            <h2 class="section-heading uppercase">Parcours</h2>
+            <h3 class="section-subheading text-muted">Mes expériences avant de devenir Freelance Web à Toulouse.</h3>
         </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <ul class="timeline">
-                    {{ range $i, $experience := .Params.experiences | collections.Reverse }}
-                    {{ with $experience }}
-                    <li class="{{ cond (not (modBool $i 2)) "" "timeline-inverted" }}">
+        <div>
+            <ul class="timeline">
+                {{ range $i, $experience := .Params.experiences | collections.Reverse }}
+                {{ with $experience }}
+                <li class="{{ cond (not (modBool $i 2)) "" "timeline-inverted" }}">
+                <div class="timeline-image">
+                    {{ partial "responsive-image" (dict "src" .logo "alt" (printf "Logo %s" .client) "class" "rounded-full max-w-full h-auto" "width" 170 "height" 170 "priority" false) }}
+                </div>
+                <div class="timeline-panel space-y-2">
+                    <div class="timeline-heading space-y-2">
+                        <h4 class="text-2xl">{{ .periode }}</h4>
+                        <h4 class="subheading">{{ .client }}</h4>
+                        <h5 class="text-muted">{{ .titre }}</h5>
+                    </div>
+                    <div class="timeline-body">
+                        <p class="text-muted">{{ .description }}</p>
+                        {{ if .entreprise }}
+                        <span class="text-muted">Via {{ .entreprise | safeHTML }}</span>
+                        {{ end }}
+                    </div>
+                </div>
+                </li>
+                {{ end }}
+                {{ end }}
+                <li class="timeline-inverted">
                     <div class="timeline-image">
-                        {{ partial "responsive-image" (dict "src" .logo "alt" (printf "Logo %s" .client) "class" "rounded-circle img-fluid" "width" 170 "height" 170 "priority" false) }}
+                        <a href="#contact" class="flex items-center h-full js-scroll-trigger">
+                            <h4 class="text-lg">Rejoignez l'aventure !</h4>
+                        </a>
                     </div>
-                    <div class="timeline-panel">
-                        <div class="timeline-heading">
-                            <h4>{{ .periode }}</h4>
-                            <h4 class="subheading">{{ .client }}</h4>
-                            <h5 class="text-muted">{{ .titre }}</h5>
-                        </div>
-                        <div class="timeline-body">
-                            <p class="text-muted">{{ .description }}</p>
-                            {{ if .entreprise }}
-                            <span class="text-muted">Via {{ .entreprise | safeHTML }}</span>
-                            {{ end }}
-                        </div>
-                    </div>
-                    </li>
-                    {{ end }}
-                    {{ end }}
-                    <li class="timeline-inverted">
-                        <div class="timeline-image">
-                            <a href="#contact" class="d-flex align-items-center h-100 js-scroll-trigger">
-                                <h4>Rejoignez l'aventure !</h4>
-                            </a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+                </li>
+            </ul>
         </div>
     </div>
 </section>
 
 <!-- Contact -->
-<section class="bg-light" id="contact">
+<section class="section bg-gray-100" id="contact">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h2 class="section-heading text-uppercase">Parlez-moi de vous</h2>
-                <h3 class="section-subheading text-muted">Votre projet est trop complexe à décrire ?
-                    <a href="tel:+33607275826">appelez-moi directement.</a></h3>
-            </div>
+        <div class="text-center">
+            <h2 class="section-heading uppercase">Parlez-moi de vous</h2>
+            <h3 class="section-subheading text-muted">Votre projet est trop complexe à décrire ?
+                <a href="tel:+33607275826">appelez-moi directement.</a></h3>
         </div>
-        <div class="row">
-            <div class="col-xl-3">
-                <ul class="list-unstyled row">
-                    <li class="col-sm-6 col-xl-12">
+        <div class="grid grid-cols-1 xl:grid-cols-12 gap-6">
+            <div class="xl:col-span-3">
+                <ul class="list-none grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-1 gap-4">
+                    <li>
                         <div class="icon"><i class="fa fa-map-marker-alt"></i></div>
                         <span class="text-muted">
                             SILARHI
@@ -355,7 +344,7 @@
                             <br />31100 Toulouse
                         </span>
                     </li>
-                    <li class="col-sm-6 col-xl-12">
+                    <li>
                         <div class="mb-2">
                             <div class="icon"><i class="fa fa-clock"></i></div>
                             <span class="text-muted">
@@ -378,10 +367,10 @@
                     </li>
                 </ul>
             </div>
-            <div class="col-xl-9">
+            <div class="xl:col-span-9">
                 <form id="contactForm" class="needs-validation" action="https://formspree.io/xlepbonn" novalidate="novalidate">
-                    <div class="row">
-                        <div class="col-md-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
                             <div class="form-group">
                                 <input class="form-control"
                                        id="name"
@@ -400,7 +389,6 @@
                                        type="email"
                                        placeholder="Votre email *"
                                        required>
-                                <p class="help-block text-danger"></p>
                                 <div class="invalid-feedback">
                                     Merci de renseigner votre email.
                                 </div>
@@ -417,7 +405,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div>
                             <div class="form-group">
                                 <textarea class="form-control"
                                           id="message"
@@ -429,10 +417,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="clearfix"></div>
-                        <div class="col-lg-12 text-center">
+                        <div class="md:col-span-2 text-center">
                             <div id="success"></div>
-                            <button id="sendMessageButton" class="btn btn-primary btn-xl text-uppercase" type="submit">
+                            <button id="sendMessageButton" class="btn btn-primary btn-xl uppercase" type="submit">
                                 Envoyer le message
                             </button>
                         </div>
