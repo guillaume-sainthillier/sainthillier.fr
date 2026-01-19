@@ -2,9 +2,9 @@
 title: "Conditions Générales de Vente"
 description: "Les CGV utilisées lors de mes prestations."
 ---
-# Conditions Générales de Ventes
+# Conditions Générales de Vente
 
-_Mis à jour le 25/06/2025_
+_Mis à jour le 19/01/2026_
 
 [Télécharger au format PDF]({{< pdf "pdf/CGV.pdf" >}})
 
@@ -36,7 +36,13 @@ La cession des droits d'utilisation et de modification des développements réal
 
 ## Article 7 : Confidentialité
 
-Au titre de la confidentialité et ce, avant et pendant toute la durée du projet, le Prestataire s'engage à garder confidentiel toutes informations et/ou documents de quelque nature que ce soit concernant le Client et son projet.
+Le Prestataire s'engage, pendant toute la durée du Contrat et deux (2) ans après son terme ou sa résiliation pour quelque cause que ce soit, à la confidentialité la plus totale concernant toute donnée technique, financière ou commerciale appartenant au Bénéficiaire qui leur aura été communiquée ou dont ils auront eu connaissance dans le cadre de l'exécution du Contrat.
+
+Cette obligation de confidentialité ne s'applique pas aux informations :
+
+- tombées dans le domaine public ;
+- obtenues de manière licite d'un tiers, sans violation d'une obligation de confidentialité ;
+- devant être divulguées sur réquisition d'une autorité judiciaire ou administrative à condition qu'elles ne soient divulguées qu'à ladite autorité judiciaire ou administrative.
 
 ## Article 8 : Conditions de règlement
 
@@ -84,25 +90,15 @@ Tous les livrables que Le Prestataire devra réaliser feront l'objet d'opératio
 
 En toute hypothèse, au terme de ces opérations de recette, la signature d'un procès-verbal de réception définitive par les Parties permettra d'acter de la conformité de chaque livrable.
 
-## Article 16 : Confidentialité
+## Article 16 : Exclusivité
 
-Le Prestataire s'engage, pendant toute la durée du Contrat et deux (2) ans après son terme ou sa résiliation pour quelque cause que ce soit, à la confidentialité la plus totale concernant toute donnée technique, financière ou commerciale appartenant au Bénéficiaire qui leur aura été communiquée ou dont ils auront eu connaissance dans le cadre de l'exécution du Contrat.
+Pendant toute la durée du Contrat, le Prestataire s'engage à développer l'application web exclusivement pour le compte du Bénéficiaire et s'interdisent d'en faire usage, ainsi que des développements afférents à ladite application, pour leur propre compte ou pour le compte de tiers, sans limitation de durée.
 
-Cette obligation de confidentialité ne s'applique pas aux informations :
-
-- tombées dans le domaine public ;
-- obtenues de manière licite d'un tiers, sans violation d'une obligation de confidentialité ;
-- devant être divulguées sur réquisition d'une autorité judiciaire ou administrative à condition qu'elles ne soient divulguées qu'à ladite autorité judiciaire ou administrative.
-
-## Article 17 : Exclusivité
-
-Pendant toute la durée du Contrat, le Prestataire s'engage à développer l'application web IMMOBILUS exclusivement pour le compte du Bénéficiaire et s'interdisent d'en faire usage, ainsi que des développements afférents à ladite application, pour leur propre compte ou pour le compte de tiers, sans limitation de durée.
-
-## Article 18 : Assurances
+## Article 17 : Assurances
 
 Le Prestataire atteste, par les présentes, avoir souscrit auprès d'une compagnie d'assurances notoirement solvable, une police d'assurances pour tous les risques liés à l'exécution de la prestation, et notamment avoir souscrit une assurance de responsabilité civile professionnelle pour des montants suffisants.
 
-## Article 19 : Lutte contre le travail dissimulé
+## Article 18 : Lutte contre le travail dissimulé
 
 Conformément à l'article D. 8222-5 du Code du Travail, Le Prestataire s'engage, le cas échéant, à remettre au Bénéficiaire à la date de signature du Contrat et tous les six (6) mois jusqu'à la fin de son exécution :
 
@@ -113,12 +109,12 @@ Conformément à l'article D. 8222-5 du Code du Travail, Le Prestataire s'engage
   - un devis, un document publicitaire ou une correspondance professionnelle, à condition qu'y soient mentionnés le nom ou la dénomination sociale, l'adresse complète et le numéro d'immatriculation au Registre du Commerce et des Sociétés ou au Répertoire des Métiers ou à une liste ou un tableau d'un ordre professionnel, ou la référence de l'agrément délivré par l'autorité compétente ;
   - un récépissé du dépôt de déclaration auprès d'un centre de formalités des entreprises pour les personnes en cours d'inscription.
 
-## Article 20 : INTUITU PERSONAE
+## Article 19 : INTUITU PERSONAE
 
 Le Contrat est conclu intuitu personae en considération du Prestataire et de leurs compétences spécifiques.
 
 Il n'est, en conséquence, ni transmissible, ni cessible par Le Prestataire à un tiers.
 
-## Article 21 : Intégralité de l'accord
+## Article 20 : Intégralité de l'accord
 
 Le Contrat constitue l'intégralité de l'accord entre les Parties aux présentes et annule et remplace tous accords antérieurs, oraux ou écrits, entre les Parties quant à l'objet des présentes.
