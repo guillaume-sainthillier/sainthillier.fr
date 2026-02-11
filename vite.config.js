@@ -98,7 +98,10 @@ export default defineConfig(({ mode }) => {
             generateEntrypoints(),
         ],
         resolve: {
-            alias: {},
+            alias: {
+                // Workaround: lucide package has incorrect "module" field in package.json
+                lucide: resolve(__dirname, 'node_modules/lucide/dist/esm/lucide/src/lucide.js'),
+            },
         },
         server: {
             watch: {
