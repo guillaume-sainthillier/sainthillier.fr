@@ -25,7 +25,8 @@
         "format": "prettier --check \"**/*.{js,css,md,json,yml,yaml}\"",
         "format:fix": "prettier --write \"**/*.{js,css,md,json,yml,yaml}\"",
         "knip": "knip",
-        "knip:fix": "knip --fix"
+        "knip:fix": "knip --fix",
+        "size:json": "node scripts/bundle-size.js"
     },
     "dependencies": {
         "@fortawesome/fontawesome-svg-core": "^7.1.0",
