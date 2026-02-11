@@ -9,7 +9,7 @@ const manifestPath = resolve(rootDir, 'static/build/manifest.json');
 try {
     const manifest = JSON.parse(readFileSync(manifestPath, 'utf-8'));
 
-    const results = Object.entries(manifest).flatMap(([key, entry]) => {
+    const results = Object.entries(manifest).flatMap(([, entry]) => {
         const filePath = resolve(rootDir, 'static/build', entry.file);
         const { size } = statSync(filePath);
         const items = [{ name: entry.file.replace(/\.[a-zA-Z0-9]+\./, '.'), size }];
