@@ -18,7 +18,7 @@ try {
             entry.css.forEach((cssFile) => {
                 const cssPath = resolve(rootDir, 'static/build', cssFile);
                 const { size: cssSize } = statSync(cssPath);
-                items.push({ name: cssFile.replace(/\.[a-f0-9]+\./, '.'), size: cssSize });
+                items.push({ name: cssFile.replace(/\.[a-zA-Z0-9]+\./, '.'), size: cssSize });
             });
         }
 
