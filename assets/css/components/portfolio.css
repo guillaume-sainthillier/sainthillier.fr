@@ -35,7 +35,7 @@
                         text-align: center;
                         color: white;
 
-                        svg {
+                        .icon {
                             margin-top: -12px;
                         }
 
@@ -163,6 +163,24 @@
                     background-color: var(--color-gray-900);
                 }
             }
+        }
+    }
+
+    .list-icons {
+        padding-left: 1.5em;
+        list-style: none;
+        margin-bottom: 1rem;
+
+        li {
+            position: relative;
+            padding-left: 0.25em;
+            margin-bottom: 0.25rem;
+        }
+
+        .list-icon {
+            position: absolute;
+            left: -1.5em;
+            top: 0.15em;
         }
     }
 

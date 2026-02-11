@@ -129,10 +129,10 @@ realisations:
       description: |-
           <p><a rel="noopener" href="https://cibaru.fr" target="_blank" title="Logiciel de gestion de mandats de travaux">CIBARU</a> est une application Web permettant la gestion de mandats de travaux.</p>
           <p class="mb-2">Le site permet aux mandataires de :</p>
-          <ul class="fa-ul">
-              <li><i class="fa-li fa fa-angle-right"></i>Gérer leur demande de travaux</li>
-              <li><i class="fa-li fa fa-angle-right"></i>Gérer la sous-traitance à des collaborateurs</li>
-              <li><i class="fa-li fa fa-angle-right"></i>Assurer le suivi de leur facturation</li>
+          <ul class="list-icons">
+              <li><i data-lucide="chevron-right" class="list-icon"></i>Gérer leur demande de travaux</li>
+              <li><i data-lucide="chevron-right" class="list-icon"></i>Gérer la sous-traitance à des collaborateurs</li>
+              <li><i data-lucide="chevron-right" class="list-icon"></i>Assurer le suivi de leur facturation</li>
           </ul>
       url: https://cibaru.fr
       image: images/realisations/cibaru.jpg
@@ -150,10 +150,10 @@ realisations:
       description: |-
           <p><a rel="noopener" href="https://netisio.fr" target="_blank" title="Logiciel de suivi de consommation d'équipements d'eau et d'électricité">Netisio</a> est une application Web permettant le suivi de consommation de vos équipements d'eau et d'électricité.</p>
           <p class="mb-2">Le site permet aux copropriétés de :</p>
-          <ul class="fa-ul">
-              <li><i class="fa-li fa fa-angle-right"></i>Suivre la consommation d'eau et d'électricité dans les parties communes</li>
-              <li><i class="fa-li fa fa-angle-right"></i>Détecter les potentielles fuites</li>
-              <li><i class="fa-li fa fa-angle-right"></i>Se mettre en conformité avec la nouvelle tarification de l'eau en 2025</li>
+          <ul class="list-icons">
+              <li><i data-lucide="chevron-right" class="list-icon"></i>Suivre la consommation d'eau et d'électricité dans les parties communes</li>
+              <li><i data-lucide="chevron-right" class="list-icon"></i>Détecter les potentielles fuites</li>
+              <li><i data-lucide="chevron-right" class="list-icon"></i>Se mettre en conformité avec la nouvelle tarification de l'eau en 2025</li>
           </ul>
       url: https://netisio.fr
       image: images/realisations/netisio.jpg
@@ -171,11 +171,11 @@ realisations:
       description: |-
           <p><a rel="noopener" href="https://solution-sepa.fr" target="_blank" title="Logiciel de gestion de prélèvement">Solution SEPA</a> est une application Web permettant la saisie de prélèvement et virement bancaire via le protocole EBICS.</p>
           <p class="mb-2">Le site permet de :</p>
-          <ul class="fa-ul">
-              <li><i class="fa-li fa fa-angle-right"></i>Gérer ses accès EBICS</li>
-              <li><i class="fa-li fa fa-angle-right"></i>Créer des prélèvements (uniques, récurrents)</li>
-              <li><i class="fa-li fa fa-angle-right"></i>Créer des virements (uniques, récurrents)</li>
-              <li><i class="fa-li fa fa-angle-right"></i>Suivre la bonne réalisation de ses opérations bancaires</li>
+          <ul class="list-icons">
+              <li><i data-lucide="chevron-right" class="list-icon"></i>Gérer ses accès EBICS</li>
+              <li><i data-lucide="chevron-right" class="list-icon"></i>Créer des prélèvements (uniques, récurrents)</li>
+              <li><i data-lucide="chevron-right" class="list-icon"></i>Créer des virements (uniques, récurrents)</li>
+              <li><i data-lucide="chevron-right" class="list-icon"></i>Suivre la bonne réalisation de ses opérations bancaires</li>
           </ul>
       url: https://solution-sepa.fr
       image: images/realisations/solution-sepa.jpg
@@ -194,16 +194,16 @@ realisations:
       description: |-
           <p><a rel="noopener" href="https://dosloc.fr" target="_blank" title="Logiciel de candidature locative">DosLoc</a> est une application Web permettant à des locataires de gérer leur dossier de candidature.</p>
           <p class="mb-2">Le site permet au locataire de :</p>
-          <ul class="fa-ul">
-              <li><i class="fa-li fa fa-angle-right"></i>Créer son dossier de candidature</li>
-              <li><i class="fa-li fa fa-angle-right"></i>Déposer ses pièces justificatives (Carte d'identité, justificatifs de revenus, ...)</li>
-              <li><i class="fa-li fa fa-angle-right"></i>Partager son dossier avec son bailleur</li>
+          <ul class="list-icons">
+              <li><i data-lucide="chevron-right" class="list-icon"></i>Créer son dossier de candidature</li>
+              <li><i data-lucide="chevron-right" class="list-icon"></i>Déposer ses pièces justificatives (Carte d'identité, justificatifs de revenus, ...)</li>
+              <li><i data-lucide="chevron-right" class="list-icon"></i>Partager son dossier avec son bailleur</li>
           </ul>
           <p class="mb-2">Le site permet au bailleur de :</p>
-          <ul class="fa-ul">
-              <li><i class="fa-li fa fa-angle-right"></i>Centraliser la gestion de ses candidatures</li>
-              <li><i class="fa-li fa fa-angle-right"></i>Télécharger le dossier de candidature au format PDF</li>
-              <li><i class="fa-li fa fa-angle-right"></i>Préparer le bail une fois la candidature acceptée</li>
+          <ul class="list-icons">
+              <li><i data-lucide="chevron-right" class="list-icon"></i>Centraliser la gestion de ses candidatures</li>
+              <li><i data-lucide="chevron-right" class="list-icon"></i>Télécharger le dossier de candidature au format PDF</li>
+              <li><i data-lucide="chevron-right" class="list-icon"></i>Préparer le bail une fois la candidature acceptée</li>
           </ul>
       url: https://dosloc.fr
       image: images/realisations/dosloc.jpg
@@ -220,11 +220,11 @@ realisations:
       description: |-
           <p><a rel="noopener" href="https://immobilus.fr" target="_blank" title="Logiciel de gestion immobilière">Immobilus</a> est une application Web permettant à des propriétaires de biens de digitaliser leur gestion immobilière.</p>
           <p class="mb-2">Le site permet au propriétaire de :</p>
-          <ul class="fa-ul">
-              <li><i class="fa-li fa fa-angle-right"></i>Saisir les informations sur son bien</li>
-              <li><i class="fa-li fa fa-angle-right"></i>Enregistrer des locataires et leur donner un accès nominatif</li>
-              <li><i class="fa-li fa fa-angle-right"></i>Gérer automatiquement les loyers des locataires</li>
-              <li><i class="fa-li fa fa-angle-right"></i>Utiliser le protocole EBICS pour récupérer automatiquement les données bancaires et croiser les informations avec les locataires</li>
+          <ul class="list-icons">
+              <li><i data-lucide="chevron-right" class="list-icon"></i>Saisir les informations sur son bien</li>
+              <li><i data-lucide="chevron-right" class="list-icon"></i>Enregistrer des locataires et leur donner un accès nominatif</li>
+              <li><i data-lucide="chevron-right" class="list-icon"></i>Gérer automatiquement les loyers des locataires</li>
+              <li><i data-lucide="chevron-right" class="list-icon"></i>Utiliser le protocole EBICS pour récupérer automatiquement les données bancaires et croiser les informations avec les locataires</li>
           </ul>
       url: https://immobilus.fr
       image: images/realisations/immobilus.jpg
@@ -243,11 +243,11 @@ realisations:
       description: |-
           <p><a rel="noopener" href="https://by-night.fr" target="_blank" >By Night</a> est une plateforme d'agrégation d'événements qui a pour vocation de simplifier la recherche des événements culturels dans les plus grandes villes de France telles que Paris, Toulouse, Lyon, Bordeaux ou Montpellier.</p>
           <p class="mb-2">Un accès libre permet également à des organisateurs d'événements de :</p>
-          <ul class="fa-ul">
-              <li><i class="fa-li fa fa-angle-right"></i>Créer de nouveaux événements</li>
-              <li><i class="fa-li fa fa-angle-right"></i>Importer leurs événements depuis Facebook vers l'application</li>
-              <li><i class="fa-li fa fa-angle-right"></i>Exporter des événements de la plateforme vers les autres réseaux sociaux</li>
-              <li><i class="fa-li fa fa-angle-right"></i>Analyser la portée de leurs événements</li>
+          <ul class="list-icons">
+              <li><i data-lucide="chevron-right" class="list-icon"></i>Créer de nouveaux événements</li>
+              <li><i data-lucide="chevron-right" class="list-icon"></i>Importer leurs événements depuis Facebook vers l'application</li>
+              <li><i data-lucide="chevron-right" class="list-icon"></i>Exporter des événements de la plateforme vers les autres réseaux sociaux</li>
+              <li><i data-lucide="chevron-right" class="list-icon"></i>Analyser la portée de leurs événements</li>
           </ul>
       url: https://by-night.fr
       image: images/realisations/by-night.jpg
@@ -316,14 +316,14 @@ realisations:
       description: |-
           <p>Pour la société ICM Services. Open ePM est une application Web Open Source à destination des Polices Municipales.</p>
           <p class="mb-2">Elle permet, en outre, de gérer:</p>
-          <ul class="fa-ul">
-              <li><i class="fa fa-li fa-angle-right"></i>Les main courantes et les affaires</li>
-              <li><i class="fa fa-li fa-angle-right"></i>La production des rapports PV</li>
-              <li><i class="fa fa-li fa-angle-right"></i>La déclaration et suivi des animaux dangereux</li>
-              <li><i class="fa fa-li fa-angle-right"></i>La gestion des objets perdus et trouvés</li>
-              <li><i class="fa fa-li fa-angle-right"></i>La gestion des OTV, OTS, surveillances Magasins..</li>
-              <li><i class="fa fa-li fa-angle-right"></i>La mise en fourrière des véhicules</li>
-              <li><i class="fa fa-li fa-angle-right"></i>La gestion des vacations funéraires</li>
+          <ul class="list-icons">
+              <li><i data-lucide="chevron-right" class="list-icon"></i>Les main courantes et les affaires</li>
+              <li><i data-lucide="chevron-right" class="list-icon"></i>La production des rapports PV</li>
+              <li><i data-lucide="chevron-right" class="list-icon"></i>La déclaration et suivi des animaux dangereux</li>
+              <li><i data-lucide="chevron-right" class="list-icon"></i>La gestion des objets perdus et trouvés</li>
+              <li><i data-lucide="chevron-right" class="list-icon"></i>La gestion des OTV, OTS, surveillances Magasins..</li>
+              <li><i data-lucide="chevron-right" class="list-icon"></i>La mise en fourrière des véhicules</li>
+              <li><i data-lucide="chevron-right" class="list-icon"></i>La gestion des vacations funéraires</li>
           </ul>
           <p class="mb-2">Sous la direction d'Antoine Coelho et Denis Coujou</p>
       url: https://prod.logilibres.org/epmdemo
