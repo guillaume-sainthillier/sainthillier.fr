@@ -35,7 +35,7 @@
                         text-align: center;
                         color: white;
 
-                        i {
+                        .icon {
                             margin-top: -12px;
                         }
 
@@ -166,14 +166,27 @@
         }
     }
 
+    .list-icons {
+        padding-left: 1.5em;
+        list-style: none;
+        margin-bottom: 1rem;
+
+        li {
+            position: relative;
+            padding-left: 0.25em;
+            margin-bottom: 0.25rem;
+        }
+
+        .list-icon {
+            position: absolute;
+            left: -1.5em;
+            top: 0.15em;
+        }
+    }
+
     @media (max-width: 575.98px) {
         .portfolio-modal .modal-body {
             padding: 0;
-
-            .fa-ul {
-                --fa-li-margin: 1.5em;
-                margin-bottom: 1rem;
-            }
         }
     }
 }
