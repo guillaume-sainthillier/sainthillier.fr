@@ -4278,9 +4278,9 @@ listr2@^9.0.5:
     wrap-ansi "^9.0.0"
 
 lite-youtube-embed@^0.3.3:
-  version "0.3.3"
-  resolved "https://registry.yarnpkg.com/lite-youtube-embed/-/lite-youtube-embed-0.3.3.tgz#2d9885c8f9c56eea4690cfe8bb44149630317815"
-  integrity sha512-gFfVVnj6NRjxVfJKo3qoLtpi0v5mn3AcR4eKD45wrxQuxzveFJUb+7Cr6uV6n+DjO8X3p0UzPPquhGt0H/y+NA==
+  version "0.3.4"
+  resolved "https://registry.yarnpkg.com/lite-youtube-embed/-/lite-youtube-embed-0.3.4.tgz#f80f32f4944a424dd9af878369c8dbed1447af9e"
+  integrity sha512-aXgxpwK7AIW58GEbRzA8EYaY4LWvF3FKak6B9OtSJmuNyLhX2ouD4cMTxz/yR5HFInhknaYd2jLWOTRTvT8oAw==
 
 locate-path@^6.0.0:
   version "6.0.0"
