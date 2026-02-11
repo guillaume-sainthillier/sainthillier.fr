@@ -9,16 +9,16 @@ const manifestPath = resolve(rootDir, 'static/build/manifest.json');
 try {
     const manifest = JSON.parse(readFileSync(manifestPath, 'utf-8'));
 
-    const results = Object.values(manifest).flatMap((entry) => {
+    const results = Object.entries(manifest).flatMap(([key, entry]) => {
         const filePath = resolve(rootDir, 'static/build', entry.file);
         const { size } = statSync(filePath);
-        const items = [{ name: entry.file, size }];
+        const items = [{ name: key, size }];
 
         if (entry.css) {
             entry.css.forEach((cssFile) => {
                 const cssPath = resolve(rootDir, 'static/build', cssFile);
                 const { size: cssSize } = statSync(cssPath);
-                items.push({ name: cssFile, size: cssSize });
+                items.push({ name: cssFile.replace(/\.[a-f0-9]+\./, '.'), size: cssSize });
             });
         }
 
