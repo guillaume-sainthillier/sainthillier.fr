@@ -1,37 +1,9 @@
-import { library, dom } from '@fortawesome/fontawesome-svg-core';
-import {
-    faFilePdf,
-    faBars,
-    faAngleRight,
-    faCheck,
-    faTimes,
-    faPlus,
-    faGlobe,
-    faMapMarkerAlt,
-    faClock,
-    faPhone,
-    faEnvelope,
-} from '@fortawesome/free-solid-svg-icons';
-import { faLinkedinIn, faGithub } from '@fortawesome/free-brands-svg-icons';
+import { createIcons, Menu, Check, X, Plus, Globe, MapPin, Clock, Phone, Mail, FileText, ChevronRight } from 'lucide';
 
-// Solid icons
-library.add(
-    faFilePdf,
-    faBars,
-    faAngleRight,
-    faCheck,
-    faTimes,
-    faPlus,
-    faGlobe,
-    faMapMarkerAlt,
-    faClock,
-    faPhone,
-    faEnvelope
-);
-
-// Brand icons
-library.add(faLinkedinIn, faGithub);
-
-// Replace any existing <i> tags with <svg> and set up a MutationObserver to
-// continue doing this as the DOM changes.
-dom.watch();
+createIcons({
+    icons: { Menu, Check, X, Plus, Globe, MapPin, Clock, Phone, Mail, FileText, ChevronRight },
+    attrs: {
+        width: '1em',
+        height: '1em',
+    },
+});

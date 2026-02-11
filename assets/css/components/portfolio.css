@@ -35,7 +35,7 @@
                         text-align: center;
                         color: white;
 
-                        i {
+                        svg {
                             margin-top: -12px;
                         }
 
@@ -169,11 +169,6 @@
     @media (max-width: 575.98px) {
         .portfolio-modal .modal-body {
             padding: 0;
-
-            .fa-ul {
-                --fa-li-margin: 1.5em;
-                margin-bottom: 1rem;
-            }
         }
     }
 }

@@ -82,31 +82,31 @@
                     <h4 class="service-heading text-2xl">Développement d'applications Web</h4>
                     <ul class="list-none text-muted">
                         <li>
-                            <span class="icon"><i class="fa fa-check text-green-600"></i></span>
+                            <span class="icon"><i data-lucide="check" class="text-green-600"></i></span>
                             <p>Vous avez une idée de nouveau projet pour moderniser la gestion de votre métier.</p>
                         </li>
                         <li>
-                            <span class="icon"><i class="fa fa-check text-green-600"></i></span>
+                            <span class="icon"><i data-lucide="check" class="text-green-600"></i></span>
                             <p>Vous avez une idée de projet de site e-commerce nécessitant des fonctionnalités sur mesure.</p>
                         </li>
                         <li>
-                            <span class="icon"><i class="fa fa-check text-green-600"></i></span>
+                            <span class="icon"><i data-lucide="check" class="text-green-600"></i></span>
                             <p>Vous avez besoin de mettre à jour un projet existant mais votre partenaire actuel est parti ou ne vous donne plus entière satisfaction.</p>
                         </li>
                         <li>
-                            <span class="icon"><i class="fa fa-check text-green-600"></i></span>
+                            <span class="icon"><i data-lucide="check" class="text-green-600"></i></span>
                             <p>Votre Système d'Information a besoin d'applications métiers complexes et évoluées.</p>
                         </li>
                         <li>
-                            <span class="icon"><i class="fa fa-check text-green-600"></i></span>
+                            <span class="icon"><i data-lucide="check" class="text-green-600"></i></span>
                             <p>Vous avez vous-même développé votre projet et vous avez besoin d'aide sur les parties complexes.</p>
                         </li>
                         <li>
-                            <span class="icon"><i class="fa fa-times text-red-600"></i></span>
+                            <span class="icon"><i data-lucide="x" class="text-red-600"></i></span>
                             <p>Vous avez besoin d'un partenaire pour réaliser un site vitrine.</p>
                         </li>
                         <li>
-                            <span class="icon"><i class="fa fa-times text-red-600"></i></span>
+                            <span class="icon"><i data-lucide="x" class="text-red-600"></i></span>
                             <p>Vous cherchez un logo ou une identité visuelle.</p>
                         </li>
                     </ul>
@@ -119,27 +119,27 @@
                     <h4 class="service-heading text-2xl">Expertise technique pour besoins avancés</h4>
                     <ul class="list-none text-muted">
                         <li>
-                            <span class="icon"><i class="fa fa-check text-green-600"></i></span>
+                            <span class="icon"><i data-lucide="check" class="text-green-600"></i></span>
                             <p>Mise à jour de version Symfony.</p>
                         </li>
                         <li>
-                            <span class="icon"><i class="fa fa-check text-green-600"></i></span>
+                            <span class="icon"><i data-lucide="check" class="text-green-600"></i></span>
                             <p>Intégration du protocole bancaire EBICS dans votre application.</p>
                         </li>
                         <li>
-                            <span class="icon"><i class="fa fa-check text-green-600"></i></span>
+                            <span class="icon"><i data-lucide="check" class="text-green-600"></i></span>
                             <p>Gestion de l'infrastructure serveur / cloud.</p>
                         </li>
                         <li>
-                            <span class="icon"><i class="fa fa-check text-green-600"></i></span>
+                            <span class="icon"><i data-lucide="check" class="text-green-600"></i></span>
                             <p>Mise en place d'intégration continue / déploiement continu.</p>
                         </li>
                         <li>
-                            <span class="icon"><i class="fa fa-check text-green-600"></i></span>
+                            <span class="icon"><i data-lucide="check" class="text-green-600"></i></span>
                             <p>Audit de sécurité / performances.</p>
                         </li>
                         <li>
-                            <span class="icon"><i class="fa fa-times text-red-600"></i></span>
+                            <span class="icon"><i data-lucide="x" class="text-red-600"></i></span>
                             <p>Développement de plugin Wordpress / Prestashop.</p>
                         </li>
                     </ul>
@@ -152,19 +152,19 @@
                     <h4 class="service-heading text-2xl">Formation pour partager connaissance et passion</h4>
                     <ul class="list-none text-muted">
                         <li>
-                            <span class="icon"><i class="fa fa-check text-green-600"></i></span>
+                            <span class="icon"><i data-lucide="check" class="text-green-600"></i></span>
                             <p>En entreprise, pour vos salariés.</p>
                         </li>
                         <li>
-                            <span class="icon"><i class="fa fa-check text-green-600"></i></span>
+                            <span class="icon"><i data-lucide="check" class="text-green-600"></i></span>
                             <p>École de formation, pour vos apprenants.</p>
                         </li>
                         <li>
-                            <span class="icon"><i class="fa fa-check text-green-600"></i></span>
+                            <span class="icon"><i data-lucide="check" class="text-green-600"></i></span>
                             <p>Université, pour vos étudiants.</p>
                         </li>
                         <li>
-                            <span class="icon"><i class="fa fa-check text-green-600"></i></span>
+                            <span class="icon"><i data-lucide="check" class="text-green-600"></i></span>
                             <p>Exemple de thèmes : PHP, Programmation Orientée Objet, Symfony, Doctrine, Docker, Base de données, HTML, CSS, Javascript, ...</p>
                         </li>
                     </ul>
@@ -212,7 +212,7 @@
                     <a class="portfolio-link" data-bs-toggle="modal" href="#portfolio-modal-{{ .id }}">
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content">
-                                <i class="fa fa-plus fa-3x"></i>
+                                <i data-lucide="plus" style="width: 3em; height: 3em"></i>
                             </div>
                         </div>
                         {{ partial "responsive-image" (dict "src" .image "alt" .nom "class" "max-w-full h-auto" "width" 400 "height" 300 "priority" false) }}
@@ -262,12 +262,12 @@
                         <div class="flex flex-row items-center justify-center gap-2">
                             {{ if isset . "url" }}
                             <a rel="noopener" href="{{ .url }}" class="btn btn-primary" target="_blank">
-                                <i class="fa fa-globe"></i>
+                                <i data-lucide="globe"></i>
                                 &nbsp;Visiter
                             </a>
                             {{ end }}
                             <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">
-                                <i class="fa fa-times"></i>
+                                <i data-lucide="x"></i>
                                 &nbsp;Fermer
                             </button>
                         </div>
@@ -335,7 +335,7 @@
             <div class="xl:col-span-3">
                 <ul class="list-none grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-1 gap-4">
                     <li>
-                        <div class="icon"><i class="fa fa-map-marker-alt"></i></div>
+                        <div class="icon"><i data-lucide="map-pin"></i></div>
                         <span class="text-muted">
                             SILARHI
                             <br />116 Route d'Espagne
@@ -346,20 +346,20 @@
                     </li>
                     <li>
                         <div class="mb-2">
-                            <div class="icon"><i class="fa fa-clock"></i></div>
+                            <div class="icon"><i data-lucide="clock"></i></div>
                             <span class="text-muted">
                                 Du lundi au vendredi
                                 <br>De 9h à 19h30
                             </span>
                         </div>
                         <div class="mb-2">
-                            <div class="icon"><i class="fa fa-phone"></i></div>
+                            <div class="icon"><i data-lucide="phone"></i></div>
                             <span class="text-muted">
                                 <a href="tel:+33607275826">0 607.275.826</a>
                             </span>
                         </div>
                         <div class="mb-2">
-                            <div class="icon"><i class="fa fa-envelope"></i></div>
+                            <div class="icon"><i data-lucide="mail"></i></div>
                             <span class="text-muted">
                                 <a href='&#109;ai&#108;to&#58;&#37;68ell&#37;6F&#64;si%&#54;Ca&#37;72hi&#46;f&#114;'>hello&#64;silar&#104;i&#46;&#102;r</a>
                             </span>
