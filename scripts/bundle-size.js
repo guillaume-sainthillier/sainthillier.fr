@@ -12,7 +12,7 @@ try {
     const results = Object.entries(manifest).flatMap(([key, entry]) => {
         const filePath = resolve(rootDir, 'static/build', entry.file);
         const { size } = statSync(filePath);
-        const items = [{ name: key, size }];
+        const items = [{ name: entry.file.replace(/\.[a-zA-Z0-9]+\./, '.'), size }];
 
         if (entry.css) {
             entry.css.forEach((cssFile) => {
