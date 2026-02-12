@@ -2,6 +2,7 @@ import { defineConfig } from 'vite';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { readFileSync, writeFileSync, mkdirSync } from 'fs';
+// eslint-disable-next-line import/no-unresolved
 import legacy from '@vitejs/plugin-legacy';
 // eslint-disable-next-line import/no-unresolved
 import tailwindcss from '@tailwindcss/vite';
