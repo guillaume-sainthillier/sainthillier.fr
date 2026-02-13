@@ -12,13 +12,13 @@ try {
     const results = Object.entries(manifest).flatMap(([, entry]) => {
         const filePath = resolve(rootDir, 'static/build', entry.file);
         const { size } = statSync(filePath);
-        const items = [{ name: entry.file.replace(/\.[a-zA-Z0-9]+\./, '.'), size }];
+        const items = [{ name: entry.file.replace(/\.[a-zA-Z0-9_-]+\./, '.'), size }];
 
         if (entry.css) {
             entry.css.forEach((cssFile) => {
                 const cssPath = resolve(rootDir, 'static/build', cssFile);
                 const { size: cssSize } = statSync(cssPath);
-                items.push({ name: cssFile.replace(/\.[a-zA-Z0-9]+\./, '.'), size: cssSize });
+                items.push({ name: cssFile.replace(/\.[a-zA-Z0-9_-]+\./, '.'), size: cssSize });
             });
         }
 
