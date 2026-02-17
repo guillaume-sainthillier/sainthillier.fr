@@ -3974,10 +3974,10 @@ lru-cache@^5.1.1:
   dependencies:
     yallist "^3.0.2"
 
-lucide@^0.564.0:
-  version "0.564.0"
-  resolved "https://registry.yarnpkg.com/lucide/-/lucide-0.564.0.tgz#41b9157230baadcd5da38f0a0a827f64d25d9b9a"
-  integrity sha512-FasyXKHWon773WIl3HeCQpd5xS6E0aLjqxiQStlHNKktni+HDncc1sqY+6vRUbCfmDsIaKQz43EEQLAUDLZO0g==
+lucide@^0.574.0:
+  version "0.574.0"
+  resolved "https://registry.yarnpkg.com/lucide/-/lucide-0.574.0.tgz#1aa352cc09d30c13774dce5f1fdaab8e33e04da1"
+  integrity sha512-7McOOl6Rn3cvJiVTeUjPBp0V/4LaSKAkJOwXOwqK+gXAIzPebgG29NBQooCf9q8i25BegdAS27IqTLqOVERppQ==
 
 magic-string@^0.30.17, magic-string@^0.30.21:
   version "0.30.21"
