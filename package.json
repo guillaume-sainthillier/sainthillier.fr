@@ -47,7 +47,7 @@
         "eslint-plugin-import": "^2.32.0",
         "eslint-plugin-prettier": "^5.5.4",
         "globals": "^17.0.0",
-        "hugo-extended": "^0.155.0",
+        "hugo-extended": "^0.156.0",
         "husky": "9.1.7",
         "knip": "^5.67.1",
         "lint-staged": ">=16.2.6",
