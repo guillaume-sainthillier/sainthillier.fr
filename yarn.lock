@@ -1804,12 +1804,7 @@ acorn-jsx@^5.3.2:
   resolved "https://registry.yarnpkg.com/acorn-jsx/-/acorn-jsx-5.3.2.tgz#7ed5bb55908b3b2f1bc55c6af1653bada7f07937"
   integrity sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==
 
-acorn@^8.15.0:
-  version "8.16.0"
-  resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.16.0.tgz#4ce79c89be40afe7afe8f3adb902a1f1ce9ac08a"
-  integrity sha512-UVJyE9MttOsBQIDKw1skb9nAwQuR5wuGD3+82K6JgJlm/Y+KI92oNsMNGZCYdDsVtRHSak0pcV5Dno5+4jh9sw==
-
-acorn@^8.16.0:
+acorn@^8.15.0, acorn@^8.16.0:
   version "8.16.0"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.16.0.tgz#4ce79c89be40afe7afe8f3adb902a1f1ce9ac08a"
   integrity sha512-UVJyE9MttOsBQIDKw1skb9nAwQuR5wuGD3+82K6JgJlm/Y+KI92oNsMNGZCYdDsVtRHSak0pcV5Dno5+4jh9sw==
@@ -1818,16 +1813,6 @@ adm-zip@^0.5.16:
   version "0.5.16"
   resolved "https://registry.yarnpkg.com/adm-zip/-/adm-zip-0.5.16.tgz#0b5e4c779f07dedea5805cdccb1147071d94a909"
   integrity sha512-TGw5yVi4saajsSEgz25grObGHEUaDrniwvA2qwSC060KfqGPdglhvPMA2lPIoxs3PQIItj2iag35fONcQqgUaQ==
-
-ajv@^6.12.4:
-  version "6.12.6"
-  resolved "https://registry.yarnpkg.com/ajv/-/ajv-6.12.6.tgz#baf5a62e802b07d977034586f8c3baf5adf26df4"
-  integrity sha512-j3fVLgvTo527anyYyJOGTYJbG+vnnQYvE0m5mmkc1TK+nxAppkCLMIL0aZ4dblVCNoGShhm+kzE4ZUykBoMg4g==
-  dependencies:
-    fast-deep-equal "^3.1.1"
-    fast-json-stable-stringify "^2.0.0"
-    json-schema-traverse "^0.4.1"
-    uri-js "^4.2.2"
 
 ajv@^6.14.0:
   version "6.14.0"
@@ -3322,10 +3307,10 @@ hasown@^2.0.1, hasown@^2.0.2:
   dependencies:
     function-bind "^1.1.2"
 
-hugo-extended@^0.156.0:
-  version "0.156.0"
-  resolved "https://registry.yarnpkg.com/hugo-extended/-/hugo-extended-0.156.0.tgz#6f30c9c515567ef6171dfdbd2f59c44bccf5f2a6"
-  integrity sha512-65/OU9W2PVzn1pWaxF8tu/3rTnglHn6hr4dBjABDo4DIOLjb9qpp+9wwh9PGkDTvhwyxk4pkHieWORn0MgDXqA==
+hugo-extended@^0.157.0:
+  version "0.157.0"
+  resolved "https://registry.yarnpkg.com/hugo-extended/-/hugo-extended-0.157.0.tgz#6d7921e8a2c7f05337599541219831b2a903c213"
+  integrity sha512-vjkR5TKK7mQcACYneext4D/YofJnfcHsFZzwItfevAOYoQUAZ+gUim3gwOLTImrTy8QdyzDtaF4/EHOhXEKWvg==
   dependencies:
     adm-zip "^0.5.16"
     tar "^7.5.9"
