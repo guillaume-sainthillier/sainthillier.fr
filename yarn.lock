@@ -3307,10 +3307,10 @@ hasown@^2.0.1, hasown@^2.0.2:
   dependencies:
     function-bind "^1.1.2"
 
-hugo-extended@^0.157.0:
-  version "0.157.0"
-  resolved "https://registry.yarnpkg.com/hugo-extended/-/hugo-extended-0.157.0.tgz#6d7921e8a2c7f05337599541219831b2a903c213"
-  integrity sha512-vjkR5TKK7mQcACYneext4D/YofJnfcHsFZzwItfevAOYoQUAZ+gUim3gwOLTImrTy8QdyzDtaF4/EHOhXEKWvg==
+hugo-extended@^0.158.0:
+  version "0.158.0"
+  resolved "https://registry.yarnpkg.com/hugo-extended/-/hugo-extended-0.158.0.tgz#6920a10e540e30259866db89128ff866d7a9ff88"
+  integrity sha512-cFl07JY5juYoik9wVZSZxBKVgSWQtmddTB1AhpOFetCZFR9PgN0cl/MQSX+cYho2kl8mquDdQ+4jzfP1KP0hmA==
   dependencies:
     adm-zip "^0.5.16"
     tar "^7.5.9"
