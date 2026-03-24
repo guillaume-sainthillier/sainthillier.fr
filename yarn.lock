@@ -4024,10 +4024,10 @@ lru-cache@^5.1.1:
   dependencies:
     yallist "^3.0.2"
 
-lucide@^0.577.0:
-  version "0.577.0"
-  resolved "https://registry.yarnpkg.com/lucide/-/lucide-0.577.0.tgz#832a7905a4035d9f2c16ee9c3ee8ea83d125fe12"
-  integrity sha512-PpC/m5eOItp/WU/GlQPFBXDOhq6HibL73KzYP37OX3LM7VmzWQF8voEj8QRWUFvy9FIKfeDQkWYoyS1D/MdWFA==
+lucide@^1.0.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/lucide/-/lucide-1.1.0.tgz#e212ecfca43e78844bf429393d6a11101ce12d8f"
+  integrity sha512-MIps9+XupWQj11ETIEnWV58U5Ck9ofby9aznpj0l1cbTd/+aV/QIKEi7Hii/1+9H57TmdjD+taKmxUYnSZMR6g==
 
 magic-string@^0.30.21:
   version "0.30.21"
