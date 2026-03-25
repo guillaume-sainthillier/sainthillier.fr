@@ -4040,9 +4040,9 @@ lru-cache@^5.1.1:
     yallist "^3.0.2"
 
 lucide@^1.0.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/lucide/-/lucide-1.1.0.tgz#e212ecfca43e78844bf429393d6a11101ce12d8f"
-  integrity sha512-MIps9+XupWQj11ETIEnWV58U5Ck9ofby9aznpj0l1cbTd/+aV/QIKEi7Hii/1+9H57TmdjD+taKmxUYnSZMR6g==
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/lucide/-/lucide-1.7.0.tgz#c27b5c257ba428af2e10648553c1849d7985d422"
+  integrity sha512-aYNogbuIxea3a8offpKjdMGf2FsUk9GECFh0B4iJgXlJOX41+7/ncvLVluKki8477SoybEdyGGf+qGYLBDiEsA==
 
 magic-string@^0.30.21:
   version "0.30.21"
