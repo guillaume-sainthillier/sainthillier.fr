@@ -1,2 +1,2 @@
-import './app';
-import './icons';
+import './app'
+import './icons'

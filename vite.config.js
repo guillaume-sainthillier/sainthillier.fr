@@ -1,28 +1,28 @@
-import { defineConfig } from 'vite';
-import { resolve, dirname } from 'path';
-import { fileURLToPath } from 'url';
-import { readFileSync, writeFileSync, mkdirSync } from 'fs';
+import { defineConfig } from 'vite'
+import { resolve, dirname } from 'path'
+import { fileURLToPath } from 'url'
+import { readFileSync, writeFileSync, mkdirSync } from 'fs'
 // eslint-disable-next-line import/no-unresolved
-import legacy from '@vitejs/plugin-legacy';
+import legacy from '@vitejs/plugin-legacy'
 // eslint-disable-next-line import/no-unresolved
-import tailwindcss from '@tailwindcss/vite';
+import tailwindcss from '@tailwindcss/vite'
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
+const __dirname = dirname(fileURLToPath(import.meta.url))
 
 function generateEntrypoints() {
     return {
         name: 'generate-entrypoints',
         closeBundle() {
-            const rootDir = __dirname;
-            mkdirSync(resolve(rootDir, 'data'), { recursive: true });
+            const rootDir = __dirname
+            mkdirSync(resolve(rootDir, 'data'), { recursive: true })
 
-            const manifestPath = resolve(rootDir, 'static/build/manifest.json');
-            const manifest = JSON.parse(readFileSync(manifestPath, 'utf-8'));
+            const manifestPath = resolve(rootDir, 'static/build/manifest.json')
+            const manifest = JSON.parse(readFileSync(manifestPath, 'utf-8'))
 
             const modernEntryKey = Object.keys(manifest).find(
                 (key) => manifest[key].isEntry && !key.includes('-legacy') && !key.includes('polyfills')
-            );
-            const modernEntry = manifest[modernEntryKey];
+            )
+            const modernEntry = manifest[modernEntryKey]
 
             const entrypoints = {
                 entrypoints: {
@@ -31,12 +31,12 @@ function generateEntrypoints() {
                         css: (modernEntry.css || []).map((css) => `/build/${css}`),
                     },
                 },
-            };
+            }
 
             const legacyEntryKey = Object.keys(manifest).find(
                 (key) => manifest[key].isEntry && key.includes('-legacy') && !key.includes('polyfills')
-            );
-            const polyfillsEntryKey = Object.keys(manifest).find((key) => key.includes('polyfills-legacy'));
+            )
+            const polyfillsEntryKey = Object.keys(manifest).find((key) => key.includes('polyfills-legacy'))
 
             const entrypointsLegacy = {
                 entrypoints: {
@@ -45,25 +45,25 @@ function generateEntrypoints() {
                         css: [],
                     },
                 },
-            };
+            }
 
             if (polyfillsEntryKey) {
-                entrypointsLegacy.entrypoints.app.js.push(`/build/${manifest[polyfillsEntryKey].file}`);
+                entrypointsLegacy.entrypoints.app.js.push(`/build/${manifest[polyfillsEntryKey].file}`)
             }
             if (legacyEntryKey) {
-                entrypointsLegacy.entrypoints.app.js.push(`/build/${manifest[legacyEntryKey].file}`);
+                entrypointsLegacy.entrypoints.app.js.push(`/build/${manifest[legacyEntryKey].file}`)
             }
 
-            writeFileSync(resolve(rootDir, 'data/entrypoints.json'), JSON.stringify(entrypoints, null, 2));
-            writeFileSync(resolve(rootDir, 'data/entrypoints_legacy.json'), JSON.stringify(entrypointsLegacy, null, 2));
+            writeFileSync(resolve(rootDir, 'data/entrypoints.json'), JSON.stringify(entrypoints, null, 2))
+            writeFileSync(resolve(rootDir, 'data/entrypoints_legacy.json'), JSON.stringify(entrypointsLegacy, null, 2))
 
-            console.log('Generated entrypoints.json and entrypoints_legacy.json');
+            console.log('Generated entrypoints.json and entrypoints_legacy.json')
         },
-    };
+    }
 }
 
 export default defineConfig(({ mode }) => {
-    const isProduction = mode === 'production';
+    const isProduction = mode === 'production'
 
     return {
         root: '.',
@@ -103,5 +103,5 @@ export default defineConfig(({ mode }) => {
                 usePolling: true,
             },
         },
-    };
-});
+    }
+})

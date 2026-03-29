@@ -1,6 +1,6 @@
 ---
-title: "Mentions légales et CGU"
-description: "Les mentions légales et CGU du site sainthillier.fr"
+title: 'Mentions légales et CGU'
+description: 'Les mentions légales et CGU du site sainthillier.fr'
 ---
 
 # Mentions Légales
@@ -81,11 +81,11 @@ En tant que responsable du traitement des données qu’il collecte, [sainthilli
 
 [sainthillier.fr](https://sainthillier.fr) est susceptible de traiter tout ou partie des données :
 
--   pour permettre la navigation sur le Site et la gestion et la traçabilité des prestations et services commandés par l’utilisateur : données de connexion et d’utilisation du Site, facturation, historique des commandes, etc.
--   pour prévenir et lutter contre la fraude informatique (spamming, hacking…) : matériel informatique utilisé pour la navigation, l’adresse IP, le mot de passe (hashé)
--   pour améliorer la navigation sur le Site : données de connexion et d’utilisation
--   pour mener des enquêtes de satisfaction facultatives sur [sainthillier.fr](https://sainthillier.fr) : adresse email
--   pour mener des campagnes de communication (sms, mail) : numéro de téléphone, adresse email
+- pour permettre la navigation sur le Site et la gestion et la traçabilité des prestations et services commandés par l’utilisateur : données de connexion et d’utilisation du Site, facturation, historique des commandes, etc.
+- pour prévenir et lutter contre la fraude informatique (spamming, hacking…) : matériel informatique utilisé pour la navigation, l’adresse IP, le mot de passe (hashé)
+- pour améliorer la navigation sur le Site : données de connexion et d’utilisation
+- pour mener des enquêtes de satisfaction facultatives sur [sainthillier.fr](https://sainthillier.fr) : adresse email
+- pour mener des campagnes de communication (sms, mail) : numéro de téléphone, adresse email
 
 [sainthillier.fr](https://sainthillier.fr) ne commercialise pas vos données personnelles qui sont donc uniquement utilisées par nécessité ou à des fins statistiques et d’analyses.
 
@@ -93,12 +93,12 @@ En tant que responsable du traitement des données qu’il collecte, [sainthilli
 
 Conformément à la réglementation européenne en vigueur, les Utilisateurs de [sainthillier.fr](https://sainthillier.fr) disposent des droits suivants :
 
--   droit d'accès (article 15 RGPD) et de rectification (article 16 RGPD), de mise à jour, de complétude des données des Utilisateurs droit de verrouillage ou d’effacement des données des Utilisateurs à caractère personnel (article 17 du RGPD), lorsqu’elles sont inexactes, incomplètes, équivoques, périmées, ou dont la collecte, l'utilisation, la communication ou la conservation est interdite
--   droit de retirer à tout moment un consentement (article 13-2c RGPD)
--   droit à la limitation du traitement des données des Utilisateurs (article 18 RGPD)
--   droit d’opposition au traitement des données des Utilisateurs (article 21 RGPD)
--   droit à la portabilité des données que les Utilisateurs auront fournies, lorsque ces données font l’objet de traitements automatisés fondés sur leur consentement ou sur un contrat (article 20 RGPD)
--   droit de définir le sort des données des Utilisateurs après leur mort et de choisir à qui [sainthillier.fr](https://sainthillier.fr) devra communiquer (ou non) ses données à un tiers qu’ils aura préalablement désigné
+- droit d'accès (article 15 RGPD) et de rectification (article 16 RGPD), de mise à jour, de complétude des données des Utilisateurs droit de verrouillage ou d’effacement des données des Utilisateurs à caractère personnel (article 17 du RGPD), lorsqu’elles sont inexactes, incomplètes, équivoques, périmées, ou dont la collecte, l'utilisation, la communication ou la conservation est interdite
+- droit de retirer à tout moment un consentement (article 13-2c RGPD)
+- droit à la limitation du traitement des données des Utilisateurs (article 18 RGPD)
+- droit d’opposition au traitement des données des Utilisateurs (article 21 RGPD)
+- droit à la portabilité des données que les Utilisateurs auront fournies, lorsque ces données font l’objet de traitements automatisés fondés sur leur consentement ou sur un contrat (article 20 RGPD)
+- droit de définir le sort des données des Utilisateurs après leur mort et de choisir à qui [sainthillier.fr](https://sainthillier.fr) devra communiquer (ou non) ses données à un tiers qu’ils aura préalablement désigné
 
 Dès que [sainthillier.fr](https://sainthillier.fr) a connaissance du décès d’un Utilisateur et à défaut d’instructions de sa part, [sainthillier.fr](https://sainthillier.fr) s’engage à détruire ses données, sauf si leur conservation s’avère nécessaire à des fins probatoires ou pour répondre à une obligation légale.
 

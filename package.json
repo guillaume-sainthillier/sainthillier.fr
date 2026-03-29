@@ -52,6 +52,7 @@
         "knip": "^6.0.0",
         "lint-staged": ">=16.2.6",
         "prettier": "^3.6.2",
+        "prettier-plugin-tailwindcss": "^0.7.2",
         "regenerator-runtime": "^0.14.1",
         "tailwindcss": "^4.1.18",
         "terser": "^5.37.0",
