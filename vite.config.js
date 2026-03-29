@@ -1,7 +1,9 @@
+// eslint-disable-next-line import/no-unresolved
 import { defineConfig } from 'vite'
 import { resolve, dirname } from 'path'
 import { fileURLToPath } from 'url'
-import { readFileSync, writeFileSync, mkdirSync } from 'fs'
+import { writeFileSync, mkdirSync } from 'fs'
+// eslint-disable-next-line import/no-unresolved
 import legacy from '@vitejs/plugin-legacy'
 // eslint-disable-next-line import/no-unresolved
 import tailwindcss from '@tailwindcss/vite'
@@ -9,52 +11,58 @@ import tailwindcss from '@tailwindcss/vite'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
 function generateEntrypoints() {
+    const collectedModern = { js: [], css: [] }
+    const collectedLegacy = { js: [], css: [] }
+
     return {
         name: 'generate-entrypoints',
+        enforce: 'post',
+        generateBundle(_options, bundle) {
+            const chunks = Object.values(bundle)
+
+            // Collect modern entries
+            const modernEntry = chunks.find(
+                (chunk) =>
+                    chunk.type === 'chunk' &&
+                    chunk.isEntry &&
+                    !chunk.fileName.includes('-legacy') &&
+                    !chunk.fileName.includes('polyfills')
+            )
+            if (modernEntry) {
+                collectedModern.js = [`/build/${modernEntry.fileName}`]
+                collectedModern.css = [...(modernEntry.viteMetadata?.importedCss || [])].map((css) => `/build/${css}`)
+            }
+
+            // Collect legacy entries
+            const polyfillsEntry = chunks.find(
+                (chunk) => chunk.type === 'chunk' && chunk.fileName.includes('polyfills-legacy')
+            )
+            const legacyEntry = chunks.find(
+                (chunk) =>
+                    chunk.type === 'chunk' &&
+                    chunk.isEntry &&
+                    chunk.fileName.includes('-legacy') &&
+                    !chunk.fileName.includes('polyfills')
+            )
+            if (polyfillsEntry) {
+                collectedLegacy.js.push(`/build/${polyfillsEntry.fileName}`)
+            }
+            if (legacyEntry) {
+                collectedLegacy.js.push(`/build/${legacyEntry.fileName}`)
+            }
+        },
         closeBundle() {
             const rootDir = __dirname
             mkdirSync(resolve(rootDir, 'data'), { recursive: true })
 
-            const manifestPath = resolve(rootDir, 'static/build/manifest.json')
-            const manifest = JSON.parse(readFileSync(manifestPath, 'utf-8'))
-
-            const modernEntryKey = Object.keys(manifest).find(
-                (key) => manifest[key].isEntry && !key.includes('-legacy') && !key.includes('polyfills')
+            writeFileSync(
+                resolve(rootDir, 'data/entrypoints.json'),
+                JSON.stringify({ entrypoints: { app: collectedModern } }, null, 2)
             )
-            const modernEntry = manifest[modernEntryKey]
-
-            const entrypoints = {
-                entrypoints: {
-                    app: {
-                        js: [`/build/${modernEntry.file}`],
-                        css: (modernEntry.css || []).map((css) => `/build/${css}`),
-                    },
-                },
-            }
-
-            const legacyEntryKey = Object.keys(manifest).find(
-                (key) => manifest[key].isEntry && key.includes('-legacy') && !key.includes('polyfills')
+            writeFileSync(
+                resolve(rootDir, 'data/entrypoints_legacy.json'),
+                JSON.stringify({ entrypoints: { app: collectedLegacy } }, null, 2)
             )
-            const polyfillsEntryKey = Object.keys(manifest).find((key) => key.includes('polyfills-legacy'))
-
-            const entrypointsLegacy = {
-                entrypoints: {
-                    app: {
-                        js: [],
-                        css: [],
-                    },
-                },
-            }
-
-            if (polyfillsEntryKey) {
-                entrypointsLegacy.entrypoints.app.js.push(`/build/${manifest[polyfillsEntryKey].file}`)
-            }
-            if (legacyEntryKey) {
-                entrypointsLegacy.entrypoints.app.js.push(`/build/${manifest[legacyEntryKey].file}`)
-            }
-
-            writeFileSync(resolve(rootDir, 'data/entrypoints.json'), JSON.stringify(entrypoints, null, 2))
-            writeFileSync(resolve(rootDir, 'data/entrypoints_legacy.json'), JSON.stringify(entrypointsLegacy, null, 2))
 
             console.log('Generated entrypoints.json and entrypoints_legacy.json')
         },
@@ -71,7 +79,7 @@ export default defineConfig(({ mode }) => {
         build: {
             outDir: 'static/build',
             emptyOutDir: true,
-            manifest: 'manifest.json',
+            manifest: true,
             rollupOptions: {
                 input: {
                     app: resolve(__dirname, 'assets/js/app.modern.js'),
