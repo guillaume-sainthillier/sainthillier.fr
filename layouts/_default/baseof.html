@@ -39,10 +39,6 @@
     {{ range .Site.Data.entrypoints.entrypoints.app.js }}
     <script type="module" src="{{ relURL . }}"></script>
     {{ end }}
-
-    {{ range .Site.Data.entrypoints_legacy.entrypoints.app.js }}
-    <script nomodule defer src="{{ relURL . }}"></script>
-    {{ end }}
 </head>
 <body id="{{ block "page-id" . }}page{{ end }}" class="{{ block "layout-class" . }}layout-default{{ end }}">
 <!-- Navigation -->

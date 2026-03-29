@@ -4,15 +4,12 @@ import { resolve, dirname } from 'path'
 import { fileURLToPath } from 'url'
 import { writeFileSync, mkdirSync } from 'fs'
 // eslint-disable-next-line import/no-unresolved
-import legacy from '@vitejs/plugin-legacy'
-// eslint-disable-next-line import/no-unresolved
 import tailwindcss from '@tailwindcss/vite'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
 function generateEntrypoints() {
-    const collectedModern = { js: [], css: [] }
-    const collectedLegacy = { js: [], css: [] }
+    const collected = { js: [], css: [] }
 
     return {
         name: 'generate-entrypoints',
@@ -20,35 +17,10 @@ function generateEntrypoints() {
         generateBundle(_options, bundle) {
             const chunks = Object.values(bundle)
 
-            // Collect modern entries
-            const modernEntry = chunks.find(
-                (chunk) =>
-                    chunk.type === 'chunk' &&
-                    chunk.isEntry &&
-                    !chunk.fileName.includes('-legacy') &&
-                    !chunk.fileName.includes('polyfills')
-            )
-            if (modernEntry) {
-                collectedModern.js = [`/build/${modernEntry.fileName}`]
-                collectedModern.css = [...(modernEntry.viteMetadata?.importedCss || [])].map((css) => `/build/${css}`)
-            }
-
-            // Collect legacy entries
-            const polyfillsEntry = chunks.find(
-                (chunk) => chunk.type === 'chunk' && chunk.fileName.includes('polyfills-legacy')
-            )
-            const legacyEntry = chunks.find(
-                (chunk) =>
-                    chunk.type === 'chunk' &&
-                    chunk.isEntry &&
-                    chunk.fileName.includes('-legacy') &&
-                    !chunk.fileName.includes('polyfills')
-            )
-            if (polyfillsEntry) {
-                collectedLegacy.js.push(`/build/${polyfillsEntry.fileName}`)
-            }
-            if (legacyEntry) {
-                collectedLegacy.js.push(`/build/${legacyEntry.fileName}`)
+            const entry = chunks.find((chunk) => chunk.type === 'chunk' && chunk.isEntry)
+            if (entry) {
+                collected.js = [`/build/${entry.fileName}`]
+                collected.css = [...(entry.viteMetadata?.importedCss || [])].map((css) => `/build/${css}`)
             }
         },
         closeBundle() {
@@ -57,14 +29,10 @@ function generateEntrypoints() {
 
             writeFileSync(
                 resolve(rootDir, 'data/entrypoints.json'),
-                JSON.stringify({ entrypoints: { app: collectedModern } }, null, 2)
-            )
-            writeFileSync(
-                resolve(rootDir, 'data/entrypoints_legacy.json'),
-                JSON.stringify({ entrypoints: { app: collectedLegacy } }, null, 2)
+                JSON.stringify({ entrypoints: { app: collected } }, null, 2)
             )
 
-            console.log('Generated entrypoints.json and entrypoints_legacy.json')
+            console.log('Generated entrypoints.json')
         },
     }
 }
@@ -91,20 +59,12 @@ export default defineConfig(({ mode }) => {
                 },
             },
             sourcemap: !isProduction,
-            minify: isProduction ? 'esbuild' : false,
+            minify: isProduction,
         },
         css: {
             devSourcemap: !isProduction,
         },
-        plugins: [
-            tailwindcss(),
-            legacy({
-                targets: ['ie >= 11', 'chrome >= 45', 'firefox >= 38', 'android >= 4.4'],
-                additionalLegacyPolyfills: ['regenerator-runtime/runtime'],
-                renderLegacyChunks: isProduction,
-            }),
-            generateEntrypoints(),
-        ],
+        plugins: [tailwindcss(), generateEntrypoints()],
         server: {
             watch: {
                 usePolling: true,
