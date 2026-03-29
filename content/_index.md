@@ -1,6 +1,6 @@
 ---
-title: "Développeur Web freelance à Toulouse"
-description: "Développeur web freelance à Toulouse. Développeur freelance PHP. Contactez rapidement un développeur web à Toulouse pour réaliser votre projet Web."
+title: 'Développeur Web freelance à Toulouse'
+description: 'Développeur web freelance à Toulouse. Développeur freelance PHP. Contactez rapidement un développeur web à Toulouse pour réaliser votre projet Web.'
 layout: homepage
 skills:
     - name: PHP
@@ -88,7 +88,7 @@ experiences:
       entreprise:
       client: Webforce3
       titre: Formateur freelance
-      description: "Sessions de formations sur le domaine du Développement Web Mobile."
+      description: 'Sessions de formations sur le domaine du Développement Web Mobile.'
       points: []
 formation:
     - periode: 2013 - 2015
@@ -299,9 +299,9 @@ realisations:
       nom: Safety Index
       sous_titre: Développeur Web freelance
       date: Mai 2018
-      description: "<p>Pour le service Airbus MultiMedia Support. Cette application mobile
-          permet aux \"Safety Officers\" de vérifier quelles améliorations physiques ou logicielles
-          peuvent être effectuées sur les composants de leur flotte d'avion.</p>"
+      description: '<p>Pour le service Airbus MultiMedia Support. Cette application mobile
+          permet aux "Safety Officers" de vérifier quelles améliorations physiques ou logicielles
+          peuvent être effectuées sur les composants de leur flotte d''avion.</p>'
       image: images/realisations/safety-index.jpg
       keywords:
           - PHP

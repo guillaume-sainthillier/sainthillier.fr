@@ -1,7 +1,8 @@
 ---
-title: "Conditions Générales de Vente"
-description: "Les CGV utilisées lors de mes prestations."
+title: 'Conditions Générales de Vente'
+description: 'Les CGV utilisées lors de mes prestations.'
 ---
+
 # Conditions Générales de Vente
 
 _Mis à jour le 19/01/2026_
@@ -104,10 +105,10 @@ Conformément à l'article D. 8222-5 du Code du Travail, Le Prestataire s'engage
 
 - une attestation de fourniture des déclarations sociales et de paiement des cotisations et contributions de sécurité sociale prévue à l'article L. 243-15 du Code de la Sécurité Sociale, émanant de l'organisme de protection sociale chargé du recouvrement des cotisations et des contributions et datant de moins de six (6) mois ;
 - si l'immatriculation DU PRESTATAIRE au Registre du Commerce et des Sociétés ou au Répertoire des Métiers est obligatoire, l'un des documents suivants :
-  - un extrait de l'inscription au Registre du Commerce et des Sociétés (K ou K bis) ;
-  - une carte d'identification justifiant de l'inscription au répertoire des métiers ;
-  - un devis, un document publicitaire ou une correspondance professionnelle, à condition qu'y soient mentionnés le nom ou la dénomination sociale, l'adresse complète et le numéro d'immatriculation au Registre du Commerce et des Sociétés ou au Répertoire des Métiers ou à une liste ou un tableau d'un ordre professionnel, ou la référence de l'agrément délivré par l'autorité compétente ;
-  - un récépissé du dépôt de déclaration auprès d'un centre de formalités des entreprises pour les personnes en cours d'inscription.
+    - un extrait de l'inscription au Registre du Commerce et des Sociétés (K ou K bis) ;
+    - une carte d'identification justifiant de l'inscription au répertoire des métiers ;
+    - un devis, un document publicitaire ou une correspondance professionnelle, à condition qu'y soient mentionnés le nom ou la dénomination sociale, l'adresse complète et le numéro d'immatriculation au Registre du Commerce et des Sociétés ou au Répertoire des Métiers ou à une liste ou un tableau d'un ordre professionnel, ou la référence de l'agrément délivré par l'autorité compétente ;
+    - un récépissé du dépôt de déclaration auprès d'un centre de formalités des entreprises pour les personnes en cours d'inscription.
 
 ## Article 19 : INTUITU PERSONAE
 

@@ -1,9 +1,9 @@
 @import 'tailwindcss';
 
 /* Content sources for purging */
-@source "../../layouts/**/*.html";
-@source "../../content/**/*.md";
-@source "../js/**/*.js";
+@source '../../layouts/**/*.html';
+@source '../../content/**/*.md';
+@source '../js/**/*.js';
 
 /* Theme and base */
 @import './components/theme.css';
