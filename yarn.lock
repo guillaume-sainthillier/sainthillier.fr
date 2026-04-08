@@ -1532,10 +1532,10 @@ hasown@^2.0.2:
   dependencies:
     function-bind "^1.1.2"
 
-hugo-extended@^0.158.0:
-  version "0.158.0"
-  resolved "https://registry.yarnpkg.com/hugo-extended/-/hugo-extended-0.158.0.tgz#6920a10e540e30259866db89128ff866d7a9ff88"
-  integrity sha512-cFl07JY5juYoik9wVZSZxBKVgSWQtmddTB1AhpOFetCZFR9PgN0cl/MQSX+cYho2kl8mquDdQ+4jzfP1KP0hmA==
+hugo-extended@^0.160.0:
+  version "0.160.1"
+  resolved "https://registry.yarnpkg.com/hugo-extended/-/hugo-extended-0.160.1.tgz#0d476cb9639ee9e133576c69f6a517f3cfc55237"
+  integrity sha512-LPtcPyfR22CoUukwQQaTOMpV5svHynQHlfxG7w1Oi9moWQMBNHSAj2u1eN5K8nx4CSB1ZMGfbNL0fBX++bQ3dQ==
   dependencies:
     adm-zip "^0.5.16"
     tar "^7.5.9"
