@@ -4,7 +4,7 @@ import { fileURLToPath } from 'url'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const rootDir = resolve(__dirname, '..')
-const manifestPath = resolve(rootDir, 'static/build/manifest.json')
+const manifestPath = resolve(rootDir, 'static/build/.vite/manifest.json')
 
 try {
     const manifest = JSON.parse(readFileSync(manifestPath, 'utf-8'))
