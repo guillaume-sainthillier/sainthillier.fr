@@ -681,13 +681,13 @@ graceful-fs@^4.2.4:
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.11.tgz#4183e4e8bf08bb6e05bbb2f7d2e0c8f712ca40e3"
   integrity sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==
 
-hugo-extended@^0.161.0:
-  version "0.161.1"
-  resolved "https://registry.yarnpkg.com/hugo-extended/-/hugo-extended-0.161.1.tgz#6eb3b0fe6a4c0d6c8c94ac57d5fdcf3f70429433"
-  integrity sha512-kFpyOR7Kn6GmzFDevruc5uvUDV5k1424iyYOoclFh5mcAJCJtMJ0ymLw+oul9vany6aYyN9vwRIkr1hSIluTlw==
+hugo-extended@^0.162.0:
+  version "0.162.1"
+  resolved "https://registry.yarnpkg.com/hugo-extended/-/hugo-extended-0.162.1.tgz#0f4839c69ea90fd66213193f4fabcb59495dcf54"
+  integrity sha512-CaAoEP4TbqhE15OU/zorG67/9A5lWYOOQxUXpo+qnEdaFhVaFOUngguYp9XiWIoCCHauuSod391jgrhwyzo6uQ==
   dependencies:
     adm-zip "^0.5.17"
-    tar "^7.5.13"
+    tar "^7.5.15"
 
 husky@9.1.7:
   version "9.1.7"
@@ -1103,7 +1103,7 @@ tapable@^2.3.3:
   resolved "https://registry.yarnpkg.com/tapable/-/tapable-2.3.3.tgz#5da7c9992c46038221267985ab28421a8879f160"
   integrity sha512-uxc/zpqFg6x7C8vOE7lh6Lbda8eEL9zmVm/PLeTPBRhh1xCgdWaQ+J1CUieGpIfm2HdtsUpRv+HshiasBMcc6A==
 
-tar@^7.5.13:
+tar@^7.5.15:
   version "7.5.15"
   resolved "https://registry.yarnpkg.com/tar/-/tar-7.5.15.tgz#afe6d1316cddf614a566e3813e42fe01aed46fee"
   integrity sha512-dzGK0boVlC4W5QFuQN1EFSl3bIDYsk7Tj40U6eIBnK2k/8ml7TZ5agbI5j5+qnoVcAA+rNtBml8SEiLxZpNqRQ==
