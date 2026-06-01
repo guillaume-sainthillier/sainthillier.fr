@@ -44,6 +44,11 @@ export default defineConfig(({ mode }) => {
         root: '.',
         base: '/build/',
         publicDir: false,
+        resolve: {
+            alias: {
+                '@': resolve(__dirname, 'assets'),
+            },
+        },
         build: {
             outDir: 'static/build',
             emptyOutDir: true,

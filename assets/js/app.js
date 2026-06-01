@@ -4,11 +4,11 @@ import '@webcomponents/custom-elements'
 import 'lite-youtube-embed'
 import 'lite-youtube-embed/src/lite-yt-embed.css'
 
-import '../css/app.css'
+import '@/css/app.css'
 
-import initNavbar from './navbar'
-import SimpleCollapse from './SimpleCollapse'
-import SimpleModal from './SimpleModal'
+import initNavbar from '@/js/navbar'
+import SimpleCollapse from '@/js/SimpleCollapse'
+import SimpleModal from '@/js/SimpleModal'
 
 function initCollapseTogglers() {
     document.addEventListener('click', (e) => {
