@@ -26,7 +26,6 @@
         "prettier:check": "prettier --check \"**/*.{css,md,yml,yaml}\"",
         "format": "yarn lint && yarn prettier",
         "knip": "knip",
-        "knip:ci": "knip --dependencies",
         "knip:fix": "knip --fix",
         "size:json": "node scripts/bundle-size.js"
     },
