@@ -1,2 +1,2 @@
-import './app'
-import './icons'
+import '@/js/app'
+import '@/js/icons'
