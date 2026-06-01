@@ -31,4 +31,4 @@ jobs:
               run: yarn prettier:check
 
             - name: Run Knip
-              run: yarn knip
+              run: yarn knip:ci
