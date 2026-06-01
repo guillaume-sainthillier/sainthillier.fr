@@ -1,6 +1,9 @@
 {
     "$schema": "https://unpkg.com/knip@5/schema.json",
-    "entry": ["assets/js/**/*.js"],
+    "paths": {
+        "@/*": ["assets/*"]
+    },
+    "entry": ["assets/js/app.modern.js"],
     "project": ["**/*.js"],
     "ignore": ["public/**", "resources/**", "static/**", "content/**", "layouts/**", ".husky/**"],
     "ignoreDependencies": [
