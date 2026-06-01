@@ -5,10 +5,6 @@
     "ignore": ["public/**", "resources/**", "static/**", "content/**", "layouts/**", ".husky/**"],
     "ignoreDependencies": [
         "regenerator-runtime",
-        "eslint-config-airbnb-base",
-        "eslint-config-prettier",
-        "eslint-plugin-import",
-        "eslint-plugin-prettier",
         "tailwindcss"
     ]
 }

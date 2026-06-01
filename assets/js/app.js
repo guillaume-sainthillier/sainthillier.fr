@@ -6,9 +6,9 @@ import 'lite-youtube-embed/src/lite-yt-embed.css'
 
 import '../css/app.css'
 
-import SimpleModal from './SimpleModal'
-import SimpleCollapse from './SimpleCollapse'
 import initNavbar from './navbar'
+import SimpleCollapse from './SimpleCollapse'
+import SimpleModal from './SimpleModal'
 
 function initCollapseTogglers() {
     document.addEventListener('click', (e) => {

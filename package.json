@@ -20,10 +20,10 @@
         "hugo": "hugo --gc --minify",
         "hugo:dev": "hugo server -D",
         "prepare": "husky install",
-        "lint": "eslint .",
-        "lint:fix": "eslint . --fix",
-        "format": "prettier --check \"**/*.{js,css,md,json,yml,yaml}\"",
-        "format:fix": "prettier --write \"**/*.{js,css,md,json,yml,yaml}\"",
+        "lint": "biome check --write assets",
+        "lint:ci": "biome check assets",
+        "prettier": "prettier --write \"**/*.{css,md,yml,yaml}\"",
+        "format": "yarn lint && yarn prettier",
         "knip": "knip",
         "knip:fix": "knip --fix",
         "size:json": "node scripts/bundle-size.js"
@@ -36,16 +36,9 @@
         "wordcloud": "^1.2.3"
     },
     "devDependencies": {
-        "@eslint/eslintrc": "^3.3.1",
-        "@eslint/js": "^10.0.0",
+        "@biomejs/biome": "2.4.16",
         "@tailwindcss/vite": "^4.1.18",
         "@types/node": "^24.0.0",
-        "eslint": "^10.0.0",
-        "eslint-config-airbnb-base": "^15.0.0",
-        "eslint-config-prettier": "^10.1.8",
-        "eslint-plugin-import": "^2.32.0",
-        "eslint-plugin-prettier": "^5.5.4",
-        "globals": "^17.0.0",
         "hugo-extended": "^0.161.0",
         "husky": "9.1.7",
         "knip": "^6.0.0",
@@ -58,7 +51,7 @@
         "vite": "^8"
     },
     "lint-staged": {
-        "*.{css,md}": "prettier --write",
-        "*.js": "eslint --fix"
+        "*.{js,jsx,ts,tsx,mjs,json}": "biome check --write --no-errors-on-unmatched",
+        "*.{css,md,yaml,yml}": "prettier --write"
     }
 }
