@@ -29,7 +29,7 @@ function initCollapseTogglers() {
         link.addEventListener('click', () => {
             document.body.querySelectorAll('.navbar-collapse').forEach((collapse) => {
                 const instance = SimpleCollapse.getInstance(collapse)
-                if (instance && instance.isOpen) {
+                if (instance?.isOpen) {
                     instance.hide()
                 }
             })
@@ -102,7 +102,7 @@ function initWordCloud() {
         fontFamily: '"Google Sans", sans-serif',
         fontWeight: 700,
         color: null,
-        classes(word, weight) {
+        classes(_word, weight) {
             return `weight-${parseInt(weight, 10)}`
         },
     })
