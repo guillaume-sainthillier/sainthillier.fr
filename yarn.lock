@@ -856,9 +856,9 @@ log-update@^6.1.0:
     wrap-ansi "^9.0.0"
 
 lucide@^1.0.0:
-  version "1.22.0"
-  resolved "https://registry.yarnpkg.com/lucide/-/lucide-1.22.0.tgz#910679688407c9f3c3f886ddcbc6b2e73989544e"
-  integrity sha512-QRkKyfF6X4jwzMfBIgx46GsSz0PUQnIKkX9Rg5anXMVJmIO89DAhkKzUfwg+2c4KJGi+VT9Dks77J1NFnjU4Vg==
+  version "1.23.0"
+  resolved "https://registry.yarnpkg.com/lucide/-/lucide-1.23.0.tgz#4f8ce0e10e07091cc91de6703c34a906ac9295da"
+  integrity sha512-TZD1WHh19ehJTi3wiwXUrTuCe9R7+9NKR8tgXZaQLT/0AbMCeuh5Mr7H1p/4iV3e930LKdpq8fk9kBeDrGkC7g==
 
 magic-string@^0.30.21:
   version "0.30.21"
