@@ -693,10 +693,10 @@ graceful-fs@^4.2.4:
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.11.tgz#4183e4e8bf08bb6e05bbb2f7d2e0c8f712ca40e3"
   integrity sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==
 
-hugo-extended@^0.163.0:
-  version "0.163.3"
-  resolved "https://registry.yarnpkg.com/hugo-extended/-/hugo-extended-0.163.3.tgz#6656e600c208f26c7b07c1a51b0b19817de46ec0"
-  integrity sha512-YcH9VBNW9N01cEQ2TsmFEaUikmmFu4dytBLiX2BFWM+IJdejxcSTfIu/bNgGYVJOARYxJTXJwyPqr1zIndNcCQ==
+hugo-extended@^0.164.0:
+  version "0.164.0"
+  resolved "https://registry.yarnpkg.com/hugo-extended/-/hugo-extended-0.164.0.tgz#48407d23bdcef8de750b35cc97dc995525465476"
+  integrity sha512-XhUZ9cI5XkC+Jtg6GMS679dVSAY7j/Fyo2BYDzsuqTKiMzDwr+Ylqd9Ndgvm2sUW+6BKzJCGQWdPI8QnKhVMSQ==
   dependencies:
     adm-zip "^0.5.17"
     tar "^7.5.15"
