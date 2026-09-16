@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ $.Site.LanguageCode | default "en" }}" class="scroll-smooth">
+<html lang="{{ .Site.Language.Locale | default "en" }}" class="scroll-smooth">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -28,15 +28,15 @@
 
     {{ template "_internal/google_analytics.html" . }}
 
-    {{ range .Site.Data.entrypoints.entrypoints.app.js }}
+    {{ range hugo.Data.entrypoints.entrypoints.app.js }}
     <link rel="modulepreload" href="{{ relURL . }}">
     {{ end }}
 
-    {{ range .Site.Data.entrypoints.entrypoints.app.css }}
+    {{ range hugo.Data.entrypoints.entrypoints.app.css }}
     <link href="{{ relURL . }}" rel="stylesheet">
     {{ end }}
 
-    {{ range .Site.Data.entrypoints.entrypoints.app.js }}
+    {{ range hugo.Data.entrypoints.entrypoints.app.js }}
     <script type="module" src="{{ relURL . }}"></script>
     {{ end }}
 </head>
