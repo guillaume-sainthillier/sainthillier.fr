@@ -1,5 +1,5 @@
 baseURL = "https://sainthillier.fr"
-languageCode = "fr-FR"
+locale = "fr-FR"
 title = "Guillaume Sainthillier"
 googleAnalytics = "G-DBS1G509Q7"
 
