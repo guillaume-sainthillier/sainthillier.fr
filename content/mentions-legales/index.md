@@ -24,7 +24,7 @@ Les termes « données à caractère personnel », « personne concernée »
 
 En vertu de l'article 6 de la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l'économie numérique, il est précisé aux utilisateurs du site internet [sainthillier.fr](https://sainthillier.fr) l'identité des différents intervenants dans le cadre de sa réalisation et de son suivi:
 
-**Propriétaire** : SASU Silarhi Capital social de 1000€ Numéro de TVA: FR96841541667 – 116 Route d'Espagne 31100 Toulouse  
+**Propriétaire** : SILARHI, SARL au capital de 1 000 € – RCS Toulouse 841 541 667 – Numéro de TVA : FR96841541667 – 116 Route d'Espagne 31100 Toulouse  
 **Responsable publication** : Guillaume Sainthillier – hello@silarhi.fr  
 Le responsable publication est une personne physique ou une personne morale.  
 **Webmaster** : Guillaume Sainthillier – hello@silarhi.fr  
