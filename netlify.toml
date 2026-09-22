@@ -9,7 +9,7 @@ HUGO_EXTENDED = "true"
 
 [[redirects]]
   from = "/cgv"
-  to = "/conditions-generales-de-vente"
+  to = "/conditions-generales-de-vente/"
   status = 301
   force = true
 
