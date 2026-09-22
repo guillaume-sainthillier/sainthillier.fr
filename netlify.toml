@@ -38,6 +38,12 @@ HUGO_EXTENDED = "true"
   status = 301
   force = true
 
+[[redirects]]
+  from = "/pdf/CV-SAINTHILLIER-Guillaume.3c2893f87a907209ce59dfb64a910a88.pdf"
+  to = "/pdf/CV-SAINTHILLIER-Guillaume.pdf"
+  status = 301
+  force = true
+
 # Former CGV URLs (fingerprinted or old build path)
 [[redirects]]
   from = "/build/pdf/CGV.pdf"
