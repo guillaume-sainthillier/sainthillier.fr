@@ -1,6 +1,6 @@
 {{ $image := resources.Get "images/guillaume-sainthillier.jpg" | resources.Fingerprint "md5" }}
-{{ $logo := resources.Get "images/logo.png" | resources.Fingerprint "md5" }}
 {{ $home := "" | absURL }}
+{{ $freelance := site.Params.freelance }}
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -13,67 +13,67 @@
                 "inLanguage": "fr-FR",
                 "publisher": { "@id": {{ printf "%s#person" $home }} }
             },
+            {{- if .IsHome }}
+            {
+                "@type": "ProfilePage",
+                "@id": {{ printf "%s#webpage" $home }},
+                "url": {{ $home }},
+                "name": {{ .Title }},
+                "inLanguage": "fr-FR",
+                "isPartOf": { "@id": {{ printf "%s#website" $home }} },
+                "mainEntity": { "@id": {{ printf "%s#person" $home }} }
+            },
+            {{- end }}
             {
                 "@type": "Person",
                 "@id": {{ printf "%s#person" $home }},
                 "name": "Guillaume Sainthillier",
-                "jobTitle": "Développeur Web Freelance à Toulouse",
+                "jobTitle": "Développeur web freelance PHP / Symfony à Toulouse",
                 "gender": "male",
                 "url": {{ $home }},
                 "image": {{ $image.Permalink }},
                 "email": "hello@silarhi.fr",
-                "worksFor": { "@id": {{ printf "%s#business" $home }} },
+                "telephone": "+33607275826",
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "Toulouse",
+                    "postalCode": "31100",
+                    "addressRegion": "Occitanie",
+                    "addressCountry": "FR"
+                },
+                {{/* The company entity lives on silarhi.fr: reference it instead of declaring a second business */}}
+                "worksFor": {
+                    "@type": "Organization",
+                    "@id": "https://silarhi.fr/#organization",
+                    "name": "SILARHI",
+                    "url": "https://silarhi.fr"
+                },
+                "knowsAbout": ["PHP", "Symfony", "API Platform", "Doctrine", "EBICS", "CFONB", "MySQL", "PostgreSQL", "Docker", "AWS"],
+                "makesOffer": {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Développement web freelance PHP / Symfony",
+                        "areaServed": [
+                            { "@type": "City", "name": "Toulouse" },
+                            { "@type": "Country", "name": "France" }
+                        ]
+                    },
+                    "priceSpecification": {
+                        "@type": "UnitPriceSpecification",
+                        "minPrice": {{ $freelance.dailyRateMin }},
+                        "maxPrice": {{ $freelance.dailyRateMax }},
+                        "priceCurrency": "EUR",
+                        "unitCode": "DAY",
+                        "unitText": "jour",
+                        "valueAddedTaxIncluded": false
+                    }
+                },
                 "sameAs": [
                     {{ site.Params.Social.linkedin }},
                     {{ site.Params.Social.github }},
                     "https://stackoverflow.com/users/7652866/guillaume-sainthillier"
-                ],
-                "address": {
-                    "@type": "PostalAddress",
-                    "streetAddress": "116 Route d'Espagne",
-                    "postOfficeBoxNumber": "BAL 411 - BAT 113",
-                    "addressLocality": "Toulouse",
-                    "addressRegion": "Occitanie",
-                    "postalCode": "31100",
-                    "addressCountry": "FR"
-                }
-            },
-            {
-                "@type": "ProfessionalService",
-                "@id": {{ printf "%s#business" $home }},
-                "name": "SILARHI",
-                "description": {{ site.Params.description }},
-                "url": {{ $home }},
-                "founder": { "@id": {{ printf "%s#person" $home }} },
-                "foundingDate": "2018-08-03",
-                "email": "hello@silarhi.fr",
-                "telephone": "+33607275826",
-                "logo": {{ $logo.Permalink }},
-                "image": {{ $logo.Permalink }},
-                "sameAs": [
-                    "https://silarhi.fr",
-                    "https://github.com/silarhi",
-                    "https://www.linkedin.com/company/silarhi"
-                ],
-                "address": {
-                    "@type": "PostalAddress",
-                    "streetAddress": "116 Route d'Espagne",
-                    "postOfficeBoxNumber": "BAL 411 - BAT 113",
-                    "addressLocality": "Toulouse",
-                    "addressRegion": "Occitanie",
-                    "postalCode": "31100",
-                    "addressCountry": "FR"
-                },
-                "geo": {
-                    "@type": "GeoCoordinates",
-                    "latitude": 43.5706004,
-                    "longitude": 1.4210176
-                },
-                "hasMap": "https://g.page/silarhi?share",
-                "openingHours": "Mo-Fr 09:00-19:30",
-                "currenciesAccepted": "EUR",
-                "paymentAccepted": "Virement bancaire",
-                "priceRange": "€€"
+                ]
             }
         ]
     }
