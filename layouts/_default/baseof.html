@@ -119,6 +119,11 @@
     <hr />
     <div class="container">
         <ul class="mb-0 list-none">
+            {{ with site.GetPage "/developpeur-symfony-freelance-toulouse" }}
+            <li class="block sm:inline mr-0 sm:mr-2">
+                <a href="{{ .RelPermalink }}">Développeur Symfony freelance</a>
+            </li>
+            {{ end }}
             <li class="block sm:inline mr-0 sm:mr-2">
                 <a href="/mentions-legales/">Mentions légales</a>
             </li>

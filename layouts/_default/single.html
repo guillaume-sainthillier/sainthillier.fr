@@ -5,6 +5,11 @@
 <section class="section bg-gray-100">
     <div class="container page-content">
         {{- .Content -}}
+        {{ with .Params.cta }}
+        <div class="text-center mt-12">
+            <a class="btn btn-primary btn-xl uppercase" href="{{ .url }}">{{ .label }}</a>
+        </div>
+        {{ end }}
     </div>
 </section>
 {{ end }}

@@ -50,7 +50,7 @@
             </div>
             <div class="md:col-span-8 lg:col-span-9">
                 <h3 class="text-3xl mb-2">Besoin d'un développeur Web freelance ?</h3>
-                <p class="text-muted mb-4">Développeur <strong>PHP / Symfony freelance</strong>, je renforce votre équipe ou je prends en charge
+                <p class="text-muted mb-4">Développeur {{ with site.GetPage "/developpeur-symfony-freelance-toulouse" }}<a class="text-gray-900 underline decoration-primary decoration-2 underline-offset-4" href="{{ .RelPermalink }}"><strong>PHP / Symfony freelance</strong></a>{{ else }}<strong>PHP / Symfony freelance</strong>{{ end }}, je renforce votre équipe ou je prends en charge
                     vos <strong>applications Web métier</strong> : nouveau développement, reprise d'un projet existant, montée de version.</p>
                 <p class="text-muted mb-4">Expérimenté depuis 2013 et freelance depuis 2018, j'ai travaillé pour divers secteurs
                     d'activités : collectivités locales, santé, secteur public, ressources humaines, industrie, aéronautique, communication, immobilier, assurances, ...</p>
