@@ -7,22 +7,77 @@ HUGO_ENV = "production"
 HUGO_ENABLEGITINFO = "true"
 HUGO_EXTENDED = "true"
 
-[[redirects]]
-  from = "/cgv"
-  to = "/conditions-generales-de-vente"
-  status = 301
-  force = true
+# Build previews against their own URL so absolute links (canonical, og:image, JSON-LD) resolve on the preview
+[context.deploy-preview]
+command = "yarn build && yarn hugo --baseURL $DEPLOY_PRIME_URL"
 
 [[redirects]]
-  from = "/*"
-  to = "/404.html"
-  status = 404
+  from = "/cgv"
+  to = "/conditions-generales-de-vente/"
+  status = 301
+  force = true
 
 [[redirects]]
   from = "/realisations/*"
   to = "/#portfolio/:splat"
   status = 301
   force = true
+
+# Former CV URLs (fingerprinted or old build path), all indexed by Google
+[[redirects]]
+  from = "/build/pdf/CV-SAINTHILLIER-Guillaume.pdf"
+  to = "/pdf/CV-SAINTHILLIER-Guillaume.pdf"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pdf/CV-SAINTHILLIER-Guillaume.fac5d7b15bb5d8cba8a08d4758c1563e.pdf"
+  to = "/pdf/CV-SAINTHILLIER-Guillaume.pdf"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pdf/CV-SAINTHILLIER-Guillaume.152a671a1d40431b05f5bce47faec02e989018a82f707c0d109430fb0542f1ef.pdf"
+  to = "/pdf/CV-SAINTHILLIER-Guillaume.pdf"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pdf/CV-SAINTHILLIER-Guillaume.3c2893f87a907209ce59dfb64a910a88.pdf"
+  to = "/pdf/CV-SAINTHILLIER-Guillaume.pdf"
+  status = 301
+  force = true
+
+# Former CGV URLs (fingerprinted or old build path)
+[[redirects]]
+  from = "/build/pdf/CGV.pdf"
+  to = "/pdf/CGV.pdf"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pdf/CGV.25b445b76d2bce37352f094cff4c8a2cc2fcb02c105e6e6c58bdae2e57ae5e8c.pdf"
+  to = "/pdf/CGV.pdf"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pdf/CGV.6ea57ea8f741da5492c6ad991c7d44b6.pdf"
+  to = "/pdf/CGV.pdf"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pdf/CGV.5f98a198ff8b86ea34b978d7296a7d80.pdf"
+  to = "/pdf/CGV.pdf"
+  status = 301
+  force = true
+
+# Catch-all must stay last: Netlify applies the first matching rule
+[[redirects]]
+  from = "/*"
+  to = "/404.html"
+  status = 404
 
 [[headers]]
   for = "/build/*"

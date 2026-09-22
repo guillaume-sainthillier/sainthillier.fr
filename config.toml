@@ -9,7 +9,8 @@ disableKinds = ["taxonomy", "RSS"]
   resampleFilter = "Linear"
 
 [params]
-  description = "Développeur web freelance à Toulouse. Développeur freelance PHP. Contactez rapidement un développeur web à Toulouse pour réaliser votre projet Web."
+  images = ["images/og-image.jpg"]
+  description = "Développeur web freelance à Toulouse depuis 2018, spécialisé PHP et Symfony : applications web sur mesure, de la conception à la maintenance."
 
 [params.social]
   github = "https://github.com/guillaume-sainthillier"

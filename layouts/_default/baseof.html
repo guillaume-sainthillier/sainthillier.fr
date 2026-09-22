@@ -45,11 +45,11 @@
 <nav class="fixed top-0 left-0 right-0 z-50 flex flex-wrap items-center px-4 py-2 lg:py-6 transition-all duration-300" id="mainNav">
     <div class="container flex flex-wrap items-center justify-between">
         {{ block "menu" . }}
-        <a class="navbar-brand js-scroll-trigger text-primary" href="/#mainNav">
+        <a class="navbar-brand js-scroll-trigger text-primary" href="/#mainNav" aria-label="Guillaume Sainthillier, retour à l’accueil">
           {{ $logo := resources.Get "svg/logo-web.svg" }}
           {{ $logo.Content | safeHTML }}
         </a>
-        <button class="navbar-toggler lg:hidden" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler lg:hidden" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false">
             Menu
             <i data-lucide="menu" class="ml-1"></i>
         </button>
@@ -83,7 +83,7 @@
     <div class="container">
         <div class="flex items-center justify-center sm:justify-start flex-wrap sm:flex-nowrap">
             <div class="sm:mr-4">
-                {{ partial "responsive-image" (dict "src" "images/logo.png" "alt" "Concrétisez vos projets Web" "width" 96 "height" 96 "priority" false) }}
+                {{ partial "responsive-image" (dict "src" "images/logo.png" "alt" "Logo SILARHI" "width" 96 "height" 96 "priority" false) }}
             </div>
             <div class="text-center sm:text-left mb-3 sm:mb-0">
                 <p>Guillaume Sainthillier - Développeur Web freelance à Toulouse</p>
@@ -105,7 +105,7 @@
                 </li>
                 {{ end }}
                 <li class="inline sm:block md:inline-block">
-                    {{ $cv := resources.Get "pdf/CV-SAINTHILLIER-Guillaume.pdf" | resources.Fingerprint "md5" }}
+                    {{ $cv := resources.Get "pdf/CV-SAINTHILLIER-Guillaume.pdf" }}
                     <a href="{{ $cv.RelPermalink }}" title="CV au format PDF">
                         <i data-lucide="file-text"></i>
                     </a>

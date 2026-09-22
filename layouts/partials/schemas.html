@@ -1,74 +1,80 @@
 {{ $image := resources.Get "images/guillaume-sainthillier.jpg" | resources.Fingerprint "md5" }}
-{{ $cv := resources.Get "pdf/CV-SAINTHILLIER-Guillaume.pdf" | resources.Fingerprint "md5" }}
+{{ $logo := resources.Get "images/logo.png" | resources.Fingerprint "md5" }}
+{{ $home := "" | absURL }}
 <script type="application/ld+json">
     {
-        "@context": "http://www.schema.org",
-        "@type": "person",
-        "name": "Guillaume Sainthillier",
-        "jobTitle": "Développeur Web Freelance à Toulouse",
-        "gender": "male",
-        "url": {{ "" | absURL }},
-        "sameAs": [
-            "https://www.youtube.com/watch?v=JjeguKaXutw",
-            "https://silarhi.fr",
-            "https://g.page/silarhi?share",
-            {{ .Site.Params.Social.linkedin }},
-            {{ .Site.Params.Social.github }},
-            {{ $cv.RelPermalink | absURL }},
-            "https://stackoverflow.com/users/7652866/guillaume-sainthillier"
-        ],
-        "image": {{ $image.Permalink | absURL }},
-        "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "116 Route d'Espagne",
-            "postOfficeBoxNumber": "BAL 411 - BAT 113",
-            "addressLocality": "Toulouse",
-            "addressRegion": "Occitanie",
-            "postalCode": "31100",
-            "addressCountry": "France"
-        },
-        "email": "hello@silarhi.fr"
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "WebSite",
+                "@id": {{ printf "%s#website" $home }},
+                "url": {{ $home }},
+                "name": {{ site.Title }},
+                "inLanguage": "fr-FR",
+                "publisher": { "@id": {{ printf "%s#person" $home }} }
+            },
+            {
+                "@type": "Person",
+                "@id": {{ printf "%s#person" $home }},
+                "name": "Guillaume Sainthillier",
+                "jobTitle": "Développeur Web Freelance à Toulouse",
+                "gender": "male",
+                "url": {{ $home }},
+                "image": {{ $image.Permalink }},
+                "email": "hello@silarhi.fr",
+                "worksFor": { "@id": {{ printf "%s#business" $home }} },
+                "sameAs": [
+                    {{ site.Params.Social.linkedin }},
+                    {{ site.Params.Social.github }},
+                    "https://stackoverflow.com/users/7652866/guillaume-sainthillier"
+                ],
+                "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "116 Route d'Espagne",
+                    "postOfficeBoxNumber": "BAL 411 - BAT 113",
+                    "addressLocality": "Toulouse",
+                    "addressRegion": "Occitanie",
+                    "postalCode": "31100",
+                    "addressCountry": "FR"
+                }
+            },
+            {
+                "@type": "ProfessionalService",
+                "@id": {{ printf "%s#business" $home }},
+                "name": "SILARHI",
+                "description": {{ site.Params.description }},
+                "url": {{ $home }},
+                "founder": { "@id": {{ printf "%s#person" $home }} },
+                "foundingDate": "2018-08-03",
+                "email": "hello@silarhi.fr",
+                "telephone": "+33607275826",
+                "logo": {{ $logo.Permalink }},
+                "image": {{ $logo.Permalink }},
+                "sameAs": [
+                    "https://silarhi.fr",
+                    "https://github.com/silarhi",
+                    "https://www.linkedin.com/company/silarhi"
+                ],
+                "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "116 Route d'Espagne",
+                    "postOfficeBoxNumber": "BAL 411 - BAT 113",
+                    "addressLocality": "Toulouse",
+                    "addressRegion": "Occitanie",
+                    "postalCode": "31100",
+                    "addressCountry": "FR"
+                },
+                "geo": {
+                    "@type": "GeoCoordinates",
+                    "latitude": 43.5706004,
+                    "longitude": 1.4210176
+                },
+                "hasMap": "https://g.page/silarhi?share",
+                "openingHours": "Mo-Fr 09:00-19:30",
+                "currenciesAccepted": "EUR",
+                "paymentAccepted": "Virement bancaire",
+                "priceRange": "€€"
+            }
+        ]
     }
 </script>
-{{ $logo := resources.Get "images/logo.png" | resources.Fingerprint "md5" }}
-<script type='application/ld+json'>
-    {
-        "@context": "http://www.schema.org",
-        "@type": "LocalBusiness",
-        "name": "Silarhi",
-        "description": {{ .Site.Params.description }},
-        "email": "hello@silarhi.fr",
-        "foundingDate": "2018-08-03",
-        "url": {{ "" | absURL }},
-        "sameAs": [
-            "https://silarhi.fr",
-            "https://www.youtube.com/watch?v=JjeguKaXutw",
-            "https://github.com/silarhi",
-            "https://www.linkedin.com/company/silarhi"
-        ],
-        "logo": {{ $logo.Permalink | absURL }},
-        "image": {{ $logo.Permalink | absURL }},
-        "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "116 Route d'Espagne",
-            "postOfficeBoxNumber": "BAL 411 - BAT 113",
-            "addressLocality": "Toulouse",
-            "addressRegion": "Occitanie",
-            "postalCode": "31100",
-            "addressCountry": "France"
-        },
-        "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": "43.5706004",
-            "longitude": "1.4210176"
-        },
-        "hasMap": "https://g.page/silarhi?share",
-        "openingHours": "Mo 09:00-19:30 Tu 09:00-19:30 We 09:00-19:30 Th 09:00-19:30 Fr 09:00-19:30",
-        "isAccessibleForFree": false,
-        "currenciesAccepted": "EUR",
-        "paymentAccepted":"Virement bancaire",
-        "priceRange": "$$",
-        "telephone": "+33607275826"
-    }
-</script>
-

@@ -1,6 +1,6 @@
 ---
 title: 'Développeur Web freelance à Toulouse'
-description: 'Développeur web freelance à Toulouse. Développeur freelance PHP. Contactez rapidement un développeur web à Toulouse pour réaliser votre projet Web.'
+description: 'Développeur web freelance à Toulouse depuis 2018, spécialisé PHP et Symfony : applications web sur mesure, de la conception à la maintenance.'
 layout: homepage
 skills:
     - name: PHP
