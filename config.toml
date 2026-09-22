@@ -9,6 +9,7 @@ disableKinds = ["taxonomy", "RSS"]
   resampleFilter = "Linear"
 
 [params]
+  images = ["images/og-image.jpg"]
   description = "Développeur web freelance à Toulouse. Développeur freelance PHP. Contactez rapidement un développeur web à Toulouse pour réaliser votre projet Web."
 
 [params.social]
