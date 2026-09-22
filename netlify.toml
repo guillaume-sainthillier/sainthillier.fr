@@ -38,6 +38,31 @@ HUGO_EXTENDED = "true"
   status = 301
   force = true
 
+# Former CGV URLs (fingerprinted or old build path)
+[[redirects]]
+  from = "/build/pdf/CGV.pdf"
+  to = "/pdf/CGV.pdf"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pdf/CGV.25b445b76d2bce37352f094cff4c8a2cc2fcb02c105e6e6c58bdae2e57ae5e8c.pdf"
+  to = "/pdf/CGV.pdf"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pdf/CGV.6ea57ea8f741da5492c6ad991c7d44b6.pdf"
+  to = "/pdf/CGV.pdf"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pdf/CGV.5f98a198ff8b86ea34b978d7296a7d80.pdf"
+  to = "/pdf/CGV.pdf"
+  status = 301
+  force = true
+
 # Catch-all must stay last: Netlify applies the first matching rule
 [[redirects]]
   from = "/*"
