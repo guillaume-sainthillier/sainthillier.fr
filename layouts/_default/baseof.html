@@ -45,7 +45,7 @@
 <nav class="fixed top-0 left-0 right-0 z-50 flex flex-wrap items-center px-4 py-2 lg:py-6 transition-all duration-300" id="mainNav">
     <div class="container flex flex-wrap items-center justify-between">
         {{ block "menu" . }}
-        <a class="navbar-brand js-scroll-trigger text-primary" href="/#mainNav">
+        <a class="navbar-brand js-scroll-trigger text-primary" href="/#mainNav" aria-label="Guillaume Sainthillier, retour à l’accueil">
           {{ $logo := resources.Get "svg/logo-web.svg" }}
           {{ $logo.Content | safeHTML }}
         </a>
