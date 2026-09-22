@@ -1,6 +1,6 @@
 ---
 title: 'Développeur Web freelance à Toulouse'
-description: 'Développeur web freelance à Toulouse depuis 2018, spécialisé PHP et Symfony : applications web sur mesure, de la conception à la maintenance.'
+description: 'Développeur web freelance PHP / Symfony à Toulouse : missions de 2 jours à 2 ans, sur site ou en télétravail. TJM de 450 à 500 € HT ou forfait sur devis.'
 layout: homepage
 skills:
     - name: PHP
