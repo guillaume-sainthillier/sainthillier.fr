@@ -304,6 +304,12 @@
                                 &nbsp;Visiter
                             </a>
                             {{ end }}
+                            {{ with .case_study }}
+                            <a href="{{ . }}" class="btn btn-secondary">
+                                <i data-lucide="file-text"></i>
+                                &nbsp;Étude de cas<span class="sr-only"> {{ $realisation.nom }} sur silarhi.fr</span>
+                            </a>
+                            {{ end }}
                             <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">
                                 <i data-lucide="x"></i>
                                 &nbsp;Fermer
