@@ -7,6 +7,10 @@ HUGO_ENV = "production"
 HUGO_ENABLEGITINFO = "true"
 HUGO_EXTENDED = "true"
 
+# Build previews against their own URL so absolute links (canonical, og:image, JSON-LD) resolve on the preview
+[context.deploy-preview]
+command = "yarn build && yarn hugo --baseURL $DEPLOY_PRIME_URL"
+
 [[redirects]]
   from = "/cgv"
   to = "/conditions-generales-de-vente/"
