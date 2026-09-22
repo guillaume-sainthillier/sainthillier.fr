@@ -19,6 +19,25 @@ HUGO_EXTENDED = "true"
   status = 301
   force = true
 
+# Former CV URLs (fingerprinted or old build path), all indexed by Google
+[[redirects]]
+  from = "/build/pdf/CV-SAINTHILLIER-Guillaume.pdf"
+  to = "/pdf/CV-SAINTHILLIER-Guillaume.pdf"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pdf/CV-SAINTHILLIER-Guillaume.fac5d7b15bb5d8cba8a08d4758c1563e.pdf"
+  to = "/pdf/CV-SAINTHILLIER-Guillaume.pdf"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pdf/CV-SAINTHILLIER-Guillaume.152a671a1d40431b05f5bce47faec02e989018a82f707c0d109430fb0542f1ef.pdf"
+  to = "/pdf/CV-SAINTHILLIER-Guillaume.pdf"
+  status = 301
+  force = true
+
 # Catch-all must stay last: Netlify applies the first matching rule
 [[redirects]]
   from = "/*"
