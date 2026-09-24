@@ -943,9 +943,9 @@ lite-youtube-embed@^0.3.3:
   integrity sha512-aXgxpwK7AIW58GEbRzA8EYaY4LWvF3FKak6B9OtSJmuNyLhX2ouD4cMTxz/yR5HFInhknaYd2jLWOTRTvT8oAw==
 
 lucide@^1.0.0:
-  version "1.47.0"
-  resolved "https://registry.yarnpkg.com/lucide/-/lucide-1.47.0.tgz#231c0d46df4dad5a16da6ab76a0aedfa26ae2719"
-  integrity sha512-gJoVJM5fvpBDGZTvhpJS9IEurz85HbD+wgOlCkXCIw35tHrqTxSdIYUN9sXvs7Aw3NCl67A+nlotNyoU4u7zOQ==
+  version "1.48.0"
+  resolved "https://registry.yarnpkg.com/lucide/-/lucide-1.48.0.tgz#082ccfb148bef872eb63e5af0069a2a90e01402a"
+  integrity sha512-8FglIlGkcIItJjJfLUiqAufUCdbtnTOsdG02/fxXd4oIt+NrcrEVH8t0ZcKAfawxHckorO5qJ9XDfnJbdf0TOg==
 
 magic-string@^0.30.21:
   version "0.30.21"
