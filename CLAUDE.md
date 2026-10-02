@@ -19,10 +19,11 @@ yarn build            # Build production assets
 yarn build:hugo       # Build assets + Hugo site (used by Netlify)
 
 # Code Quality
-yarn lint             # Run ESLint
-yarn lint:fix         # Fix ESLint issues
-yarn format           # Check Prettier formatting
-yarn format:fix       # Fix formatting issues
+yarn lint             # Biome check + fix on assets/
+yarn lint-ci          # Biome check, no writes (CI)
+yarn prettier         # Prettier write on CSS/MD/YAML
+yarn prettier:check   # Prettier check (CI)
+yarn format           # yarn lint && yarn prettier
 yarn knip             # Check for unused dependencies/exports
 ```
 
@@ -32,7 +33,6 @@ yarn knip             # Check for unused dependencies/exports
 
 - **Vite** (`vite.config.js`) bundles JS/CSS from `assets/` to `static/build/`
 - Generates `data/entrypoints.json` for Hugo to consume asset paths
-- **Legacy support** via `@vitejs/plugin-legacy` for older browsers (IE11+)
 - **Hugo** generates static HTML from `layouts/` and `content/` to `public/`
 
 ### Frontend Structure
@@ -40,7 +40,7 @@ yarn knip             # Check for unused dependencies/exports
 - **Entry point**: `assets/js/app.modern.js` → imports `app.js` and `icons.js`
 - **CSS**: `assets/css/app.css` uses Tailwind CSS v4 with component files in `components/`
 - **Custom components**: `SimpleModal.js`, `SimpleCollapse.js` (Bootstrap-like data-bs-\* API without Bootstrap)
-- **Third-party**: WordCloud for skills visualization, lazysizes for lazy loading, lite-youtube-embed for videos
+- **Third-party**: WordCloud for skills visualization, lite-youtube-embed for videos; images use native `loading="lazy"`
 
 ### Hugo Templates
 
@@ -62,4 +62,4 @@ Site deploys to Netlify automatically. Build command: `yarn build:hugo`. Publish
 Husky runs `lint-staged` on commit, which:
 
 - Runs Prettier on CSS/MD files
-- Runs ESLint with auto-fix on JS files
+- Runs Biome with auto-fix on JS/JSON files
