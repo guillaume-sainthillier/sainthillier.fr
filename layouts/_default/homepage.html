@@ -1,11 +1,25 @@
 {{- define "page-id" -}}page-home{{- end -}}
 {{ define "main" }}
 <!-- Header -->
-{{ $headerImg := resources.Get "images/header-bg.jpg" }}
-{{ if $headerImg }}
-{{ $headerImgResized := $headerImg.Fill "1900x1250" }}
-{{ $headerImgWebP := $headerImgResized.Resize "1900x webp q10" | resources.Fingerprint "md5" }}
-<header class="masthead" style="background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7)), url('{{ $headerImgWebP.RelPermalink }}')">
+{{ if resources.Get "images/header-bg.jpg" }}
+<header class="masthead">
+{{/*
+  Decorative full-screen background, so not an LCP candidate (Chrome ignores full-viewport images): the
+  heading stays the LCP element. q10 is deliberate under the dark overlay, and the widths stop short of
+  device-pixel-perfect sizes for the same reason. Portrait screens only show the middle of the wide
+  image (object-fit: cover), so they get a centred 3:5 crop instead.
+  sizes: below the image's 1.53 ratio, cover makes it as wide as 153% of the viewport height.
+*/}}
+{{ partial "responsive-image" (dict
+  "src" "images/header-bg.jpg"
+  "class" "masthead-bg"
+  "priority" true
+  "width" 1900
+  "quality" 10
+  "widths" (slice 960 1280 1600 1900)
+  "sizes" "(max-aspect-ratio: 3/2) 153vh, 100vw"
+  "sources" (slice (dict "media" "(max-aspect-ratio: 1/1)" "width" 3 "height" 5 "widths" (slice 480 750) "sizes" "(max-aspect-ratio: 3/5) 60vh, 100vw"))
+) }}
 <div class="masthead-content">
     <div class="container">
         <div class="intro-text">
