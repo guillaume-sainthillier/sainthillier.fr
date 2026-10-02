@@ -25,6 +25,7 @@ yarn prettier         # Prettier write on CSS/MD/YAML
 yarn prettier:check   # Prettier check (CI)
 yarn format           # yarn lint && yarn prettier
 yarn knip             # Check for unused dependencies/exports
+yarn skills-cloud     # Regenerate the skills word cloud SVGs (also run by yarn build / yarn dev)
 ```
 
 ## Architecture
@@ -40,7 +41,8 @@ yarn knip             # Check for unused dependencies/exports
 - **Entry point**: `assets/js/app.modern.js` → imports `app.js` and `icons.js`
 - **CSS**: `assets/css/app.css` uses Tailwind CSS v4 with component files in `components/`
 - **Custom components**: `SimpleModal.js`, `SimpleCollapse.js` (Bootstrap-like data-bs-\* API without Bootstrap)
-- **Third-party**: WordCloud for skills visualization, lite-youtube-embed for videos; images use native `loading="lazy"`
+- **Third-party**: lite-youtube-embed for videos; images use native `loading="lazy"`
+- **Skills word cloud**: packed at build time by `scripts/skills-cloud.js` (`yarn skills-cloud`, part of `yarn build`/`yarn dev`) from the `skills` front matter of `content/_index.md`: words drawn with the Arimo font's glyphs, placed on a collision grid along a spiral (seeded, so stable between builds), written as `assets/generated/skills-cloud-{wide,narrow}.svg` plus `data/skillsCloud.json` (sizes). `homepage.html` shows them in a `<picture>` and keeps the words as a visually hidden list. No JS at runtime
 
 ### Hugo Templates
 

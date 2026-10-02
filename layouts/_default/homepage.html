@@ -187,10 +187,27 @@
                 expertise se concentre principalement autour du langage PHP et du framework Symfony.</h3>
         </div>
 
-        <div id="skills" data-skills="{{ .Params.skills | jsonify }}">
-            <ul>
-                {{ range $skill := .Params.skills }}
-                <li><strong>{{ $skill.name }} à Toulouse</strong></li>
+        {{/*
+          Word cloud packed at build time by scripts/skills-cloud.js (run by yarn build): an SVG per box shape,
+          the narrow one for phones. The words stay in the page as a list for search engines and screen readers,
+          visible if the SVGs have not been generated (plain hugo server).
+        */}}
+        {{ $cloudSize := hugo.Data.skillsCloud }}
+        {{ $cloudWide := resources.Get "generated/skills-cloud-wide.svg" }}
+        {{ $cloudNarrow := resources.Get "generated/skills-cloud-narrow.svg" }}
+        {{ $hasCloud := and $cloudSize $cloudWide $cloudNarrow }}
+        <div id="skills">
+            {{ if $hasCloud }}
+            {{ $cloudWide = $cloudWide | resources.Fingerprint "md5" }}
+            {{ $cloudNarrow = $cloudNarrow | resources.Fingerprint "md5" }}
+            <picture>
+                <source media="(max-width: 575px)" srcset="{{ $cloudNarrow.RelPermalink }}" width="{{ $cloudSize.narrow.width }}" height="{{ $cloudSize.narrow.height }}">
+                <img src="{{ $cloudWide.RelPermalink }}" alt="" width="{{ $cloudSize.wide.width }}" height="{{ $cloudSize.wide.height }}" loading="lazy" decoding="async">
+            </picture>
+            {{ end }}
+            <ul aria-label="Compétences"{{ if $hasCloud }} class="sr-only"{{ end }}>
+                {{ range sort .Params.skills "weight" "desc" }}
+                <li>{{ .name }}</li>
                 {{ end }}
             </ul>
         </div>

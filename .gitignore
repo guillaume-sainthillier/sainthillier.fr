@@ -4,6 +4,7 @@
 /static/build
 /static/build_legacy
 /data/
+/assets/generated/
 # Local Netlify folder
 .netlify
 .hugo_build.lock
