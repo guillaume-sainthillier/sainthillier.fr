@@ -12,6 +12,14 @@
   - width: target width (optional, uses original if not set)
   - height: target height (optional, uses original if not set)
   - sizes: sizes attribute for responsive images (default: "100vw")
+  - quality: WebP quality, 1-100 (optional, Hugo's default otherwise)
+  - widths: explicit srcset widths, replacing the automatic breakpoints (optional, capped to the original width)
+  - sources: art direction, a slice of dicts rendered as <source> before the default image (optional):
+      media (required), width + height (crop ratio, centred), widths (srcset), sizes (default "100vw")
+
+  Every size is served as WebP through <source type="image/webp">. Browsers without WebP (Safari < 14 or on
+  macOS < 11, old Firefox ESR) skip those sources and get a single image in the original format at the display
+  width: not responsive, but never missing, for one extra URL per image instead of a second srcset.
 */}}
 
 {{ $src := .src }}
@@ -21,6 +29,9 @@
 {{ $targetWidth := .width | default 0 }}
 {{ $targetHeight := .height | default 0 }}
 {{ $sizesAttr := .sizes | default "100vw" }}
+{{ $qualitySpec := "" }}
+{{ with .quality }}{{ $qualitySpec = printf " q%d" . }}{{ end }}
+{{ $sources := .sources | default slice }}
 
 {{ $originalImg := resources.Get $src }}
 
@@ -61,33 +72,42 @@
   {{ $displayWidth = int (mul $ratio (float $displayHeight)) }}
 {{ end }}
 
-{{/* Breakpoints for responsive srcset (including small sizes for logos/avatars) */}}
-{{ $breakpoints := slice 32 48 64 96 128 256 384 640 750 828 1080 1200 1920 2048 3840 }}
 {{ $validSizes := slice }}
-
-{{/* Calculate max width for high DPI displays (2x for Retina) */}}
-{{ $maxDPIWidth := mul $displayWidth 2 }}
-{{/* But don't exceed the original image dimensions */}}
-{{ if gt $maxDPIWidth $originalImg.Width }}
-  {{ $maxDPIWidth = $originalImg.Width }}
-{{ end }}
-
-{{/* Include breakpoints up to 2x the display width (for high DPI) */}}
-{{ range $breakpoints }}
-  {{ if le . $maxDPIWidth }}
-    {{ $validSizes = $validSizes | append . }}
+{{ with .widths }}
+  {{/* Explicit widths: keep those the original image can provide */}}
+  {{ range . }}
+    {{ if le . $originalImg.Width }}
+      {{ $validSizes = $validSizes | append . }}
+    {{ end }}
   {{ end }}
-{{ end }}
+{{ else }}
+  {{/* Breakpoints for responsive srcset (including small sizes for logos/avatars) */}}
+  {{ $breakpoints := slice 32 48 64 96 128 256 384 640 750 828 1080 1200 1920 2048 3840 }}
 
-{{/* Always include the full display width if not already in the list (and not exceeding original) */}}
-{{ if and (not (in $validSizes $displayWidth)) (le $displayWidth $originalImg.Width) }}
-  {{ $validSizes = $validSizes | append $displayWidth }}
-{{ end }}
+  {{/* Calculate max width for high DPI displays (2x for Retina) */}}
+  {{ $maxDPIWidth := mul $displayWidth 2 }}
+  {{/* But don't exceed the original image dimensions */}}
+  {{ if gt $maxDPIWidth $originalImg.Width }}
+    {{ $maxDPIWidth = $originalImg.Width }}
+  {{ end }}
 
-{{/* Include 2x version for Retina displays (capped at original size) */}}
-{{ $width2x := mul $displayWidth 2 }}
-{{ if and (le $width2x $originalImg.Width) (not (in $validSizes $width2x)) }}
-  {{ $validSizes = $validSizes | append $width2x }}
+  {{/* Include breakpoints up to 2x the display width (for high DPI) */}}
+  {{ range $breakpoints }}
+    {{ if le . $maxDPIWidth }}
+      {{ $validSizes = $validSizes | append . }}
+    {{ end }}
+  {{ end }}
+
+  {{/* Always include the full display width if not already in the list (and not exceeding original) */}}
+  {{ if and (not (in $validSizes $displayWidth)) (le $displayWidth $originalImg.Width) }}
+    {{ $validSizes = $validSizes | append $displayWidth }}
+  {{ end }}
+
+  {{/* Include 2x version for Retina displays (capped at original size) */}}
+  {{ $width2x := mul $displayWidth 2 }}
+  {{ if and (le $width2x $originalImg.Width) (not (in $validSizes $width2x)) }}
+    {{ $validSizes = $validSizes | append $width2x }}
+  {{ end }}
 {{ end }}
 
 {{/* Sort and deduplicate validSizes to avoid generating duplicate images */}}
@@ -102,38 +122,46 @@
 {{ end }}
 {{ $validSizes = $uniqueSizes }}
 
-{{/* Build srcset strings for WebP and fallback - ALL from original image */}}
+{{/* Build the WebP srcset from the ORIGINAL image */}}
 {{ $webpSrcset := slice }}
-{{ $fallbackSrcset := slice }}
-
 {{ range $validSizes }}
-  {{/* Generate WebP version from ORIGINAL image (good compression, wide support) */}}
-  {{ $resizedWebP := $originalImg.Resize (printf "%dx webp" .) | resources.Fingerprint "md5" }}
+  {{ $resizedWebP := $originalImg.Resize (printf "%dx webp%s" . $qualitySpec) | resources.Fingerprint "md5" }}
   {{ $webpSrcset = $webpSrcset | append (printf "%s %dw" $resizedWebP.RelPermalink .) }}
-
-  {{/* Generate fallback version from ORIGINAL image (original format) */}}
-  {{ $resizedFallback := $originalImg.Resize (printf "%dx" .) | resources.Fingerprint "md5" }}
-  {{ $fallbackSrcset = $fallbackSrcset | append (printf "%s %dw" $resizedFallback.RelPermalink .) }}
 {{ end }}
 
-{{/* Default src using the display width from original image */}}
-{{ $defaultImg := $originalImg.Resize (printf "%dx" $displayWidth) | resources.Fingerprint "md5" }}
+{{/* Fallback for browsers without WebP: the display width, in the original format */}}
+{{ $fallbackImg := $originalImg.Resize (printf "%dx%s" $displayWidth $qualitySpec) | resources.Fingerprint "md5" }}
 
-{{/* Priority images load eagerly, the others rely on native lazy loading */}}
+{{/* Priority images load eagerly at high priority, the others rely on native lazy loading */}}
 <picture>
+  {{ range $sources }}
+    {{ $source := . }}
+    {{ $sourceSrcset := slice }}
+    {{ range $source.widths }}
+      {{ $height := div (mul . $source.height) $source.width }}
+      {{ if and (le . $originalImg.Width) (le $height $originalImg.Height) }}
+        {{ $cropped := $originalImg.Fill (printf "%dx%d Center webp%s" . $height $qualitySpec) | resources.Fingerprint "md5" }}
+        {{ $sourceSrcset = $sourceSrcset | append (printf "%s %dw" $cropped.RelPermalink .) }}
+      {{ end }}
+    {{ end }}
   <source
+    type="image/webp"
+    media="{{ $source.media }}"
+    srcset="{{ delimit $sourceSrcset ", " }}"
+    sizes="{{ $source.sizes | default "100vw" }}"
+  >
+  {{ end }}
+  <source
+    type="image/webp"
     srcset="{{ delimit $webpSrcset ", " }}"
     sizes="{{ $sizesAttr }}"
-    type="image/webp"
   >
   <img
-    srcset="{{ delimit $fallbackSrcset ", " }}"
-    sizes="{{ $sizesAttr }}"
-    src="{{ $defaultImg.RelPermalink }}"
+    src="{{ $fallbackImg.RelPermalink }}"
     alt="{{ $alt }}"
     {{ if $class }}class="{{ $class }}"{{ end }}
     width="{{ $displayWidth }}"
     height="{{ $displayHeight }}"
-    {{ if not $priority }}loading="lazy" decoding="async"{{ end }}
+    {{ if $priority }}fetchpriority="high"{{ else }}loading="lazy" decoding="async"{{ end }}
   >
 </picture>

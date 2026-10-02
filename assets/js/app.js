@@ -1,4 +1,3 @@
-import WordCloud from 'wordcloud'
 import '@webcomponents/custom-elements'
 import 'lite-youtube-embed'
 import 'lite-youtube-embed/src/lite-yt-embed.css'
@@ -76,34 +75,6 @@ function initAlerts() {
                 setTimeout(() => alert.remove(), 150)
             }
         }
-    })
-}
-
-function initWordCloud() {
-    const skills = document.body.querySelector('#skills')
-    if (!skills) return
-
-    const skillsData = JSON.parse(skills.dataset.skills)
-    const list = []
-    Object.values(skillsData).forEach((item) => {
-        list.push([item.name, item.weight])
-    })
-
-    const { width } = skills.getBoundingClientRect()
-    WordCloud(skills, {
-        list,
-        weightFactor(size) {
-            return (size ** 2 * width) / 1024
-        },
-        gridSize: 16,
-        drawOutOfBound: false,
-        shrinkToFit: true,
-        fontFamily: '"Google Sans", sans-serif',
-        fontWeight: 700,
-        color: null,
-        classes(_word, weight) {
-            return `weight-${parseInt(weight, 10)}`
-        },
     })
 }
 
@@ -255,7 +226,6 @@ window.addEventListener('DOMContentLoaded', () => {
     initAlerts()
 
     if (document.body.id === 'page-home') {
-        initWordCloud()
         initContactForm()
         initPortfolioDeepLink()
     }

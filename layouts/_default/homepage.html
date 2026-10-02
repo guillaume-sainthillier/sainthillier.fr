@@ -1,11 +1,25 @@
 {{- define "page-id" -}}page-home{{- end -}}
 {{ define "main" }}
 <!-- Header -->
-{{ $headerImg := resources.Get "images/header-bg.jpg" }}
-{{ if $headerImg }}
-{{ $headerImgResized := $headerImg.Fill "1900x1250" }}
-{{ $headerImgWebP := $headerImgResized.Resize "1900x webp q10" | resources.Fingerprint "md5" }}
-<header class="masthead" style="background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7)), url('{{ $headerImgWebP.RelPermalink }}')">
+{{ if resources.Get "images/header-bg.jpg" }}
+<header class="masthead">
+{{/*
+  Decorative full-screen background, so not an LCP candidate (Chrome ignores full-viewport images): the
+  heading stays the LCP element. q10 is deliberate under the dark overlay, and the widths stop short of
+  device-pixel-perfect sizes for the same reason. Portrait screens only show the middle of the wide
+  image (object-fit: cover), so they get a centred 3:5 crop instead.
+  sizes: below the image's 1.53 ratio, cover makes it as wide as 153% of the viewport height.
+*/}}
+{{ partial "responsive-image" (dict
+  "src" "images/header-bg.jpg"
+  "class" "masthead-bg"
+  "priority" true
+  "width" 1900
+  "quality" 10
+  "widths" (slice 960 1280 1600 1900)
+  "sizes" "(max-aspect-ratio: 3/2) 153vh, 100vw"
+  "sources" (slice (dict "media" "(max-aspect-ratio: 1/1)" "width" 3 "height" 5 "widths" (slice 480 750) "sizes" "(max-aspect-ratio: 3/5) 60vh, 100vw"))
+) }}
 <div class="masthead-content">
     <div class="container">
         <div class="intro-text">
@@ -187,10 +201,27 @@
                 expertise se concentre principalement autour du langage PHP et du framework Symfony.</h3>
         </div>
 
-        <div id="skills" data-skills="{{ .Params.skills | jsonify }}">
-            <ul>
-                {{ range $skill := .Params.skills }}
-                <li><strong>{{ $skill.name }} à Toulouse</strong></li>
+        {{/*
+          Word cloud packed at build time by scripts/skills-cloud.js (run by yarn build): an SVG per box shape,
+          the narrow one for phones. The words stay in the page as a list for search engines and screen readers,
+          visible if the SVGs have not been generated (plain hugo server).
+        */}}
+        {{ $cloudSize := hugo.Data.skillsCloud }}
+        {{ $cloudWide := resources.Get "generated/skills-cloud-wide.svg" }}
+        {{ $cloudNarrow := resources.Get "generated/skills-cloud-narrow.svg" }}
+        {{ $hasCloud := and $cloudSize $cloudWide $cloudNarrow }}
+        <div id="skills">
+            {{ if $hasCloud }}
+            {{ $cloudWide = $cloudWide | resources.Fingerprint "md5" }}
+            {{ $cloudNarrow = $cloudNarrow | resources.Fingerprint "md5" }}
+            <picture>
+                <source media="(max-width: 575px)" srcset="{{ $cloudNarrow.RelPermalink }}" width="{{ $cloudSize.narrow.width }}" height="{{ $cloudSize.narrow.height }}">
+                <img src="{{ $cloudWide.RelPermalink }}" alt="" width="{{ $cloudSize.wide.width }}" height="{{ $cloudSize.wide.height }}" loading="lazy" decoding="async">
+            </picture>
+            {{ end }}
+            <ul aria-label="Compétences"{{ if $hasCloud }} class="sr-only"{{ end }}>
+                {{ range sort .Params.skills "weight" "desc" }}
+                <li>{{ .name }}</li>
                 {{ end }}
             </ul>
         </div>

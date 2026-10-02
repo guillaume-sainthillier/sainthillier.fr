@@ -15,8 +15,8 @@ Design inspired by [BlackrockDigital agency template](https://github.com/StartBo
 - **[Vite](https://vitejs.dev/)** - Modern build tool for JavaScript and CSS bundling
 - **[Tailwind CSS v4](https://tailwindcss.com/)** - Utility-first CSS framework
 - **[Lucide](https://lucide.dev/)** - SVG icons (only the icons used are imported, see `assets/js/icons.js`)
+- **Skills word cloud** - packed at build time into SVGs by `scripts/skills-cloud.js` ([opentype.js](https://opentype.js.org/) + the [Arimo](https://fonts.google.com/specimen/Arimo) font)
 - **JavaScript libraries:**
-    - [WordCloud](https://github.com/timdream/wordcloud2.js) - Skills visualization
     - [lite-youtube-embed](https://github.com/paulirish/lite-youtube-embed) - Lightweight YouTube embeds
     - [@webcomponents/custom-elements](https://github.com/webcomponents/polyfills/tree/master/packages/custom-elements) -
       Custom Elements polyfill
