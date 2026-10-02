@@ -54,7 +54,13 @@ jobs:
                   cat /tmp/size-pr.json
 
             - name: Post comparison comment
+              # Pull requests from forks get a read-only token and cannot comment.
+              if: github.event.pull_request.head.repo.full_name == github.repository
               uses: actions/github-script@v9
+              # Branch names are attacker-controllable on fork PRs: pass them as data, never as code.
+              env:
+                  BASE_REF: ${{ github.base_ref }}
+                  HEAD_REF: ${{ github.head_ref }}
               with:
                   script: |
                       const fs = require('fs');
@@ -91,7 +97,7 @@ jobs:
                         table += `| ${entry.name} | ${baseKB} kB | ${prKB} kB | ${diffStr} |\n`;
                       }
 
-                      const body = `## 📦 Bundle Size Report\n\n${table}\n\n<sub>Comparing \`${{ github.base_ref }}\` (base) with \`${{ github.head_ref }}\` (PR)</sub>`;
+                      const body = `## 📦 Bundle Size Report\n\n${table}\n\n<sub>Comparing \`${process.env.BASE_REF}\` (base) with \`${process.env.HEAD_REF}\` (PR)</sub>`;
 
                       // Find existing comment
                       const { data: comments } = await github.rest.issues.listComments({
