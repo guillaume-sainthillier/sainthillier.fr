@@ -9,10 +9,16 @@ on:
 permissions:
     pull-requests: write
 
+# Supersede outdated runs of a pull request; push runs (head_ref empty) are never cancelled.
+concurrency:
+    group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+    cancel-in-progress: true
+
 jobs:
     size:
         name: Bundle size
         runs-on: ubuntu-latest
+        timeout-minutes: 15
         steps:
             - name: Setup Node.js
               uses: actions/setup-node@v7
