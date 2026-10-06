@@ -17,6 +17,7 @@ yarn hugo:dev         # Run Hugo dev server with drafts enabled
 # Production
 yarn build            # Build production assets
 yarn build:hugo       # Build assets + Hugo site (used by Netlify)
+yarn build:hugo:preview  # Same, with drafts and future content
 
 # Code Quality
 yarn lint             # Biome check + fix on assets/
@@ -53,7 +54,7 @@ yarn skills-cloud     # Regenerate the skills word cloud SVGs (also run by yarn 
 
 ### Data Flow
 
-Vite build → `static/build/manifest.json` → custom plugin generates `data/entrypoints.json` → Hugo reads entrypoints → injects into HTML templates
+Vite build → custom `generate-entrypoints` plugin (`vite.config.js`) writes `data/entrypoints.json` → Hugo reads entrypoints → injects into HTML templates
 
 ## Deployment
 
@@ -63,5 +64,7 @@ Site deploys to Netlify automatically. Build command: `yarn build:hugo`. Publish
 
 Husky runs `lint-staged` on commit, which:
 
-- Runs Prettier on CSS/MD files
-- Runs Biome with auto-fix on JS/JSON files
+- Runs Biome (`biome check --write`) on JS/JSON files
+- Runs Prettier on CSS/MD/YAML files
+
+CI (`.github/workflows/continuous-integration.yml`) runs `yarn lint-ci`, `yarn prettier:check` and `yarn knip`.
