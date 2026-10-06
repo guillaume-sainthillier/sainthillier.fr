@@ -543,7 +543,7 @@
     "@tailwindcss/oxide-win32-arm64-msvc" "4.3.3"
     "@tailwindcss/oxide-win32-x64-msvc" "4.3.3"
 
-"@tailwindcss/vite@^4.1.18":
+"@tailwindcss/vite@^4.3.3":
   version "4.3.3"
   resolved "https://registry.yarnpkg.com/@tailwindcss/vite/-/vite-4.3.3.tgz#1f4037badcb5e6c6bb574d3d8a0172c83f26b97f"
   integrity sha512-yYU8cogLeSh/ms2jh8Fj7jaba/EWa7Ja6GoUqYZaraEuCI5YS6ms6ObZgjjedm+jm6XZjdNRWBpPP6Z86oOxcw==
@@ -559,7 +559,7 @@
   dependencies:
     tslib "^2.4.0"
 
-"@types/node@^24.0.0":
+"@types/node@^24.19.1":
   version "24.19.1"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-24.19.1.tgz#3a1c3ed9e9fc94fe48d4a72d83dfd0bfcf379c62"
   integrity sha512-aS3/DG0oM05K0RIXXP+hKjinGG5IgSSVGzswZxW3O0sS3pH4/fycXundUC9XsszgKCk4gHXylTEK6hyFxVxnoQ==
@@ -848,10 +848,10 @@ jiti@^2.7.0:
   resolved "https://registry.yarnpkg.com/jiti/-/jiti-2.7.0.tgz#974228f2f4ca2bc21885a1797b45fea68e950c64"
   integrity sha512-AC/7JofJvZGrrneWNaEnJeOLUx+JlGt7tNa0wZiRPT4MY1wmfKjt2+6O2p2uz2+skll8OZZmJMNqeke7kKbNgQ==
 
-knip@^6.0.0:
-  version "6.39.0"
-  resolved "https://registry.yarnpkg.com/knip/-/knip-6.39.0.tgz#f8650b907519ebe3c12ce35c380b539cf592fa4b"
-  integrity sha512-Y7g6Ve1ATMox1u1v+gx3z9LTlvzVLTJISm/LVn9TgBU4qc7OoC63AWGO8qCFPVDDdaqlYdXkDDvvO1METBfTRw==
+knip@^6.40.0:
+  version "6.40.0"
+  resolved "https://registry.yarnpkg.com/knip/-/knip-6.40.0.tgz#daa77654029492f4ab5aabe601c81b8fb09f4821"
+  integrity sha512-5Lp/ANJu3AkW5f+J+2QG14z7xKZGi/ybb5MU1EWjeGdt6MpuIaLpLFiyBi0ZKryTiuTHiJqo/WKJRaWYimvavw==
   dependencies:
     fdir "^6.5.0"
     formatly "^0.7.0"
@@ -1015,7 +1015,7 @@ lightningcss@^1.33.0:
     lightningcss-win32-arm64-msvc "1.33.0"
     lightningcss-win32-x64-msvc "1.33.0"
 
-lint-staged@>=16.2.6:
+lint-staged@>=17.6.0:
   version "17.6.0"
   resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-17.6.0.tgz#756fa50b4d4d9032ab05f64ef899eee81e44d421"
   integrity sha512-nOhBfYkZEwkFtNzD5pK9s9LkcWoxJ+whLzEnhqi9nl7zTB5n7tg8+9iYgMGx2Wm3VlLu8cbNj0RACzY+nWi5iQ==
@@ -1026,12 +1026,12 @@ lint-staged@>=16.2.6:
   optionalDependencies:
     yaml "^2.9.1"
 
-lite-youtube-embed@^0.3.3:
+lite-youtube-embed@^0.3.4:
   version "0.3.4"
   resolved "https://registry.yarnpkg.com/lite-youtube-embed/-/lite-youtube-embed-0.3.4.tgz#f80f32f4944a424dd9af878369c8dbed1447af9e"
   integrity sha512-aXgxpwK7AIW58GEbRzA8EYaY4LWvF3FKak6B9OtSJmuNyLhX2ouD4cMTxz/yR5HFInhknaYd2jLWOTRTvT8oAw==
 
-lucide@^1.0.0:
+lucide@^1.52.0:
   version "1.52.0"
   resolved "https://registry.yarnpkg.com/lucide/-/lucide-1.52.0.tgz#9a55d2d24b89bed07196fefac31e14bfc87c6657"
   integrity sha512-XlP0U+m3seobjTPfT0Ybg9YqJeTwSxx1I6R2Ty7vwpA/4HtibMbV28p9tW7AnIwb77YkTboK9x/OPBEqGAzCFg==
@@ -1158,12 +1158,12 @@ postcss@^8.5.28:
     picocolors "^1.1.1"
     source-map-js "^1.2.1"
 
-prettier-plugin-tailwindcss@^0.8.0:
+prettier-plugin-tailwindcss@^0.8.1:
   version "0.8.1"
   resolved "https://registry.yarnpkg.com/prettier-plugin-tailwindcss/-/prettier-plugin-tailwindcss-0.8.1.tgz#bb30f2794dbaa2ef0d36e39ebc258c8c03d8f0c3"
   integrity sha512-iaFMYqDsE4ffdDkn5qup0j5f2aCEBFZrdrZnvu9QKTlWx/iGPeQ4HHu7b7fCPMxeo9nwQBiOAh2nSypdFYWJkw==
 
-prettier@^3.6.2:
+prettier@^3.9.9:
   version "3.9.9"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-3.9.9.tgz#09b826918c91cd4cbc80e0cbd1d2a922ff04f233"
   integrity sha512-Z/CJHIkdujO/OtN7nXUii0Rf3VT5SRuhjBA82Xvu2XhBUgX3nhP67T0LHceBdQLex7OOFGTox+Q5Yg8Jk2Qivg==
@@ -1248,7 +1248,7 @@ svgo@^4:
     picocolors "^1.1.1"
     sax "1.6.1"
 
-tailwindcss@4.3.3, tailwindcss@^4.1.18:
+tailwindcss@4.3.3, tailwindcss@^4.3.3:
   version "4.3.3"
   resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-4.3.3.tgz#c006861611c213c1877893ab5b23daa16be2bb55"
   integrity sha512-gOhV3P7ufE62QDGg1zVaTgCR+EtPv92k2nIhVcVKcLmxT1sUBsQGhnZj175j+MqRt4zLF7ic+sCYjfhxMxj7YQ==
@@ -1269,7 +1269,7 @@ tar@^7.5.15:
     minizlib "^3.1.0"
     yallist "^5.0.0"
 
-terser@^5.37.0:
+terser@^5.51.2:
   version "5.51.2"
   resolved "https://registry.yarnpkg.com/terser/-/terser-5.51.2.tgz#555912425a7f2ff7737425c3718fa76c7069f6ef"
   integrity sha512-bWnjSNscmuI+GJze6ZupnHP8G/cTcsJF+bXCeQknk2SHQsgbNJnLrqiH9jZ2W4STPVXH2mDKKRX3iwPhc9Cn/Q==
@@ -1297,7 +1297,7 @@ tslib@^2.4.0, tslib@^2.8.1:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.8.1.tgz#612efe4ed235d567e8aba5f2a5fab70280ade83f"
   integrity sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==
 
-typescript@^7.0.0:
+typescript@^7.0.2:
   version "7.0.2"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-7.0.2.tgz#9ec773d7954a8c182c17cc5bbd575aa28bc51582"
   integrity sha512-8FYau96o3NKOhbjKi/qNvG/W5jhzxkbdm5sj9AbZ/5T5sWqn3hJgLfGx27sRKZWTvyzCP8dLRBTf5tBTSRVUNA==
