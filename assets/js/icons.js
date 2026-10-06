@@ -1,5 +1,4 @@
 import {
-    ArrowRight,
     CalendarDays,
     Check,
     ChevronRight,
@@ -30,7 +29,6 @@ createIcons({
         Mail,
         FileText,
         ChevronRight,
-        ArrowRight,
         CalendarDays,
         ClipboardList,
         Hourglass,
