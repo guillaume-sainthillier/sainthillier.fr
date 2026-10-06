@@ -1,7 +1,38 @@
-import { Check, ChevronRight, Clock, createIcons, FileText, Globe, Mail, MapPin, Menu, Phone, Plus, X } from 'lucide'
+import {
+    CalendarDays,
+    Check,
+    ChevronRight,
+    ClipboardList,
+    Clock,
+    createIcons,
+    FileText,
+    Globe,
+    Hourglass,
+    Mail,
+    MapPin,
+    Menu,
+    Phone,
+    Plus,
+    X,
+} from 'lucide'
 
 createIcons({
-    icons: { Menu, Check, X, Plus, Globe, MapPin, Clock, Phone, Mail, FileText, ChevronRight },
+    icons: {
+        Menu,
+        Check,
+        X,
+        Plus,
+        Globe,
+        MapPin,
+        Clock,
+        Phone,
+        Mail,
+        FileText,
+        ChevronRight,
+        CalendarDays,
+        ClipboardList,
+        Hourglass,
+    },
     attrs: {
         width: '1em',
         height: '1em',

@@ -1,6 +1,6 @@
 ---
 title: 'Développeur Web freelance à Toulouse'
-description: 'Développeur web freelance à Toulouse depuis 2018, spécialisé PHP et Symfony : applications web sur mesure, de la conception à la maintenance.'
+description: 'Développeur web freelance PHP / Symfony à Toulouse : missions de 2 jours à 2 ans, sur site ou en télétravail. TJM de 450 à 500 € HT ou forfait sur devis.'
 layout: homepage
 skills:
     - name: PHP
@@ -135,6 +135,7 @@ realisations:
               <li><i data-lucide="chevron-right" class="list-icon"></i>Assurer le suivi de leur facturation</li>
           </ul>
       url: https://cibaru.fr
+      case_study: https://silarhi.fr/projets/cibaru
       image: images/realisations/cibaru.jpg
       keywords:
           - PHP
@@ -156,6 +157,7 @@ realisations:
               <li><i data-lucide="chevron-right" class="list-icon"></i>Se mettre en conformité avec la nouvelle tarification de l'eau en 2025</li>
           </ul>
       url: https://netisio.fr
+      case_study: https://silarhi.fr/projets/netisio
       image: images/realisations/netisio.jpg
       keywords:
           - PHP
@@ -178,6 +180,7 @@ realisations:
               <li><i data-lucide="chevron-right" class="list-icon"></i>Suivre la bonne réalisation de ses opérations bancaires</li>
           </ul>
       url: https://solution-sepa.fr
+      case_study: https://silarhi.fr/projets/solution-sepa
       image: images/realisations/solution-sepa.jpg
       keywords:
           - Reprise de projet
@@ -206,6 +209,7 @@ realisations:
               <li><i data-lucide="chevron-right" class="list-icon"></i>Préparer le bail une fois la candidature acceptée</li>
           </ul>
       url: https://dosloc.fr
+      case_study: https://silarhi.fr/projets/dosloc
       image: images/realisations/dosloc.jpg
       keywords:
           - PHP
@@ -227,6 +231,7 @@ realisations:
               <li><i data-lucide="chevron-right" class="list-icon"></i>Utiliser le protocole EBICS pour récupérer automatiquement les données bancaires et croiser les informations avec les locataires</li>
           </ul>
       url: https://immobilus.fr
+      case_study: https://silarhi.fr/projets/immobilus
       image: images/realisations/immobilus.jpg
       keywords:
           - PHP

@@ -1,0 +1,54 @@
+{{/*
+  Freelance engagement terms (rate, billing, location, duration, availability).
+  Values come from [params.freelance] in config.toml so the page content and the JSON-LD stay in sync.
+
+  Usage: {{ partial "freelance-offer" . }} or {{< freelance-offer >}} in Markdown content.
+*/}}
+{{ $freelance := site.Params.freelance }}
+<div class="freelance-offer">
+    <p class="text-center mb-8">
+        {{ if $freelance.available }}
+        <span class="inline-flex items-center gap-2 rounded-full bg-green-100 px-4 py-1 font-bold text-green-800">
+            <span class="relative flex size-2.5" aria-hidden="true">
+                <span class="absolute inline-flex size-full rounded-full bg-green-500 opacity-75 motion-safe:animate-ping"></span>
+                <span class="relative inline-flex size-2.5 rounded-full bg-green-600"></span>
+            </span>
+            Disponible pour une nouvelle mission
+        </span>
+        {{ else }}
+        <span class="inline-flex items-center gap-2 rounded-full bg-gray-200 px-4 py-1 font-bold text-gray-800">
+            <i data-lucide="calendar-days"></i> En mission actuellement : contactez-moi pour planifier la suivante
+        </span>
+        {{ end }}
+    </p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="flex items-center gap-2 text-lg mb-2"><i data-lucide="calendar-days"></i> En régie</h3>
+                <p class="text-xl font-bold mb-2">{{ $freelance.dailyRateMin }} à {{ $freelance.dailyRateMax }} € HT / jour</p>
+                <p class="text-muted text-left">Pour renforcer votre équipe ou prendre en charge un périmètre technique.</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h3 class="flex items-center gap-2 text-lg mb-2"><i data-lucide="clipboard-list"></i> Au forfait</h3>
+                <p class="text-xl font-bold mb-2">Devis gratuit</p>
+                <p class="text-muted text-left">Pour un projet dont le périmètre et le budget sont fixés à l’avance.</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h3 class="flex items-center gap-2 text-lg mb-2"><i data-lucide="map-pin"></i> Sur site ou à distance</h3>
+                <p class="text-xl font-bold mb-2">Toulouse</p>
+                <p class="text-muted text-left">Dans vos locaux à Toulouse, en télétravail partout ailleurs.</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h3 class="flex items-center gap-2 text-lg mb-2"><i data-lucide="hourglass"></i> Durée</h3>
+                <p class="text-xl font-bold mb-2">2 jours à 2 ans</p>
+                <p class="text-muted text-left">D’une intervention ponctuelle à un accompagnement au long cours.</p>
+            </div>
+        </div>
+    </div>
+</div>

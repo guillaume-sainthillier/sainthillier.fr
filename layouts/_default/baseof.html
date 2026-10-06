@@ -62,6 +62,9 @@
                     <a class="nav-link js-scroll-trigger block" href="/#services">Services</a>
                 </li>
                 <li>
+                    <a class="nav-link js-scroll-trigger block" href="/#pricing">Tarifs</a>
+                </li>
+                <li>
                     <a class="nav-link js-scroll-trigger block" href="/#competences">Compétences</a>
                 </li>
                 <li>
@@ -116,6 +119,11 @@
     <hr />
     <div class="container">
         <ul class="mb-0 list-none">
+            {{ with site.GetPage "/developpeur-symfony-freelance-toulouse" }}
+            <li class="block sm:inline mr-0 sm:mr-2">
+                <a href="{{ .RelPermalink }}">Développeur Symfony freelance</a>
+            </li>
+            {{ end }}
             <li class="block sm:inline mr-0 sm:mr-2">
                 <a href="/mentions-legales/">Mentions légales</a>
             </li>
