@@ -1,0 +1,23 @@
+{{- /*
+  Open Graph, Twitter card and microdata tags, in place of Hugo's embedded opengraph, schema and twitter_cards
+  templates: those read the front matter description as is, without the rate substitution of the "description" partial.
+*/ -}}
+{{- $description := partial "description" . -}}
+{{- $image := index site.Params.images 0 | absURL -}}
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:site_name" content="{{ site.Title }}">
+<meta property="og:title" content="{{ .Title }}">
+<meta property="og:description" content="{{ $description }}">
+<meta property="og:locale" content="{{ replace site.Language.Locale "-" "_" }}">
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+<meta property="og:image" content="{{ $image }}">
+<meta itemprop="name" content="{{ .Title }}">
+<meta itemprop="description" content="{{ $description }}">
+{{- if .IsPage }}
+<meta itemprop="wordCount" content="{{ .WordCount }}">
+{{- end }}
+<meta itemprop="image" content="{{ $image }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="{{ $image }}">
+<meta name="twitter:title" content="{{ .Title }}">
+<meta name="twitter:description" content="{{ $description }}">

@@ -2,14 +2,16 @@
 {{- define "layout-class" -}}layout-page{{- end -}}
 
 {{ define "main" }}
-<section class="section bg-gray-100">
-    <div class="container page-content">
-        {{- .Content -}}
-        {{ with .Params.cta }}
-        <div class="text-center mt-12">
-            <a class="btn btn-primary btn-xl uppercase" href="{{ .url }}">{{ .label }}</a>
+<section class="section">
+    <div class="container">
+        <div class="page-content mx-auto">
+            {{- partial "typography" .Content | safeHTML -}}
+            {{ with .Params.cta }}
+            <div class="mt-12 text-center">
+                <a class="btn btn-accent btn-lg" href="{{ .url }}">{{ .label }}</a>
+            </div>
+            {{ end }}
         </div>
-        {{ end }}
     </div>
 </section>
 {{ end }}

@@ -1,0 +1,2 @@
+{{- /* Contact email from config.toml (params.contact.email), as a mailto link */ -}}
+{{- with site.Params.contact.email }}<a href="mailto:{{ . }}">{{ . }}</a>{{ end -}}

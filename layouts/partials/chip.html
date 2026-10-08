@@ -1,0 +1,25 @@
+{{/*
+  Technology chip, shared by the skills, services and projects sections so every tag list highlights the same way.
+
+  Usage:
+  {{ range .tags }}{{ partial "chip" (dict "tag" .) }}{{ end }}
+
+  Parameters:
+  - tag: a plain name ("Docker"), or a map with a highlight ({ name: Symfony, highlight: primary }) (required)
+    highlight is "primary" (indigo, with a star in the md size) or "accent" (amber)
+  - size: "md" for the larger skills chips (optional, small by default)
+*/}}
+{{- $name := .tag -}}
+{{- $highlight := "" -}}
+{{- if reflect.IsMap .tag -}}
+  {{- $name = .tag.name -}}
+  {{- $highlight = .tag.highlight | default "" -}}
+  {{- if and $highlight (not (in (slice "primary" "accent") $highlight)) -}}
+    {{- errorf "chip partial: unknown highlight %q on %q (use primary or accent)" $highlight $name -}}
+  {{- end -}}
+{{- end -}}
+<li class="chip{{ with .size }} chip-{{ . }}{{ end }}{{ with $highlight }} chip-{{ . }}{{ end }}">
+    {{- if and (eq $highlight "primary") (eq .size "md") }}{{ partial "icon" (dict "name" "star") }}{{ end -}}
+    {{ $name -}}
+</li>
+{{- /* trim */ -}}

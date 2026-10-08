@@ -1,0 +1,6 @@
+{{- /*
+  Daily rate range from [params.freelance] in config.toml, e.g. "450 à 500 € HT".
+  Shared by the {{< freelance-rate >}} shortcode and the "description" partial.
+*/ -}}
+{{- $freelance := site.Params.freelance -}}
+{{- return printf "%v à %v € HT" $freelance.dailyRateMin $freelance.dailyRateMax -}}

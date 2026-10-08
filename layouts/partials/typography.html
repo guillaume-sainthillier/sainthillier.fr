@@ -1,0 +1,13 @@
+{{- /*
+  French typography: binds "?", "!", ";", ":" and "»" to the previous word (and "«" to the next one), so these
+  signs never start a new line. Narrow no-break space (U+202F) before ? ! ; », no-break space (U+00A0) before :.
+
+  Usage: {{ partial "typography" .text }} for front matter text (still escaped by the template),
+  {{ partial "typography" .Content | safeHTML }} for rendered Markdown.
+*/ -}}
+{{- $s := string . -}}
+{{- /* Twice: matches cannot overlap, so in "« Lu » ;" the ";" needs a second pass */ -}}
+{{- range 2 }}{{ $s = replaceRE `(\S) ([?!;»])` "${1}\u202f${2}" $s }}{{ end -}}
+{{- $s = replaceRE `(\S) :` "${1}\u00a0:" $s -}}
+{{- $s = replaceRE `« ` "«\u202f" $s -}}
+{{- return $s -}}

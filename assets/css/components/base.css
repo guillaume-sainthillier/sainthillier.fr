@@ -1,26 +1,17 @@
 /* Base styles */
 @layer base {
+    html {
+        /* Keeps anchored sections clear of the fixed header */
+        scroll-padding-top: 5rem;
+    }
+
     body {
-        font-family: var(--font-body);
+        font-family: var(--font-sans);
+        background-color: var(--color-surface);
+        color: var(--color-on-surface);
         overflow-x: hidden;
-        position: relative;
-    }
-
-    p {
-        line-height: 1.75;
-    }
-
-    a {
-        color: var(--color-primary);
-        text-decoration: none;
-        &:hover,
-        &:active {
-            color: var(--color-primary-hover);
-            text-decoration: underline;
-        }
-        &:focus {
-            outline-color: var(--color-primary-hover);
-        }
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
     }
 
     h1,
@@ -29,45 +20,40 @@
     h4,
     h5,
     h6 {
-        font-family: var(--font-sans);
-        font-weight: var(--font-weight-bold);
-        line-height: 1.2;
+        font-family: var(--font-heading);
+        text-wrap: balance;
     }
 
+    a {
+        color: var(--color-primary);
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    summary:focus-visible {
+        outline: 2px solid var(--color-primary-container);
+        outline-offset: 2px;
+    }
+
+    /* Inline Lucide icons (layouts/partials/icon.html) */
     .lucide {
         display: inline-block;
+        flex-shrink: 0;
+        width: 1em;
+        height: 1em;
         vertical-align: middle;
     }
 
-    hr {
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-    }
-
-    @media (min-width: 992px) {
-        h4 {
-            font-size: 1.5rem;
-        }
-    }
-
-    /* Selection styles */
     ::selection {
-        background: var(--color-primary);
+        background: var(--color-primary-container);
         color: white;
-        text-shadow: none;
-    }
-
-    ::-moz-selection {
-        background: var(--color-primary);
-        color: white;
-        text-shadow: none;
     }
 
     img::selection {
         background: transparent;
     }
 
-    img::-moz-selection {
-        background: transparent;
+    details summary::-webkit-details-marker {
+        display: none;
     }
 }

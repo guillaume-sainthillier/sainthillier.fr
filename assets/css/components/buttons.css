@@ -1,75 +1,94 @@
-/* Button utilities */
+/* Button utilities: combine btn with a size (btn-lg) and a variant (btn-accent, btn-soft, btn-outline) */
 @utility btn {
-    display: inline-block;
-    font-family: var(--font-sans);
-    font-weight: var(--font-weight-bold);
-    text-align: center;
-    vertical-align: middle;
-    user-select: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1.25rem;
     border: 1px solid transparent;
-    padding: 0.375rem 0.75rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    border-radius: 0.375rem;
-    transition:
-        color 0.15s ease-in-out,
-        background-color 0.15s ease-in-out,
-        border-color 0.15s ease-in-out;
-    cursor: pointer;
+    border-radius: 0.5rem;
+    font-family: var(--font-sans);
+    font-size: var(--text-body-sm);
+    line-height: var(--text-body-sm--line-height);
+    font-weight: 600;
+    text-align: center;
     text-decoration: none;
+    cursor: pointer;
+    user-select: none;
+    transition:
+        background-color 0.15s ease-in-out,
+        border-color 0.15s ease-in-out,
+        box-shadow 0.15s ease-in-out,
+        transform 0.15s ease-in-out;
 
     &:disabled,
     &.disabled {
         pointer-events: none;
         opacity: 0.65;
-        cursor: default;
+    }
+
+    .lucide {
+        width: 1.25em;
+        height: 1.25em;
     }
 }
 
-@utility btn-xl {
-    font-size: 18px;
-    padding: 20px 40px;
+@utility btn-lg {
+    padding: 0.75rem 1rem;
+
+    @media (min-width: 40rem) {
+        padding-inline: 2.5rem;
+    }
+
+    font-size: var(--text-body-md);
+    line-height: var(--text-body-md--line-height);
 }
 
-@utility btn-primary {
-    color: var(--color-gray-900);
-    background-color: var(--color-primary);
-    border-color: var(--color-primary);
+/* Amber call to action, for the actions that lead to a contact */
+@utility btn-accent {
+    color: var(--color-on-secondary-fixed);
+    background-color: var(--color-secondary-container);
+    box-shadow: 0 1px 3px rgb(0 0 0 / 0.08);
+
     &:hover,
-    &:focus,
-    &:active {
-        color: var(--color-gray-900);
-        background-color: var(--color-primary-hover);
-        border-color: var(--color-primary-dark);
+    &:focus-visible {
+        color: var(--color-on-secondary-fixed);
+        background-color: var(--color-secondary-fixed-dim);
+        box-shadow: 0 4px 6px -1px rgb(15 23 42 / 0.1);
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+        &:hover {
+            transform: translateY(-2px);
+        }
+
+        &:active {
+            transform: none;
+        }
     }
 }
 
-@utility btn-secondary {
-    color: white;
-    background-color: var(--color-gray-600);
-    border-color: var(--color-gray-600);
+@utility btn-soft {
+    color: var(--color-on-surface);
+    background-color: var(--color-surface-container);
+
     &:hover,
-    &:focus,
-    &:active {
-        color: white;
-        background-color: var(--color-gray-700);
-        border-color: var(--color-gray-800);
+    &:focus-visible {
+        color: var(--color-on-surface);
+        background-color: var(--color-surface-container-highest);
     }
 }
 
-@utility btn-outline-primary {
-    color: var(--color-primary);
-    background-color: transparent;
-    border-color: var(--color-primary);
+@utility btn-outline {
+    color: var(--color-on-surface);
+    background-color: var(--color-surface-card);
+    border-color: var(--color-hairline);
+    box-shadow: 0 1px 2px rgb(15 23 42 / 0.05);
+
     &:hover,
-    &:focus,
-    &:active {
-        color: var(--color-gray-900);
-        background-color: var(--color-primary);
-        border-color: var(--color-primary);
+    &:focus-visible {
+        color: var(--color-on-surface);
+        background-color: var(--color-surface-container-low);
+        border-color: var(--color-primary-container);
     }
-}
-
-@utility text-muted {
-    color: #212529bf;
 }

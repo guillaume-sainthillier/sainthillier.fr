@@ -23,6 +23,24 @@
                 "isPartOf": { "@id": {{ printf "%s#website" $home }} },
                 "mainEntity": { "@id": {{ printf "%s#person" $home }} }
             },
+            {{- with .Params.faq }}
+            {{- $rate := printf "%v à %v € HT / jour" $freelance.dailyRateMin $freelance.dailyRateMax }}
+            {
+                "@type": "FAQPage",
+                "@id": {{ printf "%s#faq" $home }},
+                "inLanguage": "fr-FR",
+                "isPartOf": { "@id": {{ printf "%s#webpage" $home }} },
+                "mainEntity": [
+                    {{- range $i, $item := . }}{{ if $i }},{{ end }}
+                    {
+                        "@type": "Question",
+                        "name": {{ $item.question }},
+                        "acceptedAnswer": { "@type": "Answer", "text": {{ replace $item.answer "{{ rate }}" $rate }} }
+                    }
+                    {{- end }}
+                ]
+            },
+            {{- end }}
             {{- end }}
             {
                 "@type": "Person",
@@ -32,8 +50,8 @@
                 "gender": "male",
                 "url": {{ $home }},
                 "image": {{ $image.Permalink }},
-                "email": "hello@silarhi.fr",
-                "telephone": "+33607275826",
+                "email": {{ site.Params.contact.email }},
+                "telephone": {{ site.Params.contact.phone }},
                 "address": {
                     "@type": "PostalAddress",
                     "addressLocality": "Toulouse",
@@ -72,6 +90,7 @@
                 "sameAs": [
                     {{ site.Params.Social.linkedin }},
                     {{ site.Params.Social.github }},
+                    {{ site.Params.Social.gitlab }},
                     "https://stackoverflow.com/users/7652866/guillaume-sainthillier"
                 ]
             }

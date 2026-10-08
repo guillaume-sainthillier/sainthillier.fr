@@ -1,0 +1,6 @@
+{{- /*
+  Page description (front matter, or the site description from config.toml), where "{{< freelance-rate >}}"
+  is replaced by the daily rate, as in the Markdown content: the rate is only set in [params.freelance].
+*/ -}}
+{{- $description := .Description | default site.Params.description -}}
+{{- return replace $description "{{< freelance-rate >}}" (partial "freelance-rate" .) -}}

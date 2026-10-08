@@ -1,0 +1,7 @@
+{{/*
+  Self-hosted Umami: no cookies and no personal data, so no consent banner, and Do Not Track is not needed.
+  The ~2 kB script is deferred and does not delay the first paint.
+*/}}
+{{ with site.Params.umami }}
+<script defer src="{{ .scriptUrl }}" data-website-id="{{ .websiteId }}" data-domains="{{ .domains }}"></script>
+{{ end }}
