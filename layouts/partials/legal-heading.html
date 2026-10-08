@@ -1,0 +1,14 @@
+{{/*
+  Splits a legal heading such as "1. Présentation du site internet." or "Article 1 : Les parties" into its
+  number and its title, so the legal layout can show the number as a badge.
+
+  Usage: {{ $heading := partial "legal-heading" "Article 1 : Les parties" }} → dict "number" "01" "title" "Les parties"
+  A heading without a number ("Définitions") returns an empty number.
+*/}}
+{{ $text := . | plainify | htmlUnescape | strings.TrimSpace }}
+{{ $match := findRESubmatch `^(?:Article\s+)?(\d+)\s*[.:]\s*(.+?)\.?$` $text 1 }}
+{{ if $match }}
+  {{ $match = index $match 0 }}
+  {{ return dict "number" (printf "%02d" (int (index $match 1))) "title" (index $match 2) }}
+{{ end }}
+{{ return dict "number" "" "title" $text }}

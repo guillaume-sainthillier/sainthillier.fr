@@ -1,9 +1,7 @@
-// eslint-disable-next-line import/no-unresolved
 import { defineConfig } from 'vite'
 import { resolve, dirname } from 'path'
 import { fileURLToPath } from 'url'
 import { writeFileSync, mkdirSync } from 'fs'
-// eslint-disable-next-line import/no-unresolved
 import tailwindcss from '@tailwindcss/vite'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
@@ -55,7 +53,7 @@ export default defineConfig(({ mode }) => {
             manifest: true,
             rollupOptions: {
                 input: {
-                    app: resolve(__dirname, 'assets/js/app.modern.js'),
+                    app: resolve(__dirname, 'assets/js/app.js'),
                 },
                 output: {
                     entryFileNames: isProduction ? '[name].[hash].js' : '[name].js',
@@ -63,6 +61,8 @@ export default defineConfig(({ mode }) => {
                     assetFileNames: isProduction ? '[name].[hash][extname]' : '[name][extname]',
                 },
             },
+            // Keep fonts as files: inlined in the render-blocking CSS, unused subsets (Cyrillic, ...) would still be downloaded
+            assetsInlineLimit: (filePath) => (filePath.endsWith('.woff2') ? false : undefined),
             sourcemap: !isProduction,
             minify: isProduction,
         },

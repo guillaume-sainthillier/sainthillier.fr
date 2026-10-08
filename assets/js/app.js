@@ -1,12 +1,10 @@
-import '@webcomponents/custom-elements'
-import 'lite-youtube-embed'
-import 'lite-youtube-embed/src/lite-yt-embed.css'
-
 import '@/css/app.css'
 
+import initAnalytics, { track } from '@/js/analytics'
 import initNavbar from '@/js/navbar'
+import initPortfolio from '@/js/portfolio'
 import SimpleCollapse from '@/js/SimpleCollapse'
-import SimpleModal from '@/js/SimpleModal'
+import initToc from '@/js/toc'
 
 function initCollapseTogglers() {
     document.addEventListener('click', (e) => {
@@ -18,6 +16,7 @@ function initCollapseTogglers() {
             if (target) {
                 const instance = SimpleCollapse.getOrCreateInstance(target)
                 instance.toggle()
+                toggler.setAttribute('aria-expanded', String(instance.isOpen))
             }
         }
     })
@@ -29,37 +28,12 @@ function initCollapseTogglers() {
                 const instance = SimpleCollapse.getInstance(collapse)
                 if (instance?.isOpen) {
                     instance.hide()
+                    document.body
+                        .querySelector(`[data-bs-target="#${collapse.id}"]`)
+                        ?.setAttribute('aria-expanded', 'false')
                 }
             })
         })
-    })
-}
-
-function initModals() {
-    // Initialize modal triggers
-    document.querySelectorAll('[data-bs-toggle="modal"]').forEach((trigger) => {
-        const targetSelector = trigger.getAttribute('href') || trigger.getAttribute('data-bs-target')
-        const target = document.querySelector(targetSelector)
-        if (target) {
-            trigger.addEventListener('click', (e) => {
-                e.preventDefault()
-                const modal = SimpleModal.getOrCreateInstance(target)
-                modal.show()
-            })
-        }
-    })
-
-    // Initialize modal dismiss buttons
-    document.querySelectorAll('[data-bs-dismiss="modal"]').forEach((button) => {
-        const modal = button.closest('.modal')
-        if (modal) {
-            button.addEventListener('click', () => {
-                const instance = SimpleModal.getInstance(modal)
-                if (instance) {
-                    instance.hide()
-                }
-            })
-        }
     })
 }
 
@@ -92,17 +66,22 @@ function initContactForm() {
                 return
             }
 
-            const name = contactForm.querySelector('#name', contactForm).value
-            const email = contactForm.querySelector('#email', contactForm).value
-            const phone = contactForm.querySelector('#phone', contactForm).value
-            const message = contactForm.querySelector('#message', contactForm).value
+            const name = contactForm.querySelector('#name').value
+            const email = contactForm.querySelector('#email').value
+            const phone = contactForm.querySelector('#phone').value
+            const message = contactForm.querySelector('#message').value
+            const need = contactForm.querySelector('input[name="need"]:checked')?.value ?? 'Non précisé'
+            const timeline = contactForm.querySelector('#timeline').value
             const firstName = name // For Success/Failure Message
 
             const data = {
                 _replyto: email,
+                _subject: `Demande de contact : ${need}`,
                 message: `${name} a fait une demande de contact :
+                        Besoin : ${need}
+                        Calendrier : ${timeline}
                         ${message}
-                        Téléphone : ${phone}
+                        Téléphone : ${phone || 'Non renseigné'}
                         Email : ${email}
                     `,
             }
@@ -113,10 +92,7 @@ function initContactForm() {
 
             // Show loading state
             sendMessageButton.setAttribute('disabled', 'disabled')
-            sendMessageButton.innerHTML = `
-                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                    Envoi en cours...
-                `
+            sendMessageButton.textContent = 'Envoi en cours…'
 
             // Clear any previous server validation errors
             contactForm.querySelectorAll('.server-invalid').forEach((el) => {
@@ -136,9 +112,10 @@ function initContactForm() {
             })
                 .then(async (response) => {
                     if (response.ok) {
+                        track('contact-form', { need, timeline })
                         success.innerHTML = `
                                 <div class="alert alert-success alert-dismissible fade show">
-                                    <strong>Votre message a bien été envoyé.</strong>
+                                    <strong>Votre message a bien été envoyé.</strong> Je vous réponds sous 24h ouvrées.
                                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fermer"></button>
                                 </div>
                             `
@@ -180,6 +157,7 @@ function initContactForm() {
                     }
                 })
                 .catch(() => {
+                    track('contact-form-error', { need })
                     success.innerHTML = `
                             <div class="alert alert-danger alert-dismissible fade show">
                                 <strong>Désolé ${firstName}, on dirait que le message n'a pas pu être envoyé. Merci d'essayer un peu plus tard ou de me contacter directement par téléphone !</strong>
@@ -197,36 +175,32 @@ function initContactForm() {
     )
 }
 
-function initPortfolioDeepLink() {
-    const { hash } = window.location
-    if (!hash) return
+// The selected need adapts the message placeholder and help text (data-placeholder / data-help on each radio)
+function initContactNeeds() {
+    const message = document.body.querySelector('#message')
+    const indicator = document.body.querySelector('#needIndicator')
+    const help = document.body.querySelector('#needHelp')
+    if (!message) return
 
-    const matches = hash.match('portfolio/(.+)')
-    if (matches && matches.length > 1) {
-        const portfolioId = matches[1]
-        const element = document.body.querySelector(`#portfolio-modal-${portfolioId}`)
-        const elementSelector = document.body.querySelector(`.portfolio-link[href="#portfolio-modal-${portfolioId}"]`)
-
-        if (element) {
-            SimpleModal.getOrCreateInstance(element).show()
-        }
-
-        if (elementSelector) {
-            elementSelector.scrollIntoView({
-                behavior: 'smooth',
-            })
-        }
-    }
+    document.body.querySelectorAll('input[name="need"]').forEach((radio) => {
+        radio.addEventListener('change', () => {
+            message.placeholder = radio.dataset.placeholder
+            indicator.textContent = radio.value
+            help.textContent = radio.dataset.help
+        })
+    })
 }
 
 window.addEventListener('DOMContentLoaded', () => {
+    initAnalytics()
     initCollapseTogglers()
     initNavbar()
-    initModals()
+    initToc()
     initAlerts()
 
     if (document.body.id === 'page-home') {
         initContactForm()
-        initPortfolioDeepLink()
+        initContactNeeds()
+        initPortfolio()
     }
 })

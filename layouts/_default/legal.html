@@ -1,0 +1,179 @@
+{{- define "url" -}}{{ .Permalink | absURL }}{{- end -}}
+{{- define "layout-class" -}}layout-legal{{- end -}}
+
+{{/*
+  Legal pages (mentions légales, CGV): front matter "layout: legal".
+  Each "##" section of the Markdown becomes a numbered card, listed in the sticky table of contents.
+  Front matter: heading (H1, defaults to the title), lead, updated (date), pdf (asset path), tab_label, tab_icon, weight.
+*/}}
+{{ define "main" }}
+{{ $legalPages := (where site.RegularPages "Layout" "legal").ByWeight }}
+
+{{/* Second-level headings, whether or not the page has a first-level one */}}
+{{ $sections := slice }}
+{{ range .Fragments.Headings }}
+  {{ if eq .Level 2 }}{{ $sections = $sections | append . }}{{ end }}
+  {{ range .Headings }}{{ if eq .Level 2 }}{{ $sections = $sections | append . }}{{ end }}{{ end }}
+{{ end }}
+
+{{/* The content before the first "##", then one chunk per section */}}
+{{ $chunks := split (partial "typography" .Content) "<h2" }}
+{{ $intro := index $chunks 0 | strings.TrimSpace }}
+
+<div class="relative overflow-hidden">
+    <div class="pointer-events-none absolute top-0 right-1/4 -z-10 size-96 rounded-full bg-primary/5 blur-3xl" aria-hidden="true"></div>
+    <div class="pointer-events-none absolute top-20 left-10 -z-10 size-72 rounded-full bg-secondary-container/10 blur-2xl" aria-hidden="true"></div>
+    <div class="container pt-8 pb-12">
+        <nav aria-label="Fil d’Ariane" class="mb-8">
+            <ol class="flex flex-wrap items-center gap-2 text-body-sm text-on-surface-variant">
+                <li><a class="flex min-h-11 items-center gap-1 text-on-surface-variant lg:min-h-0 transition-colors hover:text-primary" href="{{ "/" | relURL }}">{{ partial "icon" (dict "name" "house") }}Accueil</a></li>
+                <li class="text-outline-variant" aria-hidden="true">{{ partial "icon" (dict "name" "chevron-right") }}</li>
+                <li>Informations juridiques</li>
+                <li class="text-outline-variant" aria-hidden="true">{{ partial "icon" (dict "name" "chevron-right") }}</li>
+                <li class="font-semibold text-primary" aria-current="page">{{ .Params.tab_label | default .Title }}</li>
+            </ol>
+        </nav>
+        <div class="max-w-4xl space-y-4">
+            <p class="inline-flex items-center gap-2 rounded-full bg-surface-container px-3 py-1 font-mono text-label-sm uppercase text-primary">
+                <span class="size-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden="true"></span>Informations juridiques & contractuelles
+            </p>
+            <h1 class="font-heading text-display-mobile text-on-surface md:text-display">{{ .Params.heading | default .Title }}</h1>
+            {{ with .Params.lead }}
+            <p class="max-w-2xl text-body-lg text-on-surface-variant">{{ partial "typography" . }}</p>
+            {{ end }}
+            {{ with .Params.updated }}
+            <ul class="flex flex-wrap items-center gap-3 pt-2">
+                <li class="inline-flex items-center gap-2 rounded-lg bg-surface-container-low px-3 py-1.5 font-mono text-label-sm font-normal text-on-surface-variant shadow-sm">
+                    {{ partial "icon" (dict "name" "clock" "class" "text-secondary") }}Dernière mise à jour&nbsp;: {{ time.Format "2 January 2006" . }}
+                </li>
+            </ul>
+            {{ end }}
+        </div>
+        {{ if gt (len $legalPages) 1 }}
+        <nav class="mt-10 flex w-fit flex-wrap gap-2 rounded-xl bg-surface-container-low p-1.5 shadow-sm" aria-label="Documents juridiques">
+            {{ range $i, $page := $legalPages }}
+            {{ $current := eq $page $ }}
+            <a class="flex min-h-11 items-center gap-2 rounded-lg px-5 py-2.5 text-body-sm transition-colors {{ if $current }}bg-primary font-semibold text-white shadow-sm{{ else }}font-medium text-on-surface-variant hover:bg-surface-container hover:text-on-surface{{ end }}" href="{{ $page.RelPermalink }}"{{ if $current }} aria-current="page"{{ end }}>
+                {{ partial "icon" (dict "name" ($page.Params.tab_icon | default "file-text")) }}{{ add $i 1 }}. {{ $page.Params.tab_label | default $page.Title }}
+            </a>
+            {{ end }}
+        </nav>
+        {{ end }}
+    </div>
+</div>
+
+<section class="container pb-24">
+    <div class="grid grid-cols-1 gap-10 lg:grid-cols-12">
+        <aside class="order-last lg:order-none lg:col-span-4">
+            {{/* Only the table of contents is sticky, using the full viewport height: the contact card scrolls away */}}
+            <div class="flex flex-col gap-6 lg:h-full">
+                <div class="flex flex-col gap-4 rounded-xl bg-surface-container p-6 shadow-sm">
+                    <div class="flex items-center gap-3">
+                        <span class="flex size-10 shrink-0 items-center justify-center rounded-lg bg-primary text-xl text-white" aria-hidden="true">{{ partial "icon" (dict "name" "headset") }}</span>
+                        <div class="flex flex-col">
+                            <span class="font-heading text-headline-sm font-semibold text-on-surface">Question contractuelle&#8239;?</span>
+                            <span class="text-body-sm text-on-surface-variant">Échange direct, sans intermédiaire</span>
+                        </div>
+                    </div>
+                    <p class="text-body-sm text-on-surface-variant">Besoin d’adapter un accord de confidentialité (NDA), un contrat cadre ou des conditions d’intervention sur mesure&#8239;?</p>
+                    <div class="space-y-2 pt-1">
+                        <a class="flex min-h-11 items-center gap-2.5 rounded-lg bg-surface-card p-2 text-body-sm lg:min-h-0 font-semibold text-primary transition-colors hover:bg-surface" href="mailto:{{ site.Params.contact.email }}">
+                            {{ partial "icon" (dict "name" "at-sign") }}{{ site.Params.contact.email }}
+                        </a>
+                        <a class="flex min-h-11 items-center gap-2.5 rounded-lg bg-surface-card p-2 text-body-sm lg:min-h-0 font-semibold text-on-surface transition-colors hover:bg-surface" href="tel:{{ site.Params.contact.phone }}">
+                            {{ partial "icon" (dict "name" "phone" "class" "text-primary") }}{{ site.Params.contact.phoneDisplay }}
+                        </a>
+                    </div>
+                    <p class="flex items-center gap-2 pt-2 font-mono text-label-sm font-normal text-on-surface-variant">
+                        <span class="size-2 rounded-full bg-secondary-fixed-dim" aria-hidden="true"></span>Réponse sous 24h ouvrées
+                    </p>
+                </div>
+                {{ with $sections }}
+                <div class="hidden flex-col gap-4 rounded-xl bg-surface-card p-6 shadow-sm lg:sticky lg:top-28 lg:flex lg:max-h-[calc(100vh-8rem)]">
+                    <div class="flex items-center justify-between pb-2">
+                        <span class="font-heading text-headline-sm font-semibold text-on-surface">Sommaire</span>
+                        <span class="font-mono text-label-sm uppercase text-primary">Index légal</span>
+                    </div>
+                    <nav class="relative -mx-2 flex min-h-0 flex-col gap-1.5 px-2 lg:overflow-y-auto" aria-label="Sommaire" data-toc>
+                        <a class="toc-link group flex items-center justify-between gap-2 rounded-lg px-3 py-2 text-body-sm text-on-surface-variant transition-colors hover:bg-surface-container-low hover:text-on-surface" href="#informations-legales">
+                            <span>Informations légales</span>
+                            {{ partial "icon" (dict "name" "arrow-right" "class" "toc-arrow text-primary opacity-0 transition-opacity group-hover:opacity-100") }}
+                        </a>
+                        {{ range . }}
+                        {{ $heading := partial "legal-heading" .Title }}
+                        <a class="toc-link group flex items-center justify-between gap-2 rounded-lg px-3 py-2 text-body-sm text-on-surface-variant transition-colors hover:bg-surface-container-low hover:text-on-surface" href="#{{ .ID }}">
+                            <span class="flex items-center gap-2.5">
+                                {{ with $heading.number }}<span class="font-mono text-label-sm text-outline group-hover:text-primary">{{ . }}.</span>{{ end }}
+                                <span>{{ partial "typography" $heading.title }}</span>
+                            </span>
+                            {{ partial "icon" (dict "name" "arrow-right" "class" "toc-arrow text-primary opacity-0 transition-opacity group-hover:opacity-100") }}
+                        </a>
+                        {{ end }}
+                    </nav>
+                </div>
+                {{ end }}
+            </div>
+        </aside>
+
+        <article class="legal-content space-y-6 sm:space-y-12 lg:col-span-8">
+            {{ with site.Params.company }}
+            <section class="rounded-xl bg-surface-card p-5 shadow-sm sm:p-6 md:p-8">
+                <div class="mb-6 flex flex-wrap items-center justify-between gap-3">
+                    <h2 id="informations-legales" class="legal-heading mb-0"><span class="legal-number text-lg">{{ partial "icon" (dict "name" "landmark") }}</span><span>Informations légales</span></h2>
+                    <span class="rounded bg-surface-container px-2.5 py-1 font-mono text-label-sm font-normal text-on-surface-variant">Identification légale</span>
+                </div>
+                <dl class="grid grid-cols-1 gap-4 md:grid-cols-2">
+                    <div class="space-y-1 rounded-lg bg-surface-container-low p-4">
+                        <dt class="font-mono text-label-sm uppercase text-on-surface-variant">Raison sociale</dt>
+                        <dd class="font-heading text-headline-sm font-semibold text-on-surface">{{ .name }}</dd>
+                        <dd class="text-body-sm text-on-surface-variant">{{ .legalForm }}</dd>
+                    </div>
+                    <div class="space-y-1 rounded-lg bg-surface-container-low p-4">
+                        <dt class="font-mono text-label-sm uppercase text-on-surface-variant">Direction & gérance</dt>
+                        <dd class="font-heading text-headline-sm font-semibold text-on-surface">{{ .manager }}</dd>
+                        <dd class="text-body-sm text-on-surface-variant">{{ .managerRole }}</dd>
+                    </div>
+                    <div class="space-y-1 rounded-lg bg-surface-container-low p-4 md:col-span-2">
+                        <dt class="font-mono text-label-sm uppercase text-on-surface-variant">Siège social</dt>
+                        <dd class="font-medium text-on-surface">{{ .address }}</dd>
+                    </div>
+                    <div class="space-y-1 rounded-lg bg-surface-container-low p-4">
+                        <dt class="font-mono text-label-sm uppercase text-on-surface-variant">Immatriculation & SIRET</dt>
+                        <dd class="font-mono font-semibold text-on-surface">{{ .siret }}</dd>
+                        <dd class="text-body-sm text-on-surface-variant">{{ .rcs }}</dd>
+                    </div>
+                    <div class="space-y-1 rounded-lg bg-surface-container-low p-4">
+                        <dt class="font-mono text-label-sm uppercase text-on-surface-variant">TVA intracommunautaire</dt>
+                        <dd class="font-mono font-semibold text-primary">{{ .vat }}</dd>
+                    </div>
+                </dl>
+            </section>
+            {{ end }}
+            {{ with $intro }}
+            <div class="rounded-xl bg-surface-card p-8 shadow-sm">{{ . | safeHTML }}</div>
+            {{ end }}
+            {{ range after 1 $chunks }}
+            <section class="rounded-xl bg-surface-card p-5 shadow-sm sm:p-6 md:p-8">{{ printf "<h2%s" . | safeHTML }}</section>
+            {{ end }}
+
+            <div class="flex flex-col items-center gap-6 rounded-xl bg-linear-to-br from-surface-container to-surface-container-high p-8 shadow-sm md:items-start">
+                <div class="space-y-2 text-center md:text-left">
+                    <p class="flex items-center justify-center gap-2 font-mono text-label-sm uppercase text-primary md:justify-start">
+                        {{ partial "icon" (dict "name" "shield-check") }}Collaboration sereine & cadrée
+                    </p>
+                    <h2 class="font-heading text-headline-lg-mobile font-bold text-on-surface md:text-headline-lg">Prêt à démarrer en toute confiance&#8239;?</h2>
+                    <p class="max-w-lg text-body-sm text-on-surface-variant">Chaque mission fait l’objet d’un devis détaillé, de conditions claires et d’un suivi régulier de l’avancement.</p>
+                </div>
+                <div class="flex w-full flex-col items-center gap-3 sm:w-auto sm:flex-row">
+                    <a class="btn btn-accent w-full px-6 py-3 sm:w-auto" href="/#contact">{{ partial "icon" (dict "name" "message-square-text") }}Échanger sur votre projet</a>
+                    {{ with .Params.pdf }}
+                    {{ with resources.Get . }}
+                    <a class="btn btn-outline w-full px-5 py-3 sm:w-auto" href="{{ .RelPermalink }}">{{ partial "icon" (dict "name" "download") }}Télécharger au format PDF</a>
+                    {{ end }}
+                    {{ end }}
+                </div>
+            </div>
+        </article>
+    </div>
+</section>
+{{ end }}

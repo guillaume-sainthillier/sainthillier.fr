@@ -1,19 +1,20 @@
 ---
 title: 'Conditions Générales de Vente'
 description: 'Les CGV utilisées lors de mes prestations.'
+layout: legal
+lead: 'Le cadre contractuel de mes prestations de développement web : devis, cession des droits, confidentialité et règlement.'
+tab_label: Conditions générales de vente
+tab_icon: handshake
+weight: 2
+updated: 2026-01-19
+pdf: pdf/CGV.pdf
 ---
-
-# Conditions Générales de Vente
-
-_Mis à jour le 19/01/2026_
-
-[Télécharger au format PDF]({{< pdf "pdf/CGV.pdf" >}})
 
 ## Article 1 : Les parties
 
 Le terme « Client » désigne toute personne morale ou physique, ayant requis les compétences du Prestataire pour toute prestation de services ou produit proposé audit Client.
 
-Le terme « Prestataire » désigne la société SILARHI, SARL au capital de 1 000 €, 116 Route d'Espagne - BAT 113 BAL 411, 31100 Toulouse,immatriculée au RCS de TOULOUSE sous le numéro 841541667 et représentée par Guillaume Sainthillier en sa qualité de Gérant.
+Le terme « Prestataire » désigne la société SILARHI, SARL au capital de 1 000 €, 116 Route d'Espagne, HELIOPOLIS 4, BAT 113, BAL 411, 31100 Toulouse, immatriculée au RCS de Toulouse sous le numéro 841 541 667 et représentée par Guillaume Sainthillier en sa qualité de Gérant.
 
 ## Article 2 : L'objet du contrat
 
@@ -25,7 +26,7 @@ Le Prestataire se réserve le droit de modifier les présentes conditions géné
 
 ## Article 4 : Traitement et envoi des fichiers par le client
 
-Le client s'engage à faire parvenir au prestataire l'ensemble des fichiers client (textes, polices et images, même issus de tiers, en libres de droits, structure et / ou modèle de données, brief, cahier des charges) avant le début de la prestation. Les textes sont à fournir sous format électronique et typographié sans fautes d'orthographe ; aucune saisie de texte ne sera réalisée. Le Prestataire ne peut en aucun cas être tenu pour responsable des fautes d'orthographe présentes dans les textes fournis par le Client. Toutefois, le Client peut confier la rédaction de ses contenus au Prestataire si nécessaire (prestation faisant l'objet d'un devis à part). Les polices de caractères sont à insérer dans les envois (en cas de polices non libres de droit, le coût de la licence sera facturé en sus). Les images sont à fournir dans une taille et une résolution suffisantes. La qualité des images fournies par le client et leur rendu sont indépendants de la création de la maquette.
+Le client s'engage à faire parvenir au prestataire l'ensemble des fichiers client (textes, polices et images, même issus de tiers, libres de droits, structure et / ou modèle de données, brief, cahier des charges) avant le début de la prestation. Les textes sont à fournir sous format électronique et typographiés sans fautes d'orthographe ; aucune saisie de texte ne sera réalisée. Le Prestataire ne peut en aucun cas être tenu pour responsable des fautes d'orthographe présentes dans les textes fournis par le Client. Toutefois, le Client peut confier la rédaction de ses contenus au Prestataire si nécessaire (prestation faisant l'objet d'un devis à part). Les polices de caractères sont à insérer dans les envois (en cas de polices non libres de droit, le coût de la licence sera facturé en sus). Les images sont à fournir dans une taille et une résolution suffisantes. La qualité des images fournies par le client et leur rendu sont indépendants de la création de la maquette.
 
 ## Article 5 : Modification de la demande initiale par le client
 
@@ -37,7 +38,7 @@ La cession des droits d'utilisation et de modification des développements réal
 
 ## Article 7 : Confidentialité
 
-Le Prestataire s'engage, pendant toute la durée du Contrat et deux (2) ans après son terme ou sa résiliation pour quelque cause que ce soit, à la confidentialité la plus totale concernant toute donnée technique, financière ou commerciale appartenant au Bénéficiaire qui leur aura été communiquée ou dont ils auront eu connaissance dans le cadre de l'exécution du Contrat.
+Le Prestataire s'engage, pendant toute la durée du Contrat et deux (2) ans après son terme ou sa résiliation pour quelque cause que ce soit, à la confidentialité la plus totale concernant toute donnée technique, financière ou commerciale appartenant au Bénéficiaire qui lui aura été communiquée ou dont il aura eu connaissance dans le cadre de l'exécution du Contrat.
 
 Cette obligation de confidentialité ne s'applique pas aux informations :
 
@@ -47,15 +48,15 @@ Cette obligation de confidentialité ne s'applique pas aux informations :
 
 ## Article 8 : Conditions de règlement
 
-Sauf mentions contraires dans le devis et/ou la facture, un acompte de 30% minimum du montant TTC total sera demandé à la commande. Les prestations doivent être réglées au Prestataire aux dates mentionnées sur le devis et/ou la facture client. Le client s'engage à respecter les dates de paiement mentionnées sur son devis et/ou sa facture et à retourner sa facture datée et signée avec la mention « Lu et approuvé » ; cette disposition est aussi un élément essentiel du contrat.
+Sauf mentions contraires dans le devis et/ou la facture, un acompte de 30 % minimum du montant TTC total sera demandé à la commande. Les prestations doivent être réglées au Prestataire aux dates mentionnées sur le devis et/ou la facture client. Le client s'engage à respecter les dates de paiement mentionnées sur son devis et/ou sa facture et à retourner sa facture datée et signée avec la mention « Lu et approuvé » ; cette disposition est aussi un élément essentiel du contrat.
 
 ## Article 9 : Recouvrement des créances
 
-En cas de non paiement, l'ensemble des frais de recouvrement sera à la charge du client. Si nécessaire, le Prestataire pourra faire appel aux services d'une société d'affacturage pour le recouvrement de ses créances clients.
+En cas de non-paiement, l'ensemble des frais de recouvrement sera à la charge du client. Si nécessaire, le Prestataire pourra faire appel aux services d'une société d'affacturage pour le recouvrement de ses créances clients.
 
 ## Article 10 : La force majeure
 
-Les parties ne peuvent être considérées comme responsables ou ayant faillis à leurs obligations contractuelles, lorsque le défaut d'exécution des obligations respectives a pour origine la force majeure ; le contrat entre les parties est suspendu jusqu'à l'extinction des causes ayant engendrées la force majeure. La force majeure prend en compte des faits ou circonstances irrésistibles, extérieurs aux parties, imprévisibles et indépendants de la volonté des parties, malgré tous les efforts raisonnablement possibles pour les empêcher. Sont aussi considérés comme cas de force majeure, le blocage des moyens de transports ou d'approvisionnements, tremblements de terre, incendies, tempêtes, inondations, foudre, l'arrêt des réseaux de télécommunication, et notamment tous les réseaux accessibles par internet, ou difficultés propres aux réseaux de télécommunication extérieurs aux parties. La partie touchée par la force majeure en avisera l'autre dans les cinq (5) jours ouvrables suivant la date à laquelle elle en aura eu connaissance. Les deux parties conviendront alors des conditions dans lesquelles l'exécution du contrat sera poursuivie.
+Les parties ne peuvent être considérées comme responsables ou ayant failli à leurs obligations contractuelles, lorsque le défaut d'exécution des obligations respectives a pour origine la force majeure ; le contrat entre les parties est suspendu jusqu'à l'extinction des causes ayant engendré la force majeure. La force majeure prend en compte des faits ou circonstances irrésistibles, extérieurs aux parties, imprévisibles et indépendants de la volonté des parties, malgré tous les efforts raisonnablement possibles pour les empêcher. Sont aussi considérés comme cas de force majeure, le blocage des moyens de transport ou d'approvisionnement, tremblements de terre, incendies, tempêtes, inondations, foudre, l'arrêt des réseaux de télécommunication, et notamment tous les réseaux accessibles par internet, ou difficultés propres aux réseaux de télécommunication extérieurs aux parties. La partie touchée par la force majeure en avisera l'autre dans les cinq (5) jours ouvrables suivant la date à laquelle elle en aura eu connaissance. Les deux parties conviendront alors des conditions dans lesquelles l'exécution du contrat sera poursuivie.
 
 ## Article 11 : Promotion des créations
 
@@ -67,33 +68,33 @@ Le prestataire peut modifier, ajouter ou retrancher des dispositions à ces cond
 
 ## Article 13 : Règlement des litiges
 
-Le contrat est soumis au droit Français. En cas de litiges, les parties s'engagent à tout faire pour régler leurs différends à l'amiable. Au cas où une résolution amiable ne pourrait aboutir, la juridiction compétente est celle de TOULOUSE.
+Le contrat est soumis au droit français. En cas de litiges, les parties s'engagent à tout faire pour régler leurs différends à l'amiable. Au cas où une résolution amiable ne pourrait aboutir, la juridiction compétente est celle de Toulouse.
 
 ## Article 14 : Modalités d'exécution - Obligations du Prestataire
 
-La mission du PRESTATAIRE s'exerce dans leurs locaux.
+La mission du Prestataire s'exerce dans leurs locaux.
 
 Le Prestataire s'engage à consacrer le temps nécessaire à la mission et à réaliser cette prestation en toute indépendance.
 
-Il exécutera cette prestation avec toute la diligence nécessaire au bon accomplissement de leur mission.
+Il exécutera cette prestation avec toute la diligence nécessaire au bon accomplissement de sa mission.
 
 Il devra délivrer une prestation strictement conforme à l'état de la technique en vigueur et sera tenu d'une obligation de résultat envers le Bénéficiaire.
 
 Le Prestataire devra rendre compte chaque mois au Bénéficiaire de l'avancement de la réalisation de cette prestation, selon des modalités à convenir entre les Parties.
 
-Ils informeront immédiatement le Bénéficiaire de l'achèvement des livrables des présentes afin de procéder aux opérations de recette.
+Il informera immédiatement le Bénéficiaire de l'achèvement des livrables des présentes afin de procéder aux opérations de recette.
 
 En cas de dépassement du temps qui aura été convenu pour la réalisation de cette prestation, le Prestataire s'oblige à la réaliser sans pouvoir exiger de rémunération supplémentaire.
 
 ## Article 15 : Recette des livrables
 
-Tous les livrables que Le Prestataire devra réaliser feront l'objet d'opérations de recette (tests, recette provisoire, recette définitive, etc.).
+Tous les livrables que le Prestataire devra réaliser feront l'objet d'opérations de recette (tests, recette provisoire, recette définitive, etc.).
 
 En toute hypothèse, au terme de ces opérations de recette, la signature d'un procès-verbal de réception définitive par les Parties permettra d'acter de la conformité de chaque livrable.
 
 ## Article 16 : Exclusivité
 
-Pendant toute la durée du Contrat, le Prestataire s'engage à développer l'application web exclusivement pour le compte du Bénéficiaire et s'interdisent d'en faire usage, ainsi que des développements afférents à ladite application, pour leur propre compte ou pour le compte de tiers, sans limitation de durée.
+Pendant toute la durée du Contrat, le Prestataire s'engage à développer l'application web exclusivement pour le compte du Bénéficiaire et s'interdit d'en faire usage, ainsi que des développements afférents à ladite application, pour son propre compte ou pour le compte de tiers, sans limitation de durée.
 
 ## Article 17 : Assurances
 
@@ -101,10 +102,10 @@ Le Prestataire atteste, par les présentes, avoir souscrit auprès d'une compagn
 
 ## Article 18 : Lutte contre le travail dissimulé
 
-Conformément à l'article D. 8222-5 du Code du Travail, Le Prestataire s'engage, le cas échéant, à remettre au Bénéficiaire à la date de signature du Contrat et tous les six (6) mois jusqu'à la fin de son exécution :
+Conformément à l'article D. 8222-5 du Code du travail, le Prestataire s'engage, le cas échéant, à remettre au Bénéficiaire à la date de signature du Contrat et tous les six (6) mois jusqu'à la fin de son exécution :
 
-- une attestation de fourniture des déclarations sociales et de paiement des cotisations et contributions de sécurité sociale prévue à l'article L. 243-15 du Code de la Sécurité Sociale, émanant de l'organisme de protection sociale chargé du recouvrement des cotisations et des contributions et datant de moins de six (6) mois ;
-- si l'immatriculation DU PRESTATAIRE au Registre du Commerce et des Sociétés ou au Répertoire des Métiers est obligatoire, l'un des documents suivants :
+- une attestation de fourniture des déclarations sociales et de paiement des cotisations et contributions de sécurité sociale prévue à l'article L. 243-15 du Code de la sécurité sociale, émanant de l'organisme de protection sociale chargé du recouvrement des cotisations et des contributions et datant de moins de six (6) mois ;
+- si l'immatriculation du Prestataire au Registre du Commerce et des Sociétés ou au Répertoire des Métiers est obligatoire, l'un des documents suivants :
     - un extrait de l'inscription au Registre du Commerce et des Sociétés (K ou K bis) ;
     - une carte d'identification justifiant de l'inscription au répertoire des métiers ;
     - un devis, un document publicitaire ou une correspondance professionnelle, à condition qu'y soient mentionnés le nom ou la dénomination sociale, l'adresse complète et le numéro d'immatriculation au Registre du Commerce et des Sociétés ou au Répertoire des Métiers ou à une liste ou un tableau d'un ordre professionnel, ou la référence de l'agrément délivré par l'autorité compétente ;
@@ -112,9 +113,9 @@ Conformément à l'article D. 8222-5 du Code du Travail, Le Prestataire s'engage
 
 ## Article 19 : INTUITU PERSONAE
 
-Le Contrat est conclu intuitu personae en considération du Prestataire et de leurs compétences spécifiques.
+Le Contrat est conclu intuitu personae en considération du Prestataire et de ses compétences spécifiques.
 
-Il n'est, en conséquence, ni transmissible, ni cessible par Le Prestataire à un tiers.
+Il n'est, en conséquence, ni transmissible, ni cessible par le Prestataire à un tiers.
 
 ## Article 20 : Intégralité de l'accord
 

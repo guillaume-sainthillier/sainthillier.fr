@@ -1,0 +1,118 @@
+/*
+ * Web fonts, subset by scripts/subset-fonts.js (`yarn fonts:subset`): French characters only and the weights in
+ * use, so keep font-weight and unicode-range in sync with that script. Characters outside the range (Cyrillic,
+ * Greek...) render in the fallback fonts below.
+ */
+
+@font-face {
+    font-family: 'Inter Variable';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 400 700;
+    src: url('@/fonts/inter-latin-wght.woff2') format('woff2-variations');
+    unicode-range:
+        U+0020-007E, U+00A0-00FF, U+0131, U+0152-0153, U+0178, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122,
+        U+2212;
+}
+
+@font-face {
+    font-family: 'Plus Jakarta Sans Variable';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 600 800;
+    src: url('@/fonts/plus-jakarta-sans-latin-wght.woff2') format('woff2-variations');
+    unicode-range:
+        U+0020-007E, U+00A0-00FF, U+0131, U+0152-0153, U+0178, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122,
+        U+2212;
+}
+
+/*
+ * Metric-matched fallbacks for the web fonts: until Inter / Plus Jakarta Sans load (font-display: swap), text
+ * renders in a local font scaled to the same width and line box, so the swap barely moves the layout (CLS).
+ *
+ * Values come from the font files themselves: size-adjust is the ratio of average glyph widths, weighted by
+ * the character frequencies of the homepage text, and the overrides are the web font's hhea metrics divided by
+ * that ratio. Bold glyphs have a different width ratio, so each fallback has a regular and a bold face.
+ * Arial covers macOS, iOS and Windows; Android has no Arial, its faces fail to load and Roboto takes over.
+ * Recompute them when a font package changes its major version (the values do not depend on the subsetting).
+ */
+
+@font-face {
+    font-family: 'Inter Fallback';
+    src: local('Arial'), local('ArialMT');
+    font-weight: 100 549;
+    size-adjust: 106.56%;
+    ascent-override: 90.91%;
+    descent-override: 22.64%;
+    line-gap-override: 0%;
+}
+
+@font-face {
+    font-family: 'Inter Fallback';
+    src: local('Arial Bold'), local('Arial-BoldMT');
+    font-weight: 550 900;
+    size-adjust: 102.36%;
+    ascent-override: 94.64%;
+    descent-override: 23.56%;
+    line-gap-override: 0%;
+}
+
+@font-face {
+    font-family: 'Inter Fallback Android';
+    src: local('Roboto'), local('Roboto-Regular');
+    font-weight: 100 549;
+    size-adjust: 107.21%;
+    ascent-override: 90.36%;
+    descent-override: 22.5%;
+    line-gap-override: 0%;
+}
+
+@font-face {
+    font-family: 'Inter Fallback Android';
+    src: local('Roboto Bold'), local('Roboto-Bold');
+    font-weight: 550 900;
+    size-adjust: 108.62%;
+    ascent-override: 89.19%;
+    descent-override: 22.21%;
+    line-gap-override: 0%;
+}
+
+@font-face {
+    font-family: 'Plus Jakarta Sans Fallback';
+    src: local('Arial'), local('ArialMT');
+    font-weight: 100 549;
+    size-adjust: 104.99%;
+    ascent-override: 98.87%;
+    descent-override: 21.14%;
+    line-gap-override: 0%;
+}
+
+@font-face {
+    font-family: 'Plus Jakarta Sans Fallback';
+    src: local('Arial Bold'), local('Arial-BoldMT');
+    font-weight: 550 900;
+    size-adjust: 100.89%;
+    ascent-override: 102.88%;
+    descent-override: 22%;
+    line-gap-override: 0%;
+}
+
+@font-face {
+    font-family: 'Plus Jakarta Sans Fallback Android';
+    src: local('Roboto'), local('Roboto-Regular');
+    font-weight: 100 549;
+    size-adjust: 105.63%;
+    ascent-override: 98.26%;
+    descent-override: 21.02%;
+    line-gap-override: 0%;
+}
+
+@font-face {
+    font-family: 'Plus Jakarta Sans Fallback Android';
+    src: local('Roboto Bold'), local('Roboto-Bold');
+    font-weight: 550 900;
+    size-adjust: 107.06%;
+    ascent-override: 96.95%;
+    descent-override: 20.74%;
+    line-gap-override: 0%;
+}

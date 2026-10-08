@@ -1,7 +1,6 @@
 baseURL = "https://sainthillier.fr"
 locale = "fr-FR"
 title = "Guillaume Sainthillier"
-googleAnalytics = "G-DBS1G509Q7"
 
 disableKinds = ["taxonomy", "RSS"]
 
@@ -9,15 +8,53 @@ disableKinds = ["taxonomy", "RSS"]
   resampleFilter = "Linear"
 
 [params]
-  images = ["images/og-image.jpg"]
-  description = "Développeur web freelance PHP / Symfony à Toulouse : missions de 2 jours à 2 ans, sur site ou en télétravail. TJM de 450 à 500 € HT ou forfait sur devis."
+  images = ["og-image.jpg"]
+  description = "Développeur web freelance PHP / Symfony à Toulouse : missions de 2 jours à 2 ans, sur site ou en télétravail. TJM de {{< freelance-rate >}} ou forfait sur devis."
+
+# Self-hosted Umami (cookieless audience measurement); goals are the custom events sent by assets/js/analytics.js
+[params.umami]
+  scriptUrl = "https://analytics.silarhi.fr/script.js"
+  websiteId = "fb145385-13ea-4655-af60-7975fb094b4e"
+  # Hosts the tracker reports from, so `hugo server` and Netlify deploy previews stay out of the stats
+  domains = "sainthillier.fr"
 
 # Freelance offer, shared by the page content and the JSON-LD
 [params.freelance]
   available = true
   dailyRateMin = 450
   dailyRateMax = 500
+  # Professional experience counted from this year (work-study from 2013), coding since 2011
+  careerStartYear = 2013
+  # 15-minute video call booking page (Calendly); the booking buttons fall back to the contact form while empty
+  bookingUrl = "https://calendly.com/guillaume-silarhi/30min"
+
+# Company facts shown on the legal pages
+[params.company]
+  name = "SARL SILARHI"
+  legalForm = "Société à responsabilité limitée au capital de 1 000 €"
+  manager = "Guillaume Sainthillier"
+  managerRole = "Gérant"
+  address = "116 Route d’Espagne, HELIOPOLIS 4, BAT 113, BAL 411, 31100 Toulouse, France"
+  siret = "841 541 667 00017"
+  rcs = "RCS Toulouse 841 541 667"
+  vat = "FR96841541667"
+
+# Contact details: "phone" in international format for tel: links and the JSON-LD, "phoneDisplay" as shown on the pages
+[params.contact]
+  email = "hello@silarhi.fr"
+  phone = "+33607275826"
+  phoneDisplay = "06 07 27 58 26"
 
 [params.social]
   github = "https://github.com/guillaume-sainthillier"
   linkedin = "https://www.linkedin.com/in/developpeur-web-toulouse/"
+  gitlab = "https://gitlab.com/guillaume-sainthillier"
+
+# Lucide icons, inlined at build time by layouts/partials/icon.html (declaring a mount drops the default assets one)
+[module]
+  [[module.mounts]]
+    source = "assets"
+    target = "assets"
+  [[module.mounts]]
+    source = "node_modules/lucide-static/icons"
+    target = "assets/icons"

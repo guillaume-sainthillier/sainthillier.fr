@@ -1,12 +1,18 @@
 {{- define "layout-class" -}}layout-page{{- end -}}
 
 {{ define "main" }}
-<section class="section bg-gray-100">
+<section class="section">
     <div class="container">
-        <h1>404</h1>
-        <h2 class="text-lg mt-0 mb-4">Mince ! Vous êtes perdu.</h2>
-        <p class="text-muted">La page que vous demandez est introuvable. Elle a peut-être été supprimée ou déplacée.</p>
-        <a href="{{ "/" | relURL }}">Retour à la page d'accueil</a>
+        <div class="page-content mx-auto">
+            <h1>404</h1>
+            <h2 class="mt-0">Mince&#8239;! Vous êtes perdu.</h2>
+            <p>La page que vous demandez est introuvable. Elle a peut-être été supprimée ou déplacée.</p>
+            <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                <a class="btn btn-accent btn-lg w-full sm:w-auto" href="{{ "/" | relURL }}">{{ partial "icon" (dict "name" "house") }}Retour à la page d’accueil</a>
+                <a class="btn btn-soft btn-lg w-full sm:w-auto" href="{{ "/#portfolio" | relURL }}">{{ partial "icon" (dict "name" "box") }}Voir les réalisations</a>
+                <a class="btn btn-soft btn-lg w-full sm:w-auto" href="{{ "/#contact" | relURL }}">{{ partial "icon" (dict "name" "mail") }}Me contacter</a>
+            </div>
+        </div>
     </div>
 </section>
 {{ end }}

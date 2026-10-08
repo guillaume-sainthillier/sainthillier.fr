@@ -3,11 +3,6 @@
     "paths": {
         "@/*": ["assets/*"]
     },
-    "entry": ["assets/js/app.modern.js"],
-    "project": ["**/*.js"],
-    "ignore": ["public/**", "resources/**", "static/**", "content/**", "layouts/**", ".husky/**"],
-    "ignoreDependencies": [
-        "regenerator-runtime",
-        "tailwindcss"
-    ]
+    "project": ["**/*.{js,css}"],
+    "ignoreDependencies": ["@fontsource-variable/inter", "@fontsource-variable/plus-jakarta-sans", "lucide-static"]
 }

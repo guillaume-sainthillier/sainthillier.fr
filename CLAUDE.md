@@ -26,7 +26,6 @@ yarn prettier         # Prettier write on CSS/MD/YAML
 yarn prettier:check   # Prettier check (CI)
 yarn format           # yarn lint && yarn prettier
 yarn knip             # Check for unused dependencies/exports
-yarn skills-cloud     # Regenerate the skills word cloud SVGs (also run by yarn build / yarn dev)
 ```
 
 ## Architecture
@@ -39,11 +38,14 @@ yarn skills-cloud     # Regenerate the skills word cloud SVGs (also run by yarn 
 
 ### Frontend Structure
 
-- **Entry point**: `assets/js/app.modern.js` → imports `app.js` and `icons.js`
-- **CSS**: `assets/css/app.css` uses Tailwind CSS v4 with component files in `components/`
-- **Custom components**: `SimpleModal.js`, `SimpleCollapse.js` (Bootstrap-like data-bs-\* API without Bootstrap)
-- **Third-party**: lite-youtube-embed for videos; images use native `loading="lazy"`
-- **Skills word cloud**: packed at build time by `scripts/skills-cloud.js` (`yarn skills-cloud`, part of `yarn build`/`yarn dev`) from the `skills` front matter of `content/_index.md`: words drawn with the Arimo font's glyphs, placed on a collision grid along a spiral (seeded, so stable between builds), written as `assets/generated/skills-cloud-{wide,narrow}.svg` plus `data/skillsCloud.json` (sizes). `homepage.html` shows them in a `<picture>` and keeps the words as a visually hidden list. No JS at runtime
+- **Entry point**: `assets/js/app.js` (navbar scroll spy, contact form, portfolio)
+- **CSS**: `assets/css/app.css` uses Tailwind CSS v4; design tokens (colors, fonts, type scale `text-display` / `text-headline-*` / `text-body-*` / `text-label-*`) live in `components/theme.css`, shared blocks (`.container`, `.section`, `.eyebrow`, `.section-title`, `.panel`, `.chip`) in `components/layout.css`, buttons (`btn` + `btn-lg` + `btn-accent` / `btn-soft` / `btn-outline`) in `components/buttons.css`
+- **Fonts**: Plus Jakarta Sans (headings) and Inter (text), subset from `@fontsource-variable/*` into `assets/fonts/` by `yarn fonts:subset` (`scripts/subset-fonts.js`) and declared in `components/fonts.css` with metric-matched fallbacks; labels use the system monospace
+- **Icons**: Lucide, inlined at build time with `{{ partial "icon" (dict "name" "mail" "class" "…") }}` (`lucide-static` mounted on `assets/icons` in `config.toml`); no icon JavaScript
+- **Custom components**: `SimpleCollapse.js` (mobile menu, Bootstrap-like `data-bs-*` API without Bootstrap), `portfolio.js` (filters + "Afficher tous les projets"; every project stays in the HTML, the script only hides cards)
+- **Homepage content**: sections are driven by the front matter of `content/_index.md` (`situations`, `services`, `skill_groups`, `faq`, `contact_needs`, `experiences`, `portfolio_filters`, `projects`); the FAQ also feeds the `FAQPage` JSON-LD in `layouts/partials/schemas.html`
+- **Images**: native `loading="lazy"` through the `responsive-image` partial
+- **Social preview**: `static/og-image.jpg` is rendered from `scripts/og-image.html` (hero tokens, fonts and portrait) by `yarn og-image` (headless Chrome); regenerate and commit it after a design change
 
 ### Hugo Templates
 

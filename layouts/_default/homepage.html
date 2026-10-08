@@ -1,472 +1,545 @@
 {{- define "page-id" -}}page-home{{- end -}}
 {{ define "main" }}
-<!-- Header -->
-{{ if resources.Get "images/header-bg.jpg" }}
-<header class="masthead">
-{{/*
-  Decorative full-screen background, so not an LCP candidate (Chrome ignores full-viewport images): the
-  heading stays the LCP element. q10 is deliberate under the dark overlay, and the widths stop short of
-  device-pixel-perfect sizes for the same reason. Portrait screens only show the middle of the wide
-  image (object-fit: cover), so they get a centred 3:5 crop instead.
-  sizes: below the image's 1.53 ratio, cover makes it as wide as 153% of the viewport height.
-*/}}
-{{ partial "responsive-image" (dict
-  "src" "images/header-bg.jpg"
-  "class" "masthead-bg"
-  "priority" true
-  "width" 1900
-  "quality" 10
-  "widths" (slice 960 1280 1600 1900)
-  "sizes" "(max-aspect-ratio: 3/2) 153vh, 100vw"
-  "sources" (slice (dict "media" "(max-aspect-ratio: 1/1)" "width" 3 "height" 5 "widths" (slice 480 750) "sizes" "(max-aspect-ratio: 3/5) 60vh, 100vw"))
-) }}
-<div class="masthead-content">
-    <div class="container">
-        <div class="intro-text">
-            <h1 class="intro-lead-in">Développeur Web Freelance à Toulouse</h1>
-            <div class="intro-heading uppercase">Donnez vie à vos projets Web</div>
-            <a class="btn btn-primary btn-xl uppercase js-scroll-trigger" href="#hello">En savoir plus</a>
-        </div>
-    </div>
-</div>
-</header>
-{{ end }}
+{{ $freelance := site.Params.freelance }}
+{{ $years := sub now.Year $freelance.careerStartYear }}
+{{ $rate := printf "%v à %v € HT / jour" $freelance.dailyRateMin $freelance.dailyRateMax }}
+{{ $symfonyPage := site.GetPage "/developpeur-symfony-freelance-toulouse" }}
+{{/* The 15-minute call buttons open the booking page once configured, the contact form until then */}}
+{{ $bookingUrl := $freelance.bookingUrl | default "#contact" }}
+{{ $isBookingExternal := ne $bookingUrl "#contact" }}
 
-<!-- About -->
-<section id="hello" class="section bg-gray-100">
-    <div class="container">
-        <div class="text-center">
-            <h2 class="section-heading uppercase">Développeur Freelance à Toulouse</h2>
-            <h3 class="section-subheading text-muted">Bonjour, je suis Guillaume Sainthillier, développeur Web indépendant basé à Toulouse.</h3>
+<!-- Hero -->
+<section class="relative overflow-hidden pt-22 pb-12 sm:pt-28 md:pt-32 md:pb-16">
+    <div class="pointer-events-none absolute -top-32 right-0 size-135 rounded-full bg-primary/5 blur-3xl" aria-hidden="true"></div>
+    <div class="pointer-events-none absolute top-1/2 -left-24 size-90 rounded-full bg-secondary-fixed-dim/15 blur-3xl" aria-hidden="true"></div>
+    <div class="container relative">
+        {{/* Phones: a single row of badges that scrolls sideways */}}
+        <ul class="no-scrollbar -mx-5 mb-6 flex items-center gap-2 overflow-x-auto px-5 sm:mx-0 sm:flex-wrap sm:px-0" aria-label="En bref">
+            <li class="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full bg-surface-container-high px-4 py-1.5 font-mono text-label-sm uppercase text-on-surface">
+                {{ if $freelance.available }}
+                <span class="size-2 rounded-full bg-secondary-fixed-dim motion-safe:animate-pulse" aria-hidden="true"></span>Disponible · À Toulouse & à distance
+                {{ else }}
+                <span class="size-2 rounded-full bg-outline" aria-hidden="true"></span>En mission · Toulouse & à distance
+                {{ end }}
+            </li>
+            <li class="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full bg-surface-container-low px-4 py-1.5 font-mono text-label-sm font-normal text-on-surface-variant">
+                {{ partial "icon" (dict "name" "badge-check" "class" "text-primary") }}{{ $years }} ans d’expérience pro (depuis {{ $freelance.careerStartYear }})
+            </li>
+            <li class="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full bg-surface-container-low px-4 py-1.5 font-mono text-label-sm text-primary">
+                {{ partial "icon" (dict "name" "code") }}PHP, Symfony & API Platform
+            </li>
+        </ul>
+        {{/* Phones show the profile card between the introduction and the buttons: the text column becomes "contents" */}}
+        <div class="grid grid-cols-1 items-center gap-4 lg:grid-cols-12 lg:gap-6">
+            <div class="contents lg:col-span-7 lg:flex lg:flex-col lg:gap-4">
+                <h1 class="font-heading text-headline-lg-mobile font-extrabold text-on-surface sm:text-display-mobile md:text-display">
+                    Développeur web <span class="text-primary">freelance</span> à Toulouse
+                </h1>
+                <p class="max-w-2xl text-body-md text-on-surface-variant sm:text-body-lg">
+                    Spécialiste {{ with $symfonyPage }}<a class="font-semibold text-on-surface underline decoration-primary/40 underline-offset-4 hover:decoration-primary" href="{{ .RelPermalink }}">PHP / Symfony</a>{{ else }}<strong class="text-on-surface">PHP / Symfony</strong>{{ end }},
+                    je renforce votre équipe ou prends en charge la réalisation de vos <strong class="text-on-surface">applications web métier</strong> :
+                    nouveau développement, reprise d’un projet existant, montée de version.
+                </p>
+                <div class="order-1 flex flex-col gap-3 pt-1 lg:order-0">
+                    <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
+                        <a class="btn btn-accent btn-lg w-full sm:w-auto {{ if not $isBookingExternal }}js-scroll-trigger{{ end }}" href="{{ $bookingUrl }}"{{ if $isBookingExternal }} rel="noopener" target="_blank"{{ end }}>
+                            {{ partial "icon" (dict "name" "calendar") }}Échanger 15 min sur votre projet
+                        </a>
+                        <a class="btn btn-soft btn-lg w-full px-6 sm:w-auto js-scroll-trigger" href="#services">{{ partial "icon" (dict "name" "layers") }}Consulter les services</a>
+                    </div>
+                    <p class="flex flex-wrap items-center justify-between gap-x-2 gap-y-1 font-mono text-label-sm font-normal text-on-surface-variant sm:justify-start">
+                        <span class="flex items-center gap-1">{{ partial "icon" (dict "name" "clock" "class" "text-primary") }}Réponse sous 24h ouvrées</span><span class="hidden text-outline sm:inline" aria-hidden="true">•</span>
+                        <span class="flex items-center gap-1">{{ partial "icon" (dict "name" "handshake" "class" "text-secondary") }}Échange sans engagement</span>
+                    </p>
+                </div>
+            </div>
+            <div class="relative mt-2 lg:col-span-5 lg:mt-0">
+                <div class="absolute -inset-2 hidden rounded-2xl bg-linear-to-tr from-primary/10 via-secondary-container/20 to-transparent blur-lg sm:block" aria-hidden="true"></div>
+                <div class="relative flex flex-col overflow-hidden rounded-2xl border border-hairline bg-surface-card shadow-sm sm:shadow-xl">
+                    <div class="flex items-center gap-4 p-4 sm:border-b sm:border-hairline sm:bg-surface-container-low">
+                        <div class="shrink-0">
+                            {{ partial "responsive-image" (dict "src" "images/guillaume-sainthillier.jpg" "alt" "Guillaume Sainthillier, développeur web freelance à Toulouse" "class" "size-16 rounded-full border-2 border-surface object-cover shadow-md sm:size-20" "width" 80 "height" 80 "priority" true) }}
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="font-heading text-headline-sm font-bold text-on-surface">Guillaume Sainthillier</span>
+                            <p class="mt-0.5 text-body-sm text-on-surface-variant">Développeur web freelance basé à Toulouse, à votre écoute pour concrétiser vos projets web depuis 2018.</p>
+                        </div>
+                    </div>
+                    {{/* Desktop LCP element: loaded eagerly, but only from sm: (640px), matching "media" below */}}
+                    <div class="hidden h-48 w-full overflow-hidden bg-surface-container-low sm:block">
+                        {{ partial "responsive-image" (dict "src" "images/design.jpg" "alt" "Maquette filaire d’un site web dessinée sur un carnet" "class" "size-full object-cover" "width" 520 "sizes" "(min-width: 1024px) 520px, 100vw" "priority" true "media" "(min-width: 640px)") }}
+                    </div>
+                    {{/* Phones: three tiles; larger screens: one band split by dividers */}}
+                    <dl class="grid grid-cols-3 gap-1.5 px-3 pb-4 text-center sm:gap-0 sm:px-4 sm:border-t sm:border-hairline sm:bg-surface-container-low sm:pt-4">
+                        <div class="flex flex-col-reverse rounded-lg bg-surface-container-low py-3 sm:rounded-none sm:bg-transparent sm:py-0">
+                            <dt class="font-mono text-label-sm uppercase text-outline max-sm:tracking-tight max-[359px]:text-[0.6875rem]">Ans d’expérience</dt>
+                            <dd class="font-heading text-headline-md font-bold text-primary sm:text-headline-lg">{{ $years }}</dd>
+                        </div>
+                        <div class="flex flex-col-reverse rounded-lg bg-surface-container-low py-3 sm:rounded-none sm:border-x sm:border-hairline sm:bg-transparent sm:py-0">
+                            <dt class="font-mono text-label-sm uppercase text-outline max-sm:tracking-tight max-[359px]:text-[0.6875rem]">Sur mesure</dt>
+                            <dd class="font-heading text-headline-md font-bold text-on-surface sm:text-headline-lg">100%</dd>
+                        </div>
+                        <div class="flex flex-col-reverse rounded-lg bg-surface-container-low py-3 sm:rounded-none sm:bg-transparent sm:py-0">
+                            <dt class="font-mono text-label-sm uppercase text-outline max-sm:tracking-tight max-[359px]:text-[0.6875rem]">Interlocuteur</dt>
+                            <dd class="font-heading text-headline-md font-bold text-primary sm:text-headline-lg">1</dd>
+                        </div>
+                    </dl>
+                </div>
+            </div>
         </div>
-        <lite-youtube class="mx-auto" videoid="JjeguKaXutw" playlabel="Développeur Web Freelance Toulouse"></lite-youtube>
     </div>
 </section>
-<section class="section">
+
+<!-- Situations -->
+<section class="section bg-surface-container-low">
     <div class="container">
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 mb-12">
-            <div class="md:col-span-4 lg:col-span-3 flex items-center">
-                {{ partial "responsive-image" (dict "src" "images/guillaume-sainthillier.jpg" "alt" "Guillaume Sainthillier, développeur web freelance à Toulouse" "class" "max-w-full h-auto rounded-full block mx-auto" "width" 300 "height" 300 "priority" false) }}
-            </div>
-            <div class="md:col-span-8 lg:col-span-9">
-                <h3 class="text-3xl mb-2">Besoin d'un développeur Web freelance ?</h3>
-                <p class="text-muted mb-4">Développeur {{ with site.GetPage "/developpeur-symfony-freelance-toulouse" }}<a class="text-gray-900 underline decoration-primary decoration-2 underline-offset-4" href="{{ .RelPermalink }}"><strong>PHP / Symfony freelance</strong></a>{{ else }}<strong>PHP / Symfony freelance</strong>{{ end }}, je renforce votre équipe ou je prends en charge
-                    vos <strong>applications Web métier</strong> : nouveau développement, reprise d'un projet existant, montée de version.</p>
-                <p class="text-muted mb-4">Expérimenté depuis 2013 et freelance depuis 2018, j'ai travaillé pour divers secteurs
-                    d'activités : collectivités locales, santé, secteur public, ressources humaines, industrie, aéronautique, communication, immobilier, assurances, ...</p>
-                <p class="text-muted mb-4">Parce que l'informatique doit avant tout être une solution et non une contrainte, je développe des outils qui se démarquent par leur
-                    <strong>valeur ajoutée pour votre activité.</strong></p>
-                <p class="text-muted">Que vous soyez une petite entreprise, une start-up, un freelance, une association, une agence Web ou une entreprise cotée en bourse, contactez-moi
-                    et voyons ensemble comment <strong>développer votre activité !</strong></p>
-            </div>
+        <div class="mb-8 flex max-w-3xl flex-col items-start sm:mx-auto sm:items-center sm:text-center">
+            <p class="mb-2 inline-flex items-center gap-1.5 rounded-full bg-surface-container-high px-4 py-1 font-mono text-label-sm uppercase text-primary">
+                {{ partial "icon" (dict "name" "brain") }}Vos défis · situations fréquentes
+            </p>
+            <h2 class="section-title">Vous vous reconnaissez dans l’une de ces situations&#8239;?</h2>
+            <p class="mt-2 text-body-md text-on-surface-variant">Identifier précisément vos blocages, prioriser ce qui a un impact immédiat et livrer un résultat mesurable et pérenne.</p>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
-            <div class="md:col-span-4 lg:col-span-3 md:order-2 flex items-center">
-                {{ partial "responsive-image" (dict "src" "images/design.jpg" "alt" "Maquette filaire d’un site web dessinée sur un carnet" "class" "max-w-full h-auto rounded-full block mx-auto" "width" 300 "height" 300 "priority" false) }}
+        <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
+            {{ range $situation := .Params.situations }}
+            <div class="flex flex-col rounded-2xl bg-surface-card p-5 sm:p-6 shadow-sm transition-shadow hover:shadow-md {{ if .accent }}border-2 border-secondary-container/50{{ else }}border border-hairline{{ end }}">
+                <div class="mb-2 flex items-center justify-between gap-2">
+                    <span class="rounded px-2.5 py-1 font-mono text-label-sm uppercase {{ if .accent }}bg-secondary-container/30 text-secondary{{ else }}bg-surface-container-high text-on-surface-variant{{ end }}">{{ .label }}</span>
+                    <span class="flex text-[22px] {{ if .accent }}text-secondary{{ else }}text-outline{{ end }}" aria-hidden="true">{{ partial "icon" (dict "name" .icon) }}</span>
+                </div>
+                <h3 class="mb-2 font-heading text-headline-sm font-bold text-on-surface">{{ .title }}</h3>
+                <p class="mb-4 text-body-sm leading-relaxed text-on-surface-variant">{{ partial "typography" .text }}</p>
+                <div class="mt-auto flex flex-col gap-1.5 rounded-xl border p-3 {{ if .accent }}border-secondary/30 bg-secondary-container/20{{ else }}border-hairline bg-surface-subtle{{ end }}">
+                    {{ with .answer_title }}
+                    <p class="flex items-center gap-1.5 font-mono text-label-sm {{ if $situation.accent }}text-secondary{{ else }}text-primary{{ end }}">{{ partial "icon" (dict "name" ($situation.answer_icon | default "badge-check")) }}{{ . }}</p>
+                    {{ end }}
+                    <p class="text-body-sm font-medium text-on-surface">{{ partial "typography" .answer }}</p>
+                </div>
             </div>
-            <div class="md:col-span-8 lg:col-span-9 md:order-1">
-                <h3 class="text-3xl mb-2">Pourquoi opter pour un développeur Freelance ?</h3>
-                <p class="text-muted mb-4">Vous avez un
-                    <strong>interlocuteur unique</strong> dans toutes les phases de votre projet : définition du besoin, analyse, conception, réalisation, tests, déploiement et maintenance.
-                </p>
-                <p class="text-muted mb-4">Vous gagnez en
-                    <strong>flexibilité</strong> par rapport à une société de service traditionnelle qui a souvent une inertie plus importante.
-                </p>
-                <p class="text-muted mb-4">En déléguant vos développements informatiques à un
-                    <strong>freelance de confiance</strong>, vous pouvez focaliser vos efforts sur ce qui compte réellement pour votre business.
-                </p>
-                <p class="text-muted">Vous ne prenez pas de risques en travaillant avec un partenaire neutre qui garantit la
-                    <strong>confidentialité</strong> de vos activités.</p>
-            </div>
-        </div>
-        <div class="text-center mt-12">
-            <a class="btn btn-primary btn-xl uppercase js-scroll-trigger" href="#contact">J'ai un projet</a>
+            {{ end }}
         </div>
     </div>
 </section>
+
 <!-- Services -->
-<section id="services" class="section bg-gray-100">
-    <div class="container text-center">
-        <h2 class="section-heading uppercase">Services</h2>
-        <h3 class="section-subheading text-muted">Votre besoin coche l'une de ces cases ? Contactez-moi !</h3>
-
-        <div class="service text-left">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="service-heading text-2xl">Développement d'applications Web Symfony</h4>
-                    <ul class="list-none text-muted">
-                        <li>
-                            <span class="icon"><i data-lucide="check" class="text-green-600"></i></span>
-                            <p>Vous avez une idée de nouveau projet pour moderniser la gestion de votre métier.</p>
-                        </li>
-                        <li>
-                            <span class="icon"><i data-lucide="check" class="text-green-600"></i></span>
-                            <p>Vous avez une idée de projet de site e-commerce nécessitant des fonctionnalités sur mesure.</p>
-                        </li>
-                        <li>
-                            <span class="icon"><i data-lucide="check" class="text-green-600"></i></span>
-                            <p>Vous avez besoin de mettre à jour un projet existant mais votre partenaire actuel est parti ou ne vous donne plus entière satisfaction.</p>
-                        </li>
-                        <li>
-                            <span class="icon"><i data-lucide="check" class="text-green-600"></i></span>
-                            <p>Votre Système d'Information a besoin d'applications métiers complexes et évoluées.</p>
-                        </li>
-                        <li>
-                            <span class="icon"><i data-lucide="check" class="text-green-600"></i></span>
-                            <p>Vous avez vous-même développé votre projet et vous avez besoin d'aide sur les parties complexes.</p>
-                        </li>
-                        <li>
-                            <span class="icon"><i data-lucide="x" class="text-red-600"></i></span>
-                            <p>Vous avez besoin d'un partenaire pour réaliser un site vitrine.</p>
-                        </li>
-                        <li>
-                            <span class="icon"><i data-lucide="x" class="text-red-600"></i></span>
-                            <p>Vous cherchez un logo ou une identité visuelle.</p>
-                        </li>
+<section id="services" class="section">
+    <div class="container">
+        <div class="mb-8 max-w-3xl">
+            <p class="eyebrow">Catalogue d’intervention</p>
+            <h2 class="section-title mt-1">Services de développement web sur mesure & expertise freelance Symfony</h2>
+            <p class="mt-2 text-body-md text-on-surface-variant">De la start-up en phase d’accélération au grand groupe industriel, des modes d’intervention pensés pour l’efficacité opérationnelle.</p>
+        </div>
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {{ range .Params.services }}
+            {{ $tone := index (dict
+                "primary" (dict "icon" "bg-primary-container text-white" "badge" "bg-surface-container-high text-primary" "check" "text-primary")
+                "accent" (dict "icon" "bg-secondary-container text-on-secondary-fixed" "badge" "bg-secondary-container/30 text-secondary" "check" "text-secondary-fixed-dim")
+                "tertiary" (dict "icon" "bg-tertiary text-white" "badge" "bg-surface-container-high text-tertiary" "check" "text-primary")
+            ) .tone }}
+            {{/* Tablets (2 columns): with an odd count, the first card spans the full width and the others pair up */}}
+            <div class="panel flex flex-col p-5 sm:p-6 md:first:nth-last-[odd]:col-span-2 lg:first:nth-last-[odd]:col-span-1">
+                <div class="mb-4 flex items-center justify-between">
+                    <span class="flex size-12 items-center justify-center rounded-xl text-2xl shadow-md {{ $tone.icon }}" aria-hidden="true">{{ partial "icon" (dict "name" .icon) }}</span>
+                    <span class="rounded px-2.5 py-1 font-mono text-label-sm uppercase {{ $tone.badge }}">{{ .number }}</span>
+                </div>
+                <h3 class="mb-1 font-heading text-headline-md font-bold text-on-surface">{{ .title }}</h3>
+                <p class="mb-4 text-body-sm text-on-surface-variant">{{ partial "typography" .intro }}</p>
+                <ul class="hidden space-y-1 text-body-sm text-on-surface md:block">
+                    {{ range .points }}
+                    <li class="flex items-start gap-2 rounded-lg p-1 transition-colors hover:bg-surface-subtle">
+                        <span class="flex h-lh items-center {{ $tone.check }}" aria-hidden="true">{{ partial "icon" (dict "name" "circle-check" "class" "text-lg") }}</span><span>{{ partial "typography" . }}</span>
+                    </li>
+                    {{ end }}
+                </ul>
+                <div class="mt-auto border-t border-hairline pt-3">
+                    <p class="mt-6 mb-2 font-mono text-label-sm uppercase text-outline">{{ .tags_label }}</p>
+                    <ul class="flex flex-wrap gap-1.5">
+                        {{ range .tags }}{{ partial "chip" (dict "tag" .) }}{{ end }}
                     </ul>
                 </div>
             </div>
-        </div>
-        <div class="service text-left">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="service-heading text-2xl">Expertise technique pour besoins avancés</h4>
-                    <ul class="list-none text-muted">
-                        <li>
-                            <span class="icon"><i data-lucide="check" class="text-green-600"></i></span>
-                            <p>Mise à jour de version Symfony.</p>
-                        </li>
-                        <li>
-                            <span class="icon"><i data-lucide="check" class="text-green-600"></i></span>
-                            <p>Intégration du protocole bancaire EBICS dans votre application.</p>
-                        </li>
-                        <li>
-                            <span class="icon"><i data-lucide="check" class="text-green-600"></i></span>
-                            <p>Gestion de l'infrastructure serveur / cloud.</p>
-                        </li>
-                        <li>
-                            <span class="icon"><i data-lucide="check" class="text-green-600"></i></span>
-                            <p>Mise en place d'intégration continue / déploiement continu.</p>
-                        </li>
-                        <li>
-                            <span class="icon"><i data-lucide="check" class="text-green-600"></i></span>
-                            <p>Audit de sécurité / performances.</p>
-                        </li>
-                        <li>
-                            <span class="icon"><i data-lucide="x" class="text-red-600"></i></span>
-                            <p>Développement de plugin Wordpress / Prestashop.</p>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="service text-left">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="service-heading text-2xl">Formation pour partager connaissance et passion</h4>
-                    <ul class="list-none text-muted">
-                        <li>
-                            <span class="icon"><i data-lucide="check" class="text-green-600"></i></span>
-                            <p>En entreprise, pour vos salariés.</p>
-                        </li>
-                        <li>
-                            <span class="icon"><i data-lucide="check" class="text-green-600"></i></span>
-                            <p>École de formation, pour vos apprenants.</p>
-                        </li>
-                        <li>
-                            <span class="icon"><i data-lucide="check" class="text-green-600"></i></span>
-                            <p>Université, pour vos étudiants.</p>
-                        </li>
-                        <li>
-                            <span class="icon"><i data-lucide="check" class="text-green-600"></i></span>
-                            <p>Exemple de thèmes : PHP, Programmation Orientée Objet, Symfony, Doctrine, Docker, Base de données, HTML, CSS, Javascript, ...</p>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div id="pricing" class="mx-auto mt-16 max-w-[1140px] scroll-mt-24">
-            <div class="text-center">
-                <h2 class="section-heading uppercase">Modalités et tarifs</h2>
-                <h3 class="section-subheading text-muted">Travailler avec un développeur freelance, concrètement.</h3>
-            </div>
-            {{ partial "freelance-offer" . }}
-        </div>
-        <div class="service-contact">
-            <a class="btn btn-primary btn-xl uppercase js-scroll-trigger" href="#contact">Contactez-moi</a>
+            {{ end }}
         </div>
     </div>
 </section>
 
+<!-- Portfolio -->
+<section id="portfolio" class="section border-t border-hairline">
+    <div class="container">
+        <div class="mb-8 flex flex-col gap-4">
+            <div>
+                <p class="eyebrow">Réalisations freelance</p>
+                <h2 class="section-title mt-1">Portfolio&nbsp;: mes missions de développeur web freelance</h2>
+                <p class="mt-2 max-w-3xl text-body-md text-on-surface-variant">
+                    Un coup d’œil non exhaustif sur mes réalisations concrètes&nbsp;: de l’automatisation bancaire EBICS aux systèmes de télérelève de copropriétés et aux outils aéronautiques.
+                </p>
+            </div>
+            <div class="no-scrollbar -mx-5 flex items-center gap-1 overflow-x-auto px-5 pb-2 sm:mx-0 sm:flex-wrap sm:justify-end sm:px-0" role="group" aria-label="Filtrer les projets">
+                <button type="button" class="min-h-11 shrink-0 cursor-pointer whitespace-nowrap rounded-lg bg-surface-container-low px-3 py-1.5 lg:min-h-0 font-mono text-label-sm font-normal text-on-surface-variant transition-colors hover:bg-surface-container-high hover:text-on-surface aria-pressed:bg-primary aria-pressed:font-semibold aria-pressed:text-white" data-portfolio-filter="all" aria-pressed="true">Tous les projets</button>
+                {{ range .Params.portfolio_filters }}
+                <button type="button" class="min-h-11 shrink-0 cursor-pointer whitespace-nowrap rounded-lg bg-surface-container-low px-3 py-1.5 lg:min-h-0 font-mono text-label-sm font-normal text-on-surface-variant transition-colors hover:bg-surface-container-high hover:text-on-surface aria-pressed:bg-primary aria-pressed:font-semibold aria-pressed:text-white" data-portfolio-filter="{{ .id }}" data-umami-event="portfolio-filter" data-umami-event-filter="{{ .id }}" aria-pressed="false">{{ .label }}</button>
+                {{ end }}
+            </div>
+        </div>
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3" data-portfolio-grid data-visible="{{ .Params.portfolio_visible }}">
+            {{ range $project := .Params.projects }}
+            {{ with $project }}
+            <article id="project-{{ .id }}" class="flex scroll-mt-24 flex-col overflow-hidden rounded-2xl bg-surface-card shadow-sm transition-shadow hover:shadow-md" data-categories="{{ delimit (.categories | default slice) " " }}">
+                <div class="relative hidden aspect-16/10 w-full overflow-hidden border-b border-hairline bg-surface-container-high sm:block">
+                    {{ partial "responsive-image" (dict "src" .image "alt" (printf "Capture d’écran de %s" .name) "class" (printf "size-full object-cover %s" (cond (eq .image_position "center") "object-center" "object-top")) "width" 420 "sizes" "(min-width: 1024px) 400px, (min-width: 768px) 50vw, 100vw") }}
+                    {{ with .status }}
+                    <span class="absolute top-3 left-3 rounded px-2.5 py-1 font-mono text-label-sm {{ if eq . "En production" }}bg-terminal-black text-secondary-fixed-dim{{ else }}bg-secondary-container text-on-secondary-fixed{{ end }}">{{ . }}</span>
+                    {{ end }}
+                    <span class="absolute top-3 right-3 rounded bg-surface-card/90 px-2 py-0.5 font-mono text-label-sm font-medium text-on-surface">{{ .date }}</span>
+                </div>
+                <div class="flex flex-1 flex-col p-5 sm:p-6">
+                    <div class="mb-2 flex flex-wrap items-center justify-between gap-x-2 gap-y-1 sm:hidden">
+                        <span class="whitespace-nowrap font-mono text-label-sm font-normal text-outline">{{ .date }}</span>
+                        {{ with .status }}
+                        <span class="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full bg-surface-container px-2.5 py-0.5 font-mono text-label-sm text-on-surface"><span class="size-1.5 rounded-full bg-secondary-fixed-dim" aria-hidden="true"></span>{{ . }}</span>
+                        {{ end }}
+                    </div>
+                    <div class="mb-1 flex items-center justify-between gap-2">
+                        <h3 class="font-heading text-headline-sm font-bold text-on-surface">{{ .name }}</h3>
+                        {{ with .url }}
+                        <a class="-m-3 flex p-3 text-xl text-primary hover:text-primary-container" href="{{ . }}" rel="noopener" target="_blank" title="Visiter {{ $project.name }}">{{ partial "icon" (dict "name" "external-link") }}<span class="sr-only">Visiter {{ $project.name }}</span></a>
+                        {{ end }}
+                    </div>
+                    <p class="mb-2 font-mono text-label-sm text-primary">{{ .tagline }}</p>
+                    <p class="mb-4 text-body-sm text-on-surface-variant">{{ partial "typography" .description }}</p>
+                    <ul class="mb-4 flex flex-wrap gap-1.5">
+                        {{ range .tags }}{{ partial "chip" (dict "tag" .) }}{{ end }}
+                    </ul>
+                    <div class="mt-auto flex flex-col items-start sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-4 lg:gap-y-1">
+                        {{ with .url }}
+                        {{ $u := urls.Parse . }}
+                        <a class="inline-flex min-h-11 items-center gap-1 text-body-sm font-semibold text-primary hover:underline lg:min-h-0" href="{{ . }}" rel="noopener" target="_blank">
+                            {{ if in (slice "" "/") $u.Path }}Visiter {{ $u.Host }}{{ else }}Voir la démo{{ end }}{{ partial "icon" (dict "name" "arrow-right") }}
+                        </a>
+                        {{ end }}
+                        {{ with .case_study }}
+                        <a class="inline-flex min-h-11 items-center sm:ml-auto gap-1 text-body-sm font-semibold text-on-surface-variant hover:text-primary hover:underline lg:min-h-0" href="{{ . }}" rel="noopener" target="_blank">
+                            {{ partial "icon" (dict "name" "file-text") }}<span>Étude de cas<span class="sr-only"> {{ $project.name }}</span> sur silarhi.fr</span>
+                        </a>
+                        {{ end }}
+                    </div>
+                </div>
+            </article>
+            {{ end }}
+            {{ end }}
+        </div>
+        <p class="mt-6 text-center text-body-md text-on-surface-variant" data-portfolio-empty hidden>Aucun projet dans cette catégorie pour le moment.</p>
+        <div class="mt-6 flex justify-center sm:mt-10">
+            <button type="button" class="btn btn-outline btn-lg w-full rounded-xl sm:w-auto" data-portfolio-more data-umami-event="portfolio-show-all" hidden>
+                {{ partial "icon" (dict "name" "chevron-down" "class" "text-primary") }}<span data-portfolio-more-label>Afficher tous les projets</span>
+            </button>
+        </div>
+
+        <div class="mt-10 flex flex-col items-center justify-between gap-4 rounded-2xl bg-surface-container-low p-5 sm:p-6 sm:flex-row">
+            <div class="flex items-center gap-4">
+                <span class="hidden size-12 shrink-0 items-center justify-center rounded-xl bg-primary-container text-2xl text-white sm:flex" aria-hidden="true">{{ partial "icon" (dict "name" "lightbulb") }}</span>
+                <div>
+                    <h3 class="font-heading text-headline-sm font-bold text-on-surface">Un projet similaire à mener&#8239;?</h3>
+                    <p class="text-body-sm text-on-surface-variant">Nouvel outil métier, reprise d’une application existante ou intégration bancaire&nbsp;: parlons de votre contexte.</p>
+                </div>
+            </div>
+            <a class="btn btn-accent btn-lg w-full shrink-0 px-6 sm:w-auto js-scroll-trigger" href="#contact">{{ partial "icon" (dict "name" "message-square-text") }}Échanger sur votre projet</a>
+        </div>
+    </div>
+</section>
+
+<!-- Career -->
+<section id="parcours" class="section border-t border-slate-800 bg-terminal-black text-slate-100">
+    <div class="container max-w-6xl">
+        <div class="mb-10 flex flex-col justify-between gap-4 border-slate-800 pb-4 md:flex-row md:items-end">
+            <div class="max-w-3xl">
+                <h2 class="section-title text-white">Parcours & expériences</h2>
+                <p class="mt-2 text-body-md leading-relaxed text-slate-400">Les jalons qui ont forgé mon expertise, du développement full stack au métier de développeur web freelance à Toulouse.</p>
+            </div>
+        </div>
+        <div class="relative pl-10">
+        <div class="absolute top-2 bottom-10 left-2.75 w-0.5 md:top-7.5 bg-linear-to-b from-secondary-fixed-dim/60 via-slate-800 to-slate-800" aria-hidden="true"></div>
+        <ol class="flex flex-col gap-6">
+            {{ range $i, $experience := .Params.experiences | collections.Reverse }}
+            {{ with $experience }}
+            {{ $current := eq $i 0 }}
+            <li class="group relative">
+                {{/* Centred on the line (12px from the left) and on the date (phones) or the card title (30px from the card top) */}}
+                <span class="absolute -top-1 -left-10 md:top-4.5 z-10 flex size-6 items-center justify-center rounded-full border-2 bg-terminal-black transition-colors {{ if $current }}border-secondary-fixed-dim shadow-[0_0_0_4px_rgb(237_194_37/0.15)]{{ else }}border-slate-600 group-hover:border-slate-400{{ end }}" aria-hidden="true">
+                    <span class="rounded-full {{ if $current }}size-2.5 bg-secondary-fixed-dim motion-safe:animate-pulse{{ else }}size-2 bg-slate-500 transition-colors group-hover:bg-slate-300{{ end }}"></span>
+                </span>
+                <div class="md:rounded-xl md:border md:border-slate-800 md:p-4 md:transition-colors md:hover:border-slate-700 {{ if $current }}md:bg-slate-900/80{{ else }}md:bg-slate-900/50{{ end }}">
+                    <div class="mb-1 flex flex-wrap items-center justify-between gap-2">
+                        <div class="flex basis-full flex-wrap items-center gap-x-2 gap-y-0.5 md:basis-auto">
+                            <h3 class="font-heading text-headline-sm font-bold text-white">{{ .client }}</h3>
+                            <span class="text-body-sm text-slate-400">• {{ .title }}{{ with .employer }} (via {{ with $experience.employer_url }}<a class="text-indigo-300 underline underline-offset-2" href="{{ . }}" rel="noopener" target="_blank">{{ $experience.employer }}</a>{{ else }}{{ . }}{{ end }}){{ end }}</span>
+                            {{ with .badge }}
+                            <span class="rounded border border-indigo-700/60 bg-indigo-950/60 px-2 py-0.5 font-mono text-label-sm text-indigo-300">{{ . }}</span>
+                            {{ end }}
+                        </div>
+                        <span class="order-first font-mono text-label-sm max-md:border-0 max-md:bg-transparent max-md:px-0 md:order-0 md:rounded md:border md:px-2.5 md:py-0.5 {{ if $current }}border-amber-600/40 bg-amber-950/60 text-amber-300{{ else }}border-slate-700 bg-slate-800 font-normal text-slate-400{{ end }}">{{ .period }}</span>
+                    </div>
+                    <p class="mb-2 max-w-prose text-body-sm leading-relaxed text-slate-300">{{ partial "typography" .description }}</p>
+                    <ul class="hidden flex-wrap gap-1.5 md:flex">
+                        {{ range .tags }}
+                        <li class="rounded bg-slate-800 px-2 py-0.5 font-mono text-label-sm font-normal {{ if $current }}text-indigo-300{{ else }}text-slate-400{{ end }}">#{{ . }}</li>
+                        {{ end }}
+                    </ul>
+                </div>
+            </li>
+            {{ end }}
+            {{ end }}
+        </ol>
+        </div>
+    </div>
+</section>
 
 <!-- Skills -->
 <section id="competences" class="section">
     <div class="container">
-        <div class="text-center">
-            <h2 class="section-heading uppercase">Compétences</h2>
-            <h3 class="section-subheading text-muted">Axée autour de l'univers du Web, mon
-                expertise se concentre principalement autour du langage PHP et du framework Symfony.</h3>
+        <div class="mb-8 max-w-3xl">
+            <p class="eyebrow">Socle technique & savoir-faire</p>
+            <h2 class="section-title mt-1">Compétences techniques & écosystème de production web</h2>
+            <p class="mt-2 text-body-md text-on-surface-variant">
+                Tournée vers le web moderne, mon expertise porte principalement sur le langage PHP et le framework Symfony, complétée par les outils DevOps et cloud de référence.
+            </p>
         </div>
-
-        {{/*
-          Word cloud packed at build time by scripts/skills-cloud.js (run by yarn build): an SVG per box shape,
-          the narrow one for phones. The words stay in the page as a list for search engines and screen readers,
-          visible if the SVGs have not been generated (plain hugo server).
-        */}}
-        {{ $cloudSize := hugo.Data.skillsCloud }}
-        {{ $cloudWide := resources.Get "generated/skills-cloud-wide.svg" }}
-        {{ $cloudNarrow := resources.Get "generated/skills-cloud-narrow.svg" }}
-        {{ $hasCloud := and $cloudSize $cloudWide $cloudNarrow }}
-        <div id="skills">
-            {{ if $hasCloud }}
-            {{ $cloudWide = $cloudWide | resources.Fingerprint "md5" }}
-            {{ $cloudNarrow = $cloudNarrow | resources.Fingerprint "md5" }}
-            <picture>
-                <source media="(max-width: 575px)" srcset="{{ $cloudNarrow.RelPermalink }}" width="{{ $cloudSize.narrow.width }}" height="{{ $cloudSize.narrow.height }}">
-                <img src="{{ $cloudWide.RelPermalink }}" alt="" width="{{ $cloudSize.wide.width }}" height="{{ $cloudSize.wide.height }}" loading="lazy" decoding="async">
-            </picture>
-            {{ end }}
-            <ul aria-label="Compétences"{{ if $hasCloud }} class="sr-only"{{ end }}>
-                {{ range sort .Params.skills "weight" "desc" }}
-                <li>{{ .name }}</li>
-                {{ end }}
-            </ul>
-        </div>
-    </div>
-</section>
-
-<!-- Portfolio Grid -->
-<section class="section bg-gray-100" id="portfolio">
-    <div class="container">
-        <div class="text-center">
-            <h2 class="section-heading uppercase">Portfolio</h2>
-            <h3 class="section-subheading text-muted">Un coup d'œil non exhaustif sur mes derniers travaux.</h3>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-            {{ range $realisation := .Params.realisations }}
-            {{ with $realisation }}
-            <div>
-                <div class="portfolio-item">
-                    <a class="portfolio-link" data-bs-toggle="modal" href="#portfolio-modal-{{ .id }}">
-                        <div class="portfolio-hover">
-                            <div class="portfolio-hover-content">
-                                <i data-lucide="plus" class="icon" style="width: 3em; height: 3em"></i>
-                            </div>
-                        </div>
-                        {{ partial "responsive-image" (dict "src" .image "alt" .nom "class" "max-w-full h-auto" "width" 400 "height" 300 "priority" false) }}
-                    </a>
-                    <div class="portfolio-caption">
-                        <h4 class="text-2xl">{{ .nom }}</h4>
-                        <p class="text-muted"><strong>{{ .sous_titre }}</strong></p>
-                    </div>
-                </div>
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {{ range .Params.skill_groups }}
+            <div class="rounded-xl bg-surface-card p-4 shadow-sm">
+                <h3 class="mb-4 flex items-start gap-2 font-heading text-headline-sm font-bold text-on-surface">
+                    <span class="flex h-lh items-center text-primary" aria-hidden="true">{{ partial "icon" (dict "name" .icon "class" "text-xl") }}</span>{{ .title }}
+                </h3>
+                <ul class="flex flex-wrap gap-2">
+                    {{ range .tags }}{{ partial "chip" (dict "tag" . "size" "md") }}{{ end }}
+                </ul>
             </div>
-            {{ end }}
             {{ end }}
         </div>
     </div>
 </section>
 
-{{ range $realisation := .Params.realisations }}
-{{ with $realisation }}
-<div class="portfolio-modal modal fade" id="portfolio-modal-{{ .id }}" tabindex="-1" role="dialog"
-     aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="close-modal" data-bs-dismiss="modal">
-                <div class="lr">
-                    <div class="rl"></div>
+<!-- Freelance vs ESN -->
+<section class="section bg-surface-container-low">
+    <div class="container">
+        <div class="mb-8 flex max-w-3xl flex-col items-start sm:mx-auto sm:items-center sm:text-center">
+            <p class="eyebrow mb-1">Modèle d’intervention</p>
+            <h2 class="section-title">Pourquoi faire appel à un développeur freelance plutôt qu’à une ESN&#8239;?</h2>
+            <p class="mt-2 text-body-md text-on-surface-variant">
+                Une ESN facture sa structure et vous confie le consultant disponible. En freelance, vous travaillez directement avec le développeur senior qui conçoit, code et maintient votre application.
+            </p>
+        </div>
+        <div class="grid grid-cols-1 items-stretch gap-6 lg:grid-cols-2">
+            <div class="relative overflow-hidden rounded-2xl bg-surface-container p-5 sm:p-6 opacity-70 border-dashed border border-gray-300">
+                {{/* Lucide has no "building off" icon: its building, cut by a slash (the mask leaves a gap along the line) */}}
+                <span class="absolute top-6 right-6 flex size-12 items-center justify-center rounded-xl bg-surface-container-highest text-2xl text-outline" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <mask id="building-off-gap"><rect width="24" height="24" fill="white"/><path d="m2 2 20 20" stroke="black" stroke-width="5"/></mask>
+                        <g mask="url(#building-off-gap)">
+                            <path d="M12 10h.01M12 14h.01M12 6h.01M16 10h.01M16 14h.01M16 6h.01M8 10h.01M8 14h.01M8 6h.01"/>
+                            <path d="M9 22v-3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3"/>
+                            <rect x="4" y="2" width="16" height="20" rx="2"/>
+                        </g>
+                        <path d="m2 2 20 20"/>
+                    </svg>
+                </span>
+                <div class="mb-4 pr-16">
+                    <span class="mb-3 block font-mono text-label-sm uppercase text-outline">Modèle classique</span>
+                    <h3 class="font-heading text-headline-md font-bold text-on-surface">SSII / ESN traditionnelles</h3>
                 </div>
+                <ul class="mt-4 flex flex-col gap-4 text-body-sm text-on-surface-variant">
+                    {{ range slice
+                        "Interlocuteurs multiples (commercial, chef de projet, développeur junior), turn-over fréquent."
+                        "Frais de structure et surcoûts d’encadrement répercutés sans gain qualitatif direct sur le projet."
+                        "Délais allongés par la bureaucratie interne et la priorisation des très grands comptes."
+                        "Perte du savoir technique accumulé au départ des consultants ou en fin de contrat d’assistance."
+                    }}
+                    <li class="flex items-start gap-2">
+                        <span class="flex h-lh shrink-0 items-center" aria-hidden="true"><span class="flex size-5 items-center justify-center rounded-full bg-red-100 text-sm text-red-600">{{ partial "icon" (dict "name" "x") }}</span></span>
+                        <span>{{ . }}</span>
+                    </li>
+                    {{ end }}
+                </ul>
             </div>
-            <div class="container">
-                <div class="max-w-2xl mx-auto">
-                    <div class="modal-body">
-                        <!-- Project Details Go Here -->
-                        <h2 class="uppercase">{{ .nom }}</h2>
-                        <p class="item-intro text-muted">{{ .sous_titre }}</p>
-                        {{ partial "responsive-image" (dict "src" .image "alt" .nom "class" "max-w-full h-auto block mx-auto" "width" 700 "height" 525 "priority" false) }}
-
-                        <div class="modal-description">
-                            {{ .description | safeHTML }}
-                            <ul class="list-inline">
-                                <li>Date : {{ .date }}</li>
-                                <li>Technologies :
-                                    {{ range $keyword := .keywords }}
-                                    <span class="badge badge-secondary" title="Développeur {{ $keyword }} à Toulouse"><strong>{{ $keyword }}</strong></span>
-                                    {{ end }}
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="flex flex-row items-center justify-center gap-2">
-                            {{ if isset . "url" }}
-                            <a rel="noopener" href="{{ .url }}" class="btn btn-primary" target="_blank">
-                                <i data-lucide="globe"></i>
-                                &nbsp;Visiter
-                            </a>
-                            {{ end }}
-                            {{ with .case_study }}
-                            <a href="{{ . }}" class="btn btn-secondary">
-                                <i data-lucide="file-text"></i>
-                                &nbsp;Étude de cas<span class="sr-only"> {{ $realisation.nom }} sur silarhi.fr</span>
-                            </a>
-                            {{ end }}
-                            <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">
-                                <i data-lucide="x"></i>
-                                &nbsp;Fermer
-                            </button>
-                        </div>
-                    </div>
+            <div class="relative overflow-hidden rounded-2xl border border-hairline bg-surface-card p-5 sm:p-6 shadow-md">
+                {{/* Quarter of a large circle in the corner, the icon sits in its visible part */}}
+                <div class="pointer-events-none absolute -top-20 -right-20 size-48 rounded-full bg-secondary-container/30" aria-hidden="true"></div>
+                <span class="absolute top-6 right-6 flex text-xl text-secondary" aria-hidden="true">{{ partial "icon" (dict "name" "shield-check") }}</span>
+                <div class="relative mb-4 pr-24">
+                    <span class="mb-3 block font-mono text-label-sm uppercase text-primary">Développeur freelance</span>
+                    <h3 class="font-heading text-headline-md font-bold text-on-surface">Guillaume Sainthillier</h3>
                 </div>
+                <ul class="relative mt-4 flex flex-col gap-4 text-body-md text-on-surface">
+                    {{ range slice
+                        (dict "title" "Interlocuteur unique & responsable" "text" "Présent dans toutes les phases : analyse, conception, réalisation, tests, déploiement et maintenance. Aucune déperdition d’information.")
+                        (dict "title" "Flexibilité & vitesse d’exécution" "text" "Cycles de décision courts et déploiements directs, sans inertie hiérarchique.")
+                        (dict "title" "Focus sur votre activité" "text" "En vous appuyant sur un développeur senior de confiance, votre budget finance directement la valeur logicielle et opérationnelle.")
+                        (dict "title" "Confidentialité & neutralité" "text" "Vous ne prenez pas de risques en travaillant avec un partenaire neutre qui garantit la confidentialité de vos activités.")
+                    }}
+                    <li class="flex items-start gap-2">
+                        <span class="flex h-lh shrink-0 items-center" aria-hidden="true"><span class="flex size-6 items-center justify-center rounded-full bg-primary-container/10 text-green-600">{{ partial "icon" (dict "name" "check") }}</span></span>
+                        <div>
+                            <strong class="font-semibold">{{ .title }}&nbsp;:</strong>
+                            <p class="text-body-sm text-on-surface-variant">{{ partial "typography" .text }}</p>
+                        </div>
+                    </li>
+                    {{ end }}
+                </ul>
             </div>
         </div>
     </div>
-</div>
-{{ end }}
-{{ end }}
+</section>
 
-<!-- About -->
-<section id="parcours" class="section">
+<!-- Pricing -->
+<section id="pricing" class="section">
     <div class="container">
-        <div class="text-center">
-            <h2 class="section-heading uppercase">Parcours</h2>
-            <h3 class="section-subheading text-muted">Mes expériences avant de devenir Freelance Web à Toulouse.</h3>
+        <div class="mb-8 flex max-w-3xl flex-col items-start sm:mx-auto sm:items-center sm:text-center">
+            <p class="mb-2 inline-flex items-center gap-1.5 rounded-full bg-surface-container-high px-4 py-1 font-mono text-label-sm uppercase text-primary">
+                {{ partial "icon" (dict "name" "handshake") }}Modalités · Tarifs
+            </p>
+            <h2 class="section-title">Modalités et tarifs d’intervention</h2>
+            <p class="mt-2 text-body-md text-on-surface-variant">Travailler avec un développeur freelance, concrètement&nbsp;: transparence, souplesse contractuelle et engagement direct sans intermédiaire.</p>
         </div>
-        <div>
-            <ul class="timeline">
-                {{ range $i, $experience := .Params.experiences | collections.Reverse }}
-                {{ with $experience }}
-                <li class="{{ cond (not (modBool $i 2)) "" "timeline-inverted" }}">
-                <div class="timeline-image">
-                    {{ partial "responsive-image" (dict "src" .logo "alt" (printf "Logo %s" .client) "class" "rounded-full max-w-full h-auto" "width" 170 "height" 170 "priority" false) }}
-                </div>
-                <div class="timeline-panel space-y-2">
-                    <div class="timeline-heading space-y-2">
-                        <h4 class="text-2xl">{{ .periode }}</h4>
-                        <h4 class="subheading">{{ .client }}</h4>
-                        <h5 class="text-muted">{{ .titre }}</h5>
-                    </div>
-                    <div class="timeline-body">
-                        <p class="text-muted">{{ .description }}</p>
-                        {{ if .entreprise }}
-                        <span class="text-muted">Via {{ .entreprise | safeHTML }}</span>
-                        {{ end }}
-                    </div>
-                </div>
-                </li>
+        {{ partial "freelance-offer" . }}
+
+        <div class="panel mt-6 p-5 sm:p-6">
+            <div class="mb-4 flex flex-wrap items-center justify-between gap-2 border-b border-hairline pb-2">
+                <h3 class="flex items-start gap-2 font-heading text-headline-sm font-bold text-on-surface">
+                    <span class="flex h-lh items-center text-primary" aria-hidden="true">{{ partial "icon" (dict "name" "circle-question-mark" "class" "text-[22px]") }}</span>Questions fréquentes
+                </h3>
+            </div>
+            <div class="flex flex-col divide-y divide-hairline">
+                {{ range $i, $item := .Params.faq }}
+                <details class="group py-2"{{ if eq $i 0 }} open{{ end }}>
+                    <summary class="flex cursor-pointer list-none items-start justify-between gap-4 py-2.5 text-body-md select-none lg:py-1">
+                        <span class="flex items-start gap-2 font-semibold text-on-surface transition-colors group-hover:text-primary">
+                            <span class="flex h-lh shrink-0 items-center" aria-hidden="true"><span class="size-1.5 rounded-full bg-primary"></span></span>{{ partial "typography" $item.question }}
+                        </span>
+                        <span class="flex h-lh shrink-0 items-center text-outline transition-transform group-open:rotate-180" aria-hidden="true">{{ partial "icon" (dict "name" "chevron-down" "class" "text-xl") }}</span>
+                    </summary>
+                    <p class="mt-2 max-w-prose pl-3.5 text-body-sm leading-relaxed text-on-surface-variant">{{ partial "typography" (replace $item.answer "{{ rate }}" $rate) }}</p>
+                </details>
                 {{ end }}
-                {{ end }}
-                <li class="timeline-inverted">
-                    <div class="timeline-image">
-                        <a href="#contact" class="flex items-center h-full js-scroll-trigger">
-                            <h4 class="text-lg">Rejoignez l'aventure !</h4>
-                        </a>
-                    </div>
-                </li>
-            </ul>
+            </div>
+        </div>
+
+        <div class="mt-6 flex flex-col items-center justify-between gap-4 rounded-2xl bg-surface-container-low p-5 sm:p-6 sm:flex-row">
+            <div class="flex items-center gap-4">
+                <span class="hidden size-12 shrink-0 items-center justify-center rounded-xl bg-secondary-container text-2xl text-on-secondary-fixed sm:flex" aria-hidden="true">{{ partial "icon" (dict "name" "handshake") }}</span>
+                <div>
+                    <h3 class="font-heading text-headline-sm font-bold text-on-surface">Vous avez un projet en vue ou besoin d’un chiffrage&#8239;?</h3>
+                    <p class="text-body-sm text-on-surface-variant">Discutons de vos enjeux techniques et étudions ensemble les meilleures modalités de collaboration.</p>
+                </div>
+            </div>
+            <a class="btn btn-accent btn-lg w-full shrink-0 px-6 sm:w-auto js-scroll-trigger" href="#contact">{{ partial "icon" (dict "name" "message-square-text") }}Échanger sur votre projet</a>
         </div>
     </div>
 </section>
 
 <!-- Contact -->
-<section class="section bg-gray-100" id="contact">
+<section id="contact" class="section border-t border-hairline">
     <div class="container">
-        <div class="text-center">
-            <h2 class="section-heading uppercase">Parlez-moi de vous</h2>
-            <h3 class="section-subheading text-muted">Votre projet est trop complexe à décrire ?
-                <a href="tel:+33607275826">appelez-moi directement.</a></h3>
-        </div>
-        <div class="grid grid-cols-1 xl:grid-cols-12 gap-6">
-            <div class="xl:col-span-3">
-                <ul class="list-none grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-1 gap-4">
-                    <li>
-                        <div class="icon"><i data-lucide="map-pin"></i></div>
-                        <span class="text-muted">
-                            SILARHI
-                            <br />116 Route d'Espagne
-                            <br />HELIOPOLIS 4, BAT 113
-                            <br />BAL 411
-                            <br />31100 Toulouse
+        <div class="grid grid-cols-1 items-start gap-6 lg:grid-cols-12">
+            <div class="flex flex-col gap-6 lg:col-span-5">
+                <div>
+                    <p class="eyebrow">Contact direct & devis</p>
+                    <h2 class="section-title mt-1">Parlez-moi de votre projet web à Toulouse ou à distance</h2>
+                    <p class="mt-2 text-body-md text-on-surface-variant">Votre projet est urgent ou complexe à décrire par écrit&#8239;? Contactez-moi directement par téléphone ou réservez un créneau.</p>
+                </div>
+                <div class="grid grid-cols-2 gap-2 lg:flex lg:flex-col">
+                    <a class="group panel flex flex-col items-start gap-3 rounded-xl p-4 lg:flex-row lg:items-center lg:gap-4 transition-shadow hover:shadow-md" href="mailto:{{ site.Params.contact.email }}">
+                        <span class="flex size-10 shrink-0 items-center justify-center rounded-lg bg-primary text-xl text-white lg:size-12 lg:text-2xl" aria-hidden="true">{{ partial "icon" (dict "name" "mail") }}</span>
+                        <span class="flex flex-col">
+                            <span class="font-mono text-label-sm font-normal text-outline">Courrier électronique</span>
+                            <span class="font-heading text-body-md font-bold text-on-surface transition-colors wrap-anywhere group-hover:text-primary sm:text-headline-sm">{{ site.Params.contact.email }}</span>
+                            <span class="hidden font-mono text-label-sm font-normal text-on-surface-variant sm:block">Réponse sous 24h ouvrées</span>
                         </span>
-                    </li>
-                    <li>
-                        <div class="mb-2">
-                            <div class="icon"><i data-lucide="clock"></i></div>
-                            <span class="text-muted">
-                                Du lundi au vendredi
-                                <br>De 9h à 19h30
-                            </span>
-                        </div>
-                        <div class="mb-2">
-                            <div class="icon"><i data-lucide="phone"></i></div>
-                            <span class="text-muted">
-                                <a href="tel:+33607275826">0 607.275.826</a>
-                            </span>
-                        </div>
-                        <div class="mb-2">
-                            <div class="icon"><i data-lucide="mail"></i></div>
-                            <span class="text-muted">
-                                <a href='&#109;ai&#108;to&#58;&#37;68ell&#37;6F&#64;si%&#54;Ca&#37;72hi&#46;f&#114;'>hello&#64;silar&#104;i&#46;&#102;r</a>
-                            </span>
-                        </div>
-                    </li>
-                </ul>
+                    </a>
+                    <a class="group panel order-first flex flex-col items-start gap-3 rounded-xl p-4 transition-shadow hover:shadow-md lg:order-0 lg:flex-row lg:items-center lg:gap-4" href="tel:{{ site.Params.contact.phone }}">
+                        <span class="flex size-10 shrink-0 items-center justify-center rounded-lg bg-secondary-container text-xl text-on-secondary-fixed lg:size-12 lg:text-2xl" aria-hidden="true">{{ partial "icon" (dict "name" "phone") }}</span>
+                        <span class="flex flex-col">
+                            <span class="font-mono text-label-sm font-normal text-outline">Téléphone direct</span>
+                            <span class="font-heading text-body-md font-bold text-on-surface transition-colors wrap-anywhere group-hover:text-primary sm:text-headline-sm">{{ site.Params.contact.phoneDisplay }}</span>
+                            <span class="hidden font-mono text-label-sm font-normal text-on-surface-variant sm:block">Du lundi au vendredi · 9h à 19h30</span>
+                        </span>
+                    </a>
+                    <div class="col-span-2 flex items-start gap-4 rounded-xl bg-surface-container-high p-4">
+                        <span class="flex size-12 shrink-0 items-center justify-center rounded-lg bg-surface-card text-2xl text-on-surface" aria-hidden="true">{{ partial "icon" (dict "name" "map-pin") }}</span>
+                        <p class="flex flex-col text-body-sm text-on-surface">
+                            <strong class="font-semibold">Toulouse & télétravail</strong>
+                            <span class="text-on-surface-variant">Intervention sur site à Toulouse ou à distance partout en France</span>
+                        </p>
+                    </div>
+                </div>
             </div>
-            <div class="xl:col-span-9">
-                <form id="contactForm" class="needs-validation" action="https://formspree.io/f/xlepbonn" novalidate="novalidate">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="panel p-5 sm:p-6 shadow-md md:p-10 lg:col-span-7">
+                <div class="mb-4">
+                    <h3 class="font-heading text-headline-md font-bold text-on-surface">Demande de renseignement</h3>
+                    <p class="mt-1 text-body-sm text-on-surface-variant">Renseignez les grandes lignes de votre besoin technique pour une étude préalable.</p>
+                </div>
+                {{ if $isBookingExternal }}
+                <div class="mb-4 flex flex-col justify-between gap-2 rounded-xl border border-hairline bg-surface-container-low p-4 sm:flex-row sm:items-center">
+                    <p class="flex items-start gap-1 text-body-sm text-on-surface">
+                        <span class="flex h-lh items-center text-primary" aria-hidden="true">{{ partial "icon" (dict "name" "timer" "class" "text-xl") }}</span>
+                        <span><strong>Besoin d’un retour immédiat&#8239;?</strong> Réservez directement un créneau visio de 15 min ou renseignez le formulaire ci-dessous.</span>
+                    </p>
+                    <a class="btn btn-outline min-h-11 shrink-0 px-3 py-1.5 font-mono lg:min-h-0 text-label-sm text-primary" href="{{ $bookingUrl }}" rel="noopener" target="_blank">{{ partial "icon" (dict "name" "calendar") }}Réserver 15 min</a>
+                </div>
+                {{ end }}
+                <form id="contactForm" class="flex flex-col gap-4" action="https://formspree.io/f/xlepbonn" novalidate>
+                    <fieldset>
+                        <legend class="form-label">Quel est le type de votre besoin&#8239;? *</legend>
+                        <div class="flex flex-wrap gap-2 sm:grid sm:grid-cols-2">
+                            {{ range $i, $need := .Params.contact_needs }}
+                            <label class="choice {{ if eq $need.id "other" }}sm:col-span-2{{ end }}">
+                                <input type="radio" name="need" value="{{ $need.label }}" data-placeholder="{{ $need.placeholder }}" data-help="{{ $need.help }}"{{ if eq $i 0 }} checked{{ end }} required>
+                                <span>{{ $need.label }}</span>
+                            </label>
+                            {{ end }}
+                        </div>
+                    </fieldset>
+                    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
                         <div>
-                            <div class="form-group">
-                                <input class="form-control"
-                                       id="name"
-                                       autocomplete="name"
-                                       type="text"
-                                       placeholder="Votre nom *"
-                                       required>
-                                <div class="invalid-feedback">
-                                    Merci de renseigner votre nom.
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <input class="form-control"
-                                       id="email"
-                                       autocomplete="email"
-                                       type="email"
-                                       placeholder="Votre email *"
-                                       required>
-                                <div class="invalid-feedback">
-                                    Merci de renseigner votre email.
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <input class="form-control"
-                                       id="phone"
-                                       autocomplete="tel"
-                                       type="tel"
-                                       placeholder="Votre téléphone *"
-                                       required>
-                                <div class="invalid-feedback">
-                                    Merci de renseigner votre numéro de téléphone.
-                                </div>
-                            </div>
+                            <label class="form-label" for="name">Vos prénom et nom *</label>
+                            <input class="form-control" id="name" name="name" autocomplete="name" type="text" placeholder="Ex : Jean Dupont" required>
+                            <div class="invalid-feedback">Merci de renseigner votre nom.</div>
                         </div>
                         <div>
-                            <div class="form-group">
-                                <textarea class="form-control"
-                                          id="message"
-                                          placeholder="Votre message *"
-                                          required
-                                          data-validation-required-message="Merci de renseigner votre message."></textarea>
-                                <div class="invalid-feedback">
-                                    Merci de renseigner votre message.
-                                </div>
-                            </div>
+                            <label class="form-label" for="email">Votre email professionnel *</label>
+                            <input class="form-control" id="email" name="email" autocomplete="email" type="email" placeholder="jean@entreprise.com" required>
+                            <div class="invalid-feedback">Merci de renseigner votre email.</div>
                         </div>
-                        <div class="md:col-span-2 text-center">
-                            <div id="success"></div>
-                            <button id="sendMessageButton" class="btn btn-primary btn-xl uppercase" type="submit">
-                                Envoyer le message
-                            </button>
+                    </div>
+                    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                        <div>
+                            <label class="form-label" for="phone">Téléphone de contact <span class="font-normal text-on-surface-variant">(facultatif)</span></label>
+                            <input class="form-control" id="phone" name="phone" autocomplete="tel" type="tel" placeholder="06 00 00 00 00">
                         </div>
+                        <div>
+                            <label class="form-label" for="timeline">Calendrier envisagé</label>
+                            <select class="form-control" id="timeline" name="timeline">
+                                <option>Dès que possible</option>
+                                <option>Démarrage dans le mois</option>
+                                <option>Prochain trimestre</option>
+                                <option>Phase de cadrage budgétaire</option>
+                            </select>
+                        </div>
+                    </div>
+                    {{ $firstNeed := index .Params.contact_needs 0 }}
+                    <div>
+                        <div class="mb-1.5 flex flex-wrap items-center justify-between gap-2">
+                            <label class="form-label mb-0" for="message">Description de votre besoin technique *</label>
+                            <span class="font-mono text-label-sm font-medium text-primary" id="needIndicator" aria-hidden="true">{{ $firstNeed.label }}</span>
+                        </div>
+                        <textarea class="form-control" id="message" name="message" rows="4" placeholder="{{ $firstNeed.placeholder }}" aria-describedby="needHelp" required></textarea>
+                        <div class="invalid-feedback">Merci de renseigner votre message.</div>
+                        <p class="mt-1.5 flex items-start gap-1 font-mono text-label-sm font-normal text-on-surface-variant">
+                            <span class="flex h-lh items-center text-primary" aria-hidden="true">{{ partial "icon" (dict "name" "info") }}</span><span id="needHelp">{{ $firstNeed.help }}</span>
+                        </p>
+                    </div>
+                    <div id="success" aria-live="polite"></div>
+                    <div class="flex flex-col items-center justify-between gap-4 pt-1 sm:flex-row">
+                        <button id="sendMessageButton" class="btn btn-accent btn-lg w-full shrink-0 whitespace-nowrap sm:w-auto" type="submit">{{ partial "icon" (dict "name" "send") }}Envoyer le message</button>
                     </div>
                 </form>
             </div>

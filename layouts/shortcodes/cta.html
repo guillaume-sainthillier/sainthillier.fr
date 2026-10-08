@@ -1,0 +1,7 @@
+{{- /* Call to action from the page's front matter (cta.label, cta.url), e.g. right after the introduction: {{< cta >}} */ -}}
+{{- with .Page.Params.cta }}
+<div class="mt-6 mb-10 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
+    <a class="btn btn-accent btn-lg w-full sm:w-auto" href="{{ .url }}">{{ partial "icon" (dict "name" "calendar") }}{{ .label }}</a>
+    <span class="font-mono text-label-sm font-normal text-on-surface-variant">Réponse sous 24h ouvrées · sans engagement</span>
+</div>
+{{- end }}

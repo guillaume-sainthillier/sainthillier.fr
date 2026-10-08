@@ -12,14 +12,15 @@
         "David Miller (http://davidmiller.io/)"
     ],
     "scripts": {
-        "dev": "vite build --mode development && yarn skills-cloud",
+        "dev": "vite build --mode development",
         "watch": "vite build --watch --mode development",
-        "build": "vite build && yarn skills-cloud",
+        "build": "vite build",
         "build:hugo": "yarn build && yarn hugo",
         "build:hugo:preview": "yarn build && yarn hugo -D -F",
         "hugo": "hugo --gc --minify",
-        "skills-cloud": "node scripts/skills-cloud.js",
         "hugo:dev": "hugo server -D",
+        "fonts:subset": "node scripts/subset-fonts.js",
+        "og-image": "node scripts/og-image.js",
         "prepare": "husky install",
         "lint": "biome check --write assets",
         "lint-ci": "biome check assets",
@@ -30,29 +31,25 @@
         "knip:fix": "knip --fix",
         "size:json": "node scripts/bundle-size.js"
     },
-    "dependencies": {
-        "@webcomponents/custom-elements": "^1.6.0",
-        "lite-youtube-embed": "^0.3.4",
-        "lucide": "^1.52.0"
-    },
+    "dependencies": {},
     "devDependencies": {
         "@biomejs/biome": "2.5.15",
-        "@fontsource/arimo": "^5.3.0",
+        "@fontsource-variable/inter": "^5.3.0",
+        "@fontsource-variable/plus-jakarta-sans": "^5.3.0",
         "@tailwindcss/vite": "^4.3.3",
         "@types/node": "^24.19.1",
         "hugo-extended": "^0.166.0",
         "husky": "9.1.7",
         "knip": "^6.40.0",
         "lint-staged": ">=17.6.0",
-        "opentype.js": "^2.0.0",
+        "lucide-static": "^1.52.0",
         "prettier": "^3.9.9",
         "prettier-plugin-tailwindcss": "^0.8.1",
-        "svgo": "^4",
+        "subset-font": "^2.9.0",
         "tailwindcss": "^4.3.3",
         "terser": "^5.51.2",
         "typescript": "^7.0.2",
-        "vite": "^8",
-        "yaml": "^2.9.1"
+        "vite": "^8"
     },
     "lint-staged": {
         "*.{js,jsx,ts,tsx,mjs,json}": "biome check --write --no-errors-on-unmatched",

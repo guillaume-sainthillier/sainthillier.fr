@@ -9,6 +9,19 @@
         "dev"
       ],
       "port": 5173
+    },
+    {
+      "name": "hugo",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": [
+        "hugo",
+        "server",
+        "--port",
+        "1313",
+        "--disableFastRender",
+        "--noHTTPCache"
+      ],
+      "port": 1313
     }
   ]
 }

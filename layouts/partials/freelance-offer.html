@@ -1,54 +1,50 @@
 {{/*
   Freelance engagement terms (rate, billing, location, duration, availability).
   Values come from [params.freelance] in config.toml so the page content and the JSON-LD stay in sync.
+  The homepage shows the availability in its hero, so the badge only appears on the other pages.
+
+  Each term has a short text for phones (short) and a longer one from tablets up (text).
 
   Usage: {{ partial "freelance-offer" . }} or {{< freelance-offer >}} in Markdown content.
 */}}
 {{ $freelance := site.Params.freelance }}
+{{ $terms := slice
+  (dict "icon" "calendar-days" "iconClass" "bg-primary-container/10 text-primary" "label" "En régie" "value" (printf "%v à %v €" $freelance.dailyRateMin $freelance.dailyRateMax) "valueClass" "text-primary" "unit" "HT / jour" "text" "Pour renforcer temporairement votre équipe technique interne ou prendre en charge un périmètre complet en immersion." "short" "Renfort d’équipe ou périmètre complet, facturé au temps passé." "note" "Facturation au temps passé & flexibilité totale")
+  (dict "icon" "receipt-text" "iconClass" "bg-secondary-container/20 text-secondary" "label" "Au forfait" "value" "Devis gratuit" "unit" "Chiffrage sur mesure" "text" "Idéal pour un projet web dont le périmètre, le budget et le planning sont clairement définis et fixés à l’avance." "short" "Périmètre, livrables et budget fixés à l’avance." "note" "Engagement sur livrable & budget maîtrisé")
+  (dict "icon" "map-pinned" "iconClass" "bg-surface-container-high text-on-surface" "label" "Localisation" "value" "Sur site ou à distance" "unit" "Toulouse & télétravail" "text" "Dans vos locaux à Toulouse et dans son agglomération pour les points clés, ou à distance partout en France." "short" "Dans vos locaux à Toulouse ou à distance partout en France." "note" "Déplacements ponctuels & présence clé inclus")
+  (dict "icon" "clock" "iconClass" "bg-surface-container-high text-on-surface" "label" "Durée de mission" "value" "2 jours à 2 ans" "unit" "Intervention adaptée" "text" "D’un audit ponctuel ou d’un déblocage technique de quelques jours jusqu’à un accompagnement d’architecture au long cours." "short" "De l’audit ponctuel à l’accompagnement au long cours." "note" "Démarrage rapide sous 48h selon disponibilités")
+}}
 <div class="freelance-offer">
-    <p class="text-center mb-8">
+    {{ if not .Page.IsHome }}
+    <p class="mb-6 text-center">
         {{ if $freelance.available }}
-        <span class="inline-flex items-center gap-2 rounded-full bg-green-100 px-4 py-1 font-bold text-green-800">
+        <span class="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1 text-body-sm font-semibold text-emerald-800">
             <span class="relative flex size-2.5" aria-hidden="true">
-                <span class="absolute inline-flex size-full rounded-full bg-green-500 opacity-75 motion-safe:animate-ping"></span>
-                <span class="relative inline-flex size-2.5 rounded-full bg-green-600"></span>
+                <span class="absolute inline-flex size-full rounded-full bg-emerald-500 opacity-75 motion-safe:animate-ping"></span>
+                <span class="relative inline-flex size-2.5 rounded-full bg-emerald-600"></span>
             </span>
             Disponible pour une nouvelle mission
         </span>
         {{ else }}
-        <span class="inline-flex items-center gap-2 rounded-full bg-gray-200 px-4 py-1 font-bold text-gray-800">
-            <i data-lucide="calendar-days"></i> En mission actuellement : contactez-moi pour planifier la suivante
+        <span class="inline-flex items-center gap-2 rounded-full bg-surface-container-high px-4 py-1 text-body-sm font-semibold text-on-surface">
+            {{ partial "icon" (dict "name" "calendar-days") }} En mission actuellement&nbsp;: contactez-moi pour planifier la suivante
         </span>
         {{ end }}
     </p>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
-        <div class="card">
-            <div class="card-body">
-                <h3 class="flex items-center gap-2 text-lg mb-2"><i data-lucide="calendar-days"></i> En régie</h3>
-                <p class="text-xl font-bold mb-2">{{ $freelance.dailyRateMin }} à {{ $freelance.dailyRateMax }} € HT / jour</p>
-                <p class="text-muted text-left">Pour renforcer votre équipe ou prendre en charge un périmètre technique.</p>
-            </div>
+    {{ end }}
+    <div class="grid grid-cols-1 gap-3 text-left sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
+        {{ range $terms }}
+        <div class="panel flex flex-col p-3.5 transition-shadow hover:shadow-md sm:p-6">
+            <span class="mb-4 hidden size-10 items-center justify-center rounded-lg text-2xl sm:flex {{ .iconClass }}">{{ partial "icon" (dict "name" .icon) }}</span>
+            <span class="font-mono text-label-md font-bold uppercase text-outline">{{ .label }}</span>
+            <span class="mt-1 font-heading text-body-lg leading-tight font-bold sm:text-headline-md {{ .valueClass | default "text-on-surface" }}">{{ .value }}</span>
+            <span class="mb-2 font-mono text-label-sm font-normal text-on-surface-variant">{{ .unit }}</span>
+            <span class="text-body-sm text-on-surface-variant sm:hidden">{{ .short }}</span>
+            <span class="mb-4 hidden text-body-sm text-on-surface-variant sm:block">{{ .text }}</span>
+            <span class="mt-auto hidden items-start gap-1 border-t border-hairline pt-2 font-mono text-label-sm text-primary sm:flex">
+                {{ partial "icon" (dict "name" "badge-check" "class" "mt-px") }}{{ .note }}
+            </span>
         </div>
-        <div class="card">
-            <div class="card-body">
-                <h3 class="flex items-center gap-2 text-lg mb-2"><i data-lucide="clipboard-list"></i> Au forfait</h3>
-                <p class="text-xl font-bold mb-2">Devis gratuit</p>
-                <p class="text-muted text-left">Pour un projet dont le périmètre et le budget sont fixés à l’avance.</p>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-body">
-                <h3 class="flex items-center gap-2 text-lg mb-2"><i data-lucide="map-pin"></i> Sur site ou à distance</h3>
-                <p class="text-xl font-bold mb-2">Toulouse</p>
-                <p class="text-muted text-left">Dans vos locaux à Toulouse, en télétravail partout ailleurs.</p>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-body">
-                <h3 class="flex items-center gap-2 text-lg mb-2"><i data-lucide="hourglass"></i> Durée</h3>
-                <p class="text-xl font-bold mb-2">2 jours à 2 ans</p>
-                <p class="text-muted text-left">D’une intervention ponctuelle à un accompagnement au long cours.</p>
-            </div>
-        </div>
+        {{ end }}
     </div>
 </div>

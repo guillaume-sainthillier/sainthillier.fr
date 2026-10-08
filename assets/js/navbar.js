@@ -1,68 +1,48 @@
-const SCROLL_OFFSET = 54
-const SHRINK_THRESHOLD = 100
+// Height of the fixed header, so a section counts as current once it reaches the bottom of the header
+const SCROLL_OFFSET = 80
 
 export default function initNavbar() {
-    const navbar = document.body.querySelector('#mainNav')
-    if (!navbar) return
-
-    initNavbarShrink(navbar)
-    initScrollSpy(navbar)
+    initScrollSpy()
 }
 
-function initNavbarShrink(navbar) {
-    const navbarShrink = () => {
-        if (window.scrollY <= SHRINK_THRESHOLD) {
-            navbar.classList.remove('navbar-shrink')
-        } else {
-            navbar.classList.add('navbar-shrink')
-        }
-    }
-
-    navbarShrink()
-    document.addEventListener('scroll', navbarShrink)
-}
-
-function initScrollSpy(navbar) {
-    const scrollLinks = navbar.querySelectorAll('.js-scroll-trigger[href^="/#"]')
-    const sections = []
+function initScrollSpy() {
+    // Header navigation and mobile tab bar
+    const scrollLinks = document.body.querySelectorAll('.nav-link[href^="/#"], .tab-link[href^="/#"]')
+    // Both navigations list the sections in their own order: keep each section once
+    const sections = new Set()
 
     scrollLinks.forEach((link) => {
-        const href = link.getAttribute('href')
-        const sectionId = href.replace('/#', '')
-        const section = document.getElementById(sectionId)
+        const section = document.getElementById(link.getAttribute('href').replace('/#', ''))
         if (section) {
-            sections.push({ element: section, link })
+            sections.add(section)
         }
     })
 
     const updateActiveLink = () => {
         const scrollPosition = window.scrollY + SCROLL_OFFSET + 1
 
+        // The current section is the lowest one on the page whose top has been scrolled past
         let currentSection = null
-        sections.forEach(({ element }) => {
-            if (element.offsetTop <= scrollPosition) {
-                currentSection = element
+        sections.forEach((section) => {
+            if (
+                section.offsetTop <= scrollPosition &&
+                (!currentSection || section.offsetTop > currentSection.offsetTop)
+            ) {
+                currentSection = section
             }
         })
 
         scrollLinks.forEach((link) => {
-            const isActive = currentSection && link.getAttribute('href') === `/#${currentSection.id}`
-            if (link.classList.contains('btn')) {
-                // Handle button style toggle
-                if (isActive) {
-                    link.classList.remove('btn-outline-primary')
-                    link.classList.add('btn-primary')
-                } else {
-                    link.classList.remove('btn-primary')
-                    link.classList.add('btn-outline-primary')
-                }
+            const isActive = currentSection !== null && link.getAttribute('href') === `/#${currentSection.id}`
+            link.classList.toggle('active', isActive)
+            if (isActive) {
+                link.setAttribute('aria-current', 'true')
             } else {
-                // Handle nav-link active class
-                link.classList.toggle('active', isActive)
+                link.removeAttribute('aria-current')
             }
         })
     }
 
-    document.addEventListener('scroll', updateActiveLink)
+    document.addEventListener('scroll', updateActiveLink, { passive: true })
     updateActiveLink()
 }

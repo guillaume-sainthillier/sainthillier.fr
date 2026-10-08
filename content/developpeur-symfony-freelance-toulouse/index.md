@@ -4,13 +4,15 @@ title: 'Développeur Symfony freelance à Toulouse'
 draft: true
 description: 'Développeur Symfony freelance à Toulouse : renfort d’équipe, reprise de projet, montée de version, API Platform, EBICS. Sur site ou à distance.'
 cta:
-    label: 'Parlons de votre mission'
+    label: 'Échanger sur votre projet'
     url: '/#contact'
 ---
 
 # Développeur Symfony freelance à Toulouse
 
-Je suis Guillaume Sainthillier, développeur PHP / Symfony freelance basé à Toulouse. Depuis 2018, je réalise des missions sur des applications Web métier construites avec Symfony : nouveaux développements, reprise de projets existants, montées de version et expertise technique.
+Je suis Guillaume Sainthillier, développeur PHP / Symfony freelance basé à Toulouse. Depuis 2018, je réalise des missions sur des applications web métier construites avec Symfony : nouveaux développements, reprise de projets existants, montées de version et expertise technique.
+
+{{< cta >}}
 
 ## Modalités et tarifs
 
@@ -32,7 +34,7 @@ Passage vers une version maintenue de Symfony et de PHP, correction des dépréc
 
 ### API avec API Platform
 
-Conception d’API REST pour vos applications Web et mobiles, comme pour [Netisio](https://silarhi.fr/projets/netisio), développé avec Symfony 7 et API Platform 4.
+Conception d’API REST pour vos applications web et mobiles, comme pour [Netisio](https://silarhi.fr/projets/netisio), développé avec Symfony 7 et API Platform 4.
 
 ### Intégrations bancaires EBICS et CFONB
 
@@ -45,7 +47,7 @@ Audit de sécurité et de performances, infrastructure serveur ou cloud (Docker,
 ## Quelques projets Symfony
 
 - [CIBARU](https://silarhi.fr/projets/cibaru) : gestion de mandats de travaux, en Symfony 7.
-- [Netisio](https://silarhi.fr/projets/netisio) : suivi des consommations d’eau et d’électricité des copropriétés, en Symfony 7 et API Platform 4.
+- [Netisio](https://silarhi.fr/projets/netisio) : télérelève d’eau et d’énergie pour copropriétés, en Symfony 7 et API Platform 4.
 - [Solution SEPA](https://silarhi.fr/projets/solution-sepa) : prélèvements et virements bancaires via EBICS, reprise d’un projet Symfony 6.
 - [Immobilus](https://silarhi.fr/projets/immobilus) : gestion immobilière pour les propriétaires, en Symfony 6 avec EBICS.
 - [By Night](https://by-night.fr) : mon projet personnel, un agrégateur d’événements culturels en Symfony 7 avec Elasticsearch et Varnish.
@@ -68,8 +70,8 @@ De 2 jours pour une intervention ponctuelle (audit, montée de version ciblée, 
 
 ### Sur quelles versions de Symfony intervenez-vous ?
 
-Sur les versions récentes comme sur des applications plus anciennes à faire évoluer : mes projets vont de Symfony 4 à Symfony 7.
+Sur les versions récentes comme sur des applications plus anciennes à faire évoluer : mes projets vont de Symfony 2 à Symfony 8.
 
 ## Un projet complet à confier ?
 
-Pour un projet clé en main, découvrez [SILARHI](https://silarhi.fr/technologies/symfony), ma société de développement d’applications Web.
+Pour un projet clé en main, découvrez [SILARHI](https://silarhi.fr/technologies/symfony), ma société de développement d’applications web.

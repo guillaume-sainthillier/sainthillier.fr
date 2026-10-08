@@ -1,0 +1,21 @@
+{{/*
+  Lucide icon rendered at build time as inline SVG, from lucide-static (node_modules/lucide-static/icons is
+  mounted on assets/icons in config.toml): icons are in the HTML from the first paint, no JavaScript involved.
+
+  Usage:
+  {{ partial "icon" (dict "name" "mail" "class" "text-primary") }}
+
+  Parameters:
+  - name: Lucide icon name, as listed on https://lucide.dev/icons (required, an unknown name fails the build)
+  - class: extra CSS classes (optional)
+
+  Sized at 1em like the surrounding text, decorative (aria-hidden): give the parent link or button its label.
+*/}}
+{{- $svg := resources.Get (printf "icons/%s.svg" .name) -}}
+{{- if not $svg -}}
+  {{- errorf "icon partial: unknown Lucide icon %q" .name -}}
+{{- end -}}
+{{- $body := $svg.Content | replaceRE `(?s)^.*?<svg[^>]*>(.*)</svg>\s*$` "$1" | strings.TrimSpace -}}
+{{- $class := strings.TrimSpace (printf "lucide lucide-%s %s" .name (.class | default "")) -}}
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="{{ $class }}" aria-hidden="true">{{ $body | safeHTML }}</svg>
+{{- /* trim */ -}}

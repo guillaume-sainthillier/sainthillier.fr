@@ -73,6 +73,13 @@ command = "yarn build && yarn hugo --baseURL $DEPLOY_PRIME_URL"
   status = 301
   force = true
 
+# The Open Graph image moved out of /images/ (immutable, fingerprinted files only); social networks cache the old URL
+[[redirects]]
+  from = "/images/og-image.jpg"
+  to = "/og-image.jpg"
+  status = 301
+  force = true
+
 # Catch-all must stay last: Netlify applies the first matching rule
 [[redirects]]
   from = "/*"
@@ -87,9 +94,9 @@ command = "yarn build && yarn hugo --baseURL $DEPLOY_PRIME_URL"
 	public,
 	immutable'''
 
-# Fingerprinted by Hugo (skills cloud SVGs)
+# Images processed by Hugo, fingerprinted (keep unfingerprinted files such as og-image.jpg out of this folder)
 [[headers]]
-  for = "/generated/*"
+  for = "/images/*"
   [headers.values]
 	cache-control = '''
 	max-age=31536000,

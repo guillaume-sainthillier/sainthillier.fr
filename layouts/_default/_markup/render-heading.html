@@ -1,0 +1,7 @@
+{{- /* Legal pages show the section number as a badge before the title, see layouts/_default/legal.html */ -}}
+{{- if and (eq .Level 2) (eq .Page.Layout "legal") -}}
+{{- $heading := partial "legal-heading" .Text -}}
+<h2 id="{{ .Anchor }}" class="legal-heading">{{ with $heading.number }}<span class="legal-number">{{ . }}</span> {{ end }}<span>{{ $heading.title }}</span></h2>
+{{- else -}}
+<h{{ .Level }} id="{{ .Anchor }}"{{ range $k, $v := .Attributes }}{{ if ne $k "id" }} {{ $k }}="{{ $v }}"{{ end }}{{ end }}>{{ .Text }}</h{{ .Level }}>
+{{- end -}}
