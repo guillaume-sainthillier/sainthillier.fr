@@ -764,10 +764,10 @@ harfbuzzjs@^1.6.1:
   resolved "https://registry.yarnpkg.com/harfbuzzjs/-/harfbuzzjs-1.6.3.tgz#1c00fea27473bb1e608f1b0a8ffb66d52697f78a"
   integrity sha512-R5Mfo1UUvQmZJmtScP7fBLKYKnYu82ZdtFT7WbQYeGb3Ut5PR3xfFCJ5/FjbcW5SAfb9cqCSny/KNjp+NJBx0w==
 
-hugo-extended@^0.166.0:
-  version "0.166.0"
-  resolved "https://registry.yarnpkg.com/hugo-extended/-/hugo-extended-0.166.0.tgz#bb61783d671cda570d654ab61767dc51a918bf37"
-  integrity sha512-vv0OylKYYQ10RoEc0b2kXup1MOAzI3E7bBW3Znje/4yOB5LDqalDW0+OYHMro6/DkP87St8uwccSbQuZVLZGnA==
+hugo-extended@^0.167.0:
+  version "0.167.0"
+  resolved "https://registry.yarnpkg.com/hugo-extended/-/hugo-extended-0.167.0.tgz#8732fa5085f58a097539a38d7b4db3cf069350c7"
+  integrity sha512-XEtjQwhAT4IJqGSGaP7Tm3tUfkaeUk1J8fWo1E7wBAYTywyjNSvBz8bu8czc3axskQ8WycewIuOz89vEZGWlig==
   dependencies:
     adm-zip "^0.5.17"
     tar "^7.5.15"
