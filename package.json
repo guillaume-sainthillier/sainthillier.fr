@@ -38,7 +38,7 @@
         "@fontsource-variable/plus-jakarta-sans": "^5.3.0",
         "@tailwindcss/vite": "^4.3.3",
         "@types/node": "^24.19.1",
-        "hugo-extended": "^0.166.0",
+        "hugo-extended": "^0.167.0",
         "husky": "9.1.7",
         "knip": "^6.40.0",
         "lint-staged": ">=17.6.0",
