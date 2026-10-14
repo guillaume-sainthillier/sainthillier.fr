@@ -3,7 +3,7 @@
   "configurations": [
     {
       "name": "dev",
-      "runtimeExecutable": "yarn",
+      "runtimeExecutable": "pnpm",
       "runtimeArgs": [
         "run",
         "dev"
@@ -12,8 +12,9 @@
     },
     {
       "name": "hugo",
-      "runtimeExecutable": "npx",
+      "runtimeExecutable": "pnpm",
       "runtimeArgs": [
+        "exec",
         "hugo",
         "server",
         "--port",

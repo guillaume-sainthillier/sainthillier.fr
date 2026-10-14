@@ -1,5 +1,5 @@
 /*
- * Web fonts, subset by scripts/subset-fonts.js (`yarn fonts:subset`): French characters only and the weights in
+ * Web fonts, subset by scripts/subset-fonts.js (`pnpm fonts:subset`): French characters only and the weights in
  * use, so keep font-weight and unicode-range in sync with that script. Characters outside the range (Cyrillic,
  * Greek...) render in the fallback fonts below.
  */

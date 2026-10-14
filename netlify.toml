@@ -1,6 +1,6 @@
 [build]
 publish = "public"
-command = "yarn build:hugo"
+command = "pnpm build:hugo"
 
 [build.environment]
 HUGO_ENV = "production"
@@ -9,7 +9,7 @@ HUGO_EXTENDED = "true"
 
 # Build previews against their own URL so absolute links (canonical, og:image, JSON-LD) resolve on the preview
 [context.deploy-preview]
-command = "yarn build && yarn hugo --baseURL $DEPLOY_PRIME_URL"
+command = "pnpm build && pnpm hugo --baseURL $DEPLOY_PRIME_URL"
 
 [[redirects]]
   from = "/cgv"
