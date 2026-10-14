@@ -32,7 +32,7 @@
 
     {{/*
       Production inlines the stylesheet (~10 kB compressed): no render-blocking request, and the fonts it
-      references are discovered while the HTML is still parsing. Development keeps the link for `yarn watch`.
+      references are discovered while the HTML is still parsing. Development keeps the link for `pnpm watch`.
     */}}
     {{ range hugo.Data.entrypoints.entrypoints.app.css }}
     {{ if hugo.IsProduction }}

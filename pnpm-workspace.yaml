@@ -1,0 +1,4 @@
+# Dependencies allowed to run install scripts (pnpm blocks them by default)
+allowBuilds:
+    # Its postinstall downloads the Hugo binary used by the `hugo*` scripts (and the Netlify build)
+    hugo-extended: true

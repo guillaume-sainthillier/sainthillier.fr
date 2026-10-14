@@ -1,6 +1,6 @@
 /*
  * Renders the social preview (static/og-image.jpg, 1200×630) from scripts/og-image.html with headless Chrome.
- * Run `yarn og-image` after changing the template or the design tokens it copies, and commit the result.
+ * Run `pnpm og-image` after changing the template or the design tokens it copies, and commit the result.
  * Chrome is looked up at its macOS location; set CHROME_PATH to use another binary.
  */
 import { execFileSync } from 'child_process'

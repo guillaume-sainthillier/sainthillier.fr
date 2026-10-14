@@ -15,7 +15,7 @@ Design inspired by [BlackrockDigital agency template](https://github.com/StartBo
 - **[Vite](https://vitejs.dev/)** - Modern build tool for JavaScript and CSS bundling
 - **[Tailwind CSS v4](https://tailwindcss.com/)** - Utility-first CSS framework
 - **[Lucide](https://lucide.dev/)** - SVG icons, inlined at build time from `lucide-static` (`layouts/partials/icon.html`)
-- **[Fontsource](https://fontsource.org/)** - Plus Jakarta Sans and Inter, subset into `assets/fonts/` by `yarn fonts:subset`
+- **[Fontsource](https://fontsource.org/)** - Plus Jakarta Sans and Inter, subset into `assets/fonts/` by `pnpm fonts:subset`
 - **[Biome](https://biomejs.dev/)** - JavaScript linting and formatting
 - **[Prettier](https://prettier.io/)** - CSS, Markdown and YAML formatting
 
@@ -32,9 +32,9 @@ Design inspired by [BlackrockDigital agency template](https://github.com/StartBo
 ## Prerequisites
 
 - [Node.js](https://nodejs.org/) 24 (version used in CI)
-- [Yarn](https://yarnpkg.com/) 1.x package manager
+- [pnpm](https://pnpm.io/) — the version is pinned by `packageManager` in `package.json`
 - [Hugo Extended](https://gohugo.io/installation/) — no separate install needed: the `hugo-extended` dev dependency
-  provides the `hugo` binary used by the `yarn hugo*` scripts
+  provides the `hugo` binary used by the `pnpm hugo*` scripts
 
 ## Installation
 
@@ -44,24 +44,24 @@ git clone https://github.com/guillaume-sainthillier/sainthillier.fr.git
 cd sainthillier.fr
 
 # Install dependencies
-yarn install
+pnpm install
 ```
 
 ## Development
 
 ```bash
 # Build assets in development mode
-yarn dev
+pnpm dev
 
 # Watch mode for asset development (auto-rebuild on changes)
-yarn watch
+pnpm watch
 
 # Run Hugo dev server with drafts enabled
-yarn hugo:dev
+pnpm hugo:dev
 
 # For full development workflow:
-# 1. Run `yarn watch` in one terminal
-# 2. Run `yarn hugo:dev` in another terminal
+# 1. Run `pnpm watch` in one terminal
+# 2. Run `pnpm hugo:dev` in another terminal
 ```
 
 The site will be available at `http://localhost:1313/`
@@ -70,13 +70,13 @@ The site will be available at `http://localhost:1313/`
 
 ```bash
 # Build production assets only
-yarn build
+pnpm build
 
 # Build assets + Hugo site (production)
-yarn build:hugo
+pnpm build:hugo
 
 # Build with drafts and future posts (preview)
-yarn build:hugo:preview
+pnpm build:hugo:preview
 ```
 
 The production site will be generated in the `public/` directory.
@@ -85,28 +85,28 @@ The production site will be generated in the `public/` directory.
 
 ```bash
 # Lint and format JavaScript in assets/ with Biome (writes fixes)
-yarn lint
+pnpm lint
 
 # Biome check without writing (used in CI)
-yarn lint-ci
+pnpm lint-ci
 
 # Format CSS, Markdown and YAML with Prettier (writes)
-yarn prettier
+pnpm prettier
 
 # Prettier check without writing (used in CI)
-yarn prettier:check
+pnpm prettier:check
 
-# Run both fixers (yarn lint && yarn prettier)
-yarn format
+# Run both fixers (pnpm lint && pnpm prettier)
+pnpm format
 
 # Check for unused dependencies/exports
-yarn knip
+pnpm knip
 
 # Auto-fix unused dependencies/exports
-yarn knip:fix
+pnpm knip:fix
 
-# Print the built bundle sizes as JSON (after yarn build)
-yarn size:json
+# Print the built bundle sizes as JSON (after pnpm build)
+pnpm size:json
 ```
 
 Pre-commit hooks (Husky + lint-staged) run Biome on staged `js/jsx/ts/tsx/mjs/json` files and Prettier on staged
@@ -116,8 +116,8 @@ Pre-commit hooks (Husky + lint-staged) run Biome on staged `js/jsx/ts/tsx/mjs/js
 
 GitHub Actions workflows in `.github/workflows/`:
 
-- **Continuous Integration** (pull requests and pushes to `main`): `yarn lint-ci`, `yarn prettier:check` and
-  `yarn knip`
+- **Continuous Integration** (pull requests and pushes to `main`): `pnpm lint-ci`, `pnpm prettier:check` and
+  `pnpm knip`
 - **Bundle Size** (pull requests): builds the base and PR branches and comments the bundle size difference
 
 ## Architecture
@@ -156,7 +156,7 @@ GitHub Actions workflows in `.github/workflows/`:
 The site is automatically deployed to Netlify on every push to the main branch.
 
 - **Hosting:** Netlify (configured in `netlify.toml`)
-- **Build command:** `yarn build:hugo`
+- **Build command:** `pnpm build:hugo`
 - **Publish directory:** `public/`
 - **Deploy previews:** built with `--baseURL $DEPLOY_PRIME_URL` so absolute links resolve on the preview URL
 

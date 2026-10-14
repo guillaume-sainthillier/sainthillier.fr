@@ -1,7 +1,7 @@
 /*
  * Generates the self-hosted web fonts (assets/fonts/*.woff2) from the @fontsource-variable packages, keeping
  * only what the site renders: French text and common punctuation, and the font weights in use. That takes the
- * Latin files from 74 KB to about 30 KB. Run `yarn fonts:subset` after updating a font package or using a new
+ * Latin files from 74 KB to about 30 KB. Run `pnpm fonts:subset` after updating a font package or using a new
  * weight, and commit the result; the ranges below must match the @font-face rules in assets/css/components/fonts.css.
  */
 import { mkdirSync, readFileSync, statSync, writeFileSync } from 'fs'

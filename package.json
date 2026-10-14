@@ -15,8 +15,8 @@
         "dev": "vite build --mode development",
         "watch": "vite build --watch --mode development",
         "build": "vite build",
-        "build:hugo": "yarn build && yarn hugo",
-        "build:hugo:preview": "yarn build && yarn hugo -D -F",
+        "build:hugo": "pnpm build && pnpm hugo",
+        "build:hugo:preview": "pnpm build && pnpm hugo -D -F",
         "hugo": "hugo --gc --minify",
         "hugo:dev": "hugo server -D",
         "fonts:subset": "node scripts/subset-fonts.js",
@@ -26,7 +26,7 @@
         "lint-ci": "biome check assets",
         "prettier": "prettier --write \"**/*.{css,md,yml,yaml}\"",
         "prettier:check": "prettier --check \"**/*.{css,md,yml,yaml}\"",
-        "format": "yarn lint && yarn prettier",
+        "format": "pnpm lint && pnpm prettier",
         "knip": "knip",
         "knip:fix": "knip --fix",
         "size:json": "node scripts/bundle-size.js"
@@ -54,5 +54,6 @@
     "lint-staged": {
         "*.{js,jsx,ts,tsx,mjs,json}": "biome check --write --no-errors-on-unmatched",
         "*.{css,md,yaml,yml}": "prettier --write"
-    }
+    },
+    "packageManager": "pnpm@12.11.2"
 }
