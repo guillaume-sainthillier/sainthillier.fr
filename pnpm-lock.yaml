@@ -179,7 +179,7 @@ importers:
         specifier: ^4.3.3
         version: 4.3.3(vite@8.3.4(@types/node@24.19.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.9.1))
       '@types/node':
-        specifier: ^24.19.1
+        specifier: ^24.19.2
         version: 24.19.2
       hugo-extended:
         specifier: ^0.168.0
@@ -188,16 +188,16 @@ importers:
         specifier: 9.1.7
         version: 9.1.7
       knip:
-        specifier: ^6.40.0
+        specifier: ^6.41.0
         version: 6.41.0
       lint-staged:
         specifier: '>=17.6.0'
         version: 17.6.0
       lucide-static:
-        specifier: ^1.54.0
-        version: 1.58.0
+        specifier: ^1.59.0
+        version: 1.59.0
       prettier:
-        specifier: ^3.9.9
+        specifier: ^3.9.10
         version: 3.9.10
       prettier-plugin-tailwindcss:
         specifier: ^0.8.1
@@ -215,7 +215,7 @@ importers:
         specifier: ^7.0.2
         version: 7.0.2
       vite:
-        specifier: ^8
+        specifier: ^8.3.4
         version: 8.3.4(@types/node@24.19.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.9.1)
 
 packages:
@@ -1105,8 +1105,8 @@ packages:
     engines: {node: '>=22.22.1'}
     hasBin: true
 
-  lucide-static@1.58.0:
-    resolution: {integrity: sha512-VFE2ZEq3yEwjBH0El9CA9lHgDWKKXPKgKxFzX+/JN1FPa4maQbtl/pT4B62aJkUEpODT5octDsyGy7tPVE2svQ==}
+  lucide-static@1.59.0:
+    resolution: {integrity: sha512-MuHZYaXbHgzN2QO6D3OM19bj09A+8GJiFSdXIMlbnLLEGQQ9+NRH2KaCxuivevD3Y23vM74kV17XBifgtqhfEg==}
 
   magic-string@0.30.21:
     resolution: {integrity: sha512-vd2F4YUyEXKGcLHoq+TEyCjxueSeHnFxyyjNp80yg0XV4vUhnDer/lvvlqM/arB5bXQN5K2/3oinyCRyx8T2CQ==}
@@ -1929,7 +1929,7 @@ snapshots:
     optionalDependencies:
       yaml: 2.9.1
 
-  lucide-static@1.58.0: {}
+  lucide-static@1.59.0: {}
 
   magic-string@0.30.21:
     dependencies:
