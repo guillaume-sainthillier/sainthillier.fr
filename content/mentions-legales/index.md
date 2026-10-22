@@ -28,8 +28,8 @@ Les termes « données à caractère personnel », « personne concernée »
 
 En vertu de l'article 6 de la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l'économie numérique, il est précisé aux utilisateurs du site internet [sainthillier.fr](https://sainthillier.fr) l'identité des différents intervenants dans le cadre de sa réalisation et de son suivi :
 
-**Propriétaire** : SILARHI, SARL au capital de 1 000 € – RCS Toulouse 841 541 667 – Numéro de TVA : FR96841541667 – 116 Route d'Espagne 31100 Toulouse  
-**Responsable de la publication** : Guillaume Sainthillier – {{< email >}}  
+**Éditeur et directeur de la publication** : Guillaume Sainthillier, personne physique – 116 Route d’Espagne, HELIOPOLIS 4, BAT 113, BAL 411, 31100 Toulouse – {{< email >}}  
+**Prestations** : les missions présentées sur le site sont réalisées et facturées par SILARHI, SARL au capital de 1 000 € – RCS Toulouse 841 541 667 – Numéro de TVA : FR96841541667 – même adresse  
 **Webmaster** : Guillaume Sainthillier – {{< email >}}  
 **Hébergeur** : Netlify, Inc. – 101 2nd Street, San Francisco, CA 94105, États-Unis – [netlify.com](https://www.netlify.com)  
 **Délégué à la protection des données** : Guillaume Sainthillier – {{< email >}}
@@ -76,7 +76,7 @@ Le Client est informé des réglementations concernant la communication marketin
 
 ### 7.1 Responsables de la collecte des données personnelles
 
-Pour les Données Personnelles collectées dans le cadre de la navigation de l’Utilisateur sur le Site et de l’utilisation du formulaire de contact, le responsable du traitement des Données Personnelles est SILARHI, représentée par Guillaume Sainthillier, son représentant légal.
+Pour les Données Personnelles collectées dans le cadre de la navigation de l’Utilisateur sur le Site et de l’utilisation du formulaire de contact, le responsable du traitement des Données Personnelles est Guillaume Sainthillier, éditeur du Site. Les données d’un échange qui aboutit à une mission sont ensuite traitées par SILARHI, qui réalise et facture les prestations.
 
 En tant que responsable du traitement des données qu’il collecte, [sainthillier.fr](https://sainthillier.fr) s’engage à respecter le cadre des dispositions légales en vigueur. Il lui appartient notamment d’établir les finalités de ses traitements de données, de fournir à ses prospects et clients, à partir de la collecte de leurs consentements, une information complète sur le traitement de leurs données personnelles et de maintenir un registre des traitements conforme à la réalité. Chaque fois que [sainthillier.fr](https://sainthillier.fr) traite des Données Personnelles, [sainthillier.fr](https://sainthillier.fr) prend toutes les mesures raisonnables pour s’assurer de l’exactitude et de la pertinence des Données Personnelles au regard des finalités pour lesquelles [sainthillier.fr](https://sainthillier.fr) les traite.
 
@@ -107,8 +107,8 @@ Dès que [sainthillier.fr](https://sainthillier.fr) a connaissance du décès d�
 
 Si l’Utilisateur souhaite savoir comment [sainthillier.fr](https://sainthillier.fr) utilise ses Données Personnelles, demander à les rectifier ou s’oppose à leur traitement, l’Utilisateur peut contacter [sainthillier.fr](https://sainthillier.fr) par écrit à l’adresse suivante :
 
-SILARHI – DPO, Guillaume Sainthillier  
-116 Route d'Espagne 31100 Toulouse.
+Guillaume Sainthillier  
+116 Route d’Espagne, HELIOPOLIS 4, BAT 113, BAL 411, 31100 Toulouse.
 
 Dans ce cas, l’Utilisateur doit indiquer les Données Personnelles qu’il souhaiterait que [sainthillier.fr](https://sainthillier.fr) corrige, mette à jour ou supprime, en s’identifiant précisément avec une copie d’une pièce d’identité (carte d’identité ou passeport).
 
