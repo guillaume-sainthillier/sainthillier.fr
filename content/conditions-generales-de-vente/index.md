@@ -5,14 +5,14 @@ layout: legal
 lead: 'Le cadre contractuel de mes prestations de développement web : devis, cession des droits, confidentialité et règlement.'
 tab_label: Conditions générales de vente
 tab_icon: handshake
-weight: 2
-updated: 2026-01-19
+weight: 3
+updated: 2026-10-23
 pdf: pdf/CGV.pdf
 ---
 
 ## Article 1 : Les parties
 
-Le terme « Client » désigne toute personne morale ou physique, ayant requis les compétences du Prestataire pour toute prestation de services ou produit proposé audit Client.
+Le terme « Client » désigne tout professionnel, personne morale ou personne physique agissant dans le cadre de son activité professionnelle, ayant requis les compétences du Prestataire pour toute prestation de services ou produit proposé audit Client.
 
 Le terme « Prestataire » désigne la société SILARHI, SARL au capital de 1 000 €, 116 Route d'Espagne, HELIOS 4, BAT 113, BAL 411, 31100 Toulouse, immatriculée au RCS de Toulouse sous le numéro 841 541 667 et représentée par Guillaume Sainthillier en sa qualité de Gérant.
 
@@ -22,7 +22,7 @@ Le contrat établit les relations commerciales entre le Prestataire et le Client
 
 ## Article 3 : Généralités et acceptation du contrat
 
-Le Prestataire se réserve le droit de modifier les présentes conditions générales de vente et l'ensemble des formules et tarifs qu'il propose à tout moment et ce, sans préavis. Toute modification effectuée n'affecte pas les devis ou bons de commande dont les dates sont antérieures à la date de modification des conditions générales de vente. Dans le cas où le Client est un particulier, il reconnaît être majeur conformément aux lois du pays dans lequel il réside. En acceptant un devis ou un bon de commande édité par le Prestataire, le Client reconnaît avoir pris connaissance et accepté les présentes conditions générales de vente.
+Le Prestataire se réserve le droit de modifier les présentes conditions générales de vente et l'ensemble des formules et tarifs qu'il propose à tout moment et ce, sans préavis. Toute modification effectuée n'affecte pas les devis ou bons de commande dont les dates sont antérieures à la date de modification des conditions générales de vente. En acceptant un devis ou un bon de commande édité par le Prestataire, le Client reconnaît avoir pris connaissance et accepté les présentes conditions générales de vente.
 
 ## Article 4 : Traitement et envoi des fichiers par le client
 
@@ -38,7 +38,7 @@ La cession des droits d'utilisation et de modification des développements réal
 
 ## Article 7 : Confidentialité
 
-Le Prestataire s'engage, pendant toute la durée du Contrat et deux (2) ans après son terme ou sa résiliation pour quelque cause que ce soit, à la confidentialité la plus totale concernant toute donnée technique, financière ou commerciale appartenant au Bénéficiaire qui lui aura été communiquée ou dont il aura eu connaissance dans le cadre de l'exécution du Contrat.
+Le Prestataire s'engage, pendant toute la durée du Contrat et deux (2) ans après son terme ou sa résiliation pour quelque cause que ce soit, à la confidentialité la plus totale concernant toute donnée technique, financière ou commerciale appartenant au Client qui lui aura été communiquée ou dont il aura eu connaissance dans le cadre de l'exécution du Contrat.
 
 Cette obligation de confidentialité ne s'applique pas aux informations :
 
@@ -50,9 +50,16 @@ Cette obligation de confidentialité ne s'applique pas aux informations :
 
 Sauf mentions contraires dans le devis et/ou la facture, un acompte de 30 % minimum du montant TTC total sera demandé à la commande. Les prestations doivent être réglées au Prestataire aux dates mentionnées sur le devis et/ou la facture client. Le client s'engage à respecter les dates de paiement mentionnées sur son devis et/ou sa facture et à retourner sa facture datée et signée avec la mention « Lu et approuvé » ; cette disposition est aussi un élément essentiel du contrat.
 
-## Article 9 : Recouvrement des créances
+## Article 9 : Retard de paiement et recouvrement des créances
 
-En cas de non-paiement, l'ensemble des frais de recouvrement sera à la charge du client. Si nécessaire, le Prestataire pourra faire appel aux services d'une société d'affacturage pour le recouvrement de ses créances clients.
+À défaut de date d'échéance sur la facture, celle-ci est payable à trente (30) jours à compter de la date d'exécution de la prestation, sans pouvoir dépasser les délais prévus par l'article L. 441-10 du Code de commerce. Aucun escompte n'est accordé pour paiement anticipé.
+
+Conformément à l'article L. 441-10 du Code de commerce, tout retard de paiement entraîne de plein droit, dès le lendemain de la date d'échéance et sans qu'un rappel soit nécessaire :
+
+- des pénalités de retard calculées au taux d'intérêt appliqué par la Banque centrale européenne à son opération de refinancement la plus récente, majoré de dix (10) points de pourcentage ;
+- une indemnité forfaitaire pour frais de recouvrement de quarante (40) euros (article D. 441-5 du Code de commerce). Si les frais de recouvrement réellement exposés dépassent ce montant, le Prestataire peut demander une indemnisation complémentaire sur justificatifs.
+
+Si nécessaire, le Prestataire pourra faire appel aux services d'une société d'affacturage pour le recouvrement de ses créances clients.
 
 ## Article 10 : La force majeure
 
@@ -72,17 +79,17 @@ Le contrat est soumis au droit français. En cas de litiges, les parties s'engag
 
 ## Article 14 : Modalités d'exécution - Obligations du Prestataire
 
-La mission du Prestataire s'exerce dans leurs locaux.
+La mission du Prestataire s’exerce dans ses locaux ou, si le devis le prévoit, dans ceux du Client.
 
 Le Prestataire s'engage à consacrer le temps nécessaire à la mission et à réaliser cette prestation en toute indépendance.
 
 Il exécutera cette prestation avec toute la diligence nécessaire au bon accomplissement de sa mission.
 
-Il devra délivrer une prestation strictement conforme à l'état de la technique en vigueur et sera tenu d'une obligation de résultat envers le Bénéficiaire.
+Il devra délivrer une prestation strictement conforme à l'état de la technique en vigueur et sera tenu d'une obligation de résultat envers le Client.
 
-Le Prestataire devra rendre compte chaque mois au Bénéficiaire de l'avancement de la réalisation de cette prestation, selon des modalités à convenir entre les Parties.
+Le Prestataire devra rendre compte chaque mois au Client de l'avancement de la réalisation de cette prestation, selon des modalités à convenir entre les Parties.
 
-Il informera immédiatement le Bénéficiaire de l'achèvement des livrables des présentes afin de procéder aux opérations de recette.
+Il informera immédiatement le Client de l'achèvement des livrables des présentes afin de procéder aux opérations de recette.
 
 En cas de dépassement du temps qui aura été convenu pour la réalisation de cette prestation, le Prestataire s'oblige à la réaliser sans pouvoir exiger de rémunération supplémentaire.
 
@@ -94,7 +101,7 @@ En toute hypothèse, au terme de ces opérations de recette, la signature d'un p
 
 ## Article 16 : Exclusivité
 
-Pendant toute la durée du Contrat, le Prestataire s'engage à développer l'application web exclusivement pour le compte du Bénéficiaire et s'interdit d'en faire usage, ainsi que des développements afférents à ladite application, pour son propre compte ou pour le compte de tiers, sans limitation de durée.
+Pendant toute la durée du Contrat, le Prestataire s'engage à développer l'application web exclusivement pour le compte du Client et s'interdit d'en faire usage, ainsi que des développements afférents à ladite application, pour son propre compte ou pour le compte de tiers, sans limitation de durée.
 
 ## Article 17 : Assurances
 
@@ -102,7 +109,7 @@ Le Prestataire atteste, par les présentes, avoir souscrit auprès d'une compagn
 
 ## Article 18 : Lutte contre le travail dissimulé
 
-Conformément à l'article D. 8222-5 du Code du travail, le Prestataire s'engage, le cas échéant, à remettre au Bénéficiaire à la date de signature du Contrat et tous les six (6) mois jusqu'à la fin de son exécution :
+Conformément à l'article D. 8222-5 du Code du travail, le Prestataire s'engage, le cas échéant, à remettre au Client à la date de signature du Contrat et tous les six (6) mois jusqu'à la fin de son exécution :
 
 - une attestation de fourniture des déclarations sociales et de paiement des cotisations et contributions de sécurité sociale prévue à l'article L. 243-15 du Code de la sécurité sociale, émanant de l'organisme de protection sociale chargé du recouvrement des cotisations et des contributions et datant de moins de six (6) mois ;
 - si l'immatriculation du Prestataire au Registre du Commerce et des Sociétés ou au Répertoire des Métiers est obligatoire, l'un des documents suivants :
@@ -117,6 +124,23 @@ Le Contrat est conclu intuitu personae en considération du Prestataire et de se
 
 Il n'est, en conséquence, ni transmissible, ni cessible par le Prestataire à un tiers.
 
-## Article 20 : Intégralité de l'accord
+## Article 20 : Protection des données personnelles
+
+Lorsque l'exécution de la prestation conduit le Prestataire à accéder à des données personnelles dont le Client est responsable de traitement (bases de données, environnements de production, fichiers transmis), le Prestataire agit en qualité de sous-traitant au sens de l'article 28 du Règlement (UE) 2016/679 (RGPD). L'objet, la durée, la nature et la finalité du traitement, les catégories de données et de personnes concernées sont ceux de la prestation décrite au devis.
+
+À ce titre, le Prestataire s'engage à :
+
+- ne traiter les données que sur instruction documentée du Client et pour les seuls besoins de la prestation, et l'informer immédiatement s'il estime qu'une instruction enfreint la réglementation ;
+- garantir la confidentialité des données et la faire respecter par toute personne autorisée à les traiter ;
+- mettre en œuvre des mesures techniques et organisationnelles appropriées pour en assurer la sécurité (article 32 du RGPD), notamment en limitant les copies au strict nécessaire ;
+- ne recourir à un autre sous-traitant qu'avec l'autorisation écrite préalable du Client, en lui imposant les mêmes obligations ;
+- aider le Client, dans la mesure du possible, à répondre aux demandes d'exercice des droits des personnes concernées et à respecter ses obligations de sécurité, de notification et d'analyse d'impact (articles 32 à 36 du RGPD) ;
+- notifier au Client toute violation de données personnelles dans un délai maximal de quarante-huit (48) heures après en avoir pris connaissance, afin de lui permettre de respecter son propre délai de notification ;
+- au terme de la prestation, selon le choix du Client, supprimer les données ou les lui restituer, et détruire les copies existantes, sauf obligation légale de conservation ;
+- mettre à la disposition du Client les informations nécessaires pour démontrer le respect de ces obligations et permettre la réalisation d'audits.
+
+Le Client garantit de son côté disposer d'une base légale pour les traitements qu'il confie au Prestataire. Les données de contact des interlocuteurs du Client sont traitées par le Prestataire, en tant que responsable de traitement, pour la seule gestion de la relation commerciale, et conservées pendant la durée de celle-ci augmentée des délais de prescription légaux.
+
+## Article 21 : Intégralité de l'accord
 
 Le Contrat constitue l'intégralité de l'accord entre les Parties aux présentes et annule et remplace tous accords antérieurs, oraux ou écrits, entre les Parties quant à l'objet des présentes.
