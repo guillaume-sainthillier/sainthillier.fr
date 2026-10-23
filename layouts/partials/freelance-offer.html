@@ -36,12 +36,12 @@
         {{ range $terms }}
         <div class="panel flex flex-col p-3.5 transition-shadow hover:shadow-md sm:p-6">
             <span class="mb-4 hidden size-10 items-center justify-center rounded-lg text-2xl sm:flex {{ .iconClass }}">{{ partial "icon" (dict "name" .icon) }}</span>
-            <span class="font-mono text-label-md font-bold uppercase text-outline">{{ .label }}</span>
+            <span class="text-label-md font-bold uppercase text-outline">{{ .label }}</span>
             <span class="mt-1 font-heading text-body-lg leading-tight font-bold sm:text-headline-md {{ .valueClass | default "text-on-surface" }}">{{ .value }}</span>
-            <span class="mb-2 font-mono text-label-sm font-normal text-on-surface-variant">{{ .unit }}</span>
+            <span class="mb-2 text-label-sm font-normal text-on-surface-variant">{{ .unit }}</span>
             <span class="text-body-sm text-on-surface-variant sm:hidden">{{ .short }}</span>
             <span class="mb-4 hidden text-body-sm text-on-surface-variant sm:block">{{ .text }}</span>
-            <span class="mt-auto hidden items-start gap-1 border-t border-hairline pt-2 font-mono text-label-sm text-primary sm:flex">
+            <span class="mt-auto hidden items-start gap-1 border-t border-hairline pt-2 text-label-sm text-primary sm:flex">
                 {{ partial "icon" (dict "name" "badge-check" "class" "mt-px") }}{{ .note }}
             </span>
         </div>

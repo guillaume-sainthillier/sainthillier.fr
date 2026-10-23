@@ -19,12 +19,11 @@
         }
     }
 
-    /* Small monospaced label above a section title */
+    /* Small uppercase label above a section title */
     .eyebrow {
         display: inline-flex;
         align-items: center;
         gap: 0.5rem;
-        font-family: var(--font-mono);
         font-size: var(--text-label-md);
         line-height: var(--text-label-md--line-height);
         font-weight: 700;
@@ -129,7 +128,6 @@
             height: 2.25rem;
             border-radius: 0.5rem;
             background-color: var(--color-surface-container);
-            font-family: var(--font-mono);
             font-size: var(--text-label-md);
             font-weight: 600;
             color: var(--color-primary);
