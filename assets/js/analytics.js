@@ -33,6 +33,9 @@ function classifyLink(link) {
     if (link.pathname.includes('/CV-') && link.pathname.endsWith('.pdf')) {
         return { name: 'cv-download' }
     }
+    if (link.pathname.endsWith('/CGV.pdf')) {
+        return { name: 'cgv-download' }
+    }
     return null
 }
 
