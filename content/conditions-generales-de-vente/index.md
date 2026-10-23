@@ -14,7 +14,7 @@ pdf: pdf/CGV.pdf
 
 Le terme « Client » désigne toute personne morale ou physique, ayant requis les compétences du Prestataire pour toute prestation de services ou produit proposé audit Client.
 
-Le terme « Prestataire » désigne la société SILARHI, SARL au capital de 1 000 €, 116 Route d'Espagne, HELIOPOLIS 4, BAT 113, BAL 411, 31100 Toulouse, immatriculée au RCS de Toulouse sous le numéro 841 541 667 et représentée par Guillaume Sainthillier en sa qualité de Gérant.
+Le terme « Prestataire » désigne la société SILARHI, SARL au capital de 1 000 €, 116 Route d'Espagne, HELIOS 4, BAT 113, BAL 411, 31100 Toulouse, immatriculée au RCS de Toulouse sous le numéro 841 541 667 et représentée par Guillaume Sainthillier en sa qualité de Gérant.
 
 ## Article 2 : L'objet du contrat
 

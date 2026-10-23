@@ -32,7 +32,7 @@ disableKinds = ["taxonomy", "RSS"]
 [params.publisher]
   name = "Guillaume Sainthillier"
   role = "Éditeur et directeur de la publication"
-  address = "116 Route d’Espagne, HELIOPOLIS 4, BAT 113, BAL 411, 31100 Toulouse, France"
+  address = "116 Route d’Espagne, HELIOS 4, BAT 113, BAL 411, 31100 Toulouse, France"
 
 # Company that carries out and invoices the missions (contracting party of the CGV), shown on the legal pages
 [params.company]
@@ -40,7 +40,7 @@ disableKinds = ["taxonomy", "RSS"]
   legalForm = "Société à responsabilité limitée au capital de 1 000 €"
   manager = "Guillaume Sainthillier"
   managerRole = "Gérant"
-  address = "116 Route d’Espagne, HELIOPOLIS 4, BAT 113, BAL 411, 31100 Toulouse, France"
+  address = "116 Route d’Espagne, HELIOS 4, BAT 113, BAL 411, 31100 Toulouse, France"
   siret = "841 541 667 00017"
   rcs = "RCS Toulouse 841 541 667"
   vat = "FR96841541667"

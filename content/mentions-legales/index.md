@@ -28,7 +28,7 @@ Les termes « données à caractère personnel », « personne concernée »
 
 En vertu de l'article 6 de la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l'économie numérique, il est précisé aux utilisateurs du site internet [sainthillier.fr](https://sainthillier.fr) l'identité des différents intervenants dans le cadre de sa réalisation et de son suivi :
 
-**Éditeur et directeur de la publication** : Guillaume Sainthillier, personne physique – 116 Route d’Espagne, HELIOPOLIS 4, BAT 113, BAL 411, 31100 Toulouse – {{< email >}}  
+**Éditeur et directeur de la publication** : Guillaume Sainthillier, personne physique – 116 Route d’Espagne, HELIOS 4, BAT 113, BAL 411, 31100 Toulouse – {{< email >}}  
 **Prestations** : les missions présentées sur le site sont réalisées et facturées par SILARHI, SARL au capital de 1 000 € – RCS Toulouse 841 541 667 – Numéro de TVA : FR96841541667 – même adresse  
 **Webmaster** : Guillaume Sainthillier – {{< email >}}  
 **Hébergeur** : Netlify, Inc. – 101 2nd Street, San Francisco, CA 94105, États-Unis – [netlify.com](https://www.netlify.com)  
@@ -108,7 +108,7 @@ Dès que [sainthillier.fr](https://sainthillier.fr) a connaissance du décès d�
 Si l’Utilisateur souhaite savoir comment [sainthillier.fr](https://sainthillier.fr) utilise ses Données Personnelles, demander à les rectifier ou s’oppose à leur traitement, l’Utilisateur peut contacter [sainthillier.fr](https://sainthillier.fr) par écrit à l’adresse suivante :
 
 Guillaume Sainthillier  
-116 Route d’Espagne, HELIOPOLIS 4, BAT 113, BAL 411, 31100 Toulouse.
+116 Route d’Espagne, HELIOS 4, BAT 113, BAL 411, 31100 Toulouse.
 
 Dans ce cas, l’Utilisateur doit indiquer les Données Personnelles qu’il souhaiterait que [sainthillier.fr](https://sainthillier.fr) corrige, mette à jour ou supprime, en s’identifiant précisément avec une copie d’une pièce d’identité (carte d’identité ou passeport).
 
