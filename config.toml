@@ -12,8 +12,10 @@ disableKinds = ["taxonomy", "RSS"]
   description = "Développeur web freelance PHP / Symfony à Toulouse : missions de 2 jours à 2 ans, sur site ou en télétravail. TJM de {{< freelance-rate >}} ou forfait sur devis."
 
 # Self-hosted Umami (cookieless audience measurement); goals are the custom events sent by assets/js/analytics.js
+# Loaded from analytics.sainthillier.fr, a subdomain of the site, so ad blockers do not drop it as a third-party
+# analytics host: that host serves only the tracker and its endpoint (the dashboard is analytics.silarhi.fr)
 [params.umami]
-  scriptUrl = "https://analytics.silarhi.fr/script.js"
+  scriptUrl = "https://analytics.sainthillier.fr/script.js"
   websiteId = "fb145385-13ea-4655-af60-7975fb094b4e"
   # Hosts the tracker reports from, so `hugo server` and Netlify deploy previews stay out of the stats
   domains = "sainthillier.fr"
