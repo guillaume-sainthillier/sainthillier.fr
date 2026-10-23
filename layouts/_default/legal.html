@@ -4,10 +4,12 @@
 {{/*
   Legal pages (mentions légales, CGV): front matter "layout: legal".
   Each "##" section of the Markdown becomes a numbered card, listed in the sticky table of contents.
-  Front matter: heading (H1, defaults to the title), lead, updated (date), pdf (asset path), tab_label, tab_icon, weight.
+  Front matter: heading (H1, defaults to the title), lead, updated (date), pdf (asset path), tab_label, tab_icon, weight,
+  identity (true on the one page that opens with the publisher and company card: the mentions légales).
 */}}
 {{ define "main" }}
 {{ $legalPages := (where site.RegularPages "Layout" "legal").ByWeight }}
+{{ $identity := .Params.identity }}
 
 {{/* Second-level headings, whether or not the page has a first-level one */}}
 {{ $sections := slice }}
@@ -95,10 +97,12 @@
                         <span class="font-mono text-label-sm uppercase text-primary">Index légal</span>
                     </div>
                     <nav class="relative -mx-2 flex min-h-0 flex-col gap-1.5 px-2 lg:overflow-y-auto" aria-label="Sommaire" data-toc>
+                        {{ if $identity }}
                         <a class="toc-link group flex items-center justify-between gap-2 rounded-lg px-3 py-2 text-body-sm text-on-surface-variant transition-colors hover:bg-surface-container-low hover:text-on-surface" href="#informations-legales">
                             <span>Informations légales</span>
                             {{ partial "icon" (dict "name" "arrow-right" "class" "toc-arrow text-primary opacity-0 transition-opacity group-hover:opacity-100") }}
                         </a>
+                        {{ end }}
                         {{ range . }}
                         {{ $heading := partial "legal-heading" .Title }}
                         <a class="toc-link group flex items-center justify-between gap-2 rounded-lg px-3 py-2 text-body-sm text-on-surface-variant transition-colors hover:bg-surface-container-low hover:text-on-surface" href="#{{ .ID }}">
@@ -116,6 +120,7 @@
         </aside>
 
         <article class="legal-content space-y-6 sm:space-y-12 lg:col-span-8">
+            {{ if $identity }}
             {{ with site.Params.company }}
             <section class="rounded-xl bg-surface-card p-5 shadow-sm sm:p-6 md:p-8">
                 <div class="mb-6 flex flex-wrap items-center justify-between gap-3">
@@ -167,6 +172,7 @@
                     </div>
                 </dl>
             </section>
+            {{ end }}
             {{ end }}
             {{ with $intro }}
             <div class="rounded-xl bg-surface-card p-8 shadow-sm">{{ . | safeHTML }}</div>
