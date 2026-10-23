@@ -7,6 +7,7 @@ lead: 'Qui édite ce site, qui l’héberge et dans quelles conditions vous pouv
 tab_label: Mentions légales
 tab_icon: file-text
 weight: 1
+identity: true
 updated: 2026-10-23
 ---
 
