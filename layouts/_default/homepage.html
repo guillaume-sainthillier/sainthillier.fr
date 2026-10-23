@@ -45,7 +45,7 @@
                         <a class="btn btn-accent btn-lg w-full sm:w-auto {{ if not $isBookingExternal }}js-scroll-trigger{{ end }}" href="{{ $bookingUrl }}"{{ if $isBookingExternal }} rel="noopener" target="_blank"{{ end }}>
                             {{ partial "icon" (dict "name" "calendar") }}Échanger 15 min sur votre projet
                         </a>
-                        <a class="btn btn-soft btn-lg w-full px-6 sm:w-auto js-scroll-trigger" href="#services">{{ partial "icon" (dict "name" "layers") }}Consulter les services</a>
+                        <a class="btn btn-soft btn-lg w-full sm:w-auto js-scroll-trigger" href="#services">{{ partial "icon" (dict "name" "layers") }}Consulter les services</a>
                     </div>
                     <p class="flex flex-wrap items-center justify-between gap-x-2 gap-y-1 text-label-sm font-normal text-on-surface-variant sm:justify-start">
                         <span class="flex items-center gap-1">{{ partial "icon" (dict "name" "clock" "class" "text-primary") }}Réponse sous 24h ouvrées</span><span class="hidden text-outline sm:inline" aria-hidden="true">•</span>
@@ -230,7 +230,7 @@
         </div>
         <p class="mt-6 text-center text-body-md text-on-surface-variant" data-portfolio-empty hidden>Aucun projet dans cette catégorie pour le moment.</p>
         <div class="mt-6 flex justify-center sm:mt-10">
-            <button type="button" class="btn btn-outline btn-lg w-full rounded-xl sm:w-auto" data-portfolio-more data-analytics-event="portfolio-show-all" hidden>
+            <button type="button" class="btn btn-outline btn-lg w-full sm:w-auto" data-portfolio-more data-analytics-event="portfolio-show-all" hidden>
                 {{ partial "icon" (dict "name" "chevron-down" "class" "text-primary") }}<span data-portfolio-more-label>Afficher tous les projets</span>
             </button>
         </div>
@@ -243,7 +243,7 @@
                     <p class="text-body-sm text-on-surface-variant">Nouvel outil métier, reprise d’une application existante ou intégration bancaire&nbsp;: parlons de votre contexte.</p>
                 </div>
             </div>
-            <a class="btn btn-accent btn-lg w-full shrink-0 px-6 sm:w-auto js-scroll-trigger" href="#contact">{{ partial "icon" (dict "name" "message-square-text") }}Échanger sur votre projet</a>
+            <a class="btn btn-accent btn-lg w-full shrink-0 sm:w-auto js-scroll-trigger" href="#contact">{{ partial "icon" (dict "name" "message-square-text") }}Échanger sur votre projet</a>
         </div>
     </div>
 </section>
@@ -431,7 +431,7 @@
                     <p class="text-body-sm text-on-surface-variant">Discutons de vos enjeux techniques et étudions ensemble les meilleures modalités de collaboration.</p>
                 </div>
             </div>
-            <a class="btn btn-accent btn-lg w-full shrink-0 px-6 sm:w-auto js-scroll-trigger" href="#contact">{{ partial "icon" (dict "name" "message-square-text") }}Échanger sur votre projet</a>
+            <a class="btn btn-accent btn-lg w-full shrink-0 sm:w-auto js-scroll-trigger" href="#contact">{{ partial "icon" (dict "name" "message-square-text") }}Échanger sur votre projet</a>
         </div>
     </div>
 </section>

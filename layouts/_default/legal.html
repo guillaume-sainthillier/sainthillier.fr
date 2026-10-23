@@ -190,10 +190,10 @@
                     <p class="max-w-lg text-body-sm text-on-surface-variant">Chaque mission fait l’objet d’un devis détaillé, de conditions claires et d’un suivi régulier de l’avancement.</p>
                 </div>
                 <div class="flex w-full flex-col items-center gap-3 sm:w-auto sm:flex-row">
-                    <a class="btn btn-accent w-full px-6 py-3 sm:w-auto" href="/#contact">{{ partial "icon" (dict "name" "message-square-text") }}Échanger sur votre projet</a>
+                    <a class="btn btn-accent btn-lg w-full sm:w-auto" href="/#contact">{{ partial "icon" (dict "name" "message-square-text") }}Échanger sur votre projet</a>
                     {{ with .Params.pdf }}
                     {{ with resources.Get . }}
-                    <a class="btn btn-outline w-full px-5 py-3 sm:w-auto" href="{{ .RelPermalink }}">{{ partial "icon" (dict "name" "download") }}Télécharger au format PDF</a>
+                    <a class="btn btn-outline btn-lg w-full sm:w-auto" href="{{ .RelPermalink }}">{{ partial "icon" (dict "name" "download") }}Télécharger au format PDF</a>
                     {{ end }}
                     {{ end }}
                 </div>
