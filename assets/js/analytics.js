@@ -3,7 +3,8 @@
  *
  * Links are classified from their href by a single delegated listener, so links written in Markdown content
  * (the email shortcode, the landing pages) are tracked too without adding data-umami-event to every template.
- * Buttons that only exist in templates (portfolio filters) use the declarative data-umami-event attributes instead.
+ * Elements that only exist in templates (portfolio filters, footer social links, the landing page CTA shortcode) use
+ * the declarative data-umami-event attributes instead.
  */
 
 /**
