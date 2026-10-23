@@ -49,6 +49,23 @@ pnpm knip             # Check for unused dependencies/exports
 - **Images**: native `loading="lazy"` through the `responsive-image` partial
 - **Social preview**: `static/og-image.jpg` is rendered from `scripts/og-image.html` (hero tokens, fonts and portrait) by `pnpm og-image` (headless Chrome); regenerate and commit it after a design change
 
+### Analytics (Umami)
+
+Self-hosted Umami (`analytics.silarhi.fr`, cookieless) is loaded by `layouts/partials/umami.html` from `[params.umami]` in `config.toml`, and only reports from `sainthillier.fr`. Conversion events live in `assets/js/analytics.js`: a `track(name, data)` helper calling `window.umami?.track`, and one delegated click listener that classifies links by their href (so links written in Markdown are tracked too). Elements that only exist in templates are marked with our own attributes, the same convention on all the owner's sites: `data-analytics-event="<name>"` plus one `data-analytics-<prop>="<value>"` per property; the same listener reads them and calls `track(name, data)`. Never use Umami's `data-umami-*` attributes: only `analytics.js` knows about `window.umami`, so the markup does not name the analytics tool. Each event is a goal to create in Umami (Reports → Goals, type "Event"):
+
+| Event                | Where it fires                                                                                  | Data                                        |
+| -------------------- | ----------------------------------------------------------------------------------------------- | ------------------------------------------- |
+| `contact-form`       | Formspree answered 2xx to the homepage contact form (`initContactForm` in `app.js`)             | `need` (chosen need), `timeline`            |
+| `contact-form-error` | the contact form submission failed (network or server error, not a 422 validation error)        | `need`                                      |
+| `contact-direct`     | click on any `tel:` / `mailto:` link (listener)                                                 | `channel`: `phone` / `email`                |
+| `booking`            | click on a `calendly.com` link (listener)                                                       | none                                        |
+| `cv-download`        | click on the CV PDF, `/CV-…pdf` (listener)                                                      | none                                        |
+| `cgv-download`       | click on the CGV PDF, `/CGV.pdf` on the CGV page (listener)                                     | none                                        |
+| `social-click`       | click on a footer social link (`data-analytics-event`, `baseof.html`)                           | `network`: `linkedin` / `github` / `gitlab` |
+| `landing-cta`        | click on the `{{< cta >}}` shortcode button (`developpeur-symfony-freelance-toulouse`, a draft) | `page`: the page path                       |
+| `portfolio-filter`   | click on a portfolio filter button (`data-analytics-event`, `homepage.html`)                    | `filter`: the filter id                     |
+| `portfolio-show-all` | click on "Afficher tous les projets" (`data-analytics-event`, `homepage.html`)                  | none                                        |
+
 ### Hugo Templates
 
 - `layouts/_default/baseof.html` - Base template with asset injection

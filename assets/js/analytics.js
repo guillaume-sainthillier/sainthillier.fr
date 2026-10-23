@@ -1,10 +1,15 @@
 /**
  * Umami custom events, used as goals in the Umami dashboard (Reports → Goals, type "Event").
  *
- * Links are classified from their href by a single delegated listener, so links written in Markdown content
- * (the email shortcode, the landing pages) are tracked too without adding data-umami-event to every template.
- * Buttons that only exist in templates (portfolio filters) use the declarative data-umami-event attributes instead.
+ * A single delegated click listener handles two cases:
+ * - elements marked in the templates (portfolio filters, footer social links, the landing page CTA shortcode) carry
+ *   data-analytics-event="<name>" and one data-analytics-<prop>="<value>" per event property;
+ * - links are also classified from their href, so links written in Markdown content (the email shortcode, the landing
+ *   pages) are tracked without any attribute.
+ * Only this module knows about Umami: the markup never names the analytics tool.
  */
+
+const ATTRIBUTE_PREFIX = 'data-analytics-'
 
 /**
  * Sends an event to Umami. The tracker is deferred and may be blocked or skipped (ad blocker, other domain):
@@ -33,11 +38,37 @@ function classifyLink(link) {
     if (link.pathname.includes('/CV-') && link.pathname.endsWith('.pdf')) {
         return { name: 'cv-download' }
     }
+    if (link.pathname.endsWith('/CGV.pdf')) {
+        return { name: 'cgv-download' }
+    }
     return null
+}
+
+/**
+ * Reads the event declared on an element: data-analytics-event is the name, every other data-analytics-* attribute is
+ * a property (key = the part after data-analytics-).
+ *
+ * @param {Element} element an element carrying data-analytics-event
+ * @returns {{ name: string, data?: Record<string, string> }} the event to send
+ */
+function readMarkedEvent(element) {
+    const data = {}
+    for (const { name, value } of element.attributes) {
+        if (name.startsWith(ATTRIBUTE_PREFIX) && name !== `${ATTRIBUTE_PREFIX}event`) {
+            data[name.slice(ATTRIBUTE_PREFIX.length)] = value
+        }
+    }
+    return { name: element.getAttribute(`${ATTRIBUTE_PREFIX}event`), data: Object.keys(data).length ? data : undefined }
 }
 
 export default function initAnalytics() {
     document.addEventListener('click', (e) => {
+        const marked = e.target.closest(`[${ATTRIBUTE_PREFIX}event]`)
+        if (marked) {
+            const event = readMarkedEvent(marked)
+            track(event.name, event.data)
+        }
+
         const link = e.target.closest('a[href]')
         const event = link && classifyLink(link)
         if (event) {
