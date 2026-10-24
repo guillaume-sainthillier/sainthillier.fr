@@ -26,7 +26,7 @@
     --color-outline-variant: #c6c5d8;
     --color-hairline: #e2e8f0;
 
-    /* Fonts: self-hosted through @fontsource-variable; labels use the system monospace (no extra download) */
+    /* Fonts: self-hosted through @fontsource-variable; data (tech tags, dates) uses the system monospace (no extra download) */
     --font-sans:
         'Inter Variable', 'Inter Fallback', 'Inter Fallback Android', system-ui, -apple-system, 'Segoe UI', sans-serif;
     --font-heading:

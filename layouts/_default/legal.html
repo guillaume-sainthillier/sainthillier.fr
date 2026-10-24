@@ -36,7 +36,7 @@
             </ol>
         </nav>
         <div class="max-w-4xl space-y-4">
-            <p class="inline-flex items-center gap-2 rounded-full bg-surface-container px-3 py-1 font-mono text-label-sm uppercase text-primary">
+            <p class="inline-flex items-center gap-2 rounded-full bg-surface-container px-3 py-1 text-label-sm uppercase text-primary">
                 <span class="size-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden="true"></span>Informations juridiques & contractuelles
             </p>
             <h1 class="font-heading text-display-mobile text-on-surface md:text-display">{{ .Params.heading | default .Title }}</h1>
@@ -86,7 +86,7 @@
                             {{ partial "icon" (dict "name" "phone" "class" "text-primary") }}{{ site.Params.contact.phoneDisplay }}
                         </a>
                     </div>
-                    <p class="flex items-center gap-2 pt-2 font-mono text-label-sm font-normal text-on-surface-variant">
+                    <p class="flex items-center gap-2 pt-2 text-label-sm font-normal text-on-surface-variant">
                         <span class="size-2 rounded-full bg-secondary-fixed-dim" aria-hidden="true"></span>Réponse sous 24h ouvrées
                     </p>
                 </div>
@@ -94,7 +94,7 @@
                 <div class="hidden flex-col gap-4 rounded-xl bg-surface-card p-6 shadow-sm lg:sticky lg:top-28 lg:flex lg:max-h-[calc(100vh-8rem)]">
                     <div class="flex items-center justify-between pb-2">
                         <span class="font-heading text-headline-sm font-semibold text-on-surface">Sommaire</span>
-                        <span class="font-mono text-label-sm uppercase text-primary">Index légal</span>
+                        <span class="text-label-sm uppercase text-primary">Index légal</span>
                     </div>
                     <nav class="relative -mx-2 flex min-h-0 flex-col gap-1.5 px-2 lg:overflow-y-auto" aria-label="Sommaire" data-toc>
                         {{ if $identity }}
@@ -107,7 +107,7 @@
                         {{ $heading := partial "legal-heading" .Title }}
                         <a class="toc-link group flex items-center justify-between gap-2 rounded-lg px-3 py-2 text-body-sm text-on-surface-variant transition-colors hover:bg-surface-container-low hover:text-on-surface" href="#{{ .ID }}">
                             <span class="flex items-center gap-2.5">
-                                {{ with $heading.number }}<span class="font-mono text-label-sm text-outline group-hover:text-primary">{{ . }}.</span>{{ end }}
+                                {{ with $heading.number }}<span class="text-label-sm text-outline group-hover:text-primary">{{ . }}.</span>{{ end }}
                                 <span>{{ partial "typography" $heading.title }}</span>
                             </span>
                             {{ partial "icon" (dict "name" "arrow-right" "class" "toc-arrow text-primary opacity-0 transition-opacity group-hover:opacity-100") }}
@@ -125,49 +125,49 @@
             <section class="rounded-xl bg-surface-card p-5 shadow-sm sm:p-6 md:p-8">
                 <div class="mb-6 flex flex-wrap items-center justify-between gap-3">
                     <h2 id="informations-legales" class="legal-heading mb-0"><span class="legal-number text-lg">{{ partial "icon" (dict "name" "landmark") }}</span><span>Informations légales</span></h2>
-                    <span class="rounded bg-surface-container px-2.5 py-1 font-mono text-label-sm font-normal text-on-surface-variant">Identification légale</span>
+                    <span class="rounded bg-surface-container px-2.5 py-1 text-label-sm font-normal text-on-surface-variant">Identification légale</span>
                 </div>
                 {{ with site.Params.publisher }}
                 <dl class="mb-8 grid grid-cols-1 gap-4 md:grid-cols-2">
                     <div class="space-y-1 rounded-lg bg-surface-container-low p-4">
-                        <dt class="font-mono text-label-sm uppercase text-on-surface-variant">Éditeur du site</dt>
+                        <dt class="text-label-sm uppercase text-on-surface-variant">Éditeur du site</dt>
                         <dd class="font-heading text-headline-sm font-semibold text-on-surface">{{ .name }}</dd>
                         <dd class="text-body-sm text-on-surface-variant">{{ .role }}</dd>
                     </div>
                     <div class="space-y-1 rounded-lg bg-surface-container-low p-4">
-                        <dt class="font-mono text-label-sm uppercase text-on-surface-variant">Contact</dt>
-                        <dd><a class="font-medium text-primary" href="mailto:{{ site.Params.contact.email }}">{{ site.Params.contact.email }}</a></dd>
-                        <dd><a class="font-medium text-on-surface" href="tel:{{ site.Params.contact.phone }}">{{ site.Params.contact.phoneDisplay }}</a></dd>
+                        <dt class="text-label-sm uppercase text-on-surface-variant">Contact</dt>
+                        <dd><a class="inline-flex min-h-6 items-center font-medium text-primary" href="mailto:{{ site.Params.contact.email }}">{{ site.Params.contact.email }}</a></dd>
+                        <dd><a class="inline-flex min-h-6 items-center font-medium text-on-surface" href="tel:{{ site.Params.contact.phone }}">{{ site.Params.contact.phoneDisplay }}</a></dd>
                     </div>
                     <div class="space-y-1 rounded-lg bg-surface-container-low p-4 md:col-span-2">
-                        <dt class="font-mono text-label-sm uppercase text-on-surface-variant">Adresse professionnelle</dt>
+                        <dt class="text-label-sm uppercase text-on-surface-variant">Adresse professionnelle</dt>
                         <dd class="font-medium text-on-surface">{{ .address }}</dd>
                     </div>
                 </dl>
-                <p class="mb-4 font-mono text-label-sm uppercase text-primary">Prestations réalisées et facturées par</p>
+                <p class="mb-4 text-label-sm uppercase text-primary">Prestations réalisées et facturées par</p>
                 {{ end }}
                 <dl class="grid grid-cols-1 gap-4 md:grid-cols-2">
                     <div class="space-y-1 rounded-lg bg-surface-container-low p-4">
-                        <dt class="font-mono text-label-sm uppercase text-on-surface-variant">Raison sociale</dt>
+                        <dt class="text-label-sm uppercase text-on-surface-variant">Raison sociale</dt>
                         <dd class="font-heading text-headline-sm font-semibold text-on-surface">{{ .name }}</dd>
                         <dd class="text-body-sm text-on-surface-variant">{{ .legalForm }}</dd>
                     </div>
                     <div class="space-y-1 rounded-lg bg-surface-container-low p-4">
-                        <dt class="font-mono text-label-sm uppercase text-on-surface-variant">Direction & gérance</dt>
+                        <dt class="text-label-sm uppercase text-on-surface-variant">Direction & gérance</dt>
                         <dd class="font-heading text-headline-sm font-semibold text-on-surface">{{ .manager }}</dd>
                         <dd class="text-body-sm text-on-surface-variant">{{ .managerRole }}</dd>
                     </div>
                     <div class="space-y-1 rounded-lg bg-surface-container-low p-4 md:col-span-2">
-                        <dt class="font-mono text-label-sm uppercase text-on-surface-variant">Siège social</dt>
+                        <dt class="text-label-sm uppercase text-on-surface-variant">Siège social</dt>
                         <dd class="font-medium text-on-surface">{{ .address }}</dd>
                     </div>
                     <div class="space-y-1 rounded-lg bg-surface-container-low p-4">
-                        <dt class="font-mono text-label-sm uppercase text-on-surface-variant">Immatriculation & SIRET</dt>
+                        <dt class="text-label-sm uppercase text-on-surface-variant">Immatriculation & SIRET</dt>
                         <dd class="font-mono font-semibold text-on-surface">{{ .siret }}</dd>
                         <dd class="text-body-sm text-on-surface-variant">{{ .rcs }}</dd>
                     </div>
                     <div class="space-y-1 rounded-lg bg-surface-container-low p-4">
-                        <dt class="font-mono text-label-sm uppercase text-on-surface-variant">TVA intracommunautaire</dt>
+                        <dt class="text-label-sm uppercase text-on-surface-variant">TVA intracommunautaire</dt>
                         <dd class="font-mono font-semibold text-primary">{{ .vat }}</dd>
                     </div>
                 </dl>
@@ -183,17 +183,17 @@
 
             <div class="flex flex-col items-center gap-6 rounded-xl bg-linear-to-br from-surface-container to-surface-container-high p-8 shadow-sm md:items-start">
                 <div class="space-y-2 text-center md:text-left">
-                    <p class="flex items-center justify-center gap-2 font-mono text-label-sm uppercase text-primary md:justify-start">
+                    <p class="flex items-center justify-center gap-2 text-label-sm uppercase text-primary md:justify-start">
                         {{ partial "icon" (dict "name" "shield-check") }}Collaboration sereine & cadrée
                     </p>
                     <h2 class="font-heading text-headline-lg-mobile font-bold text-on-surface md:text-headline-lg">Prêt à démarrer en toute confiance&#8239;?</h2>
                     <p class="max-w-lg text-body-sm text-on-surface-variant">Chaque mission fait l’objet d’un devis détaillé, de conditions claires et d’un suivi régulier de l’avancement.</p>
                 </div>
                 <div class="flex w-full flex-col items-center gap-3 sm:w-auto sm:flex-row">
-                    <a class="btn btn-accent w-full px-6 py-3 sm:w-auto" href="/#contact">{{ partial "icon" (dict "name" "message-square-text") }}Échanger sur votre projet</a>
+                    <a class="btn btn-accent btn-lg w-full sm:w-auto" href="/#contact">{{ partial "icon" (dict "name" "message-square-text") }}Échanger sur votre projet</a>
                     {{ with .Params.pdf }}
                     {{ with resources.Get . }}
-                    <a class="btn btn-outline w-full px-5 py-3 sm:w-auto" href="{{ .RelPermalink }}">{{ partial "icon" (dict "name" "download") }}Télécharger au format PDF</a>
+                    <a class="btn btn-outline btn-lg w-full sm:w-auto" href="{{ .RelPermalink }}">{{ partial "icon" (dict "name" "download") }}Télécharger au format PDF</a>
                     {{ end }}
                     {{ end }}
                 </div>

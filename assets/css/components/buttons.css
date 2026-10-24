@@ -1,10 +1,14 @@
-/* Button utilities: combine btn with a size (btn-lg) and a variant (btn-accent, btn-soft, btn-outline) */
+/*
+ * Button utilities: combine btn with a size and a variant (btn-accent, btn-soft, btn-outline).
+ * Two sizes: btn alone is the compact one (44px, header and inline actions), btn-lg the large one
+ * (50px, hero, section calls to action and forms).
+ */
 @utility btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    padding: 0.625rem 1.25rem;
+    padding: 0.6875rem 1.25rem;
     border: 1px solid transparent;
     border-radius: 0.5rem;
     font-family: var(--font-sans);
@@ -34,12 +38,7 @@
 }
 
 @utility btn-lg {
-    padding: 0.75rem 1rem;
-
-    @media (min-width: 40rem) {
-        padding-inline: 2.5rem;
-    }
-
+    padding: 0.75rem 1.5rem;
     font-size: var(--text-body-md);
     line-height: var(--text-body-md--line-height);
 }
