@@ -6,7 +6,7 @@ lead: 'Le cadre contractuel de mes prestations de développement web : devis, ce
 tab_label: Conditions générales de vente
 tab_icon: handshake
 weight: 3
-updated: 2026-10-23
+updated: 2026-10-24
 pdf: pdf/CGV.pdf
 ---
 
@@ -14,7 +14,7 @@ pdf: pdf/CGV.pdf
 
 Le terme « Client » désigne tout professionnel, personne morale ou personne physique agissant dans le cadre de son activité professionnelle, ayant requis les compétences du Prestataire pour toute prestation de services ou produit proposé audit Client.
 
-Le terme « Prestataire » désigne la société SILARHI, SARL au capital de 1 000 €, 116 Route d'Espagne, HELIOS 4, BAT 113, BAL 411, 31100 Toulouse, immatriculée au RCS de Toulouse sous le numéro 841 541 667 et représentée par Guillaume Sainthillier en sa qualité de Gérant.
+Le terme « Prestataire » désigne {{< identity company name >}} ({{< identity company legalForm >}}), dont le siège social est situé {{< identity company address >}}, immatriculée sous le numéro {{< identity company rcs >}} et représentée par {{< identity company manager >}} en sa qualité de {{< identity company managerRole >}}.
 
 ## Article 2 : L'objet du contrat
 

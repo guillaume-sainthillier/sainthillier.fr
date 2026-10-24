@@ -21,6 +21,7 @@
         "hugo:dev": "hugo server -D",
         "fonts:subset": "node scripts/subset-fonts.js",
         "og-image": "node scripts/og-image.js",
+        "cgv-pdf": "node scripts/cgv-pdf.js",
         "prepare": "husky install",
         "lint": "biome check --write assets",
         "lint-ci": "biome check assets",

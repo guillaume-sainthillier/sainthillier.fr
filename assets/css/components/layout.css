@@ -95,6 +95,11 @@
     .layout-page main,
     .layout-legal main {
         padding-top: 5rem;
+
+        /* The header is not printed (print:hidden in baseof.html) */
+        @media print {
+            padding-top: 0;
+        }
     }
 
     /* Legal pages: Markdown sections rendered as cards by layouts/_default/legal.html */
@@ -116,6 +121,11 @@
             @media (min-width: 768px) {
                 font-size: var(--text-headline-lg-mobile);
                 line-height: var(--text-headline-lg-mobile--line-height);
+            }
+
+            /* Keeps each article title on the page of its first paragraph */
+            @media print {
+                break-after: avoid;
             }
         }
 

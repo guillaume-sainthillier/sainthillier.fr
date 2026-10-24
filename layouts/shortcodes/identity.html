@@ -1,0 +1,6 @@
+{{- /*
+  Publisher or company detail from config.toml, e.g. {{< identity company rcs >}} or {{< identity publisher address >}}
+  (fields: publisher name, role, address; company name, legalForm, manager, managerRole, address, siret, rcs, vat).
+  A missing detail fails the build rather than leaving a blank in a legal text.
+*/ -}}
+{{- with partial "identity" (slice (.Get 0) (.Get 1)) }}{{ . }}{{ else }}{{ errorf "identity shortcode: no %s.%s in config.toml (%s)" (.Get 0) (.Get 1) .Position }}{{ end -}}

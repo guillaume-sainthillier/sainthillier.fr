@@ -55,7 +55,7 @@
   (dict "id" "pricing" "label" "Tarifs" "footer" "Tarifs & modalités")
 }}
 <!-- Navigation -->
-<header id="mainNav" class="fixed inset-x-0 top-0 z-50 bg-surface/85 shadow-[0_1px_8px_rgba(0,0,0,0.04)] backdrop-blur-xl">
+<header id="mainNav" class="fixed inset-x-0 top-0 z-50 bg-surface/85 shadow-[0_1px_8px_rgba(0,0,0,0.04)] backdrop-blur-xl print:hidden">
     <div class="container flex h-16 items-center justify-between gap-3 sm:h-20 sm:gap-4">
         <button class="btn btn-soft order-first size-11 px-0 sm:order-last sm:size-auto sm:min-h-11 sm:px-2.5 lg:hidden" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false">
             {{ partial "icon" (dict "name" "menu") }}<span class="sr-only sm:not-sr-only">Menu</span>
@@ -88,7 +88,7 @@
 <main>{{ block "main" . }}{{ end }}</main>
 
 <!-- Mobile tab bar -->
-<nav class="fixed inset-x-0 bottom-0 z-50 border-t border-hairline bg-surface/90 shadow-[0_-2px_12px_rgba(0,0,0,0.05)] backdrop-blur-xl md:hidden" aria-label="Navigation rapide">
+<nav class="fixed inset-x-0 bottom-0 z-50 border-t border-hairline bg-surface/90 shadow-[0_-2px_12px_rgba(0,0,0,0.05)] backdrop-blur-xl md:hidden print:hidden" aria-label="Navigation rapide">
     <div class="grid grid-cols-4">
         {{ range slice
             (dict "id" "services" "label" "Services" "icon" "square-terminal")
@@ -106,7 +106,7 @@
 <!-- Footer -->
 {{ $cv := resources.Get "pdf/CV-SAINTHILLIER-Guillaume.pdf" }}
 {{ $symfonyPage := site.GetPage "/developpeur-symfony-freelance-toulouse" }}
-<footer class="bg-surface-container-low shadow-[0_-1px_8px_rgba(0,0,0,0.03)]">
+<footer class="bg-surface-container-low shadow-[0_-1px_8px_rgba(0,0,0,0.03)] print:hidden">
     <div class="container pt-10 pb-24 md:pb-6">
         <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-12">
             <div class="flex flex-col gap-2 lg:col-span-5">
