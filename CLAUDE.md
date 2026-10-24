@@ -20,6 +20,7 @@ pnpm hugo:dev         # Run Hugo dev server with drafts enabled
 pnpm build            # Build production assets
 pnpm build:hugo       # Build assets + Hugo site (used by Netlify)
 pnpm build:hugo:preview  # Same, with drafts and future content
+pnpm cgv-pdf          # Print the CGV page to assets/pdf/CGV.pdf (headless Chrome), to commit
 
 # Code Quality
 pnpm lint             # Biome check + fix on assets/
@@ -49,6 +50,7 @@ pnpm knip             # Check for unused dependencies/exports
 - **Images**: native `loading="lazy"` through the `responsive-image` partial
 - **Social preview**: `static/og-image.jpg` is rendered from `scripts/og-image.html` (hero tokens, fonts and portrait) by `pnpm og-image` (headless Chrome); regenerate and commit it after a design change
 - **Legal pages** (`layout: legal`, `layouts/_default/legal.html`): the publisher and company details come from `[params.publisher]` / `[params.company]` in `config.toml` through the `{{< identity company rcs >}}` shortcode (`layouts/partials/identity.html`; the publisher's address falls back to the company office, so the address is set once); never copy them into the Markdown. The mentions légales open with the card rendering them (`identity: true`)
+- **CGV PDF**: `assets/pdf/CGV.pdf` is the CGV page printed by `pnpm cgv-pdf` (`scripts/cgv-pdf.js`: Hugo build in a temporary folder, served on localhost, printed by headless Chrome; needs the Vite assets). The print styles are `print:` utilities in the layouts plus the A4 `@page` rule in `components/base.css`. Regenerate and commit it whenever the CGV or the company details change
 
 ### Analytics (Umami)
 

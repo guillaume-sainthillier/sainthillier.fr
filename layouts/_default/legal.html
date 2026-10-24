@@ -23,10 +23,10 @@
 {{ $intro := index $chunks 0 | strings.TrimSpace }}
 
 <div class="relative overflow-hidden">
-    <div class="pointer-events-none absolute top-0 right-1/4 -z-10 size-96 rounded-full bg-primary/5 blur-3xl" aria-hidden="true"></div>
-    <div class="pointer-events-none absolute top-20 left-10 -z-10 size-72 rounded-full bg-secondary-container/10 blur-2xl" aria-hidden="true"></div>
+    <div class="pointer-events-none absolute top-0 right-1/4 -z-10 size-96 rounded-full bg-primary/5 blur-3xl print:hidden" aria-hidden="true"></div>
+    <div class="pointer-events-none absolute top-20 left-10 -z-10 size-72 rounded-full bg-secondary-container/10 blur-2xl print:hidden" aria-hidden="true"></div>
     <div class="container pt-8 pb-12">
-        <nav aria-label="Fil d’Ariane" class="mb-8">
+        <nav aria-label="Fil d’Ariane" class="mb-8 print:hidden">
             <ol class="flex flex-wrap items-center gap-2 text-body-sm text-on-surface-variant">
                 <li><a class="flex min-h-11 items-center gap-1 text-on-surface-variant lg:min-h-0 transition-colors hover:text-primary" href="{{ "/" | relURL }}">{{ partial "icon" (dict "name" "house") }}Accueil</a></li>
                 <li class="text-outline-variant" aria-hidden="true">{{ partial "icon" (dict "name" "chevron-right") }}</li>
@@ -36,7 +36,7 @@
             </ol>
         </nav>
         <div class="max-w-4xl space-y-4">
-            <p class="inline-flex items-center gap-2 rounded-full bg-surface-container px-3 py-1 text-label-sm uppercase text-primary">
+            <p class="inline-flex items-center gap-2 rounded-full bg-surface-container px-3 py-1 text-label-sm uppercase text-primary print:hidden">
                 <span class="size-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden="true"></span>Informations juridiques & contractuelles
             </p>
             <h1 class="font-heading text-display-mobile text-on-surface md:text-display">{{ .Params.heading | default .Title }}</h1>
@@ -52,7 +52,7 @@
             {{ end }}
         </div>
         {{ if gt (len $legalPages) 1 }}
-        <nav class="mt-10 flex w-fit flex-wrap gap-2 rounded-xl bg-surface-container-low p-1.5 shadow-sm" aria-label="Documents juridiques">
+        <nav class="mt-10 flex w-fit flex-wrap gap-2 rounded-xl bg-surface-container-low p-1.5 shadow-sm print:hidden" aria-label="Documents juridiques">
             {{ range $i, $page := $legalPages }}
             {{ $current := eq $page $ }}
             <a class="flex min-h-11 items-center gap-2 rounded-lg px-5 py-2.5 text-body-sm transition-colors {{ if $current }}bg-primary font-semibold text-white shadow-sm{{ else }}font-medium text-on-surface-variant hover:bg-surface-container hover:text-on-surface{{ end }}" href="{{ $page.RelPermalink }}"{{ if $current }} aria-current="page"{{ end }}>
@@ -64,9 +64,9 @@
     </div>
 </div>
 
-<section class="container pb-24">
+<section class="container pb-24 print:pb-0">
     <div class="grid grid-cols-1 gap-10 lg:grid-cols-12">
-        <aside class="order-last lg:order-none lg:col-span-4">
+        <aside class="order-last lg:order-none lg:col-span-4 print:hidden">
             {{/* Only the table of contents is sticky, using the full viewport height: the contact card scrolls away */}}
             <div class="flex flex-col gap-6 lg:h-full">
                 <div class="flex flex-col gap-4 rounded-xl bg-surface-container p-6 shadow-sm">
@@ -119,10 +119,10 @@
             </div>
         </aside>
 
-        <article class="legal-content space-y-6 sm:space-y-12 lg:col-span-8">
+        <article class="legal-content space-y-6 sm:space-y-12 lg:col-span-8 print:space-y-8">
             {{ if $identity }}
             {{/* The publisher (required by the LCEN) does not depend on the company block, and the reverse */}}
-            <section class="rounded-xl bg-surface-card p-5 shadow-sm sm:p-6 md:p-8">
+            <section class="rounded-xl bg-surface-card p-5 shadow-sm sm:p-6 md:p-8 print:bg-transparent print:p-0 print:shadow-none">
                 <div class="mb-6 flex flex-wrap items-center justify-between gap-3">
                     <h2 id="informations-legales" class="legal-heading mb-0"><span class="legal-number text-lg">{{ partial "icon" (dict "name" "landmark") }}</span><span>Informations légales</span></h2>
                     <span class="rounded bg-surface-container px-2.5 py-1 text-label-sm font-normal text-on-surface-variant">Identification légale</span>
@@ -182,13 +182,13 @@
             </section>
             {{ end }}
             {{ with $intro }}
-            <div class="rounded-xl bg-surface-card p-8 shadow-sm">{{ . | safeHTML }}</div>
+            <div class="rounded-xl bg-surface-card p-8 shadow-sm print:bg-transparent print:p-0 print:shadow-none">{{ . | safeHTML }}</div>
             {{ end }}
             {{ range after 1 $chunks }}
-            <section class="rounded-xl bg-surface-card p-5 shadow-sm sm:p-6 md:p-8">{{ printf "<h2%s" . | safeHTML }}</section>
+            <section class="rounded-xl bg-surface-card p-5 shadow-sm sm:p-6 md:p-8 print:bg-transparent print:p-0 print:shadow-none">{{ printf "<h2%s" . | safeHTML }}</section>
             {{ end }}
 
-            <div class="flex flex-col items-center gap-6 rounded-xl bg-linear-to-br from-surface-container to-surface-container-high p-8 shadow-sm md:items-start">
+            <div class="flex flex-col items-center gap-6 rounded-xl bg-linear-to-br from-surface-container to-surface-container-high p-8 shadow-sm md:items-start print:hidden">
                 <div class="space-y-2 text-center md:text-left">
                     <p class="flex items-center justify-center gap-2 text-label-sm uppercase text-primary md:justify-start">
                         {{ partial "icon" (dict "name" "shield-check") }}Collaboration sereine & cadrée
