@@ -67,6 +67,8 @@ Self-hosted Umami (`analytics.silarhi.fr`, cookieless) is loaded by `layouts/par
 | `portfolio-filter`   | click on a portfolio filter button (`data-analytics-event`, `homepage.html`)                    | `filter`: the filter id                     |
 | `portfolio-show-all` | click on "Afficher tous les projets" (`data-analytics-event`, `homepage.html`)                  | none                                        |
 
+The visitor-facing list of these events and their data is section 4 « Mesure d’audience » of `content/politique-de-confidentialite/index.md`: update it with any new event or property.
+
 ### Hugo Templates
 
 - `layouts/_default/baseof.html` - Base template with asset injection
