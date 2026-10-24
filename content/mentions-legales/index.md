@@ -8,16 +8,14 @@ tab_label: Mentions légales
 tab_icon: file-text
 weight: 1
 identity: true
-updated: 2026-10-23
+updated: 2026-10-24
 ---
 
 ## 1\. Éditeur du site
 
-En application de l’article 6 de la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l’économie numérique (LCEN), le site [sainthillier.fr](https://sainthillier.fr) est édité par :
+En application de l’article 6 de la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l’économie numérique (LCEN), le site [sainthillier.fr](https://sainthillier.fr) est édité par {{< identity publisher name >}}, personne physique, éditeur et directeur de la publication. Son adresse professionnelle et ses coordonnées figurent dans les [informations légales](#informations-legales) ci-dessus.
 
-**Éditeur et directeur de la publication** : Guillaume Sainthillier, personne physique – adresse professionnelle : 116 Route d’Espagne, HELIOS 4, BAT 113, BAL 411, 31100 Toulouse – {{< email >}}
-
-**Prestations** : les missions présentées sur le site sont réalisées et facturées par SILARHI, SARL au capital de 1 000 € – même adresse – RCS Toulouse 841 541 667 – TVA FR96841541667. Elles sont régies par les [conditions générales de vente](/conditions-generales-de-vente/).
+Les missions présentées sur le site sont réalisées et facturées par {{< identity company name >}}, identifiée au même endroit, et régies par les [conditions générales de vente](/conditions-generales-de-vente/).
 
 ## 2\. Hébergement
 

@@ -9,7 +9,7 @@
 */}}
 {{ define "main" }}
 {{ $legalPages := (where site.RegularPages "Layout" "legal").ByWeight }}
-{{ $identity := .Params.identity }}
+{{ $identity := and .Params.identity (or site.Params.publisher site.Params.company) }}
 
 {{/* Second-level headings, whether or not the page has a first-level one */}}
 {{ $sections := slice }}
@@ -121,58 +121,65 @@
 
         <article class="legal-content space-y-6 sm:space-y-12 lg:col-span-8">
             {{ if $identity }}
-            {{ with site.Params.company }}
+            {{/* The publisher (required by the LCEN) does not depend on the company block, and the reverse */}}
             <section class="rounded-xl bg-surface-card p-5 shadow-sm sm:p-6 md:p-8">
                 <div class="mb-6 flex flex-wrap items-center justify-between gap-3">
                     <h2 id="informations-legales" class="legal-heading mb-0"><span class="legal-number text-lg">{{ partial "icon" (dict "name" "landmark") }}</span><span>Informations légales</span></h2>
                     <span class="rounded bg-surface-container px-2.5 py-1 text-label-sm font-normal text-on-surface-variant">Identification légale</span>
                 </div>
-                {{ with site.Params.publisher }}
-                <dl class="mb-8 grid grid-cols-1 gap-4 md:grid-cols-2">
-                    <div class="space-y-1 rounded-lg bg-surface-container-low p-4">
-                        <dt class="text-label-sm uppercase text-on-surface-variant">Éditeur du site</dt>
-                        <dd class="font-heading text-headline-sm font-semibold text-on-surface">{{ .name }}</dd>
-                        <dd class="text-body-sm text-on-surface-variant">{{ .role }}</dd>
+                <div class="space-y-8">
+                    {{ with site.Params.publisher }}
+                    <dl class="grid grid-cols-1 gap-4 md:grid-cols-2">
+                        <div class="space-y-1 rounded-lg bg-surface-container-low p-4">
+                            <dt class="text-label-sm uppercase text-on-surface-variant">Éditeur du site</dt>
+                            <dd class="font-heading text-headline-sm font-semibold text-on-surface">{{ .name }}</dd>
+                            <dd class="text-body-sm text-on-surface-variant">{{ .role }}</dd>
+                        </div>
+                        <div class="space-y-1 rounded-lg bg-surface-container-low p-4">
+                            <dt class="text-label-sm uppercase text-on-surface-variant">Contact</dt>
+                            <dd><a class="inline-flex min-h-6 items-center font-medium text-primary" href="mailto:{{ site.Params.contact.email }}">{{ site.Params.contact.email }}</a></dd>
+                            <dd><a class="inline-flex min-h-6 items-center font-medium text-on-surface" href="tel:{{ site.Params.contact.phone }}">{{ site.Params.contact.phoneDisplay }}</a></dd>
+                        </div>
+                        {{ with partial "identity" (slice "publisher" "address") }}
+                        <div class="space-y-1 rounded-lg bg-surface-container-low p-4 md:col-span-2">
+                            <dt class="text-label-sm uppercase text-on-surface-variant">Adresse professionnelle</dt>
+                            <dd class="font-medium text-on-surface">{{ . }}</dd>
+                        </div>
+                        {{ end }}
+                    </dl>
+                    {{ end }}
+                    {{ with site.Params.company }}
+                    <div>
+                        <p class="mb-4 text-label-sm uppercase text-primary">Prestations réalisées et facturées par</p>
+                        <dl class="grid grid-cols-1 gap-4 md:grid-cols-2">
+                            <div class="space-y-1 rounded-lg bg-surface-container-low p-4">
+                                <dt class="text-label-sm uppercase text-on-surface-variant">Raison sociale</dt>
+                                <dd class="font-heading text-headline-sm font-semibold text-on-surface">{{ .name }}</dd>
+                                <dd class="text-body-sm text-on-surface-variant">{{ .legalForm }}</dd>
+                            </div>
+                            <div class="space-y-1 rounded-lg bg-surface-container-low p-4">
+                                <dt class="text-label-sm uppercase text-on-surface-variant">Direction & gérance</dt>
+                                <dd class="font-heading text-headline-sm font-semibold text-on-surface">{{ .manager }}</dd>
+                                <dd class="text-body-sm text-on-surface-variant">{{ .managerRole }}</dd>
+                            </div>
+                            <div class="space-y-1 rounded-lg bg-surface-container-low p-4 md:col-span-2">
+                                <dt class="text-label-sm uppercase text-on-surface-variant">Siège social</dt>
+                                <dd class="font-medium text-on-surface">{{ .address }}</dd>
+                            </div>
+                            <div class="space-y-1 rounded-lg bg-surface-container-low p-4">
+                                <dt class="text-label-sm uppercase text-on-surface-variant">Immatriculation & SIRET</dt>
+                                <dd class="font-mono font-semibold text-on-surface">{{ .siret }}</dd>
+                                <dd class="text-body-sm text-on-surface-variant">{{ .rcs }}</dd>
+                            </div>
+                            <div class="space-y-1 rounded-lg bg-surface-container-low p-4">
+                                <dt class="text-label-sm uppercase text-on-surface-variant">TVA intracommunautaire</dt>
+                                <dd class="font-mono font-semibold text-primary">{{ .vat }}</dd>
+                            </div>
+                        </dl>
                     </div>
-                    <div class="space-y-1 rounded-lg bg-surface-container-low p-4">
-                        <dt class="text-label-sm uppercase text-on-surface-variant">Contact</dt>
-                        <dd><a class="inline-flex min-h-6 items-center font-medium text-primary" href="mailto:{{ site.Params.contact.email }}">{{ site.Params.contact.email }}</a></dd>
-                        <dd><a class="inline-flex min-h-6 items-center font-medium text-on-surface" href="tel:{{ site.Params.contact.phone }}">{{ site.Params.contact.phoneDisplay }}</a></dd>
-                    </div>
-                    <div class="space-y-1 rounded-lg bg-surface-container-low p-4 md:col-span-2">
-                        <dt class="text-label-sm uppercase text-on-surface-variant">Adresse professionnelle</dt>
-                        <dd class="font-medium text-on-surface">{{ .address }}</dd>
-                    </div>
-                </dl>
-                <p class="mb-4 text-label-sm uppercase text-primary">Prestations réalisées et facturées par</p>
-                {{ end }}
-                <dl class="grid grid-cols-1 gap-4 md:grid-cols-2">
-                    <div class="space-y-1 rounded-lg bg-surface-container-low p-4">
-                        <dt class="text-label-sm uppercase text-on-surface-variant">Raison sociale</dt>
-                        <dd class="font-heading text-headline-sm font-semibold text-on-surface">{{ .name }}</dd>
-                        <dd class="text-body-sm text-on-surface-variant">{{ .legalForm }}</dd>
-                    </div>
-                    <div class="space-y-1 rounded-lg bg-surface-container-low p-4">
-                        <dt class="text-label-sm uppercase text-on-surface-variant">Direction & gérance</dt>
-                        <dd class="font-heading text-headline-sm font-semibold text-on-surface">{{ .manager }}</dd>
-                        <dd class="text-body-sm text-on-surface-variant">{{ .managerRole }}</dd>
-                    </div>
-                    <div class="space-y-1 rounded-lg bg-surface-container-low p-4 md:col-span-2">
-                        <dt class="text-label-sm uppercase text-on-surface-variant">Siège social</dt>
-                        <dd class="font-medium text-on-surface">{{ .address }}</dd>
-                    </div>
-                    <div class="space-y-1 rounded-lg bg-surface-container-low p-4">
-                        <dt class="text-label-sm uppercase text-on-surface-variant">Immatriculation & SIRET</dt>
-                        <dd class="font-mono font-semibold text-on-surface">{{ .siret }}</dd>
-                        <dd class="text-body-sm text-on-surface-variant">{{ .rcs }}</dd>
-                    </div>
-                    <div class="space-y-1 rounded-lg bg-surface-container-low p-4">
-                        <dt class="text-label-sm uppercase text-on-surface-variant">TVA intracommunautaire</dt>
-                        <dd class="font-mono font-semibold text-primary">{{ .vat }}</dd>
-                    </div>
-                </dl>
+                    {{ end }}
+                </div>
             </section>
-            {{ end }}
             {{ end }}
             {{ with $intro }}
             <div class="rounded-xl bg-surface-card p-8 shadow-sm">{{ . | safeHTML }}</div>

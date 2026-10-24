@@ -1,0 +1,14 @@
+{{- /*
+  One publisher or company detail from [params.publisher] / [params.company] in config.toml, so the legal pages never
+  copy them. The publisher's professional address is the company office: config.toml holds that address once, under
+  company.address, and publisher.address only exists to override it.
+  Shared by the {{< identity >}} shortcode and layouts/_default/legal.html; returns "" for a missing detail.
+
+  Usage: {{ partial "identity" (slice "publisher" "address") }} → "116 Route d’Espagne, …"
+*/ -}}
+{{- $entity := index . 0 | lower -}}
+{{- $field := index . 1 | lower -}}
+{{- $value := "" -}}
+{{- with index site.Params $entity }}{{ $value = index . $field }}{{ end -}}
+{{- if and (not $value) (eq $entity "publisher") (eq $field "address") }}{{ $value = site.Params.company.address }}{{ end -}}
+{{- return (default "" $value) -}}

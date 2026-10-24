@@ -12,7 +12,7 @@ updated: 2026-10-23
 
 ## 1\. Responsable du traitement
 
-Le responsable des traitements décrits ci-dessous est **Guillaume Sainthillier**, éditeur du site – 116 Route d’Espagne, HELIOS 4, BAT 113, BAL 411, 31100 Toulouse – {{< email >}}.
+Le responsable des traitements décrits ci-dessous est **{{< identity publisher name >}}**, éditeur du site – {{< identity publisher address >}} – {{< email >}}.
 
 Le site ne demande aucune création de compte et ne collecte que les données décrites ici. Lorsqu’une mission démarre, les données de la relation commerciale (devis, factures, échanges) sont traitées par SILARHI dans le cadre des [conditions générales de vente](/conditions-generales-de-vente/).
 

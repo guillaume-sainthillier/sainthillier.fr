@@ -48,6 +48,7 @@ pnpm knip             # Check for unused dependencies/exports
 - **Homepage content**: sections are driven by the front matter of `content/_index.md` (`situations`, `services`, `skill_groups`, `faq`, `contact_needs`, `experiences`, `portfolio_filters`, `projects`); the FAQ also feeds the `FAQPage` JSON-LD in `layouts/partials/schemas.html`
 - **Images**: native `loading="lazy"` through the `responsive-image` partial
 - **Social preview**: `static/og-image.jpg` is rendered from `scripts/og-image.html` (hero tokens, fonts and portrait) by `pnpm og-image` (headless Chrome); regenerate and commit it after a design change
+- **Legal pages** (`layout: legal`, `layouts/_default/legal.html`): the publisher and company details come from `[params.publisher]` / `[params.company]` in `config.toml` through the `{{< identity company rcs >}}` shortcode (`layouts/partials/identity.html`; the publisher's address falls back to the company office, so the address is set once); never copy them into the Markdown. The mentions légales open with the card rendering them (`identity: true`)
 
 ### Analytics (Umami)
 

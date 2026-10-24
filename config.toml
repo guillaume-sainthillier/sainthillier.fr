@@ -30,13 +30,14 @@ disableKinds = ["taxonomy", "RSS"]
   # 15-minute video call booking page (Calendly); the booking buttons fall back to the contact form while empty
   bookingUrl = "https://calendly.com/guillaume-silarhi/30min"
 
-# Publisher of the site (LCEN art. 6): a person, not the company; the address is the company's office
+# Publisher of the site (LCEN art. 6): a person, not the company. Their professional address is the company office
+# (company.address); add an "address" here only if it ever differs
 [params.publisher]
   name = "Guillaume Sainthillier"
   role = "Éditeur et directeur de la publication"
-  address = "116 Route d’Espagne, HELIOS 4, BAT 113, BAL 411, 31100 Toulouse, France"
 
-# Company that carries out and invoices the missions (contracting party of the CGV), shown on the legal pages
+# Company that carries out and invoices the missions (contracting party of the CGV), shown on the legal pages.
+# The legal pages read these details through the {{< identity >}} shortcode: never copy them into the content
 [params.company]
   name = "SARL SILARHI"
   legalForm = "Société à responsabilité limitée au capital de 1 000 €"
