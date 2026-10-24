@@ -483,7 +483,7 @@
                         <span class="flex h-lh items-center text-primary" aria-hidden="true">{{ partial "icon" (dict "name" "timer" "class" "text-xl") }}</span>
                         <span><strong>Besoin d’un retour immédiat&#8239;?</strong> Réservez directement un créneau visio de 15 min ou renseignez le formulaire ci-dessous.</span>
                     </p>
-                    <a class="btn btn-outline min-h-11 shrink-0 px-3 py-1.5 lg:min-h-0 text-label-sm text-primary" href="{{ $bookingUrl }}" rel="noopener" target="_blank">{{ partial "icon" (dict "name" "calendar") }}Réserver 15 min</a>
+                    <a class="btn btn-outline shrink-0 text-primary" href="{{ $bookingUrl }}" rel="noopener" target="_blank">{{ partial "icon" (dict "name" "calendar") }}Réserver 15 min</a>
                 </div>
                 {{ end }}
                 <form id="contactForm" class="flex flex-col gap-4" action="https://formspree.io/f/xlepbonn" novalidate>
