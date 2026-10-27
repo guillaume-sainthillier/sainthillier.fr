@@ -7,7 +7,7 @@ on:
             - master
 
 permissions:
-    pull-requests: write
+    contents: read
 
 # Supersede outdated runs of a pull request; push runs (head_ref empty) are never cancelled.
 concurrency:
@@ -17,6 +17,9 @@ concurrency:
 jobs:
     size:
         name: Bundle size
+        permissions:
+            contents: read
+            pull-requests: write
         runs-on: ubuntu-latest
         timeout-minutes: 15
         steps:
