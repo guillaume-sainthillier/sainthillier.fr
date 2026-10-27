@@ -312,6 +312,64 @@ projects:
       image: images/realisations/mms.jpg
       categories: [industry]
       tags: [PHP, Symfony, AWS, Docker, MySQL, SSO, SAML]
+    - id: paynoous
+      name: PayNoous
+      tagline: Demandes de facturation et relance des impayés
+      status: Reprise de projet
+      date: Juin 2026 - En cours
+      description: "Reprise d’une application interne de facturation développée par plusieurs prestataires successifs : relance automatique des factures impayées, exports des commandes et des clients, et code fiabilisé sans perturber les équipes."
+      case_study: https://silarhi.fr/projets/paynoous
+      image: images/realisations/paynoous.jpg
+      categories: []
+      tags: [PHP, Symfony, API Platform, Tailwind, MySQL]
+    - id: master-vendor-portal
+      name: Master Vendor Portal
+      tagline: Refacturation des bons de commande
+      date: Janv 2025 - En cours
+      description: "Plateforme de gestion et de refacturation des bons de commande, synchronisée dans les deux sens avec le logiciel de facturation : imports validés, tableaux de bord par projet et par fournisseur, notifications en temps réel."
+      case_study: https://silarhi.fr/projets/master-vendor-portal
+      image: images/realisations/master-vendor-portal.jpg
+      categories: []
+      tags: [PHP, Symfony, API Platform, React, Mercure, PostgreSQL]
+    - id: iris
+      name: IRIS
+      tagline: Commandes et livraisons pour les professionnels dentaires
+      status: Reprise de projet
+      date: Oct 2023 - En cours
+      description: "Plateforme web du scanner intra-oral IRIS : professionnels dentaires et partenaires y gèrent leurs commandes et suivent les livraisons. Reprise du projet, montées de version et refonte graphique, tout en continuant à livrer de nouvelles fonctionnalités."
+      case_study: https://silarhi.fr/projets/iris
+      image: images/realisations/iris.jpg
+      categories: []
+      tags: [PHP, Symfony, React, Tailwind, MySQL, Docker]
+    - id: estali
+      name: Estali
+      tagline: Gestion d’agences immobilières
+      status: Reprise de projet
+      date: Oct 2022 - En cours
+      description: "Outil de gestion pour agences immobilières : mandats, prospection et suivi des offres, accès des employés par rôle, plusieurs agences dans le même outil et vitrine publique des biens."
+      url: https://estali.com
+      case_study: https://silarhi.fr/projets/estali
+      image: images/realisations/estali.jpg
+      categories: [real-estate]
+      tags: [PHP, Symfony, Bootstrap, jQuery, MySQL]
+    - id: eleo-training
+      name: Eleo Training
+      tagline: Suivi des formations et habilitations
+      date: Avr 2022 - Juil 2024
+      description: "Outil de gestion des formations et habilitations pour ETI et grands groupes : catalogue, recueil des besoins, plans de formation. Renfort de l’équipe technique sur les fonctionnalités, les performances et le suivi en temps réel."
+      case_study: https://silarhi.fr/projets/eleo-training
+      image: images/realisations/eleo-training.jpg
+      categories: []
+      tags: [PHP, Symfony, API Platform, React, Kubernetes, RabbitMQ]
+    - id: docland
+      name: Airbus DOCLAND
+      tagline: Demandes documentaires et terminologiques
+      date: Janv 2021 - En cours
+      description: "Application interne Airbus de demandes documentaires : archives, livres, documentation technique et support terminologique, avec validation des coûts en plusieurs étapes et connexion unifiée. Via STILLGEEK, qui porte la relation avec Airbus."
+      case_study: https://silarhi.fr/projets/docland
+      image: images/realisations/docland.jpg
+      categories: [industry]
+      tags: [PHP, Symfony, AWS, Docker, MySQL, SSO, SAML]
     - id: exterior-walkaround
       name: Exterior Walkaround
       tagline: Application web mobile pour pilotes de ligne
