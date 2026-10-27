@@ -243,10 +243,10 @@ portfolio_visible: 6
 projects:
     - id: cibaru
       name: CIBARU
-      tagline: Gestion de mandats de travaux & sous-traitance
+      tagline: Suivre ses mandats de travaux, de la demande à la facturation
       status: En production
       date: Juil 2025 - En cours
-      description: Application web permettant aux mandataires de gérer leurs demandes de travaux, d’orchestrer la sous-traitance à des collaborateurs et d’assurer le suivi direct de leur facturation.
+      description: "Les mandataires de travaux suivent chaque mandat avec leurs sous-traitants, de la demande à la facturation. Moins de saisie : les fiches entreprises se remplissent depuis SIRENE."
       url: https://cibaru.fr
       case_study: https://silarhi.fr/projets/cibaru
       image: images/realisations/cibaru.jpg
@@ -254,10 +254,10 @@ projects:
       tags: [PHP, Symfony, API Platform, MySQL, S3]
     - id: netisio
       name: Netisio
-      tagline: Télérelève d’eau & d’énergie pour copropriétés
+      tagline: Maîtriser l’eau et l’énergie des copropriétés, logement par logement
       status: En production
       date: Avr 2024 - En cours
-      description: "Suivi de consommation d’équipements pour copropriétés : détection en temps réel des fuites et mise en conformité avec la nouvelle tarification réglementaire de l’eau."
+      description: Les gestionnaires de copropriétés suivent l’eau et l’électricité de chaque logement sans relevé manuel et repèrent les fuites en temps réel, grâce à des compteurs connectés.
       url: https://netisio.fr
       case_study: https://silarhi.fr/projets/netisio
       image: images/realisations/netisio.jpg
@@ -265,10 +265,10 @@ projects:
       tags: [PHP, Symfony, API Platform, MySQL, Chart.js]
     - id: solution-sepa
       name: Solution SEPA
-      tagline: Gestion des prélèvements et virements bancaires
+      tagline: Des prélèvements et virements bancaires qui partent tout seuls
       status: Reprise de projet
       date: Avr 2022 - En cours
-      description: Gestion automatisée des prélèvements et virements bancaires (uniques ou récurrents) via le protocole sécurisé EBICS et suivi rigoureux de l’exécution bancaire.
+      description: Les prélèvements et virements SEPA partent seuls vers les banques via EBICS, et les relevés montrent lesquels sont exécutés. Application reprise et modernisée sans repartir de zéro.
       url: https://solution-sepa.fr
       case_study: https://silarhi.fr/projets/solution-sepa
       image: images/realisations/solution-sepa.jpg
@@ -276,9 +276,9 @@ projects:
       tags: [PHP, Symfony, EBICS, API Platform, MySQL, S3]
     - id: dosloc
       name: DosLoc
-      tagline: Gestion des candidatures locatives
+      tagline: Des dossiers de location complets, du dépôt des pièces au bail
       date: Avr 2020 - En cours
-      description: Dépôt et partage des pièces justificatives des locataires, centralisation côté bailleur, génération automatisée de dossiers PDF et préparation immédiate du bail locatif.
+      description: Le locataire constitue son dossier une seule fois et le partage ; le bailleur reçoit des candidatures complètes, les compare, obtient un PDF prêt à archiver et prépare le bail.
       url: https://dosloc.fr
       case_study: https://silarhi.fr/projets/dosloc
       image: images/realisations/dosloc.jpg
@@ -286,9 +286,9 @@ projects:
       tags: [PHP, Symfony, API Platform, MySQL, fPDF]
     - id: immobilus
       name: Immobilus
-      tagline: Digitalisation de la gestion immobilière
+      tagline: Une gestion locative qui génère les loyers et pointe les paiements
       date: Mars 2019 - En cours
-      description: Enregistrement des locataires, automatisation des loyers et couplage avec le protocole EBICS pour récupérer automatiquement les flux bancaires et rapprocher les relevés.
+      description: Les propriétaires gèrent biens, locataires et contrats au même endroit. Loyers et quittances sont générés seuls, et les paiements pointés grâce aux relevés bancaires (EBICS).
       url: https://immobilus.fr
       case_study: https://silarhi.fr/projets/immobilus
       image: images/realisations/immobilus.jpg
@@ -296,45 +296,45 @@ projects:
       tags: [PHP, Symfony, EBICS, MySQL, S3]
     - id: by-night
       name: By Night
-      tagline: Plateforme d’agrégation d’événements culturels
+      tagline: Toutes les sorties de votre ville dans un seul agenda
       date: Oct 2013 - En cours
-      description: Plateforme à forte volumétrie (Paris, Toulouse, Lyon, Bordeaux). Import multi-sources, synchronisation Open Data et recherche temps réel avec Varnish & Elasticsearch.
+      description: "Concerts, spectacles, expositions, soirées : les sorties de Paris, Toulouse, Lyon, Bordeaux… réunies dans un agenda, importées automatiquement et cherchables en temps réel."
       url: https://by-night.fr
       image: images/realisations/by-night.jpg
       categories: [data]
       tags: [PHP, Symfony, Elasticsearch, RabbitMQ, Docker, S3]
     - id: airbus-publishing
       name: Airbus MMS (MultiMedia Support)
-      tagline: Demandes de supports marketing et multimédia
+      tagline: Les supports marketing du groupe Airbus commandés au même endroit
       date: Mars 2018 - En cours
-      description: Application interne du service Airbus MultiMedia Support pour la demande de travaux graphiques et de supports marketing au sein du Groupe Airbus. Première version en 2018 via l’agence Agoranet, puis refonte et maintenance depuis 2019 via STILLGEEK, qui porte la relation avec Airbus.
+      description: "Les équipes du groupe Airbus commandent leurs supports marketing dans un seul outil : demandes sur mesure, médiathèque, coûts validés avant production. Première version en 2018 via l’agence Agoranet, puis refonte et maintenance depuis 2019 via STILLGEEK, qui porte la relation avec Airbus."
       case_study: https://silarhi.fr/projets/airbus-multi-media-support
       image: images/realisations/mms.jpg
       categories: [industry]
       tags: [PHP, Symfony, AWS, Docker, MySQL, SSO, SAML]
     - id: exterior-walkaround
       name: Exterior Walkaround
-      tagline: Application web mobile pour pilotes de ligne
+      tagline: Le tour de l’avion avant décollage, guidé sur mobile
       date: Juin 2018
-      description: "Pour le service Airbus MultiMedia Support. Cette application web mobile permet aux pilotes de ligne de vérifier avant le décollage certains points de contrôle de l’extérieur de l’avion, avec des exemples illustrés de problèmes déjà rencontrés."
+      description: "Pour le service Airbus MultiMedia Support : les pilotes de ligne passent en revue sur mobile les points de contrôle extérieurs de l’avion avant le décollage, illustrés par des problèmes déjà rencontrés."
       image: images/realisations/exterior-walkaround.jpg
       image_position: center
       categories: [industry]
       tags: [PHP, Symfony 4, Docker, MySQL, SCSS]
     - id: safety-index
       name: Safety Index
-      tagline: Suivi des améliorations de flotte
+      tagline: Les améliorations disponibles pour sa flotte, d’un coup d’œil
       date: Mai 2018
-      description: Pour le service Airbus MultiMedia Support. Cette application web mobile permet aux « Safety Officers » de vérifier quelles améliorations physiques ou logicielles peuvent être effectuées sur les composants de leur flotte d’avions.
+      description: "Pour le service Airbus MultiMedia Support : les « Safety Officers » voient sur mobile quelles améliorations matérielles ou logicielles peuvent être appliquées aux composants de leur flotte d’avions."
       image: images/realisations/safety-index.jpg
       image_position: center
       categories: [industry]
       tags: [PHP, Symfony 4, Docker, MySQL, SCSS]
     - id: open-epm
       name: Open ePM
-      tagline: Logiciel open source pour polices municipales
+      tagline: Le logiciel libre de gestion des polices municipales
       date: Avr 2011 - Fév 2013
-      description: Pour la société ICM Services. Application web open source de gestion des mains courantes, rapports PV, objets trouvés, mises en fourrière et vacations funéraires.
+      description: "Pour la société ICM Services : main courante, procès-verbaux, objets trouvés, mises en fourrière et vacations funéraires réunis dans un seul logiciel libre, pensé pour les polices municipales."
       url: https://newapp.logilibres.org/
       image: images/realisations/epm.jpg
       categories: []
