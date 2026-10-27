@@ -251,7 +251,7 @@ projects:
       case_study: https://silarhi.fr/projets/cibaru
       image: images/realisations/cibaru.jpg
       categories: [real-estate]
-      tags: [PHP, Symfony, MySQL, SCSS, AWS]
+      tags: [PHP, Symfony, API Platform, MySQL, S3]
     - id: netisio
       name: Netisio
       tagline: Télérelève d’eau & d’énergie pour copropriétés
@@ -262,7 +262,7 @@ projects:
       case_study: https://silarhi.fr/projets/netisio
       image: images/realisations/netisio.jpg
       categories: [real-estate, data]
-      tags: [PHP, Symfony, API Platform, MySQL, Responsive]
+      tags: [PHP, Symfony, API Platform, MySQL, Chart.js]
     - id: solution-sepa
       name: Solution SEPA
       tagline: Gestion des prélèvements et virements bancaires
@@ -273,7 +273,7 @@ projects:
       case_study: https://silarhi.fr/projets/solution-sepa
       image: images/realisations/solution-sepa.jpg
       categories: [fintech]
-      tags: [EBICS, Symfony, MySQL, S3, SCSS]
+      tags: [PHP, Symfony, EBICS, API Platform, MySQL, S3]
     - id: dosloc
       name: DosLoc
       tagline: Gestion des candidatures locatives
@@ -283,7 +283,7 @@ projects:
       case_study: https://silarhi.fr/projets/dosloc
       image: images/realisations/dosloc.jpg
       categories: [real-estate]
-      tags: [PHP, Symfony, MySQL, fPDF]
+      tags: [PHP, Symfony, API Platform, MySQL, fPDF]
     - id: immobilus
       name: Immobilus
       tagline: Digitalisation de la gestion immobilière
@@ -293,7 +293,7 @@ projects:
       case_study: https://silarhi.fr/projets/immobilus
       image: images/realisations/immobilus.jpg
       categories: [real-estate, fintech]
-      tags: [PHP, Symfony, EBICS, MySQL, Responsive]
+      tags: [PHP, Symfony, EBICS, MySQL, S3]
     - id: by-night
       name: By Night
       tagline: Plateforme d’agrégation d’événements culturels
