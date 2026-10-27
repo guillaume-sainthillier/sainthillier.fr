@@ -179,7 +179,7 @@ experiences:
       employer_url: https://apside.com
       client: Agoranet
       title: Développeur Full Stack freelance
-      description: Réalisation de projets d’applications web et sites vitrines, principalement pour le client Airbus.
+      description: Réalisation de projets d’applications web et sites vitrines, principalement pour le client Airbus, dont la première version d’Airbus MMS.
       tags: [Agence de communication, Symfony, Docker, SSO-SAML]
     - period: Sept 2020 - Sept 2021
       logo: images/logos/Webforce3.jpg
@@ -304,10 +304,10 @@ projects:
       categories: [data]
       tags: [PHP, Symfony, Elasticsearch, RabbitMQ, Docker, S3]
     - id: airbus-publishing
-      name: Airbus Publishing
-      tagline: Demandes de travaux graphiques
-      date: Mars 2018 - Juin 2018
-      description: Pour le service Airbus MultiMedia Support. Ce service web permet en interne la demande de travaux graphiques au sein du Groupe Airbus.
+      name: Airbus MMS (MultiMedia Support)
+      tagline: Demandes de supports marketing et multimédia
+      date: Mars 2018 - En cours
+      description: Application interne du service Airbus MultiMedia Support pour la demande de travaux graphiques et de supports marketing au sein du Groupe Airbus. Première version en 2018 via l’agence Agoranet, puis refonte et maintenance depuis 2019 via STILLGEEK, qui porte la relation avec Airbus.
       case_study: https://silarhi.fr/projets/airbus-multi-media-support
       image: images/realisations/mms.jpg
       categories: [industry]
