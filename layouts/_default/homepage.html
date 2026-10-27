@@ -190,10 +190,12 @@
             <article id="project-{{ .id }}" class="flex scroll-mt-24 flex-col overflow-hidden rounded-2xl bg-surface-card shadow-sm transition-shadow hover:shadow-md" data-categories="{{ delimit (.categories | default slice) " " }}">
                 <div class="relative hidden aspect-16/10 w-full overflow-hidden border-b border-hairline bg-surface-container-high sm:block">
                     {{ partial "responsive-image" (dict "src" .image "alt" (printf "Capture d’écran de %s" .name) "class" (printf "size-full object-cover %s" (cond (eq .image_position "center") "object-center" "object-top")) "width" 420 "sizes" "(min-width: 1024px) 400px, (min-width: 768px) 50vw, 100vw") }}
-                    {{ with .status }}
-                    <span class="absolute top-3 left-3 rounded px-2.5 py-1 font-mono text-label-sm {{ if eq . "En production" }}bg-terminal-black text-secondary-fixed-dim{{ else }}bg-secondary-container text-on-secondary-fixed{{ end }}">{{ . }}</span>
-                    {{ end }}
-                    <span class="absolute top-3 right-3 rounded bg-surface-card/90 px-2 py-0.5 font-mono text-label-sm font-medium text-on-surface">{{ .date }}</span>
+                    <div class="absolute inset-x-3 top-3 flex flex-wrap items-start gap-2">
+                        {{ with .status }}
+                        <span class="whitespace-nowrap rounded px-2.5 py-1 font-mono text-label-sm {{ if eq . "En production" }}bg-terminal-black text-secondary-fixed-dim{{ else }}bg-secondary-container text-on-secondary-fixed{{ end }}">{{ . }}</span>
+                        {{ end }}
+                        <span class="ml-auto whitespace-nowrap rounded bg-surface-card/90 px-2 py-0.5 font-mono text-label-sm font-medium text-on-surface">{{ .date }}</span>
+                    </div>
                 </div>
                 <div class="flex flex-1 flex-col p-5 sm:p-6">
                     <div class="mb-2 flex flex-wrap items-center justify-between gap-x-2 gap-y-1 sm:hidden">
