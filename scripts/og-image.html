@@ -1,7 +1,8 @@
 <!doctype html>
 <!--
-    Social preview (static/og-image.jpg, 1200×630), drawn with the homepage hero tokens and fonts.
-    Regenerate with `pnpm og-image` after a design change.
+    Social preview (static/og-image.jpg, 1200×630), drawn with the homepage hero tokens and fonts. With #github, the
+    same page at 1280×640 inside GitHub's 80px safe border (.github/social-preview.png, uploaded by hand in the
+    repository's Settings → Social preview). Regenerate both with `pnpm og-image` after a design change.
 -->
 <html lang="fr">
     <head>
@@ -44,8 +45,8 @@
 
             html,
             body {
-                width: 1200px;
-                height: 630px;
+                width: 100vw;
+                height: 100vh;
                 overflow: hidden;
             }
 
@@ -58,6 +59,11 @@
                 color: var(--on-surface);
                 font-family: var(--font-sans);
                 -webkit-font-smoothing: antialiased;
+            }
+
+            /* GitHub crops its previews to other ratios: what matters stays 80px away from every edge */
+            body.github {
+                padding: 80px;
             }
 
             svg {
@@ -270,6 +276,11 @@
         </style>
     </head>
     <body>
+        <script>
+            if (location.hash === '#github') {
+                document.body.classList.add('github')
+            }
+        </script>
         <div class="blob blob-primary"></div>
         <div class="blob blob-accent"></div>
 
