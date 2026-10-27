@@ -314,39 +314,39 @@ projects:
       tags: [PHP, Symfony, AWS, Docker, MySQL, SSO, SAML]
     - id: paynoous
       name: PayNoous
-      tagline: Demandes de facturation et relance des impayés
+      tagline: Les demandes de facturation suivies jusqu’au paiement
       status: Reprise de projet
       date: Juin 2026 - En cours
-      description: "Reprise d’une application interne de facturation développée par plusieurs prestataires successifs : relance automatique des factures impayées, exports des commandes et des clients, et code fiabilisé sans perturber les équipes."
+      description: "Les équipes gèrent toutes leurs demandes de facturation : activités, clients, entités juridiques, commandes et paiements, en lien avec Master Vendor Portal. Application reprise après plusieurs prestataires successifs, enrichie de relances automatiques des impayés et d’exports, sans perturber les équipes."
       case_study: https://silarhi.fr/projets/paynoous
       image: images/realisations/paynoous.jpg
       categories: []
       tags: [PHP, Symfony, API Platform, Tailwind, MySQL]
     - id: master-vendor-portal
       name: Master Vendor Portal
-      tagline: Refacturation des bons de commande
+      tagline: Des bons de commande refacturés sans double saisie
       date: Janv 2025 - En cours
-      description: "Plateforme de gestion et de refacturation des bons de commande, synchronisée dans les deux sens avec le logiciel de facturation : imports validés, tableaux de bord par projet et par fournisseur, notifications en temps réel."
+      description: "Les équipes suivent et refacturent leurs bons de commande dans un outil synchronisé dans les deux sens avec leur logiciel de facturation : imports vérifiés, tableaux de bord par projet et par fournisseur, alertes en temps réel."
       case_study: https://silarhi.fr/projets/master-vendor-portal
       image: images/realisations/master-vendor-portal.jpg
       categories: []
       tags: [PHP, Symfony, API Platform, React, Mercure, PostgreSQL]
     - id: iris
       name: IRIS
-      tagline: Commandes et livraisons pour les professionnels dentaires
+      tagline: Les commandes dentaires suivies jusqu’à la livraison
       status: Reprise de projet
       date: Oct 2023 - En cours
-      description: "Plateforme web du scanner intra-oral IRIS : professionnels dentaires et partenaires y gèrent leurs commandes et suivent les livraisons. Reprise du projet, montées de version et refonte graphique, tout en continuant à livrer de nouvelles fonctionnalités."
+      description: "Les professionnels dentaires et les partenaires du scanner intra-oral IRIS passent leurs commandes et suivent les livraisons en ligne. Projet repris, mis à jour et redessiné sans arrêter les nouvelles fonctionnalités."
       case_study: https://silarhi.fr/projets/iris
       image: images/realisations/iris.jpg
       categories: []
       tags: [PHP, Symfony, React, Tailwind, MySQL, Docker]
     - id: estali
       name: Estali
-      tagline: Gestion d’agences immobilières
+      tagline: Toute l’agence immobilière dans un seul outil
       status: Reprise de projet
       date: Oct 2022 - En cours
-      description: "Outil de gestion pour agences immobilières : mandats, prospection et suivi des offres, accès des employés par rôle, plusieurs agences dans le même outil et vitrine publique des biens."
+      description: "Les agences suivent mandats, prospection et offres, gèrent plusieurs agences et les accès de chaque employé, et publient leurs biens sur une vitrine en ligne."
       url: https://estali.com
       case_study: https://silarhi.fr/projets/estali
       image: images/realisations/estali.jpg
@@ -354,18 +354,18 @@ projects:
       tags: [PHP, Symfony, Bootstrap, jQuery, MySQL]
     - id: eleo-training
       name: Eleo Training
-      tagline: Suivi des formations et habilitations
+      tagline: Les formations et habilitations pilotées, du besoin au plan
       date: Avr 2022 - Juil 2024
-      description: "Outil de gestion des formations et habilitations pour ETI et grands groupes : catalogue, recueil des besoins, plans de formation. Renfort de l’équipe technique sur les fonctionnalités, les performances et le suivi en temps réel."
+      description: "Les ETI et grands groupes recueillent les besoins, gèrent leur catalogue, construisent leurs plans de formation et suivent les habilitations de leurs salariés. Renfort de l’équipe technique : nouvelles fonctionnalités, performances, suivi en temps réel."
       case_study: https://silarhi.fr/projets/eleo-training
       image: images/realisations/eleo-training.jpg
       categories: []
       tags: [PHP, Symfony, API Platform, React, Kubernetes, RabbitMQ]
     - id: docland
       name: Airbus DOCLAND
-      tagline: Demandes documentaires et terminologiques
+      tagline: Archives, documentation et terminologie demandées au même endroit
       date: Janv 2021 - En cours
-      description: "Application interne Airbus de demandes documentaires : archives, livres, documentation technique et support terminologique, avec validation des coûts en plusieurs étapes et connexion unifiée. Via STILLGEEK, qui porte la relation avec Airbus."
+      description: "Les équipes Airbus demandent archives, livres, documentation technique ou aide terminologique, avec des coûts validés en plusieurs étapes et une connexion unique. Via STILLGEEK, qui porte la relation avec Airbus."
       case_study: https://silarhi.fr/projets/docland
       image: images/realisations/docland.jpg
       categories: [industry]
