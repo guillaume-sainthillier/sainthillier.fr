@@ -177,10 +177,10 @@ importers:
         version: 5.3.0
       '@tailwindcss/vite':
         specifier: ^4.3.3
-        version: 4.3.3(vite@8.3.5(@types/node@24.19.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.9.1))
+        version: 4.3.3(vite@8.3.5(@types/node@26.6.5)(jiti@2.7.0)(terser@5.51.2)(yaml@2.9.1))
       '@types/node':
-        specifier: ^24.19.2
-        version: 24.19.2
+        specifier: ^26.0.0
+        version: 26.6.5
       hugo-extended:
         specifier: ^0.168.0
         version: 0.168.0
@@ -216,7 +216,7 @@ importers:
         version: 7.0.2
       vite:
         specifier: ^8.3.5
-        version: 8.3.5(@types/node@24.19.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.9.1)
+        version: 8.3.5(@types/node@26.6.5)(jiti@2.7.0)(terser@5.51.2)(yaml@2.9.1)
 
 packages:
 
@@ -758,8 +758,8 @@ packages:
   '@tybys/wasm-util@0.10.4':
     resolution: {integrity: sha512-W3c4gRigFS0T/Ma4qIYF3GDAc5AQdHb1yL5znJT1Zv1YaD9Kitx656wBjvr19qbiosmZT8lWDM5BEMynUqX65A==}
 
-  '@types/node@24.19.2':
-    resolution: {integrity: sha512-93d49wCWJkCyN87MxLpNN6KXPCwFw7bVUg79mGUV1OS40JGWwVCr8n61DXCSqz7CV6/VfPkb7xec7uP2M+QHWQ==}
+  '@types/node@26.6.5':
+    resolution: {integrity: sha512-uMzsv9stDdofIZBx4UGh4Z9ZgXnGC9seRDscilBcTHAeOFk67MZg/k9bWVfO+bk4qZmG+l52hRnLwUiH2LnJTg==}
 
   '@typescript/typescript-aix-ppc64@7.0.2':
     resolution: {integrity: sha512-MTKKkWB7p/0E9xi1d1tHtZ5PiLkGEMIq88pK2CubZjOsLtYTLqhgIgi6zepFa+9GHZ6h05NMCkQxGKiPXMxXtQ==}
@@ -1294,8 +1294,8 @@ packages:
     resolution: {integrity: sha512-0db9eS5iqybux41zLkX69nk90KTci7F7eZ+gXzEG/Q7E0tAqEBhRh5fkZvk1N7jT7QkGWqq34i8SFGPFEe1V8A==}
     engines: {node: '>=14'}
 
-  undici-types@7.24.6:
-    resolution: {integrity: sha512-WRNW+sJgj5OBN4/0JpHFqtqzhpbnV0GuB+OozA9gCL7a993SmU+1JBZCzLNxYsbMfIeDL+lTsphD5jN5N+n0zg==}
+  undici-types@8.9.0:
+    resolution: {integrity: sha512-KTDyRTYX8sWmKXAikPHHSyc63CRPETMctyjKFupcC6OBLXT3xsN0e9aF7m+mIXutFWpUXuedtowG7iLOzp0kQg==}
 
   vite@8.3.5:
     resolution: {integrity: sha512-z1YpjieJ9g0ebTmQpLBv/oq9E3F9EIlOe+7LahW8SrE3LTiG3udBRUXQOlYXP9b+IC2q2phHeVxj9xGlw34OEQ==}
@@ -1695,21 +1695,21 @@ snapshots:
       '@tailwindcss/oxide-win32-arm64-msvc': 4.3.3
       '@tailwindcss/oxide-win32-x64-msvc': 4.3.3
 
-  '@tailwindcss/vite@4.3.3(vite@8.3.5(@types/node@24.19.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.9.1))':
+  '@tailwindcss/vite@4.3.3(vite@8.3.5(@types/node@26.6.5)(jiti@2.7.0)(terser@5.51.2)(yaml@2.9.1))':
     dependencies:
       '@tailwindcss/node': 4.3.3
       '@tailwindcss/oxide': 4.3.3
       tailwindcss: 4.3.3
-      vite: 8.3.5(@types/node@24.19.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.9.1)
+      vite: 8.3.5(@types/node@26.6.5)(jiti@2.7.0)(terser@5.51.2)(yaml@2.9.1)
 
   '@tybys/wasm-util@0.10.4':
     dependencies:
       tslib: 2.8.1
     optional: true
 
-  '@types/node@24.19.2':
+  '@types/node@26.6.5':
     dependencies:
-      undici-types: 7.24.6
+      undici-types: 8.9.0
 
   '@typescript/typescript-aix-ppc64@7.0.2':
     optional: true
@@ -2131,9 +2131,9 @@ snapshots:
 
   unbash@6.0.1: {}
 
-  undici-types@7.24.6: {}
+  undici-types@8.9.0: {}
 
-  vite@8.3.5(@types/node@24.19.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.9.1):
+  vite@8.3.5(@types/node@26.6.5)(jiti@2.7.0)(terser@5.51.2)(yaml@2.9.1):
     dependencies:
       lightningcss: 1.33.0
       picomatch: 4.0.7
@@ -2141,7 +2141,7 @@ snapshots:
       rolldown: 1.2.15
       tinyglobby: 0.2.17
     optionalDependencies:
-      '@types/node': 24.19.2
+      '@types/node': 26.6.5
       fsevents: 2.3.3
       jiti: 2.7.0
       terser: 5.51.2
