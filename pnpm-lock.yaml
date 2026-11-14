@@ -195,7 +195,7 @@ importers:
         version: 17.6.0
       lucide-static:
         specifier: ^1.70.0
-        version: 1.71.0
+        version: 1.72.0
       prettier:
         specifier: ^3.9.10
         version: 3.9.10
@@ -1063,8 +1063,8 @@ packages:
     engines: {node: '>=22.22.1'}
     hasBin: true
 
-  lucide-static@1.71.0:
-    resolution: {integrity: sha512-yUXCvkMCNlqZI72Oco8+FjFwTcPI0Xz5qPZuqYXKP/8BU928hKT0Q4/m+R0e1I44kqEfCz1pd2J7iQ8jTZQEuA==}
+  lucide-static@1.72.0:
+    resolution: {integrity: sha512-QhdZ60O7Zcs/e8gw40uMfEn055xZTHBZoNi0xb+/1R2dTd0v4FXS46VL6rKSwC+V92tLBiqsAbCcijy7Wy4j4w==}
 
   magic-string@1.4.5:
     resolution: {integrity: sha512-oLLC2+YvQUfAa+vxoufE/yc1icb87M9iXIRqAoR/2EhE/8cb3SF/+Gi0c2By1B+5Vz2e2vQtUvHiu1+63Znh+w==}
@@ -1872,7 +1872,7 @@ snapshots:
     optionalDependencies:
       yaml: 2.9.1
 
-  lucide-static@1.71.0: {}
+  lucide-static@1.72.0: {}
 
   magic-string@1.4.5:
     dependencies:
