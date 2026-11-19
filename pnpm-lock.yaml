@@ -191,8 +191,8 @@ importers:
         specifier: ^26.0.0
         version: 26.6.6
       hugo-extended:
-        specifier: ^0.169.0
-        version: 0.169.0
+        specifier: ^0.170.0
+        version: 0.170.0
       husky:
         specifier: 9.1.7
         version: 9.1.7
@@ -974,8 +974,8 @@ packages:
   harfbuzzjs@1.6.4:
     resolution: {integrity: sha512-T/PyfhVt1gGR2Tkf5KJUj1DQFkVBXHw552lS1iLEEDhV1Lukb3eq1pk2ov85kgbT2YUiZtJBTak9w+M7YgzUEQ==}
 
-  hugo-extended@0.169.0:
-    resolution: {integrity: sha512-TPBaU2eIhNZd9iY+0ejVJeGkZ6DieRpKHCanriritTr/Q89tJE41JQc2Ja4/Z1QzezIIQzhvAp1NlmzZWa7yww==}
+  hugo-extended@0.170.0:
+    resolution: {integrity: sha512-Esz+/S6c5nCvP5t6hhm12J7DNvsFzyI4br3LkKaBsW5yki/G4s66wf/b+oe80MwrcvCPf1WafTLFeEE9K0SbmA==}
     engines: {node: '>=18.17'}
     hasBin: true
 
@@ -1801,7 +1801,7 @@ snapshots:
 
   harfbuzzjs@1.6.4: {}
 
-  hugo-extended@0.169.0:
+  hugo-extended@0.170.0:
     dependencies:
       adm-zip: 0.5.18
       tar: 7.5.23
