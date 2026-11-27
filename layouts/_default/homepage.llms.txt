@@ -1,0 +1,34 @@
+{{- /*
+  llms.txt (https://llmstxt.org) of the site, built from the homepage front matter, the pages and config.toml:
+  the rate, availability and contact details are never written twice.
+*/ -}}
+{{- $freelance := site.Params.freelance -}}
+{{- $cv := resources.Get "pdf/CV-SAINTHILLIER-Guillaume.pdf" -}}
+# {{ site.Title }}
+
+> {{ partial "description" . }}
+
+- Développeur web freelance PHP / Symfony basé à Toulouse, expérience professionnelle depuis {{ $freelance.careerStartYear }}, certifié Symfony 7 par SensioLabs.
+- Missions de 2 jours à 2 ans, sur site à Toulouse ou à distance partout en France ; {{ if $freelance.available }}disponible pour une nouvelle mission{{ else }}en mission actuellement{{ end }}.
+- TJM de {{ $freelance.dailyRateMin }} à {{ $freelance.dailyRateMax }} € HT, ou forfait sur devis.
+- Les missions sont réalisées et facturées par {{ site.Params.company.name }} (https://silarhi.fr), sa société de développement d’applications web.
+- Contact : {{ site.Params.contact.email }}, {{ site.Params.contact.phoneDisplay }}{{ with $freelance.bookingUrl }}, prise de rendez-vous : {{ . }}{{ end }}.
+
+## Pages
+
+- [{{ .Title }}]({{ .Permalink }}) : services, portfolio, parcours, compétences, tarifs et questions fréquentes
+{{- range where site.RegularPages "Layout" "ne" "legal" }}
+- [{{ .Title }}]({{ .Permalink }}) : {{ partial "description" . }}
+{{- end }}
+
+## Projets
+{{ range $project := .Params.projects }}
+- {{ with $project.case_study | default $project.url }}[{{ $project.name }}]({{ . }}){{ else }}{{ $project.name }}{{ end }} : {{ $project.tagline }}
+{{- end }}
+
+## Optional
+
+- [CV (PDF)]({{ $cv.Permalink }})
+{{- range where site.RegularPages "Layout" "legal" }}
+- [{{ .Title }}]({{ .Permalink }})
+{{- end }}
