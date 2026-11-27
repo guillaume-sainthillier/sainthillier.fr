@@ -13,19 +13,21 @@ export default function initToc() {
     if (!toc) return
 
     const links = [...toc.querySelectorAll('a[href^="#"]')]
-    const linkByHeading = new Map()
+    // Followed by their card (the section around the heading): an entry clicked in the table of contents lands its
+    // card's top below the header (scroll-margin-top of .legal-heading), so the card, not its title, crosses the line
+    const linkBySection = new Map()
     for (const link of links) {
         const heading = document.getElementById(decodeURIComponent(link.hash.slice(1)))
         if (heading) {
-            linkByHeading.set(heading, link)
+            linkBySection.set(heading.closest('section') ?? heading, link)
         }
     }
 
     let previous = null
 
-    // Above the first heading, the first entry stays current
-    observeScrollSpy([...linkByHeading.keys()], SCROLL_OFFSET, (heading) => {
-        const current = heading ? linkByHeading.get(heading) : links[0]
+    // Above the first section, the first entry stays current
+    observeScrollSpy([...linkBySection.keys()], SCROLL_OFFSET, (section) => {
+        const current = section ? linkBySection.get(section) : links[0]
 
         previous?.removeAttribute('aria-current')
         current.setAttribute('aria-current', 'true')

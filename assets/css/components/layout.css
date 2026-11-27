@@ -117,8 +117,16 @@
             line-height: var(--text-headline-md--line-height);
             font-weight: 700;
             color: var(--color-on-surface);
+            /* An anchor link (table of contents) lands the whole card below the fixed header: the card's padding
+               (p-5 sm:p-6 md:p-8 in legal.html) plus a 1.5rem gap, on top of the html scroll-padding-top */
+            scroll-margin-top: calc(1.25rem + 1.5rem);
+
+            @media (min-width: 640px) {
+                scroll-margin-top: calc(1.5rem + 1.5rem);
+            }
 
             @media (min-width: 768px) {
+                scroll-margin-top: calc(2rem + 1.5rem);
                 font-size: var(--text-headline-lg-mobile);
                 line-height: var(--text-headline-lg-mobile--line-height);
             }
