@@ -508,11 +508,12 @@
                 <form id="contactForm" class="flex flex-col gap-4" action="https://formspree.io/f/xlepbonn" novalidate>
                     <fieldset>
                         <legend class="form-label">Quel est le type de votre besoin&#8239;? *</legend>
-                        <div class="flex flex-wrap gap-2 sm:grid sm:grid-cols-2">
+                        {{/* Two columns on phones too, with the short labels; "Autre" closes the grid on the full width */}}
+                        <div class="grid grid-cols-2 gap-2">
                             {{ range $i, $need := .Params.contact_needs }}
-                            <label class="choice {{ if eq $need.id "other" }}sm:col-span-2{{ end }}">
+                            <label class="choice {{ if eq $need.id "other" }}col-span-2{{ end }}">
                                 <input type="radio" name="need" value="{{ $need.label }}" data-placeholder="{{ $need.placeholder }}" data-help="{{ $need.help }}"{{ if eq $i 0 }} checked{{ end }} required>
-                                <span>{{ $need.label }}</span>
+                                {{ with $need.short }}<span class="sm:hidden">{{ . }}</span><span class="max-sm:hidden">{{ $need.label }}</span>{{ else }}<span>{{ $need.label }}</span>{{ end }}
                             </label>
                             {{ end }}
                         </div>

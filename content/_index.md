@@ -134,18 +134,22 @@ testimonials:
       date: Septembre 2021
       source: Google
       url: https://maps.google.com/?cid=9069420138810526012
-# Contact form need types: the message placeholder and help text follow the selected need
+# Contact form need types: the message placeholder and help text follow the selected need; "short" is the label shown on
+# phones when "label" is too long for half the width
 contact_needs:
     - id: custom-app
       label: Nouvelle application sur mesure
+      short: Nouveau projet
       placeholder: 'Ex : cahier des charges, fonctionnalités clés (back-office, API, portail client), échéance souhaitée…'
       help: "Indiquez vos objectifs majeurs, l’échéance visée et les éventuelles contraintes d’infrastructure."
     - id: legacy-maintenance
       label: Reprise / maintenance d’une application existante
+      short: Reprise de projet
       placeholder: 'Ex : version Symfony / PHP actuelle, état de la documentation, bugs récurrents ou dette technique à résorber…'
       help: "Précisez l’accès au code existant, les versions actuelles et les points critiques de blocage."
     - id: tech-assistance
       label: Assistance technique
+      short: Renfort d’équipe
       placeholder: 'Ex : rôle recherché, charge estimée (jours / semaine), stack technique de votre équipe, date de début…'
       help: 'Indiquez les modalités de travail souhaitées (à distance ou sur site à Toulouse) et le volume de renfort envisagé.'
     - id: banking-ebics
@@ -154,6 +158,7 @@ contact_needs:
       help: 'Précisez la banque partenaire et les flux concernés (relevés camt.053, ordres pain.001 / pain.008).'
     - id: e-invoicing
       label: Mise en conformité à la facturation électronique
+      short: E-facturation
       placeholder: 'Ex : formats Factur-X / UBL, intégration à une plateforme agréée, volumétrie de factures…'
       help: 'Indiquez vos outils de facturation actuels et les échanges à mettre en place pour la réforme.'
     - id: training
