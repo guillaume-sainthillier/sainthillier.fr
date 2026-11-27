@@ -95,7 +95,7 @@ pnpm knip
 # Auto-fix unused dependencies/exports
 pnpm knip:fix
 
-# Print the built bundle sizes as JSON (after pnpm build)
+# What a visitor downloads (pages, inlined CSS, JS, fonts) as JSON, after pnpm build
 pnpm size:json
 ```
 
@@ -108,7 +108,8 @@ GitHub Actions workflows in `.github/workflows/`:
 
 - **Continuous Integration** (pull requests and pushes to `main`): `pnpm lint-ci`, `pnpm prettier:check` and
   `pnpm knip`
-- **Bundle Size** (pull requests): builds the base and PR branches and comments the bundle size difference
+- **Bundle Size** (pull requests): builds the base and PR branches and comments the difference in what a visitor
+  downloads (each page Brotli-compressed with its inlined CSS, the JavaScript bundle, the fonts)
 
 ## Architecture
 
