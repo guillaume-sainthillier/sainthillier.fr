@@ -4,8 +4,7 @@
  * The site is built by Hugo into a temporary folder and served on localhost (the fonts and the stylesheet use
  * root-relative URLs); the print styles (print:hidden in the layouts, @page in base.css) drop the navigation.
  * Run `pnpm cgv-pdf` after changing the CGV or the company details in config.toml, and commit the result.
- * Needs the Vite assets (`pnpm build` or a running `pnpm watch`). Chrome is looked up at its macOS location; set
- * CHROME_PATH to use another binary.
+ * Chrome is looked up at its macOS location; set CHROME_PATH to use another binary.
  */
 import { execFile, execFileSync } from 'child_process'
 import { createReadStream, existsSync, mkdtempSync, rmSync, statSync } from 'fs'
@@ -25,11 +24,6 @@ const contentTypes = {
     '.js': 'text/javascript',
     '.svg': 'image/svg+xml',
     '.woff2': 'font/woff2',
-}
-
-if (!existsSync(resolve(rootDir, 'data/entrypoints.json'))) {
-    console.error('Missing data/entrypoints.json: run `pnpm build` first')
-    process.exit(1)
 }
 
 const siteDir = mkdtempSync(join(tmpdir(), 'cgv-pdf-'))

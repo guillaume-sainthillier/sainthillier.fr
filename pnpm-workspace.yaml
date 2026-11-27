@@ -1,4 +1,11 @@
+# node_modules/.bin entries as symlinks to the packages' scripts, not shell shims: Hugo runs Node tools
+# (css.TailwindCSS) under Node's permission model, which needs the bin to be the JavaScript file itself
+preferSymlinkedExecutables: true
+
 # Dependencies allowed to run install scripts (pnpm blocks them by default)
 allowBuilds:
     # Its postinstall downloads the Hugo binary used by the `hugo*` scripts (and the Netlify build)
     hugo-extended: true
+    # Dependency of @tailwindcss/cli, only for `tailwindcss --watch` (Hugo runs one-off builds); its prebuilt
+    # binaries come as optional dependencies, the install script would only compile one from source
+    '@parcel/watcher': false

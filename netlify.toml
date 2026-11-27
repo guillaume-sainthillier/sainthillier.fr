@@ -1,15 +1,17 @@
 [build]
 publish = "public"
-command = "pnpm build:hugo"
+command = "pnpm build"
 
 [build.environment]
 HUGO_ENV = "production"
 HUGO_ENABLEGITINFO = "true"
 HUGO_EXTENDED = "true"
+# Same Node.js as the CI: Hugo runs the Tailwind CSS CLI under Node's permission model
+NODE_VERSION = "26"
 
 # Build previews against their own URL so absolute links (canonical, og:image, JSON-LD) resolve on the preview
 [context.deploy-preview]
-command = "pnpm build && pnpm hugo --baseURL $DEPLOY_PRIME_URL"
+command = "pnpm build --baseURL $DEPLOY_PRIME_URL"
 
 # Keeps Hugo's processed images (resources/_gen) between builds
 [[plugins]]
