@@ -84,6 +84,23 @@ function initContactForm() {
     const contactForm = document.body.querySelector('#contactForm')
     if (!contactForm) return
 
+    const formStep = document.body.querySelector('#contactFormStep')
+    const sent = document.body.querySelector('#contactSent')
+
+    // Once sent, the form gives way to what happens next; the focus follows so that screen readers announce it
+    const showContactSent = (isSent) => {
+        formStep.hidden = isSent
+        sent.hidden = !isSent
+        if (isSent) {
+            sent.focus({ preventScroll: true })
+            sent.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+        } else {
+            contactForm.querySelector('input[name="need"]:checked')?.focus()
+        }
+    }
+
+    sent.querySelector('[data-contact-reset]').addEventListener('click', () => showContactSent(false))
+
     contactForm.addEventListener(
         'submit',
         (event) => {
@@ -140,14 +157,12 @@ function initContactForm() {
                 .then(async (response) => {
                     if (response.ok) {
                         track('contact-form', { need, timeline })
-                        showAlert(
-                            success,
-                            'success',
-                            'Votre message a bien été envoyé.',
-                            'Je vous réponds sous 24h ouvrées.'
-                        )
                         contactForm.classList.remove('was-validated')
                         contactForm.reset()
+                        // The reset checks the first need again: its placeholder and help text follow
+                        contactForm.querySelector('input[name="need"]:checked')?.dispatchEvent(new Event('change'))
+                        success.replaceChildren()
+                        showContactSent(true)
                     } else if (response.status === 422) {
                         // Handle Formspree validation errors
                         const errorData = await response.json()
