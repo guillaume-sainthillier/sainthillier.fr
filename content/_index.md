@@ -208,38 +208,6 @@ experiences:
       badge: Gérant
       description: "Création de l’entreprise de développement d’applications web. Ma mission : donner vie à vos projets web avec robustesse et sérénité. Édition SaaS et accompagnement direct de clients variés : de la jeune start-up aux grands groupes."
       tags: [Freelance, Symfony, Architecture SaaS, EBICS, Toulouse]
-# Education, kept for reference: no template displays it for now
-education:
-    - period: 2013 - 2015
-      name: Master <abbr title="Informatique Collaborative en Entreprise">ICE</abbr>, Toulouse.
-          France
-      title: BAC +5 niveau I
-      description: Le Master ICE apporte la nécessaire maîtrise des techniques et outils
-          de développement informatiques, tout particulièrement dans un contexte collaboratif.
-      points:
-          - Outils collaboratifs
-          - Gestion de projet
-          - Alternance
-    - period: 2012 - 2013
-      name: Licence L3 <abbr title="Mathématiques et Informatique Appliqués aux Sciences
-          Humaines et Sociales">MIASHS</abbr>, Toulouse. France
-      title: BAC +3 niveau II
-      description: La Licence MIASHS associe l’étude des mathématiques et de l’informatique
-          à l’étude d’une discipline dans le domaine des sciences humaines et sociales.
-      points:
-          - Programmation Fonctionnelle
-          - Sciences Humaines
-          - Stage
-    - period: 2009 - 2012
-      name: DUT Informatique et Gestion, Blagnac. France
-      title: BAC +2 niveau III
-      description: Le département informatique de l’IUT de Blagnac a pour vocation d’apporter
-          les compétences techniques et les aptitudes professionnelles nécessaires au développement
-          et à la mise en œuvre d’outils informatiques dans les entreprises.
-      points:
-          - Programmation Web et logicielle
-          - Gestion de parcs informatiques
-          - Stage
 # Portfolio filter buttons; projects reference them by id in "categories"
 portfolio_filters:
     - id: fintech
