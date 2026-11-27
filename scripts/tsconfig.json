@@ -1,0 +1,13 @@
+{
+    "$schema": "https://json.schemastore.org/tsconfig",
+    // Node scripts, run as they are by Node's type stripping (`node scripts/<name>.ts`): erasable syntax only
+    "extends": "../tsconfig.json",
+    "compilerOptions": {
+        "target": "es2024",
+        "lib": ["es2024"],
+        "module": "nodenext",
+        "moduleResolution": "nodenext",
+        "types": ["node"]
+    },
+    "include": ["."]
+}

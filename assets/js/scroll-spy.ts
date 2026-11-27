@@ -9,22 +9,27 @@
  *
  * ResizeObserver ships in every browser that runs this bundle (optional chaining already needs Safari 13.1).
  *
- * @param {HTMLElement[]} elements elements to follow, in any order
- * @param {number|(() => number)} offset distance from the top of the viewport, in pixels, past which an element is
- *     current; a function is read again with the positions, for an offset that depends on the viewport
- * @param {(element: HTMLElement|null) => void} onChange called with the current element
+ * @param elements elements to follow, in any order
+ * @param offset distance from the top of the viewport, in pixels, past which an element is current; a function is
+ *     read again with the positions, for an offset that depends on the viewport
+ * @param onChange called with the current element
  */
-export default function observeScrollSpy(elements, offset, onChange) {
+export default function observeScrollSpy(
+    elements: HTMLElement[],
+    offset: number | (() => number),
+    onChange: (element: HTMLElement | null) => void
+): void {
     if (elements.length === 0) return
 
     const readOffset = typeof offset === 'function' ? offset : () => offset
-    let positions = []
+    let positions: { element: HTMLElement; top: number }[] = []
     let currentOffset = 0
-    let current
+    // undefined until the first update, so that onChange runs once at start, even with null
+    let current: HTMLElement | null | undefined
 
     const update = () => {
         const line = window.scrollY + currentOffset
-        let next = null
+        let next: HTMLElement | null = null
         for (const { element, top } of positions) {
             if (top > line) break
             next = element

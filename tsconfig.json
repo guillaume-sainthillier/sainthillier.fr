@@ -1,0 +1,20 @@
+{
+    "$schema": "https://json.schemastore.org/tsconfig",
+    // Browser code (assets/js), bundled by Hugo's esbuild (layouts/partials/script.html): tsc only type-checks
+    "compilerOptions": {
+        "target": "es2022",
+        "lib": ["es2022", "dom"],
+        "module": "esnext",
+        "moduleResolution": "bundler",
+        "types": [],
+        "strict": true,
+        "noEmit": true,
+        "isolatedModules": true,
+        "verbatimModuleSyntax": true,
+        "erasableSyntaxOnly": true,
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitOverride": true,
+        "skipLibCheck": true
+    },
+    "include": ["assets/js"]
+}

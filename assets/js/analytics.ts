@@ -9,26 +9,42 @@
  * Only this module knows about Umami: the markup never names the analytics tool.
  */
 
+type EventData = Record<string, string>
+
+type AnalyticsEvent = {
+    name: string
+    data?: EventData
+}
+
+declare global {
+    interface Window {
+        // The Umami tracker (layouts/partials/umami.html), absent while deferred, blocked or skipped
+        umami?: {
+            track(name: string, data?: EventData): void
+        }
+    }
+}
+
 const ATTRIBUTE_PREFIX = 'data-analytics-'
 
 /**
  * Sends an event to Umami. The tracker is deferred and may be blocked or skipped (ad blocker, other domain):
  * events are then silently dropped.
  *
- * @param {string} name event name, as configured in the Umami goal
- * @param {Record<string, string>} [data] event properties, shown in the event breakdown
+ * @param name event name, as configured in the Umami goal
+ * @param data event properties, shown in the event breakdown
  */
-export function track(name, data) {
+export function track(name: string, data?: EventData): void {
     window.umami?.track(name, data)
 }
 
 /**
  * Decides whether a clicked link is a goal, and which one.
  *
- * @param {HTMLAnchorElement} link the clicked link (link.protocol, link.hostname, link.pathname are parsed)
- * @returns {{ name: string, data?: Record<string, string> } | null} the event to send, or null to ignore the click
+ * @param link the clicked link (link.protocol, link.hostname, link.pathname are parsed)
+ * @returns the event to send, or null to ignore the click
  */
-function classifyLink(link) {
+function classifyLink(link: HTMLAnchorElement): AnalyticsEvent | null {
     if (link.protocol === 'tel:' || link.protocol === 'mailto:') {
         return { name: 'contact-direct', data: { channel: link.protocol === 'tel:' ? 'phone' : 'email' } }
     }
@@ -48,28 +64,32 @@ function classifyLink(link) {
  * Reads the event declared on an element: data-analytics-event is the name, every other data-analytics-* attribute is
  * a property (key = the part after data-analytics-).
  *
- * @param {Element} element an element carrying data-analytics-event
- * @returns {{ name: string, data?: Record<string, string> }} the event to send
+ * @param element an element carrying data-analytics-event
  */
-function readMarkedEvent(element) {
-    const data = {}
+function readMarkedEvent(element: Element): AnalyticsEvent {
+    const data: EventData = {}
     for (const { name, value } of element.attributes) {
         if (name.startsWith(ATTRIBUTE_PREFIX) && name !== `${ATTRIBUTE_PREFIX}event`) {
             data[name.slice(ATTRIBUTE_PREFIX.length)] = value
         }
     }
-    return { name: element.getAttribute(`${ATTRIBUTE_PREFIX}event`), data: Object.keys(data).length ? data : undefined }
+    return {
+        name: element.getAttribute(`${ATTRIBUTE_PREFIX}event`) ?? '',
+        data: Object.keys(data).length ? data : undefined,
+    }
 }
 
-export default function initAnalytics() {
+export default function initAnalytics(): void {
     document.addEventListener('click', (e) => {
+        if (!(e.target instanceof Element)) return
+
         const marked = e.target.closest(`[${ATTRIBUTE_PREFIX}event]`)
         if (marked) {
             const event = readMarkedEvent(marked)
             track(event.name, event.data)
         }
 
-        const link = e.target.closest('a[href]')
+        const link = e.target.closest<HTMLAnchorElement>('a[href]')
         const event = link && classifyLink(link)
         if (event) {
             track(event.name, event.data)

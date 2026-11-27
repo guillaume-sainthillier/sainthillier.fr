@@ -1,12 +1,12 @@
 {
     "$schema": "https://unpkg.com/knip@5/schema.json",
     "entry": [
-        "assets/js/app.js",
+        "assets/js/app.ts",
         "assets/css/app.css",
         "netlify/plugins/*/index.js"
     ],
     "project": [
-        "**/*.{js,css}"
+        "**/*.{js,ts,css}"
     ],
     "ignoreDependencies": [
         "@fontsource-variable/inter",

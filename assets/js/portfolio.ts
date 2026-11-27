@@ -12,29 +12,30 @@
 /**
  * Decides which of the cards matching the active filter are shown.
  *
- * @param {HTMLElement[]} matching cards matching the active filter, in page order
- * @param {number} limit number of cards shown before the visitor clicks "Afficher tous les projets"
- * @param {boolean} expanded whether the visitor clicked "Afficher tous les projets"
- * @returns {HTMLElement[]} the cards to show
+ * @param matching cards matching the active filter, in page order
+ * @param limit number of cards shown before the visitor clicks "Afficher tous les projets"
+ * @param expanded whether the visitor clicked "Afficher tous les projets"
+ * @returns the cards to show
  */
-function selectVisibleCards(matching, limit, expanded) {
+function selectVisibleCards(matching: HTMLElement[], limit: number, expanded: boolean): HTMLElement[] {
     return expanded ? matching : matching.slice(0, limit)
 }
 
-function matchesFilter(card, filter) {
-    return filter === 'all' || card.dataset.categories.split(' ').includes(filter)
+function matchesFilter(card: HTMLElement, filter: string): boolean {
+    return filter === 'all' || (card.dataset.categories ?? '').split(' ').includes(filter)
 }
 
-export default function initPortfolio() {
-    const grid = document.querySelector('[data-portfolio-grid]')
+export default function initPortfolio(): void {
+    const grid = document.querySelector<HTMLElement>('[data-portfolio-grid]')
     if (!grid) return
 
+    // Rendered with the grid (homepage.html)
     const cards = [...grid.querySelectorAll('article')]
-    const filterButtons = [...document.querySelectorAll('[data-portfolio-filter]')]
-    const moreButton = document.querySelector('[data-portfolio-more]')
-    const moreLabel = moreButton.querySelector('[data-portfolio-more-label]')
-    const emptyMessage = document.querySelector('[data-portfolio-empty]')
-    const status = document.querySelector('[data-portfolio-status]')
+    const filterButtons = [...document.querySelectorAll<HTMLElement>('[data-portfolio-filter]')]
+    const moreButton = document.querySelector<HTMLElement>('[data-portfolio-more]')!
+    const moreLabel = moreButton.querySelector('[data-portfolio-more-label]')!
+    const emptyMessage = document.querySelector<HTMLElement>('[data-portfolio-empty]')!
+    const status = document.querySelector('[data-portfolio-status]')!
     const limit = Number(grid.dataset.visible) || cards.length
     const state = { filter: 'all', expanded: false }
 
@@ -54,7 +55,7 @@ export default function initPortfolio() {
     }
 
     // Screen readers hear how many projects the filter leaves, which sighted visitors see at a glance
-    const announce = (button) => {
+    const announce = (button: HTMLElement) => {
         const count = cards.filter((card) => matchesFilter(card, state.filter)).length
         const label = state.filter === 'all' ? '' : ` : ${button.textContent.trim()}`
         status.textContent = `${count} projet${count > 1 ? 's' : ''}${label}`
@@ -62,7 +63,7 @@ export default function initPortfolio() {
 
     for (const button of filterButtons) {
         button.addEventListener('click', () => {
-            state.filter = button.dataset.portfolioFilter
+            state.filter = button.dataset.portfolioFilter ?? 'all'
             // Each filter starts limited again, with its own "Afficher tous les projets" button
             state.expanded = false
             render()
@@ -82,7 +83,7 @@ export default function initPortfolio() {
     const target = window.location.hash.match(/^#portfolio\/(.+)$/)?.[1]
     const targetFilter = target ? filterButtons.find((button) => button.dataset.portfolioFilter === target) : null
     const targetCard = target && !targetFilter ? document.getElementById(`project-${target}`) : null
-    if (targetFilter) {
+    if (target && targetFilter) {
         state.filter = target
     } else if (targetCard) {
         state.expanded = true
@@ -90,7 +91,7 @@ export default function initPortfolio() {
 
     render()
     if (targetFilter) {
-        document.getElementById('portfolio').scrollIntoView({ behavior: 'smooth' })
+        document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' })
     }
     targetCard?.scrollIntoView({ behavior: 'smooth' })
 }

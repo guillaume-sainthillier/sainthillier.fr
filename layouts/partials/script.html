@@ -1,10 +1,10 @@
 {{/*
-  JavaScript: assets/js/app.js bundled by esbuild (js.Build) into one ES module, published fingerprinted under
-  /build/ (immutable cache, netlify.toml). A module script is deferred: it never blocks the first paint, and the
+  JavaScript: assets/js/app.ts bundled by esbuild (js.Build) into one ES module, published fingerprinted under
+  /build/ (immutable cache, netlify.toml). esbuild only strips the TypeScript types: `pnpm typecheck` checks them. A module script is deferred: it never blocks the first paint, and the
   preload scanner fetches it from the <head> as early as a modulepreload would. Development keeps it unminified,
   with a linked source map.
 */ -}}
-{{- with resources.Get "js/app.js" }}
+{{- with resources.Get "js/app.ts" }}
   {{- $opts := dict
     "targetPath" "build/app.js"
     "format" "esm"

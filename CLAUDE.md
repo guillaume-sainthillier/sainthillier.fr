@@ -27,6 +27,7 @@ pnpm lint-ci          # Biome check, no writes (CI)
 pnpm prettier         # Prettier write on CSS/MD/YAML
 pnpm prettier:check   # Prettier check (CI)
 pnpm format           # pnpm lint && pnpm prettier
+pnpm typecheck        # tsc on assets/js (tsconfig.json) and scripts/ (scripts/tsconfig.json), no emit
 pnpm knip             # Check for unused dependencies/exports
 ```
 
@@ -36,32 +37,33 @@ pnpm knip             # Check for unused dependencies/exports
 
 - **CSS**: `layouts/partials/stylesheet.html` compiles `assets/css/app.css` with `css.TailwindCSS` (the `@tailwindcss/cli` binary, allowed in `[security.exec]` of `config.toml`). It runs through `templates.Defer` in `baseof.html`, after every page is rendered: `hugo_stats.json` (build stats, gitignored) is then current, and its cachebuster in `config.toml` makes `hugo server` recompile the CSS when a template uses a new class. Production inlines the CSS in a `<style>`, development links it
 - **Fonts**: `fonts.css` refers to `/fonts/<file>.woff2`; the stylesheet partial publishes each `assets/fonts/*.woff2` fingerprinted under `/build/fonts/` and rewrites the URL (the build fails if a font is never referenced)
-- **JS**: `layouts/partials/script.html` bundles `assets/js/app.js` with `js.Build` (esbuild, one ES module, `es2022`) to `/build/app.<hash>.js`. Imports are relative (`./navbar`), no alias
+- **JS**: the code is TypeScript. `layouts/partials/script.html` bundles `assets/js/app.ts` with `js.Build` (esbuild, one ES module, `es2022`) to `/build/app.<hash>.js`. Imports are relative and extensionless (`./navbar`), no alias. esbuild only strips the types: `pnpm typecheck` (also in CI) checks them, with `erasableSyntaxOnly` (no enums, namespaces or parameter properties)
+- **Node scripts**: `scripts/*.ts` run as they are with Node's type stripping (`node scripts/<name>.ts`), type-checked by `scripts/tsconfig.json` (Node types, no DOM); `scripts/subset-font.d.ts` types the `subset-font` package, which ships none
 - Everything under `/build/` and `/images/` is fingerprinted and served with an immutable cache (`netlify.toml`)
 - **Hugo** generates static HTML from `layouts/` and `content/` to `public/`
 
 ### Frontend Structure
 
-- **Entry point**: `assets/js/app.js` (navbar scroll spy, contact form, portfolio)
+- **Entry point**: `assets/js/app.ts` (navbar scroll spy, contact form, portfolio)
 - **CSS**: `assets/css/app.css` uses Tailwind CSS v4; design tokens (colors, fonts, type scale `text-display` / `text-headline-*` / `text-body-*` / `text-label-*`) live in `components/theme.css`, shared blocks (`.container`, `.section`, `.eyebrow`, `.section-title`, `.panel`, `.chip`) in `components/layout.css`, buttons (`btn` + `btn-lg` + `btn-accent` / `btn-soft` / `btn-outline`) in `components/buttons.css`
-- **Fonts**: Plus Jakarta Sans (headings) and Inter (text), subset from `@fontsource-variable/*` into `assets/fonts/` by `pnpm fonts:subset` (`scripts/subset-fonts.js`) and declared in `components/fonts.css` with metric-matched fallbacks; the system monospace is kept for data (technology chips, dates and periods, project status, legal identifiers), labels use Inter
+- **Fonts**: Plus Jakarta Sans (headings) and Inter (text), subset from `@fontsource-variable/*` into `assets/fonts/` by `pnpm fonts:subset` (`scripts/subset-fonts.ts`) and declared in `components/fonts.css` with metric-matched fallbacks; the system monospace is kept for data (technology chips, dates and periods, project status, legal identifiers), labels use Inter
 - **Icons**: Lucide, inlined at build time with `{{ partial "icon" (dict "name" "mail" "class" "…") }}` (`lucide-static` mounted on `assets/icons` in `config.toml`); no icon JavaScript
-- **Custom components**: `SimpleCollapse.js` (mobile menu, Bootstrap-like `data-bs-*` API without Bootstrap), `portfolio.js` (filters + "Afficher tous les projets"; every project stays in the HTML, the script only hides cards)
+- **Custom components**: `SimpleCollapse.ts` (mobile menu, Bootstrap-like `data-bs-*` API without Bootstrap), `portfolio.ts` (filters + "Afficher tous les projets"; every project stays in the HTML, the script only hides cards)
 - **Homepage content**: sections are driven by the front matter of `content/_index.md` (`situations`, `services`, `skill_groups`, `faq`, `contact_needs`, `experiences`, `portfolio_filters`, `projects`); the FAQ also feeds the `FAQPage` JSON-LD in `layouts/partials/schemas.html`
 - **Landing pages** (`layout: landing`, `layouts/_default/landing.html`): the PHP / Symfony page is built the same way, from its front matter (`intro`, `missions`, `projects`, `open_source`, `faq`, `cta`) with the homepage's building blocks; its `projects` pick homepage portfolio entries by `id`, so names, taglines and links are kept in one place
 - **Images**: native `loading="lazy"` through the `responsive-image` partial
 - **Social preview**: `static/og-image.jpg` (1200×630) and `.github/social-preview.png` (1280×640, GitHub's safe border of 80px, uploaded by hand in the repository's Settings → Social preview) are rendered from `scripts/og-image.html` (hero tokens, fonts and portrait) by `pnpm og-image` (headless Chrome); regenerate and commit both after a design change
 - **llms.txt**: `/llms.txt` (https://llmstxt.org) is a Hugo output format of the homepage (`[outputFormats.llms]` in `config.toml`, template `layouts/_default/homepage.llms.txt`), built from the same front matter and params: pages, projects, rate and contact details stay in sync without editing it
 - **Legal pages** (`layout: legal`, `layouts/_default/legal.html`): the publisher and company details come from `[params.publisher]` / `[params.company]` in `config.toml` through the `{{< identity company rcs >}}` shortcode (`layouts/partials/identity.html`; the publisher's address falls back to the company office, so the address is set once); never copy them into the Markdown. The mentions légales open with the card rendering them (`identity: true`)
-- **CGV PDF**: `assets/pdf/CGV.pdf` is the CGV page printed by `pnpm cgv-pdf` (`scripts/cgv-pdf.js`: Hugo build in a temporary folder, served on localhost, printed by headless Chrome). The print styles are `print:` utilities in the layouts plus the A4 `@page` rule in `components/base.css`. Regenerate and commit it whenever the CGV or the company details change
+- **CGV PDF**: `assets/pdf/CGV.pdf` is the CGV page printed by `pnpm cgv-pdf` (`scripts/cgv-pdf.ts`: Hugo build in a temporary folder, served on localhost, printed by headless Chrome). The print styles are `print:` utilities in the layouts plus the A4 `@page` rule in `components/base.css`. Regenerate and commit it whenever the CGV or the company details change
 
 ### Analytics (Umami)
 
-Self-hosted Umami (`analytics.silarhi.fr`, cookieless) is loaded by `layouts/partials/umami.html` from `[params.umami]` in `config.toml`, from `analytics.sainthillier.fr` (a subdomain that serves only the tracker and its endpoint, so ad blockers do not drop it as a third party), and only reports from `sainthillier.fr`. Conversion events live in `assets/js/analytics.js`: a `track(name, data)` helper calling `window.umami?.track`, and one delegated click listener that classifies links by their href (so links written in Markdown are tracked too). Elements that only exist in templates are marked with our own attributes, the same convention on all the owner's sites: `data-analytics-event="<name>"` plus one `data-analytics-<prop>="<value>"` per property; the same listener reads them and calls `track(name, data)`. Never use Umami's `data-umami-*` attributes: only `analytics.js` knows about `window.umami`, so the markup does not name the analytics tool. Each event is a goal to create in Umami (Reports → Goals, type "Event"):
+Self-hosted Umami (`analytics.silarhi.fr`, cookieless) is loaded by `layouts/partials/umami.html` from `[params.umami]` in `config.toml`, from `analytics.sainthillier.fr` (a subdomain that serves only the tracker and its endpoint, so ad blockers do not drop it as a third party), and only reports from `sainthillier.fr`. Conversion events live in `assets/js/analytics.ts`: a `track(name, data)` helper calling `window.umami?.track`, and one delegated click listener that classifies links by their href (so links written in Markdown are tracked too). Elements that only exist in templates are marked with our own attributes, the same convention on all the owner's sites: `data-analytics-event="<name>"` plus one `data-analytics-<prop>="<value>"` per property; the same listener reads them and calls `track(name, data)`. Never use Umami's `data-umami-*` attributes: only `analytics.ts` knows about `window.umami` (typed there with `declare global`), so the markup does not name the analytics tool. Each event is a goal to create in Umami (Reports → Goals, type "Event"):
 
 | Event                | Where it fires                                                                           | Data                                        |
 | -------------------- | ---------------------------------------------------------------------------------------- | ------------------------------------------- |
-| `contact-form`       | Formspree answered 2xx to the homepage contact form (`initContactForm` in `app.js`)      | `need` (chosen need), `timeline`            |
+| `contact-form`       | Formspree answered 2xx to the homepage contact form (`initContactForm` in `app.ts`)      | `need` (chosen need), `timeline`            |
 | `contact-form-error` | the contact form submission failed (network or server error, not a 422 validation error) | `need`                                      |
 | `contact-direct`     | click on any `tel:` / `mailto:` link (listener)                                          | `channel`: `phone` / `email`                |
 | `booking`            | click on a `calendly.com` link (listener)                                                | none                                        |
@@ -94,4 +96,4 @@ Husky runs `lint-staged` on commit, which:
 - Runs Biome (`biome check --write`) on JS/JSON files
 - Runs Prettier on CSS/MD/YAML files
 
-CI (`.github/workflows/continuous-integration.yml`) runs `pnpm lint-ci`, `pnpm prettier:check` and `pnpm knip`.
+CI (`.github/workflows/continuous-integration.yml`) runs `pnpm typecheck`, `pnpm lint-ci`, `pnpm prettier:check` and `pnpm knip`.
