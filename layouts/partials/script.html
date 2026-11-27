@@ -1,0 +1,18 @@
+{{/*
+  JavaScript: assets/js/app.js bundled by esbuild (js.Build) into one ES module, published fingerprinted under
+  /build/ (immutable cache, netlify.toml). A module script is deferred: it never blocks the first paint, and the
+  preload scanner fetches it from the <head> as early as a modulepreload would. Development keeps it unminified,
+  with a linked source map.
+*/ -}}
+{{- with resources.Get "js/app.js" }}
+  {{- $opts := dict
+    "targetPath" "build/app.js"
+    "format" "esm"
+    "target" "es2022"
+    "minify" hugo.IsProduction
+    "sourceMap" (cond hugo.IsProduction "" "linked")
+  }}
+  {{- with . | js.Build $opts | fingerprint "md5" -}}
+  <script type="module" src="{{ .RelPermalink }}"></script>
+  {{- end -}}
+{{- end -}}

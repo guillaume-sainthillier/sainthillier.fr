@@ -1,9 +1,8 @@
 /node_modules
 /resources/*
 /public
-/static/build
-/static/build_legacy
-/data/
+# Classes used by the templates, written by Hugo for Tailwind (config.toml)
+/hugo_stats.json
 # Local Netlify folder
 .netlify
 .hugo_build.lock

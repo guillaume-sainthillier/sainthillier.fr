@@ -1,0 +1,35 @@
+{{/*
+  Stylesheet: assets/css/app.css compiled by the Tailwind CSS CLI (css.TailwindCSS, which inlines the @import
+  files). Called through templates.Defer in baseof.html, so it runs once every page is rendered and
+  hugo_stats.json is up to date: `hugo server` rebuilds the CSS when a template uses a new class (cachebuster in
+  config.toml).
+
+  The fonts are published fingerprinted under /build/fonts/ (immutable cache, netlify.toml): fonts.css refers
+  to them as /fonts/<file>.woff2, replaced here by their final URL. A font the stylesheet does not mention fails
+  the build, so a renamed file cannot ship a 404.
+
+  Production inlines the stylesheet (~12 kB compressed): no render-blocking request, and the fonts it references
+  are discovered while the HTML is still parsing. Development links it, unminified. Deferred output skips Hugo's
+  minifier: the actions trim their whitespace.
+*/}}
+{{- with resources.Get "css/app.css" -}}
+  {{- $css := . | css.TailwindCSS (dict "minify" hugo.IsProduction) -}}
+  {{- $content := $css.Content -}}
+
+  {{- range resources.Match "fonts/*.woff2" -}}
+    {{- $placeholder := printf "/fonts/%s" (path.Base .Name) -}}
+    {{- if not (strings.Contains $content $placeholder) -}}
+      {{- errorf "stylesheet partial: assets/css never refers to %s" $placeholder -}}
+    {{- end -}}
+    {{- $font := . | resources.Copy (printf "build%s" $placeholder) | fingerprint "md5" -}}
+    {{- $content = replace $content $placeholder $font.RelPermalink -}}
+  {{- end -}}
+
+  {{- if hugo.IsProduction -}}
+    <style>{{ $content | safeCSS }}</style>
+  {{- else -}}
+    {{- with resources.FromString "build/app.css" $content | fingerprint "md5" -}}
+    <link href="{{ .RelPermalink }}" rel="stylesheet">
+    {{- end -}}
+  {{- end -}}
+{{- end -}}

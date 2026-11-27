@@ -1,10 +1,8 @@
-import '@/css/app.css'
-
-import initAnalytics, { track } from '@/js/analytics'
-import initNavbar from '@/js/navbar'
-import initPortfolio from '@/js/portfolio'
-import SimpleCollapse from '@/js/SimpleCollapse'
-import initToc from '@/js/toc'
+import initAnalytics, { track } from './analytics'
+import initNavbar from './navbar'
+import initPortfolio from './portfolio'
+import SimpleCollapse from './SimpleCollapse'
+import initToc from './toc'
 
 function initCollapseTogglers() {
     document.addEventListener('click', (e) => {

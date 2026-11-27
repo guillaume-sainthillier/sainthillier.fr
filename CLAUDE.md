@@ -4,22 +4,21 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Personal portfolio website for Guillaume Sainthillier, a freelance web developer based in Toulouse. The site is built with Hugo (static site generator) and uses Vite for JavaScript/CSS bundling with Tailwind CSS v4.
+Personal portfolio website for Guillaume Sainthillier, a freelance web developer based in Toulouse. The site is built with Hugo (static site generator), which also compiles the Tailwind CSS v4 stylesheet and bundles the JavaScript (Hugo Pipes): there is no separate asset build.
 
 ## Build Commands
 
-pnpm is the package manager: its version is pinned by `packageManager` in `package.json`, and `pnpm-workspace.yaml` lists the dependencies allowed to run install scripts (`allowBuilds`; pnpm fails the install on a new unlisted one).
+pnpm is the package manager: its version is pinned by `packageManager` in `package.json`, and `pnpm-workspace.yaml` lists the dependencies allowed to run install scripts (`allowBuilds`; pnpm fails the install on a new unlisted one). It also sets `preferSymlinkedExecutables`: Hugo runs the Tailwind CLI under Node's permission model, which needs `node_modules/.bin/tailwindcss` to be a symlink to the script, not a pnpm shell shim.
+
+Hugo comes from the `hugo-extended` package. Since Hugo 0.170 there is no macOS "extended" release, so its postinstall cannot download Hugo on a Mac (Netlify and the CI run Linux): set `HUGO_BIN_PATH` to a standard Hugo binary of the same version (`brew install hugo`, or the release's `darwin-universal` package) to run the `pnpm` scripts locally.
 
 ```bash
 # Development
-pnpm dev              # Build assets in development mode
-pnpm watch            # Watch mode for asset development
-pnpm hugo:dev         # Run Hugo dev server with drafts enabled
+pnpm dev              # Hugo dev server with drafts (CSS and JS rebuilt on change)
 
 # Production
-pnpm build            # Build production assets
-pnpm build:hugo       # Build assets + Hugo site (used by Netlify)
-pnpm build:hugo:preview  # Same, with drafts and future content
+pnpm build            # Build the site to public/ (used by Netlify)
+pnpm build:preview    # Same, with drafts and future content
 pnpm cgv-pdf          # Print the CGV page to assets/pdf/CGV.pdf (headless Chrome), to commit
 
 # Code Quality
@@ -35,8 +34,10 @@ pnpm knip             # Check for unused dependencies/exports
 
 ### Build Pipeline
 
-- **Vite** (`vite.config.js`) bundles JS/CSS from `assets/` to `static/build/`
-- Generates `data/entrypoints.json` for Hugo to consume asset paths
+- **CSS**: `layouts/partials/stylesheet.html` compiles `assets/css/app.css` with `css.TailwindCSS` (the `@tailwindcss/cli` binary, allowed in `[security.exec]` of `config.toml`). It runs through `templates.Defer` in `baseof.html`, after every page is rendered: `hugo_stats.json` (build stats, gitignored) is then current, and its cachebuster in `config.toml` makes `hugo server` recompile the CSS when a template uses a new class. Production inlines the CSS in a `<style>`, development links it
+- **Fonts**: `fonts.css` refers to `/fonts/<file>.woff2`; the stylesheet partial publishes each `assets/fonts/*.woff2` fingerprinted under `/build/fonts/` and rewrites the URL (the build fails if a font is never referenced)
+- **JS**: `layouts/partials/script.html` bundles `assets/js/app.js` with `js.Build` (esbuild, one ES module, `es2022`) to `/build/app.<hash>.js`. Imports are relative (`./navbar`), no alias
+- Everything under `/build/` and `/images/` is fingerprinted and served with an immutable cache (`netlify.toml`)
 - **Hugo** generates static HTML from `layouts/` and `content/` to `public/`
 
 ### Frontend Structure
@@ -50,7 +51,7 @@ pnpm knip             # Check for unused dependencies/exports
 - **Images**: native `loading="lazy"` through the `responsive-image` partial
 - **Social preview**: `static/og-image.jpg` (1200×630) and `.github/social-preview.png` (1280×640, GitHub's safe border of 80px, uploaded by hand in the repository's Settings → Social preview) are rendered from `scripts/og-image.html` (hero tokens, fonts and portrait) by `pnpm og-image` (headless Chrome); regenerate and commit both after a design change
 - **Legal pages** (`layout: legal`, `layouts/_default/legal.html`): the publisher and company details come from `[params.publisher]` / `[params.company]` in `config.toml` through the `{{< identity company rcs >}}` shortcode (`layouts/partials/identity.html`; the publisher's address falls back to the company office, so the address is set once); never copy them into the Markdown. The mentions légales open with the card rendering them (`identity: true`)
-- **CGV PDF**: `assets/pdf/CGV.pdf` is the CGV page printed by `pnpm cgv-pdf` (`scripts/cgv-pdf.js`: Hugo build in a temporary folder, served on localhost, printed by headless Chrome; needs the Vite assets). The print styles are `print:` utilities in the layouts plus the A4 `@page` rule in `components/base.css`. Regenerate and commit it whenever the CGV or the company details change
+- **CGV PDF**: `assets/pdf/CGV.pdf` is the CGV page printed by `pnpm cgv-pdf` (`scripts/cgv-pdf.js`: Hugo build in a temporary folder, served on localhost, printed by headless Chrome). The print styles are `print:` utilities in the layouts plus the A4 `@page` rule in `components/base.css`. Regenerate and commit it whenever the CGV or the company details change
 
 ### Analytics (Umami)
 
@@ -78,13 +79,9 @@ The visitor-facing list of these events and their data is section 4 « Mesure d�
 - `layouts/partials/` - Reusable template partials
 - `content/` - Markdown content pages
 
-### Data Flow
-
-Vite build → custom `generate-entrypoints` plugin (`vite.config.js`) writes `data/entrypoints.json` → Hugo reads entrypoints → injects into HTML templates
-
 ## Deployment
 
-Site deploys to Netlify automatically. Build command: `pnpm build:hugo`. Publish directory: `public/`. The local build plugin `netlify/plugins/hugo-cache` restores and saves `resources/` (Hugo's processed images) through Netlify's build cache, so a deploy only encodes the images that changed.
+Site deploys to Netlify automatically. Build command: `pnpm build` (Node 26, like the CI). Publish directory: `public/`. The local build plugin `netlify/plugins/hugo-cache` restores and saves `resources/` (Hugo's processed images) through Netlify's build cache, so a deploy only encodes the images that changed.
 
 Security headers (CSP, `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`...) are set for `/*` in `netlify.toml`. The CSP only allows the site itself, `analytics.sainthillier.fr` (Umami) and `formspree.io` (contact form): add any new third-party host there (script, image, font, fetch, iframe), or the browser blocks it.
 

@@ -24,21 +24,12 @@
 
     {{ partial "umami.html" . }}
 
-    {{/*
-      Production inlines the stylesheet (~10 kB compressed): no render-blocking request, and the fonts it
-      references are discovered while the HTML is still parsing. Development keeps the link for `pnpm watch`.
-    */}}
-    {{ range hugo.Data.entrypoints.entrypoints.app.css }}
-    {{ if hugo.IsProduction }}
-    <style>{{ readFile (printf "static%s" .) | safeCSS }}</style>
-    {{ else }}
-    <link href="{{ relURL . }}" rel="stylesheet">
-    {{ end }}
-    {{ end }}
+    {{/* Deferred until every page is rendered: hugo_stats.json is then up to date for the CSS cachebuster (config.toml) */}}
+    {{ with (templates.Defer (dict "key" "stylesheet")) -}}
+    {{- partial "stylesheet.html" . -}}
+    {{- end -}}
 
-    {{ range hugo.Data.entrypoints.entrypoints.app.js }}
-    <script type="module" src="{{ relURL . }}"></script>
-    {{ end }}
+    {{ partial "script.html" . }}
 </head>
 <body id="{{ block "page-id" . }}page{{ end }}" class="{{ block "layout-class" . }}layout-default{{ end }}">
 {{ $sections := slice

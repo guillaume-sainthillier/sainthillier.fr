@@ -59,6 +59,19 @@ disableKinds = ["taxonomy", "RSS"]
   linkedin = "https://www.linkedin.com/in/developpeur-web-toulouse/"
   gitlab = "https://gitlab.com/guillaume-sainthillier"
 
+# Tailwind CSS through Hugo (layouts/partials/stylesheet.html): Hugo caches the compiled stylesheet, so the
+# classes the templates use (hugo_stats.json, written after each build) bust that cache when they change
+[build]
+  [build.buildStats]
+    enable = true
+  [[build.cachebusters]]
+    source = 'assets/notwatching/hugo_stats\.json'
+    target = 'css'
+
+# Hugo's default list, plus the Tailwind CSS CLI (@tailwindcss/cli) that css.TailwindCSS runs
+[security.exec]
+  allow = ['^(dart-)?sass$', '^go$', '^git$', '^node$', '^postcss$', '^tailwindcss$']
+
 # Lucide icons, inlined at build time by layouts/partials/icon.html (declaring a mount drops the default assets one)
 [module]
   [[module.mounts]]
@@ -67,3 +80,8 @@ disableKinds = ["taxonomy", "RSS"]
   [[module.mounts]]
     source = "node_modules/lucide-static/icons"
     target = "assets/icons"
+  # Read by the cachebuster above, not watched: rewriting it after a build must not trigger another one
+  [[module.mounts]]
+    disableWatch = true
+    source = "hugo_stats.json"
+    target = "assets/notwatching/hugo_stats.json"
