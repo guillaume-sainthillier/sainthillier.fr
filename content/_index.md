@@ -154,19 +154,16 @@ contact_needs:
 # label next to the title
 experiences:
     - period: Avr 2011 - Fév 2013
-      logo: images/logos/ICM_Services.jpg
       client: ICM Services
       title: Développeur Full Stack
       description: Maintenance et développement de modules sur une application à destination des polices municipales.
       tags: [Collectivités, Open Source, PHP, MySQL, tcPDF]
     - period: Août 2013 - Août 2015
-      logo: images/logos/CHU_Toulouse.jpg
       client: CCMM - SAMU 31
       title: Développeur Full Stack
       description: Conception, développement et maintenance de modules d’une application de gestion des dossiers patients.
       tags: [Santé, Urgence, Haute Disponibilité, PHP, MySQL]
     - period: Sept 2015 - Jan 2018
-      logo: images/logos/Latecoere.jpg
       client: Groupe Latécoère
       employer: Apside
       employer_url: https://apside.com
@@ -174,7 +171,6 @@ experiences:
       description: Tierce Maintenance Applicative (TMA) et évolutions majeures sur les applications métier de l’avionneur (Manufacturing, RH, Finances).
       tags: [Aéronautique, Manufacturing, ERP, OracleDB, PHP]
     - period: Jan 2018 - Déc 2018
-      logo: images/logos/Agoranet.jpg
       employer: Apside
       employer_url: https://apside.com
       client: Agoranet
@@ -182,13 +178,11 @@ experiences:
       description: Réalisation de projets d’applications web et sites vitrines, principalement pour le client Airbus, dont la première version d’Airbus MMS.
       tags: [Agence de communication, Symfony, Docker, SSO-SAML]
     - period: Sept 2020 - Sept 2021
-      logo: images/logos/Webforce3.jpg
       client: Webforce3
       title: Formateur freelance
       description: Animation de sessions de formation dans le domaine du développement web, autour de la programmation orientée objet.
       tags: [Formation, Pédagogie, PHP, POO, Mentorat]
     - period: Août 2018 - Aujourd’hui
-      logo: images/logos/Silarhi.jpg
       client: SILARHI
       title: Développeur Full Stack freelance
       badge: Gérant
