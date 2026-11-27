@@ -24,10 +24,6 @@
 
     {{ partial "umami.html" . }}
 
-    {{ range hugo.Data.entrypoints.entrypoints.app.js }}
-    <link rel="modulepreload" href="{{ relURL . }}">
-    {{ end }}
-
     {{/*
       Production inlines the stylesheet (~10 kB compressed): no render-blocking request, and the fonts it
       references are discovered while the HTML is still parsing. Development keeps the link for `pnpm watch`.
