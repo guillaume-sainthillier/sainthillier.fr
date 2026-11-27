@@ -1,8 +1,13 @@
 /* Base styles */
 @layer base {
     html {
-        /* Keeps anchored sections clear of the fixed header */
-        scroll-padding-top: 5rem;
+        /* Keeps anchored sections clear of the fixed header: its height, h-16 then sm:h-20 (baseof.html). The
+           navbar scroll spy reads this value, so both stay in step */
+        scroll-padding-top: 4rem;
+
+        @media (min-width: 640px) {
+            scroll-padding-top: 5rem;
+        }
     }
 
     body {
