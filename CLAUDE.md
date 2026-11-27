@@ -83,7 +83,7 @@ The visitor-facing list of these events and their data is section 4 Â« Mesure dâ
 
 Site deploys to Netlify automatically. Build command: `pnpm build` (Node 26, like the CI). Publish directory: `public/`. The local build plugin `netlify/plugins/hugo-cache` restores and saves `resources/` (Hugo's processed images) through Netlify's build cache, so a deploy only encodes the images that changed.
 
-Security headers (CSP, `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`...) are set for `/*` in `netlify.toml`. The CSP only allows the site itself, `analytics.sainthillier.fr` (Umami) and `formspree.io` (contact form): add any new third-party host there (script, image, font, fetch, iframe), or the browser blocks it.
+Security headers (CSP, `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`...) are set for `/*` in `netlify.toml`. The CSP only allows the site itself, `analytics.sainthillier.fr` (Umami), `formspree.io` (contact form) and frames from `app.netlify.com` (the Netlify Drawer on deploy previews): add any new third-party host there (script, image, font, fetch, iframe), or the browser blocks it.
 
 ## Pre-commit Hooks
 
