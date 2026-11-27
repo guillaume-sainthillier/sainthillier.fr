@@ -4,13 +4,22 @@ import initPortfolio from './portfolio'
 import SimpleCollapse from './SimpleCollapse'
 import initToc from './toc'
 
-function initCollapseTogglers() {
+type FormField = HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+
+// Body of a Formspree 422 answer
+type FormspreeErrors = {
+    errors?: { field?: string; message: string }[]
+}
+
+function initCollapseTogglers(): void {
     document.addEventListener('click', (e) => {
+        if (!(e.target instanceof Element)) return
+
         const toggler = e.target.closest('[data-bs-toggle="collapse"]')
         if (toggler) {
             e.preventDefault()
             const targetSelector = toggler.getAttribute('data-bs-target')
-            const target = document.querySelector(targetSelector)
+            const target = targetSelector ? document.querySelector(targetSelector) : null
             if (target) {
                 const instance = SimpleCollapse.getOrCreateInstance(target)
                 instance.toggle()
@@ -35,17 +44,14 @@ function initCollapseTogglers() {
     })
 }
 
-function initAlerts() {
+function initAlerts(): void {
     document.addEventListener('click', (e) => {
-        if (e.target.matches('[data-bs-dismiss="alert"]') || e.target.closest('[data-bs-dismiss="alert"]')) {
-            const button = e.target.matches('[data-bs-dismiss="alert"]')
-                ? e.target
-                : e.target.closest('[data-bs-dismiss="alert"]')
-            const alert = button.closest('.alert')
-            if (alert) {
-                alert.classList.remove('show')
-                setTimeout(() => alert.remove(), 150)
-            }
+        if (!(e.target instanceof Element)) return
+
+        const alert = e.target.closest('[data-bs-dismiss="alert"]')?.closest('.alert')
+        if (alert) {
+            alert.classList.remove('show')
+            setTimeout(() => alert.remove(), 150)
         }
     })
 }
@@ -54,12 +60,12 @@ function initAlerts() {
  * Shows a dismissible alert (the data-bs-dismiss="alert" button is handled by initAlerts) in place of the
  * container's content. Built with DOM nodes, never HTML strings: the messages may include what the visitor typed.
  *
- * @param {HTMLElement} container element receiving the alert
- * @param {'success'|'danger'} type alert style
- * @param {string} title text in bold
- * @param {string} [text] text after the title
+ * @param container element receiving the alert
+ * @param type alert style
+ * @param title text in bold
+ * @param text text after the title
  */
-function showAlert(container, type, title, text = '') {
+function showAlert(container: HTMLElement, type: 'success' | 'danger', title: string, text = ''): void {
     const alert = document.createElement('div')
     alert.className = `alert alert-${type} alert-dismissible fade show`
 
@@ -80,29 +86,30 @@ function showAlert(container, type, title, text = '') {
     container.replaceChildren(alert)
 }
 
-function initContactForm() {
-    const contactForm = document.body.querySelector('#contactForm')
+function initContactForm(): void {
+    const contactForm = document.body.querySelector<HTMLFormElement>('#contactForm')
     if (!contactForm) return
 
-    const formStep = document.body.querySelector('#contactFormStep')
-    const sent = document.body.querySelector('#contactSent')
+    // Rendered with the form (homepage.html)
+    const formStep = document.body.querySelector<HTMLElement>('#contactFormStep')!
+    const sent = document.body.querySelector<HTMLElement>('#contactSent')!
 
     // Once sent, the form gives way to what happens next; the focus follows so that screen readers announce it
-    const showContactSent = (isSent) => {
+    const showContactSent = (isSent: boolean) => {
         formStep.hidden = isSent
         sent.hidden = !isSent
         if (isSent) {
             sent.focus({ preventScroll: true })
             sent.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
         } else {
-            contactForm.querySelector('input[name="need"]:checked')?.focus()
+            contactForm.querySelector<HTMLInputElement>('input[name="need"]:checked')?.focus()
         }
     }
 
-    sent.querySelector('[data-contact-reset]').addEventListener('click', () => showContactSent(false))
+    sent.querySelector('[data-contact-reset]')?.addEventListener('click', () => showContactSent(false))
 
     // The red border and message come from :invalid in CSS; aria-invalid tells assistive technologies the same
-    const fields = [...contactForm.querySelectorAll('input, select, textarea')]
+    const fields = [...contactForm.querySelectorAll<FormField>('input, select, textarea')]
     const markInvalidFields = () => {
         for (const field of fields) {
             field.setAttribute('aria-invalid', String(!field.validity.valid))
@@ -137,12 +144,13 @@ function initContactForm() {
                 return
             }
 
-            const name = contactForm.querySelector('#name').value
-            const email = contactForm.querySelector('#email').value
-            const phone = contactForm.querySelector('#phone').value
-            const message = contactForm.querySelector('#message').value
-            const need = contactForm.querySelector('input[name="need"]:checked')?.value ?? 'Non précisé'
-            const timeline = contactForm.querySelector('#timeline').value
+            const name = contactForm.querySelector<HTMLInputElement>('#name')!.value
+            const email = contactForm.querySelector<HTMLInputElement>('#email')!.value
+            const phone = contactForm.querySelector<HTMLInputElement>('#phone')!.value
+            const message = contactForm.querySelector<HTMLTextAreaElement>('#message')!.value
+            const need =
+                contactForm.querySelector<HTMLInputElement>('input[name="need"]:checked')?.value ?? 'Non précisé'
+            const timeline = contactForm.querySelector<HTMLSelectElement>('#timeline')!.value
 
             const data = {
                 _replyto: email,
@@ -156,8 +164,8 @@ function initContactForm() {
                     `,
             }
 
-            const success = document.body.querySelector('#success')
-            const sendMessageButton = document.body.querySelector('#sendMessageButton')
+            const success = document.body.querySelector<HTMLElement>('#success')!
+            const sendMessageButton = document.body.querySelector<HTMLButtonElement>('#sendMessageButton')!
             const originalButtonContent = [...sendMessageButton.childNodes]
 
             // Show loading state
@@ -172,7 +180,7 @@ function initContactForm() {
                 el.remove()
             })
 
-            fetch(contactForm.getAttribute('action'), {
+            fetch(contactForm.getAttribute('action') ?? '', {
                 method: 'POST',
                 body: JSON.stringify(data),
                 headers: {
@@ -191,9 +199,9 @@ function initContactForm() {
                         showContactSent(true)
                     } else if (response.status === 422) {
                         // Handle Formspree validation errors
-                        const errorData = await response.json()
+                        const errorData: FormspreeErrors = await response.json()
                         if (errorData.errors && Array.isArray(errorData.errors)) {
-                            const fieldMessages = {
+                            const fieldMessages: Record<string, string> = {
                                 email: "L'adresse email n'est pas valide.",
                                 phone: 'Le numéro de téléphone est invalide.',
                                 name: 'Le nom est invalide.',
@@ -202,15 +210,15 @@ function initContactForm() {
 
                             errorData.errors.forEach((err) => {
                                 const fieldName = err.field === '_replyto' ? 'email' : err.field
-                                const field = contactForm.querySelector(`#${fieldName}`)
-                                if (field) {
+                                const field = fieldName ? contactForm.querySelector(`#${fieldName}`) : null
+                                if (fieldName && field) {
                                     field.classList.add('is-invalid', 'server-invalid')
                                     field.setAttribute('aria-invalid', 'true')
                                     const feedback = document.createElement('div')
                                     feedback.className = 'invalid-feedback server-feedback'
                                     feedback.style.display = 'block'
                                     feedback.textContent = fieldMessages[fieldName] || err.message
-                                    field.parentNode.appendChild(feedback)
+                                    field.parentNode?.appendChild(feedback)
                                 }
                             })
 
@@ -240,17 +248,17 @@ function initContactForm() {
 }
 
 // The selected need adapts the message placeholder and help text (data-placeholder / data-help on each radio)
-function initContactNeeds() {
-    const message = document.body.querySelector('#message')
+function initContactNeeds(): void {
+    const message = document.body.querySelector<HTMLTextAreaElement>('#message')
     const indicator = document.body.querySelector('#needIndicator')
     const help = document.body.querySelector('#needHelp')
-    if (!message) return
+    if (!message || !indicator || !help) return
 
-    document.body.querySelectorAll('input[name="need"]').forEach((radio) => {
+    document.body.querySelectorAll<HTMLInputElement>('input[name="need"]').forEach((radio) => {
         radio.addEventListener('change', () => {
-            message.placeholder = radio.dataset.placeholder
+            message.placeholder = radio.dataset.placeholder ?? ''
             indicator.textContent = radio.value
-            help.textContent = radio.dataset.help
+            help.textContent = radio.dataset.help ?? ''
         })
     })
 }

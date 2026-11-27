@@ -13,7 +13,7 @@ const rootDir = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const outDir = resolve(rootDir, 'assets/fonts')
 
 // Same as UNICODE_RANGE in fonts.css: Basic Latin, Latin-1, œ Œ Ÿ, general punctuation (’ « » – … •), € ™ −
-const UNICODE_RANGES = [
+const UNICODE_RANGES: [number, number][] = [
     [0x20, 0x7e],
     [0xa0, 0xff],
     [0x131, 0x131],
@@ -61,6 +61,6 @@ for (const { source, output, weight } of FONTS) {
     })
     writeFileSync(resolve(outDir, output), subset)
 
-    const kb = (bytes) => `${(bytes / 1024).toFixed(1)} KB`
+    const kb = (bytes: number) => `${(bytes / 1024).toFixed(1)} KB`
     console.log(`${output}: ${kb(statSync(sourcePath).size)} → ${kb(subset.length)} (wght ${weight.min}–${weight.max})`)
 }

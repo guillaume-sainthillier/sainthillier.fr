@@ -9,6 +9,7 @@
 import { execFile, execFileSync } from 'child_process'
 import { createReadStream, existsSync, mkdtempSync, rmSync, statSync } from 'fs'
 import { createServer } from 'http'
+import type { AddressInfo } from 'net'
 import { tmpdir } from 'os'
 import { dirname, extname, join, resolve } from 'path'
 import { fileURLToPath } from 'url'
@@ -18,7 +19,7 @@ const rootDir = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const page = '/conditions-generales-de-vente/'
 const output = resolve(rootDir, 'assets/pdf/CGV.pdf')
 const chrome = process.env.CHROME_PATH || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
-const contentTypes = {
+const contentTypes: Record<string, string> = {
     '.html': 'text/html; charset=utf-8',
     '.css': 'text/css',
     '.js': 'text/javascript',
@@ -28,7 +29,7 @@ const contentTypes = {
 
 const siteDir = mkdtempSync(join(tmpdir(), 'cgv-pdf-'))
 const server = createServer((request, response) => {
-    const path = decodeURIComponent(new URL(request.url, 'http://localhost').pathname)
+    const path = decodeURIComponent(new URL(request.url ?? '/', 'http://localhost').pathname)
     const file = join(siteDir, path.endsWith('/') ? `${path}index.html` : path)
     if (!file.startsWith(siteDir) || !existsSync(file) || !statSync(file).isFile()) {
         response.writeHead(404).end()
@@ -43,7 +44,7 @@ try {
         cwd: rootDir,
         stdio: 'inherit',
     })
-    await new Promise((done) => server.listen(0, '127.0.0.1', done))
+    await new Promise<void>((done) => server.listen(0, '127.0.0.1', done))
 
     // Asynchronous: the server above must keep answering Chrome's requests while it prints
     await promisify(execFile)(chrome, [
@@ -54,7 +55,7 @@ try {
         // Leaves time for the web fonts to load before printing
         '--virtual-time-budget=5000',
         `--print-to-pdf=${output}`,
-        `http://127.0.0.1:${server.address().port}${page}`,
+        `http://127.0.0.1:${(server.address() as AddressInfo).port}${page}`,
     ])
 } finally {
     server.close()

@@ -11,18 +11,18 @@ import { brotliCompressSync, constants } from 'zlib'
 
 const publicDir = resolve(dirname(fileURLToPath(import.meta.url)), '..', 'public')
 
-const brotli = (content) =>
+const brotli = (content: Buffer | string) =>
     brotliCompressSync(content, { params: { [constants.BROTLI_PARAM_QUALITY]: constants.BROTLI_MAX_QUALITY } })
         .length
 
-const files = (dir) =>
+const files = (dir: string): string[] =>
     readdirSync(dir, { withFileTypes: true }).flatMap((entry) =>
         entry.isDirectory() ? files(join(dir, entry.name)) : [join(dir, entry.name)]
     )
 
 try {
     const all = files(publicDir).map((file) => relative(publicDir, file))
-    const results = []
+    const results: { name: string; size: number }[] = []
 
     const pages = all.filter((file) => file.endsWith('.html')).sort()
     for (const page of pages) {

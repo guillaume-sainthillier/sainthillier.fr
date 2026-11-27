@@ -15,18 +15,19 @@
         "dev": "hugo server -D",
         "build": "hugo --gc --minify",
         "build:preview": "hugo --gc --minify -D -F",
-        "fonts:subset": "node scripts/subset-fonts.js",
-        "og-image": "node scripts/og-image.js",
-        "cgv-pdf": "node scripts/cgv-pdf.js",
+        "fonts:subset": "node scripts/subset-fonts.ts",
+        "og-image": "node scripts/og-image.ts",
+        "cgv-pdf": "node scripts/cgv-pdf.ts",
         "prepare": "husky install",
         "lint": "biome check --write assets",
         "lint-ci": "biome check assets",
         "prettier": "prettier --write \"**/*.{css,md,yml,yaml}\"",
         "prettier:check": "prettier --check \"**/*.{css,md,yml,yaml}\"",
         "format": "pnpm lint && pnpm prettier",
+        "typecheck": "tsc -p . && tsc -p scripts",
         "knip": "knip",
         "knip:fix": "knip --fix",
-        "size:json": "node scripts/bundle-size.js"
+        "size:json": "node scripts/bundle-size.ts"
     },
     "dependencies": {},
     "devDependencies": {

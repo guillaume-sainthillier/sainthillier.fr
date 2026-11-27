@@ -8,14 +8,14 @@ const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
 /**
  * Highlights the table of contents entry ([data-toc] links) of the section being read.
  */
-export default function initToc() {
-    const toc = document.body.querySelector('[data-toc]')
+export default function initToc(): void {
+    const toc = document.body.querySelector<HTMLElement>('[data-toc]')
     if (!toc) return
 
-    const links = [...toc.querySelectorAll('a[href^="#"]')]
+    const links = [...toc.querySelectorAll<HTMLAnchorElement>('a[href^="#"]')]
     // Followed by their card (the section around the heading): an entry clicked in the table of contents lands its
     // card's top below the header (scroll-margin-top of .legal-heading), so the card, not its title, crosses the line
-    const linkBySection = new Map()
+    const linkBySection = new Map<HTMLElement, HTMLAnchorElement>()
     for (const link of links) {
         const heading = document.getElementById(decodeURIComponent(link.hash.slice(1)))
         if (heading) {
@@ -23,11 +23,12 @@ export default function initToc() {
         }
     }
 
-    let previous = null
+    let previous: HTMLAnchorElement | null = null
 
     // Above the first section, the first entry stays current
     observeScrollSpy([...linkBySection.keys()], SCROLL_OFFSET, (section) => {
         const current = section ? linkBySection.get(section) : links[0]
+        if (!current) return
 
         previous?.removeAttribute('aria-current')
         current.setAttribute('aria-current', 'true')

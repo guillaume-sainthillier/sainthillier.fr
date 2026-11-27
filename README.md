@@ -13,10 +13,12 @@ Design inspired by [BlackrockDigital agency template](https://github.com/StartBo
 
 - **[Hugo](https://gohugo.io/)** - Static site generator, which also builds the CSS (Tailwind CLI) and the JavaScript
   (esbuild)
+- **[TypeScript](https://www.typescriptlang.org/)** - Browser code in `assets/js/` and Node scripts in `scripts/`,
+  type-checked by `pnpm typecheck` (esbuild and Node only strip the types)
 - **[Tailwind CSS v4](https://tailwindcss.com/)** - Utility-first CSS framework
 - **[Lucide](https://lucide.dev/)** - SVG icons, inlined at build time from `lucide-static` (`layouts/partials/icon.html`)
 - **[Fontsource](https://fontsource.org/)** - Plus Jakarta Sans and Inter, subset into `assets/fonts/` by `pnpm fonts:subset`
-- **[Biome](https://biomejs.dev/)** - JavaScript linting and formatting
+- **[Biome](https://biomejs.dev/)** - TypeScript linting and formatting
 - **[Prettier](https://prettier.io/)** - CSS, Markdown and YAML formatting
 
 ## Features
@@ -74,7 +76,10 @@ The production site will be generated in the `public/` directory.
 ## Code Quality
 
 ```bash
-# Lint and format JavaScript in assets/ with Biome (writes fixes)
+# Type-check assets/js/ (tsconfig.json) and scripts/ (scripts/tsconfig.json)
+pnpm typecheck
+
+# Lint and format TypeScript in assets/ with Biome (writes fixes)
 pnpm lint
 
 # Biome check without writing (used in CI)
@@ -106,8 +111,8 @@ Pre-commit hooks (Husky + lint-staged) run Biome on staged `js/jsx/ts/tsx/mjs/js
 
 GitHub Actions workflows in `.github/workflows/`:
 
-- **Continuous Integration** (pull requests and pushes to `main`): `pnpm lint-ci`, `pnpm prettier:check` and
-  `pnpm knip`
+- **Continuous Integration** (pull requests and pushes to `main`): `pnpm typecheck`, `pnpm lint-ci`,
+  `pnpm prettier:check` and `pnpm knip`
 - **Bundle Size** (pull requests): builds the base and PR branches and comments the difference in what a visitor
   downloads (each page Brotli-compressed with its inlined CSS, the JavaScript bundle, the fonts)
 
@@ -120,7 +125,7 @@ Hugo does everything in one `hugo` run:
 1. **CSS**: `layouts/partials/stylesheet.html` compiles `assets/css/app.css` with the Tailwind CSS CLI
    (`css.TailwindCSS`), publishes the fonts fingerprinted under `/build/fonts/` and inlines the stylesheet in
    production
-2. **JavaScript**: `layouts/partials/script.html` bundles `assets/js/app.js` with esbuild (`js.Build`) to
+2. **JavaScript**: `layouts/partials/script.html` bundles `assets/js/app.ts` with esbuild (`js.Build`) to
    `/build/app.<hash>.js`
 3. **Pages**: static HTML from `layouts/` and `content/` to `public/`, processing images and PDFs from `assets/`
 
@@ -131,7 +136,7 @@ Hugo does everything in one `hugo` run:
 ├── assets/          # Source files
 │   ├── css/         # Tailwind CSS files
 │   ├── fonts/       # Subset web fonts
-│   ├── js/          # JavaScript modules
+│   ├── js/          # TypeScript modules
 │   ├── images/      # Images processed by Hugo
 │   └── pdf/         # PDFs (CV, CGV) published by Hugo
 ├── content/         # Markdown content pages
@@ -139,7 +144,7 @@ Hugo does everything in one `hugo` run:
 │   ├── _default/    # Base templates
 │   ├── partials/    # Reusable components
 │   └── shortcodes/  # Content shortcodes
-├── scripts/         # Tooling scripts (bundle size report)
+├── scripts/         # Node tooling scripts in TypeScript (bundle size, fonts, OG image, CGV PDF)
 ├── netlify/         # Local Netlify build plugin (Hugo resource cache)
 ├── static/          # Static assets copied as-is (favicons, manifest, robots.txt)
 └── public/          # Generated site (build output)
