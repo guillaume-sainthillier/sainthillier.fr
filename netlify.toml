@@ -11,6 +11,10 @@ HUGO_EXTENDED = "true"
 [context.deploy-preview]
 command = "pnpm build && pnpm hugo --baseURL $DEPLOY_PRIME_URL"
 
+# Keeps Hugo's processed images (resources/_gen) between builds
+[[plugins]]
+  package = "./netlify/plugins/hugo-cache"
+
 [[redirects]]
   from = "/cgv"
   to = "/conditions-generales-de-vente/"
