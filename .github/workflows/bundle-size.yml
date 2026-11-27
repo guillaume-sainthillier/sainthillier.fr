@@ -64,8 +64,9 @@ jobs:
             - name: Install dependencies (PR)
               run: pnpm install --frozen-lockfile
 
+            # The base build left its pages in public/: start from an empty folder
             - name: Build (PR)
-              run: pnpm build
+              run: pnpm build --cleanDestinationDir
 
             - name: Get bundle size (PR)
               run: |
