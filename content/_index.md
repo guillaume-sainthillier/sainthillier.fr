@@ -129,7 +129,7 @@ testimonials:
       date: Mai 2022
       source: Malt
       url: https://www.malt.fr/profile/guillaumesainthillier
-    - quote: C'est toujours un plaisir de travailler avec Silarhi. J'apprécie particulièrement le professionnalisme des équipes et la qualité du travail.
+    - quote: C’est toujours un plaisir de travailler avec Silarhi. J’apprécie particulièrement le professionnalisme des équipes et la qualité du travail.
       author: Thomas J.
       date: Septembre 2021
       source: Google
