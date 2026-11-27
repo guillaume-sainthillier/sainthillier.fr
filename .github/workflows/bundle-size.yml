@@ -64,9 +64,12 @@ jobs:
             - name: Install dependencies (PR)
               run: pnpm install --frozen-lockfile
 
-            # The base build left its pages in public/: start from an empty folder
+            # Start from what the PR builds: the base build left its pages in public/, and a base still on Vite
+            # left static/build/ and data/ (gitignored, so the checkout keeps them), which Hugo would publish
             - name: Build (PR)
-              run: pnpm build --cleanDestinationDir
+              run: |
+                  rm -rf public static/build data
+                  pnpm build
 
             - name: Get bundle size (PR)
               run: |
