@@ -1,0 +1,240 @@
+{{- /*
+  Landing page (layout: landing): sections built from the page's front matter, with the homepage's building blocks.
+  intro, missions, projects (ids of the homepage portfolio), open_source and faq are documented in
+  content/developpeur-php-symfony-freelance-toulouse/index.md. Text fields accept Markdown.
+*/ -}}
+{{- define "url" -}}{{ .Permalink | absURL }}{{- end -}}
+{{- define "layout-class" -}}layout-landing{{- end -}}
+
+{{ define "main" }}
+{{ $freelance := site.Params.freelance }}
+{{ $years := sub now.Year $freelance.careerStartYear }}
+{{ $rate := printf "%v à %v € HT / jour" $freelance.dailyRateMin $freelance.dailyRateMax }}
+{{ $contact := site.Params.contact }}
+{{ $cta := .Params.cta }}
+{{ $tones := dict
+    "primary" "bg-primary-container/10 text-primary"
+    "accent" "bg-secondary-container/30 text-secondary"
+    "success" "bg-emerald-50 text-emerald-700"
+}}
+
+<!-- Hero -->
+<section class="relative overflow-hidden pt-22 pb-12 sm:pt-28 md:pt-32 md:pb-16">
+    <div class="pointer-events-none absolute -top-32 right-0 size-135 rounded-full bg-primary/5 blur-3xl" aria-hidden="true"></div>
+    <div class="pointer-events-none absolute top-1/2 -left-24 size-90 rounded-full bg-secondary-fixed-dim/15 blur-3xl" aria-hidden="true"></div>
+    <div class="container relative">
+        {{/* Phones: a single row of badges that scrolls sideways */}}
+        <ul class="no-scrollbar -mx-5 mb-6 flex items-center gap-2 overflow-x-auto px-5 sm:mx-0 sm:flex-wrap sm:px-0" aria-label="En bref">
+            <li class="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full bg-surface-container-high px-4 py-1.5 text-label-sm uppercase text-on-surface">
+                {{ if $freelance.available }}
+                <span class="size-2 rounded-full bg-secondary-fixed-dim motion-safe:animate-pulse" aria-hidden="true"></span>Disponible · Toulouse & à distance
+                {{ else }}
+                <span class="size-2 rounded-full bg-outline" aria-hidden="true"></span>En mission · Toulouse & à distance
+                {{ end }}
+            </li>
+            <li class="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full bg-surface-container-low px-4 py-1.5 text-label-sm font-normal text-on-surface-variant">
+                {{ partial "icon" (dict "name" "badge-check" "class" "text-primary") }}{{ $years }} ans d’expérience pro (depuis {{ $freelance.careerStartYear }})
+            </li>
+            <li class="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full bg-surface-container-low px-4 py-1.5 text-label-sm font-normal text-on-surface-variant">
+                {{ partial "icon" (dict "name" "award" "class" "text-primary") }}Certifié Symfony 7 (SensioLabs)
+            </li>
+            <li class="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full bg-surface-container-low px-4 py-1.5 text-label-sm text-primary">
+                {{ partial "icon" (dict "name" "receipt-text") }}TJM {{ partial "freelance-rate" . }}
+            </li>
+        </ul>
+        {{/* Phones show the profile card between the introduction and the buttons: the text column becomes "contents" */}}
+        <div class="grid grid-cols-1 items-center gap-4 lg:grid-cols-12 lg:gap-6">
+            <div class="contents lg:col-span-7 lg:flex lg:flex-col lg:gap-4">
+                <h1 class="font-heading text-headline-lg-mobile font-extrabold text-on-surface sm:text-display-mobile md:text-display">
+                    Développeur <span class="text-primary">PHP / Symfony</span> freelance à Toulouse
+                </h1>
+                <p class="max-w-2xl text-body-md text-on-surface-variant sm:text-body-lg [&_strong]:text-on-surface">{{ partial "typography" (.Params.intro | markdownify) | safeHTML }}</p>
+                <div class="order-1 flex flex-col gap-3 pt-1 lg:order-0">
+                    <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
+                        {{ with $cta }}
+                        <a class="btn btn-accent btn-lg w-full sm:w-auto" href="{{ .url }}" data-analytics-event="landing-cta" data-analytics-page="{{ $.RelPermalink }}">{{ partial "icon" (dict "name" "calendar") }}{{ .label }}</a>
+                        {{ end }}
+                        <a class="btn btn-soft btn-lg w-full sm:w-auto" href="#projets">{{ partial "icon" (dict "name" "layers") }}Consulter les projets</a>
+                    </div>
+                    <p class="flex flex-wrap items-center justify-between gap-x-2 gap-y-1 text-label-sm font-normal text-on-surface-variant sm:justify-start">
+                        <span class="flex items-center gap-1">{{ partial "icon" (dict "name" "clock" "class" "text-primary") }}Réponse sous 24h ouvrées</span><span class="hidden text-outline sm:inline" aria-hidden="true">•</span>
+                        <span class="flex items-center gap-1">{{ partial "icon" (dict "name" "handshake" "class" "text-secondary") }}Échange sans engagement</span>
+                    </p>
+                </div>
+            </div>
+            <div class="relative mt-2 lg:col-span-5 lg:mt-0">
+                <div class="absolute -inset-2 hidden rounded-2xl bg-linear-to-tr from-primary/10 via-secondary-container/20 to-transparent blur-lg sm:block" aria-hidden="true"></div>
+                <div class="relative flex flex-col overflow-hidden rounded-2xl border border-hairline bg-surface-card shadow-sm sm:shadow-xl">
+                    <div class="flex items-center gap-4 p-4 sm:border-b sm:border-hairline sm:bg-surface-container-low">
+                        <div class="shrink-0">
+                            {{ partial "responsive-image" (dict "src" "images/guillaume-sainthillier.jpg" "alt" "Guillaume Sainthillier, développeur PHP / Symfony freelance à Toulouse" "class" "size-16 rounded-full border-2 border-surface object-cover shadow-md sm:size-20" "width" 80 "height" 80 "priority" true) }}
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="font-heading text-headline-sm font-bold text-on-surface">Guillaume Sainthillier</span>
+                            <p class="mt-0.5 text-body-sm text-on-surface-variant">Développeur PHP / Symfony freelance, certifié Symfony 7, gérant de SILARHI.</p>
+                        </div>
+                    </div>
+                    {{/* Loaded eagerly, but only from sm: (640px), matching "media" below */}}
+                    <div class="hidden h-48 w-full overflow-hidden bg-surface-container-low sm:block">
+                        {{ partial "responsive-image" (dict "src" "images/symfony-code.jpg" "alt" "Code d’un contrôleur Symfony sur un écran" "class" "size-full object-cover" "width" 520 "sizes" "(min-width: 1024px) 520px, 100vw" "priority" true "media" "(min-width: 640px)") }}
+                    </div>
+                    {{/* Phones: three tiles; larger screens: one band split by dividers */}}
+                    <dl class="grid grid-cols-3 gap-1.5 px-3 pb-4 text-center sm:gap-0 sm:px-4 sm:border-t sm:border-hairline sm:bg-surface-container-low sm:pt-4">
+                        <div class="flex flex-col-reverse rounded-lg bg-surface-container-low py-3 sm:rounded-none sm:bg-transparent sm:py-0">
+                            <dt class="text-label-sm uppercase text-outline max-sm:tracking-tight max-[359px]:text-[0.6875rem]">Ans d’expérience</dt>
+                            <dd class="font-heading text-headline-md font-bold text-primary sm:text-headline-lg">{{ $years }}</dd>
+                        </div>
+                        <div class="flex flex-col-reverse rounded-lg bg-surface-container-low py-3 sm:rounded-none sm:border-x sm:border-hairline sm:bg-transparent sm:py-0">
+                            <dt class="text-label-sm uppercase text-outline max-sm:tracking-tight max-[359px]:text-[0.6875rem]">Versions Symfony</dt>
+                            <dd class="font-heading text-headline-md font-bold text-on-surface sm:text-headline-lg">2 → 8</dd>
+                        </div>
+                        <div class="flex flex-col-reverse rounded-lg bg-surface-container-low py-3 sm:rounded-none sm:bg-transparent sm:py-0">
+                            <dt class="text-label-sm uppercase text-outline max-sm:tracking-tight max-[359px]:text-[0.6875rem]">Interlocuteur</dt>
+                            <dd class="font-heading text-headline-md font-bold text-primary sm:text-headline-lg">1</dd>
+                        </div>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Offer -->
+<section class="section bg-surface-container-low">
+    <div class="container">
+        <div class="mb-8 flex max-w-3xl flex-col items-start sm:mx-auto sm:items-center sm:text-center">
+            <p class="mb-2 inline-flex items-center gap-1.5 rounded-full bg-surface-container-high px-4 py-1 text-label-sm uppercase text-primary">
+                {{ partial "icon" (dict "name" "handshake") }}Modalités · Tarifs
+            </p>
+            <h2 class="section-title">Modalités et tarifs d’intervention</h2>
+            <p class="mt-2 text-body-md text-on-surface-variant">Des conditions claires pour vos projets Symfony&nbsp;: en régie ou au forfait, sur site à Toulouse ou à distance.</p>
+        </div>
+        {{ partial "freelance-offer" . }}
+    </div>
+</section>
+
+<!-- Missions -->
+<section class="section">
+    <div class="container">
+        <div class="mb-8 flex max-w-3xl flex-col items-start sm:mx-auto sm:items-center sm:text-center">
+            <p class="eyebrow">Prestations Symfony</p>
+            <h2 class="section-title mt-1">Mes missions Symfony</h2>
+            <p class="mt-2 text-body-md text-on-surface-variant">Nouveaux développements, reprise de l’existant, montées de version et intégrations techniques, sur des applications web métier.</p>
+        </div>
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {{ range .Params.missions }}
+            <div class="panel flex flex-col p-5 transition-shadow hover:shadow-md sm:p-6">
+                <span class="mb-4 flex size-11 items-center justify-center rounded-xl text-2xl {{ index $tones (.tone | default "primary") }}" aria-hidden="true">{{ partial "icon" (dict "name" .icon) }}</span>
+                <h3 class="mb-2 font-heading text-headline-sm font-bold text-on-surface">{{ .title }}</h3>
+                <p class="mb-4 text-body-sm leading-relaxed text-on-surface-variant [&_a]:font-semibold [&_a]:text-on-surface [&_a]:underline [&_a]:decoration-primary/40 [&_a]:underline-offset-4 [&_a:hover]:decoration-primary">{{ partial "typography" (.text | markdownify) | safeHTML }}</p>
+                <ul class="mt-auto flex flex-wrap gap-1.5">
+                    {{ range .tags }}{{ partial "chip" (dict "tag" .) }}{{ end }}
+                </ul>
+            </div>
+            {{ end }}
+        </div>
+    </div>
+</section>
+
+<!-- Projects -->
+<section id="projets" class="section scroll-mt-16 border-t border-hairline bg-surface-container-low">
+    <div class="container">
+        <div class="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+            <div class="max-w-3xl">
+                <p class="eyebrow">Références</p>
+                <h2 class="section-title mt-1">Quelques projets Symfony</h2>
+                <p class="mt-2 text-body-md text-on-surface-variant">Des applications métier en production, de la gestion immobilière aux échanges bancaires.</p>
+            </div>
+            <a class="inline-flex shrink-0 items-center gap-1 text-body-sm font-semibold text-primary hover:underline" href="/#portfolio">Voir tout le portfolio{{ partial "icon" (dict "name" "arrow-right") }}</a>
+        </div>
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {{ range .Params.projects }}
+            {{ $id := .id }}
+            {{ $project := index (where site.Home.Params.projects "id" $id) 0 }}
+            {{ if not $project }}{{ errorf "landing layout: no homepage project %q (content/_index.md)" $id }}{{ end }}
+            {{ $link := $project.case_study | default $project.url }}
+            <article class="panel flex flex-col p-5 transition-shadow hover:shadow-md sm:p-6">
+                <div class="mb-3 flex items-center justify-between gap-2">
+                    <span class="rounded bg-surface-container-high px-2.5 py-1 font-mono text-label-sm text-primary">{{ .stack }}</span>
+                    <span class="flex text-xl text-outline" aria-hidden="true">{{ partial "icon" (dict "name" .icon) }}</span>
+                </div>
+                <h3 class="font-heading text-headline-sm font-bold text-on-surface">{{ $project.name }}</h3>
+                <p class="mb-2 text-label-sm text-primary">{{ $project.tagline }}</p>
+                <p class="mb-4 text-body-sm text-on-surface-variant">{{ partial "typography" $project.description }}</p>
+                <a class="mt-auto inline-flex min-h-11 items-center gap-1 self-start text-body-sm font-semibold text-primary hover:underline lg:min-h-0" href="{{ $link }}" rel="noopener" target="_blank">
+                    {{ if $project.case_study }}{{ partial "icon" (dict "name" "file-text") }}<span>Étude de cas<span class="sr-only"> {{ $project.name }}</span> sur silarhi.fr</span>{{ else }}Visiter {{ (urls.Parse $link).Host }}{{ partial "icon" (dict "name" "arrow-right") }}{{ end }}
+                </a>
+            </article>
+            {{ end }}
+            {{ with .Params.open_source }}
+            <article class="flex flex-col rounded-2xl border border-slate-800 bg-terminal-black p-5 text-slate-300 shadow-sm sm:p-6">
+                <div class="mb-3 flex items-center justify-between gap-2">
+                    <span class="rounded bg-slate-800 px-2.5 py-1 font-mono text-label-sm text-emerald-400">Open source</span>
+                    <span class="flex text-xl text-slate-500" aria-hidden="true">{{ partial "icon" (dict "name" "code-xml") }}</span>
+                </div>
+                <h3 class="mb-2 font-heading text-headline-sm font-bold text-white">Outils pour l’écosystème Symfony</h3>
+                <ul class="mb-4 flex flex-col gap-2 text-body-sm">
+                    {{ range .packages }}
+                    <li class="flex items-start gap-2">
+                        <span class="flex h-lh shrink-0 items-center text-secondary-fixed-dim" aria-hidden="true">{{ partial "icon" (dict "name" "package") }}</span>
+                        <span><a class="font-mono font-semibold text-white underline decoration-slate-600 underline-offset-4 hover:decoration-white" href="{{ .url }}" rel="noopener" target="_blank">{{ .name }}</a>&nbsp;: {{ .text }}</span>
+                    </li>
+                    {{ end }}
+                </ul>
+                <a class="mt-auto inline-flex min-h-11 items-center gap-1 self-start font-mono text-label-sm text-indigo-300 hover:text-white hover:underline lg:min-h-0" href="{{ .url }}" rel="noopener" target="_blank">Voir les dépôts sur GitHub{{ partial "icon" (dict "name" "external-link") }}</a>
+            </article>
+            {{ end }}
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="section">
+    <div class="container">
+        <div class="mb-8 flex max-w-3xl flex-col items-start sm:mx-auto sm:items-center sm:text-center">
+            <p class="eyebrow">Transparence</p>
+            <h2 class="section-title mt-1">Questions fréquentes</h2>
+        </div>
+        <div class="mx-auto flex max-w-3xl flex-col gap-3">
+            {{ range $i, $item := .Params.faq }}
+            <details class="group panel px-4 sm:px-5"{{ if eq $i 0 }} open{{ end }}>
+                <summary class="flex cursor-pointer list-none items-start justify-between gap-4 py-4 text-body-md select-none">
+                    <span class="font-semibold text-on-surface transition-colors group-hover:text-primary">{{ partial "typography" $item.question }}</span>
+                    <span class="flex h-lh shrink-0 items-center text-outline transition-transform group-open:rotate-180" aria-hidden="true">{{ partial "icon" (dict "name" "chevron-down" "class" "text-xl") }}</span>
+                </summary>
+                <p class="max-w-prose pb-4 text-body-sm leading-relaxed text-on-surface-variant [&_a]:font-semibold [&_a]:text-primary [&_a]:hover:underline">{{ partial "typography" (replace $item.answer "{{ rate }}" $rate | markdownify) | safeHTML }}</p>
+            </details>
+            {{ end }}
+        </div>
+    </div>
+</section>
+
+<!-- Call to action -->
+<section class="pb-14 md:pb-20">
+    <div class="container">
+        <div class="relative flex flex-col gap-6 overflow-hidden rounded-2xl bg-terminal-black p-6 text-slate-300 shadow-xl sm:p-8 lg:flex-row lg:items-center lg:justify-between lg:p-10">
+            <div class="pointer-events-none absolute -top-24 -left-24 size-72 rounded-full bg-primary/30 blur-3xl" aria-hidden="true"></div>
+            <div class="pointer-events-none absolute -right-16 -bottom-24 size-72 rounded-full bg-secondary-fixed-dim/20 blur-3xl" aria-hidden="true"></div>
+            <div class="relative flex max-w-2xl flex-col gap-3">
+                {{ if $freelance.available }}
+                <p class="inline-flex items-center gap-1.5 self-start rounded-full bg-slate-800 px-3 py-1 font-mono text-label-sm text-emerald-400">
+                    <span class="size-2 rounded-full bg-emerald-400 motion-safe:animate-pulse" aria-hidden="true"></span>Disponible pour une nouvelle mission
+                </p>
+                {{ end }}
+                <h2 class="font-heading text-headline-lg-mobile font-bold text-white md:text-headline-lg">Un projet PHP / Symfony à Toulouse ou à distance&#8239;?</h2>
+                <p class="text-body-md text-slate-400">Parlons de vos besoins, de vos contraintes techniques et de vos délais.</p>
+                <ul class="mt-1 flex flex-wrap gap-2 font-mono text-label-sm">
+                    <li><a class="inline-flex min-h-11 items-center gap-2 rounded-lg bg-slate-800 px-3 text-slate-200 no-underline hover:bg-slate-700 lg:min-h-9" href="tel:{{ $contact.phone }}">{{ partial "icon" (dict "name" "phone" "class" "text-secondary-fixed-dim") }}{{ $contact.phoneDisplay }}</a></li>
+                    <li><a class="inline-flex min-h-11 items-center gap-2 rounded-lg bg-slate-800 px-3 text-slate-200 no-underline hover:bg-slate-700 lg:min-h-9" href="mailto:{{ $contact.email }}">{{ partial "icon" (dict "name" "mail" "class" "text-secondary-fixed-dim") }}{{ $contact.email }}</a></li>
+                </ul>
+            </div>
+            {{ with $cta }}
+            <div class="relative flex shrink-0 flex-col items-stretch gap-2 sm:items-start lg:items-end">
+                <a class="btn btn-accent btn-lg" href="{{ .url }}" data-analytics-event="landing-cta" data-analytics-page="{{ $.RelPermalink }}">{{ partial "icon" (dict "name" "message-square-text") }}{{ .label }}</a>
+                <span class="text-center font-mono text-label-sm font-normal text-slate-500">Réponse sous 24h ouvrées · sans engagement</span>
+            </div>
+            {{ end }}
+        </div>
+    </div>
+</section>
+{{ end }}

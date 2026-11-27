@@ -3,7 +3,7 @@
 {{ $freelance := site.Params.freelance }}
 {{ $years := sub now.Year $freelance.careerStartYear }}
 {{ $rate := printf "%v à %v € HT / jour" $freelance.dailyRateMin $freelance.dailyRateMax }}
-{{ $symfonyPage := site.GetPage "/developpeur-symfony-freelance-toulouse" }}
+{{ $symfonyPage := site.GetPage "/developpeur-php-symfony-freelance-toulouse" }}
 {{/* The 15-minute call buttons open the booking page once configured, the contact form until then */}}
 {{ $bookingUrl := $freelance.bookingUrl | default "#contact" }}
 {{ $isBookingExternal := ne $bookingUrl "#contact" }}

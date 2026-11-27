@@ -48,6 +48,7 @@ pnpm knip             # Check for unused dependencies/exports
 - **Icons**: Lucide, inlined at build time with `{{ partial "icon" (dict "name" "mail" "class" "…") }}` (`lucide-static` mounted on `assets/icons` in `config.toml`); no icon JavaScript
 - **Custom components**: `SimpleCollapse.js` (mobile menu, Bootstrap-like `data-bs-*` API without Bootstrap), `portfolio.js` (filters + "Afficher tous les projets"; every project stays in the HTML, the script only hides cards)
 - **Homepage content**: sections are driven by the front matter of `content/_index.md` (`situations`, `services`, `skill_groups`, `faq`, `contact_needs`, `experiences`, `portfolio_filters`, `projects`); the FAQ also feeds the `FAQPage` JSON-LD in `layouts/partials/schemas.html`
+- **Landing pages** (`layout: landing`, `layouts/_default/landing.html`): the PHP / Symfony page is built the same way, from its front matter (`intro`, `missions`, `projects`, `open_source`, `faq`, `cta`) with the homepage's building blocks; its `projects` pick homepage portfolio entries by `id`, so names, taglines and links are kept in one place
 - **Images**: native `loading="lazy"` through the `responsive-image` partial
 - **Social preview**: `static/og-image.jpg` (1200×630) and `.github/social-preview.png` (1280×640, GitHub's safe border of 80px, uploaded by hand in the repository's Settings → Social preview) are rendered from `scripts/og-image.html` (hero tokens, fonts and portrait) by `pnpm og-image` (headless Chrome); regenerate and commit both after a design change
 - **Legal pages** (`layout: legal`, `layouts/_default/legal.html`): the publisher and company details come from `[params.publisher]` / `[params.company]` in `config.toml` through the `{{< identity company rcs >}}` shortcode (`layouts/partials/identity.html`; the publisher's address falls back to the company office, so the address is set once); never copy them into the Markdown. The mentions légales open with the card rendering them (`identity: true`)
@@ -57,18 +58,18 @@ pnpm knip             # Check for unused dependencies/exports
 
 Self-hosted Umami (`analytics.silarhi.fr`, cookieless) is loaded by `layouts/partials/umami.html` from `[params.umami]` in `config.toml`, from `analytics.sainthillier.fr` (a subdomain that serves only the tracker and its endpoint, so ad blockers do not drop it as a third party), and only reports from `sainthillier.fr`. Conversion events live in `assets/js/analytics.js`: a `track(name, data)` helper calling `window.umami?.track`, and one delegated click listener that classifies links by their href (so links written in Markdown are tracked too). Elements that only exist in templates are marked with our own attributes, the same convention on all the owner's sites: `data-analytics-event="<name>"` plus one `data-analytics-<prop>="<value>"` per property; the same listener reads them and calls `track(name, data)`. Never use Umami's `data-umami-*` attributes: only `analytics.js` knows about `window.umami`, so the markup does not name the analytics tool. Each event is a goal to create in Umami (Reports → Goals, type "Event"):
 
-| Event                | Where it fires                                                                                  | Data                                        |
-| -------------------- | ----------------------------------------------------------------------------------------------- | ------------------------------------------- |
-| `contact-form`       | Formspree answered 2xx to the homepage contact form (`initContactForm` in `app.js`)             | `need` (chosen need), `timeline`            |
-| `contact-form-error` | the contact form submission failed (network or server error, not a 422 validation error)        | `need`                                      |
-| `contact-direct`     | click on any `tel:` / `mailto:` link (listener)                                                 | `channel`: `phone` / `email`                |
-| `booking`            | click on a `calendly.com` link (listener)                                                       | none                                        |
-| `cv-download`        | click on the CV PDF, `/CV-…pdf` (listener)                                                      | none                                        |
-| `cgv-download`       | click on the CGV PDF, `/CGV.pdf` on the CGV page (listener)                                     | none                                        |
-| `social-click`       | click on a footer social link (`data-analytics-event`, `baseof.html`)                           | `network`: `linkedin` / `github` / `gitlab` |
-| `landing-cta`        | click on the `{{< cta >}}` shortcode button (`developpeur-symfony-freelance-toulouse`, a draft) | `page`: the page path                       |
-| `portfolio-filter`   | click on a portfolio filter button (`data-analytics-event`, `homepage.html`)                    | `filter`: the filter id                     |
-| `portfolio-show-all` | click on "Afficher tous les projets" (`data-analytics-event`, `homepage.html`)                  | none                                        |
+| Event                | Where it fires                                                                           | Data                                        |
+| -------------------- | ---------------------------------------------------------------------------------------- | ------------------------------------------- |
+| `contact-form`       | Formspree answered 2xx to the homepage contact form (`initContactForm` in `app.js`)      | `need` (chosen need), `timeline`            |
+| `contact-form-error` | the contact form submission failed (network or server error, not a 422 validation error) | `need`                                      |
+| `contact-direct`     | click on any `tel:` / `mailto:` link (listener)                                          | `channel`: `phone` / `email`                |
+| `booking`            | click on a `calendly.com` link (listener)                                                | none                                        |
+| `cv-download`        | click on the CV PDF, `/CV-…pdf` (listener)                                               | none                                        |
+| `cgv-download`       | click on the CGV PDF, `/CGV.pdf` on the CGV page (listener)                              | none                                        |
+| `social-click`       | click on a footer social link (`data-analytics-event`, `baseof.html`)                    | `network`: `linkedin` / `github` / `gitlab` |
+| `landing-cta`        | click on a call-to-action button of a landing page (`layouts/_default/landing.html`)     | `page`: the page path                       |
+| `portfolio-filter`   | click on a portfolio filter button (`data-analytics-event`, `homepage.html`)             | `filter`: the filter id                     |
+| `portfolio-show-all` | click on "Afficher tous les projets" (`data-analytics-event`, `homepage.html`)           | none                                        |
 
 The visitor-facing list of these events and their data is section 4 « Mesure d’audience » of `content/politique-de-confidentialite/index.md`: update it with any new event or property.
 
