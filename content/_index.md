@@ -119,12 +119,21 @@ faq:
       answer: "Une mission peut démarrer sous 48h, selon mes disponibilités du moment et le degré d’urgence de votre projet."
     - question: Quel est votre usage de l’IA pour accélérer les développements ?
       answer: "J’intègre les outils d’IA (assistants de code, génération de tests automatisés, prototypage rapide, documentation) dans ma chaîne de production. Cela permet de livrer plus vite, d’éliminer les tâches répétitives et de concentrer la réflexion sur l’architecture, la robustesse métier et la sécurité de votre code."
-# Quotes from the Google reviews of SILARHI ([params.reviews] in config.toml), copied as written: "author" is the
-# first name and initial only, "date" the month of the review
+# Client reviews, copied as written, shown under the Google rating of SILARHI ([params.reviews] in config.toml):
+# "author" as the review shows it, "company" when the review names it (else "client de SILARHI"), "date" the month of
+# the review, "source" / "url" the site that hosts it
 testimonials:
+    - quote: Guillaume est un développeur très compétent et efficace. Intégration ultra rapide sur un projet pas évident. Qualité du travail et délais très satisfaisants. Nous recommandons vivement son profil.
+      author: Yohann
+      company: Eleo
+      date: Mai 2022
+      source: Malt
+      url: https://www.malt.fr/profile/guillaumesainthillier
     - quote: C'est toujours un plaisir de travailler avec Silarhi. J'apprécie particulièrement le professionnalisme des équipes et la qualité du travail.
       author: Thomas J.
       date: Septembre 2021
+      source: Google
+      url: https://maps.google.com/?cid=9069420138810526012
 # Contact form need types: the message placeholder and help text follow the selected need
 contact_needs:
     - id: custom-app

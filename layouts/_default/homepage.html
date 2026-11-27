@@ -476,16 +476,18 @@
                         </p>
                     </div>
                     {{ with site.Params.reviews }}
-                    <figure class="col-span-2 flex flex-col gap-3 rounded-xl border border-hairline bg-surface-card p-4">
+                    <div class="col-span-2 flex flex-col gap-4 rounded-xl border border-hairline bg-surface-card p-4">
                         <a class="flex flex-wrap items-center gap-x-2 gap-y-1 text-label-sm text-on-surface no-underline hover:text-primary" href="{{ .url }}" rel="noopener" target="_blank">
                             <span class="flex text-secondary-fixed-dim" aria-hidden="true">{{ range seq 5 }}{{ partial "icon" (dict "name" "star" "class" "fill-current") }}{{ end }}</span>
                             <span><strong class="font-semibold">{{ .rating }}/5</strong> · {{ .count }} avis Google sur SILARHI</span>
                         </a>
                         {{ range $.Params.testimonials }}
-                        <blockquote class="text-body-sm leading-relaxed text-on-surface">«&#8239;{{ partial "typography" .quote }}&#8239;»</blockquote>
-                        <figcaption class="text-label-sm font-normal text-on-surface-variant">{{ .author }}, client de SILARHI · {{ .date }}</figcaption>
+                        <figure class="flex flex-col gap-1">
+                            <blockquote class="text-body-sm leading-relaxed text-on-surface">«&#8239;{{ partial "typography" .quote }}&#8239;»</blockquote>
+                            <figcaption class="text-label-sm font-normal text-on-surface-variant">{{ .author }}, {{ .company | default "client de SILARHI" }} · <a class="text-on-surface-variant hover:text-primary" href="{{ .url }}" rel="noopener" target="_blank">avis {{ .source }}</a> · {{ .date }}</figcaption>
+                        </figure>
                         {{ end }}
-                    </figure>
+                    </div>
                     {{ end }}
                 </div>
             </div>
