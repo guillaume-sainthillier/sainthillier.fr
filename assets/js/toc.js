@@ -1,3 +1,5 @@
+import observeScrollSpy from './scroll-spy'
+
 // Height of the fixed header plus some room, so a section counts as current once its title is well in view
 const SCROLL_OFFSET = 120
 
@@ -11,39 +13,34 @@ export default function initToc() {
     if (!toc) return
 
     const links = [...toc.querySelectorAll('a[href^="#"]')]
-    const headings = links.map((link) => document.getElementById(decodeURIComponent(link.hash.slice(1))))
+    const linkByHeading = new Map()
+    for (const link of links) {
+        const heading = document.getElementById(decodeURIComponent(link.hash.slice(1)))
+        if (heading) {
+            linkByHeading.set(heading, link)
+        }
+    }
 
     let previous = null
 
-    const update = () => {
-        let current = 0
-        headings.forEach((heading, index) => {
-            if (heading && heading.getBoundingClientRect().top <= SCROLL_OFFSET) {
-                current = index
-            }
-        })
+    // Above the first heading, the first entry stays current
+    observeScrollSpy([...linkByHeading.keys()], SCROLL_OFFSET, (heading) => {
+        const current = heading ? linkByHeading.get(heading) : links[0]
 
-        links.forEach((link, index) => {
-            if (index === current) {
-                link.setAttribute('aria-current', 'true')
-            } else {
-                link.removeAttribute('aria-current')
-            }
-        })
+        previous?.removeAttribute('aria-current')
+        current.setAttribute('aria-current', 'true')
 
-        // A long table of contents scrolls on its own (desktop): keep the current entry visible. Only when it
-        // changes, so the page's scroll events don't restart the animation; instant on load and for reduced motion
-        if (current === previous) return
-        const link = links[current]
-        if (link.offsetTop < toc.scrollTop || link.offsetTop + link.offsetHeight > toc.scrollTop + toc.clientHeight) {
+        // A long table of contents scrolls on its own (desktop): keep the current entry visible, instantly on
+        // load and for reduced motion
+        if (
+            current.offsetTop < toc.scrollTop ||
+            current.offsetTop + current.offsetHeight > toc.scrollTop + toc.clientHeight
+        ) {
             toc.scrollTo({
-                top: link.offsetTop - toc.clientHeight / 2,
+                top: current.offsetTop - toc.clientHeight / 2,
                 behavior: previous === null || reducedMotion.matches ? 'instant' : 'smooth',
             })
         }
         previous = current
-    }
-
-    document.addEventListener('scroll', update, { passive: true })
-    update()
+    })
 }
