@@ -119,6 +119,12 @@ faq:
       answer: "Une mission peut démarrer sous 48h, selon mes disponibilités du moment et le degré d’urgence de votre projet."
     - question: Quel est votre usage de l’IA pour accélérer les développements ?
       answer: "J’intègre les outils d’IA (assistants de code, génération de tests automatisés, prototypage rapide, documentation) dans ma chaîne de production. Cela permet de livrer plus vite, d’éliminer les tâches répétitives et de concentrer la réflexion sur l’architecture, la robustesse métier et la sécurité de votre code."
+# Quotes from the Google reviews of SILARHI ([params.reviews] in config.toml), copied as written: "author" is the
+# first name and initial only, "date" the month of the review
+testimonials:
+    - quote: C'est toujours un plaisir de travailler avec Silarhi. J'apprécie particulièrement le professionnalisme des équipes et la qualité du travail.
+      author: Thomas J.
+      date: Septembre 2021
 # Contact form need types: the message placeholder and help text follow the selected need
 contact_needs:
     - id: custom-app

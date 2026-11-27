@@ -54,6 +54,14 @@ disableKinds = ["taxonomy", "RSS"]
   phone = "+33607275826"
   phoneDisplay = "06 07 27 58 26"
 
+# Google reviews of SILARHI (the company carrying out the missions), shown on the homepage next to the contact
+# details; update "rating" and "count" by hand when a review comes in. Never in the JSON-LD: Google ignores
+# self-served review markup on the reviewed entity's own site
+[params.reviews]
+  rating = "5,0"
+  count = 8
+  url = "https://maps.google.com/?cid=9069420138810526012"
+
 [params.social]
   github = "https://github.com/guillaume-sainthillier"
   linkedin = "https://www.linkedin.com/in/developpeur-web-toulouse/"
