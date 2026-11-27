@@ -75,6 +75,23 @@
                     "name": "SILARHI",
                     "url": "https://silarhi.fr"
                 },
+                "knowsLanguage": [
+                    { "@type": "Language", "name": "Français", "alternateName": "fr" },
+                    { "@type": "Language", "name": "Anglais", "alternateName": "en" }
+                ],
+                {{/* Degrees listed on the CV: DUT at IUT de Blagnac, then L3 MIASHS and Master ICE at the same university */}}
+                "alumniOf": [
+                    {
+                        "@type": "CollegeOrUniversity",
+                        "name": "Université Toulouse - Jean Jaurès",
+                        "url": "https://www.univ-tlse2.fr"
+                    },
+                    {
+                        "@type": "CollegeOrUniversity",
+                        "name": "IUT de Blagnac",
+                        "url": "https://iut-blagnac.univ-tlse2.fr"
+                    }
+                ],
                 "knowsAbout": ["PHP", "Symfony", "API Platform", "Doctrine", "EBICS", "CFONB", "MySQL", "PostgreSQL", "Docker", "AWS"],
                 "hasCredential": {
                     "@type": "EducationalOccupationalCredential",
@@ -111,7 +128,11 @@
                     {{ site.Params.Social.linkedin }},
                     {{ site.Params.Social.github }},
                     {{ site.Params.Social.gitlab }},
-                    "https://stackoverflow.com/users/7652866/guillaume-sainthillier"
+                    "https://stackoverflow.com/users/7652866/guillaume-sainthillier",
+                    "https://connect.symfony.com/profile/guillaume-sainthillier",
+                    "https://www.malt.fr/profile/guillaumesainthillier",
+                    "https://dev.to/guillaume_sainthillier",
+                    "https://api-platform.com/community/contributors/guillaume-sainthillier/"
                 ]
             }
         ]
