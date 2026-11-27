@@ -14,7 +14,10 @@
         "--disableFastRender",
         "--noHTTPCache"
       ],
-      "port": 1313
+      "port": 1313,
+      "env": {
+        "HUGO_BIN_PATH": "/opt/homebrew/bin/hugo"
+      }
     }
   ]
 }
