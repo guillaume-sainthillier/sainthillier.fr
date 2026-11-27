@@ -1,7 +1,7 @@
 import observeScrollSpy from './scroll-spy'
 
-// Height of the fixed header, so a section counts as current once it reaches the bottom of the header
-const SCROLL_OFFSET = 80
+// The html scroll-padding-top (base.css): the height of the fixed header, where an anchor link lands its section
+const headerOffset = () => Number.parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0
 
 export default function initNavbar() {
     // Header navigation and mobile tab bar
@@ -17,15 +17,19 @@ export default function initNavbar() {
     }
 
     // One pixel past the header, so the section an anchor link lands on is already current
-    observeScrollSpy([...sections], SCROLL_OFFSET + 1, (currentSection) => {
-        for (const link of scrollLinks) {
-            const isActive = currentSection !== null && link.getAttribute('href') === `/#${currentSection.id}`
-            link.classList.toggle('active', isActive)
-            if (isActive) {
-                link.setAttribute('aria-current', 'true')
-            } else {
-                link.removeAttribute('aria-current')
+    observeScrollSpy(
+        [...sections],
+        () => headerOffset() + 1,
+        (currentSection) => {
+            for (const link of scrollLinks) {
+                const isActive = currentSection !== null && link.getAttribute('href') === `/#${currentSection.id}`
+                link.classList.toggle('active', isActive)
+                if (isActive) {
+                    link.setAttribute('aria-current', 'true')
+                } else {
+                    link.removeAttribute('aria-current')
+                }
             }
         }
-    })
+    )
 }
