@@ -520,13 +520,13 @@
                     <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
                         <div>
                             <label class="form-label" for="name">Vos prénom et nom *</label>
-                            <input class="form-control" id="name" name="name" autocomplete="name" type="text" placeholder="Ex : Jean Dupont" required>
-                            <div class="invalid-feedback">Merci de renseigner votre nom.</div>
+                            <input class="form-control" id="name" name="name" autocomplete="name" type="text" placeholder="Ex : Jean Dupont" aria-describedby="nameError" required>
+                            <div class="invalid-feedback" id="nameError">Merci de renseigner votre nom.</div>
                         </div>
                         <div>
                             <label class="form-label" for="email">Votre email professionnel *</label>
-                            <input class="form-control" id="email" name="email" autocomplete="email" type="email" placeholder="jean@entreprise.com" required>
-                            <div class="invalid-feedback">Merci de renseigner votre email.</div>
+                            <input class="form-control" id="email" name="email" autocomplete="email" type="email" placeholder="jean@entreprise.com" aria-describedby="emailError" required>
+                            <div class="invalid-feedback" id="emailError">Merci de renseigner une adresse email valide.</div>
                         </div>
                     </div>
                     <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -550,8 +550,8 @@
                             <label class="form-label mb-0" for="message">Description de votre besoin technique *</label>
                             <span class="text-label-sm font-medium text-primary" id="needIndicator" aria-hidden="true">{{ $firstNeed.label }}</span>
                         </div>
-                        <textarea class="form-control" id="message" name="message" rows="4" placeholder="{{ $firstNeed.placeholder }}" aria-describedby="needHelp" required></textarea>
-                        <div class="invalid-feedback">Merci de renseigner votre message.</div>
+                        <textarea class="form-control" id="message" name="message" rows="4" placeholder="{{ $firstNeed.placeholder }}" aria-describedby="messageError needHelp" required></textarea>
+                        <div class="invalid-feedback" id="messageError">Merci de renseigner votre message.</div>
                         <p class="mt-1.5 flex items-start gap-1 text-label-sm font-normal text-on-surface-variant">
                             <span class="flex h-lh items-center text-primary" aria-hidden="true">{{ partial "icon" (dict "name" "info") }}</span><span id="needHelp">{{ $firstNeed.help }}</span>
                         </p>
