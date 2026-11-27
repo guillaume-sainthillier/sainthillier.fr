@@ -101,13 +101,39 @@ function initContactForm() {
 
     sent.querySelector('[data-contact-reset]').addEventListener('click', () => showContactSent(false))
 
+    // The red border and message come from :invalid in CSS; aria-invalid tells assistive technologies the same
+    const fields = [...contactForm.querySelectorAll('input, select, textarea')]
+    const markInvalidFields = () => {
+        for (const field of fields) {
+            field.setAttribute('aria-invalid', String(!field.validity.valid))
+        }
+    }
+
+    // Brings the visitor to the first field to fix, which may be off-screen on a phone
+    const focusFirstInvalidField = () => {
+        const field = fields.find((element) => !element.validity.valid || element.classList.contains('is-invalid'))
+        if (!field) return
+
+        field.focus({ preventScroll: true })
+        field.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    }
+
+    // Once the visitor tried to send, each field says whether it is fixed as they type
+    contactForm.addEventListener('input', () => {
+        if (contactForm.classList.contains('was-validated')) {
+            markInvalidFields()
+        }
+    })
+
     contactForm.addEventListener(
         'submit',
         (event) => {
             event.preventDefault()
             event.stopPropagation()
             contactForm.classList.add('was-validated')
+            markInvalidFields()
             if (!contactForm.checkValidity()) {
+                focusFirstInvalidField()
                 return
             }
 
@@ -179,6 +205,7 @@ function initContactForm() {
                                 const field = contactForm.querySelector(`#${fieldName}`)
                                 if (field) {
                                     field.classList.add('is-invalid', 'server-invalid')
+                                    field.setAttribute('aria-invalid', 'true')
                                     const feedback = document.createElement('div')
                                     feedback.className = 'invalid-feedback server-feedback'
                                     feedback.style.display = 'block'
@@ -188,6 +215,7 @@ function initContactForm() {
                             })
 
                             showAlert(success, 'danger', 'Merci de corriger les erreurs dans le formulaire.')
+                            focusFirstInvalidField()
                         }
                     } else {
                         throw new Error('Server error')
