@@ -84,7 +84,7 @@ Vite build → custom `generate-entrypoints` plugin (`vite.config.js`) writes `d
 
 ## Deployment
 
-Site deploys to Netlify automatically. Build command: `pnpm build:hugo`. Publish directory: `public/`.
+Site deploys to Netlify automatically. Build command: `pnpm build:hugo`. Publish directory: `public/`. The local build plugin `netlify/plugins/hugo-cache` restores and saves `resources/` (Hugo's processed images) through Netlify's build cache, so a deploy only encodes the images that changed.
 
 ## Pre-commit Hooks
 
