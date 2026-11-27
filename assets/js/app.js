@@ -50,6 +50,36 @@ function initAlerts() {
     })
 }
 
+/**
+ * Shows a dismissible alert (the data-bs-dismiss="alert" button is handled by initAlerts) in place of the
+ * container's content. Built with DOM nodes, never HTML strings: the messages may include what the visitor typed.
+ *
+ * @param {HTMLElement} container element receiving the alert
+ * @param {'success'|'danger'} type alert style
+ * @param {string} title text in bold
+ * @param {string} [text] text after the title
+ */
+function showAlert(container, type, title, text = '') {
+    const alert = document.createElement('div')
+    alert.className = `alert alert-${type} alert-dismissible fade show`
+
+    const strong = document.createElement('strong')
+    strong.textContent = title
+    alert.append(strong)
+    if (text) {
+        alert.append(` ${text}`)
+    }
+
+    const close = document.createElement('button')
+    close.type = 'button'
+    close.className = 'btn-close'
+    close.dataset.bsDismiss = 'alert'
+    close.setAttribute('aria-label', 'Fermer')
+    alert.append(close)
+
+    container.replaceChildren(alert)
+}
+
 function initContactForm() {
     const contactForm = document.body.querySelector('#contactForm')
     if (!contactForm) return
@@ -70,7 +100,6 @@ function initContactForm() {
             const message = contactForm.querySelector('#message').value
             const need = contactForm.querySelector('input[name="need"]:checked')?.value ?? 'Non précisé'
             const timeline = contactForm.querySelector('#timeline').value
-            const firstName = name // For Success/Failure Message
 
             const data = {
                 _replyto: email,
@@ -86,7 +115,7 @@ function initContactForm() {
 
             const success = document.body.querySelector('#success')
             const sendMessageButton = document.body.querySelector('#sendMessageButton')
-            const originalButtonText = sendMessageButton.innerHTML
+            const originalButtonContent = [...sendMessageButton.childNodes]
 
             // Show loading state
             sendMessageButton.setAttribute('disabled', 'disabled')
@@ -111,12 +140,12 @@ function initContactForm() {
                 .then(async (response) => {
                     if (response.ok) {
                         track('contact-form', { need, timeline })
-                        success.innerHTML = `
-                                <div class="alert alert-success alert-dismissible fade show">
-                                    <strong>Votre message a bien été envoyé.</strong> Je vous réponds sous 24h ouvrées.
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fermer"></button>
-                                </div>
-                            `
+                        showAlert(
+                            success,
+                            'success',
+                            'Votre message a bien été envoyé.',
+                            'Je vous réponds sous 24h ouvrées.'
+                        )
                         contactForm.classList.remove('was-validated')
                         contactForm.reset()
                     } else if (response.status === 422) {
@@ -143,12 +172,7 @@ function initContactForm() {
                                 }
                             })
 
-                            success.innerHTML = `
-                                    <div class="alert alert-danger alert-dismissible fade show">
-                                        <strong>Merci de corriger les erreurs dans le formulaire.</strong>
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fermer"></button>
-                                    </div>
-                                `
+                            showAlert(success, 'danger', 'Merci de corriger les erreurs dans le formulaire.')
                         }
                     } else {
                         throw new Error('Server error')
@@ -156,17 +180,16 @@ function initContactForm() {
                 })
                 .catch(() => {
                     track('contact-form-error', { need })
-                    success.innerHTML = `
-                            <div class="alert alert-danger alert-dismissible fade show">
-                                <strong>Désolé ${firstName}, on dirait que le message n'a pas pu être envoyé. Merci d'essayer un peu plus tard ou de me contacter directement par téléphone !</strong>
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fermer"></button>
-                            </div>
-                        `
+                    showAlert(
+                        success,
+                        'danger',
+                        `Désolé ${name}, on dirait que le message n'a pas pu être envoyé. Merci d'essayer un peu plus tard ou de me contacter directement par téléphone !`
+                    )
                     contactForm.classList.remove('was-validated')
                 })
                 .finally(() => {
                     sendMessageButton.removeAttribute('disabled')
-                    sendMessageButton.innerHTML = originalButtonText
+                    sendMessageButton.replaceChildren(...originalButtonContent)
                 })
         },
         false
